@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="info.easysafe.mapper.MainMapper">
+
+	<select id="selectListChemKorName">
+		select *
+		from tbl_dummydata
+		where name like CONCAT('%', #{korKey}, '%')
+	</select>
+	
+	<select id="selectOneChemKorName">
+		select *
+		from tbl_dummydata
+		where name = #{korKey}
+	</select>
+	
+	<select id="searchChemKorNameCount" resultType="int">
+		select count(*)
+		from tbl_dummydata
+		where name like CONCAT('%', #{korKey}, '%')
+	</select>
+	
+<!-- 	<select id="selectListProductKorName"> -->
+<!-- 		select * -->
+<!-- 		from tbl_dummydata -->
+<!-- 		where name like CONCAT('%', #{korKey}, '%') -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="selectOneProductKorName"> -->
+<!-- 		select * -->
+<!-- 		from tbl_dummydata -->
+<!-- 		where name = #{korKey} -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="searchProductKorNameCount" resultType="int"> -->
+<!-- 		select count(*) -->
+<!-- 		from product_table -->
+<!-- 		where name like CONCAT('%', #{korKey}, '%') -->
+<!-- 	</select> -->
+
+</mapper>
