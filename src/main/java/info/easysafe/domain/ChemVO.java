@@ -2,8 +2,11 @@ package info.easysafe.domain;
 
 public class ChemVO {
 
-	private String korName;
-	private String engName;
+//	private String korName;
+//	private String engName;
+	private String name;
+	
+	
 	
 	private String kor;
 	private String us;
@@ -21,20 +24,34 @@ public class ChemVO {
 	private int replycnt;
 	
 	
-	public String getKorName() {
-		return korName;
-	}
-	public void setKorName(String korName) {
-		this.korName = korName;
-	}
-	public String getEngName() {
-		return engName;
-	}
-	public void setEngName(String engName) {
-		this.engName = engName;
-	}
+//	public String getKorName() {
+//		return korName;
+//	}
+//	public void setKorName(String korName) {
+//		this.korName = korName;
+//	}
+//	public String getEngName() {
+//		return engName;
+//	}
+//	public void setEngName(String engName) {
+//		this.engName = engName;
+//	}
+	
+	
 	public String getKor() {
 		return kor;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAus() {
+		return aus;
+	}
+	public void setAus(String aus) {
+		this.aus = aus;
 	}
 	public void setKor(String kor) {
 		this.kor = kor;
@@ -98,6 +115,12 @@ public class ChemVO {
 	}
 	public void setReplycnt(int replycnt) {
 		this.replycnt = replycnt;
+	}
+	@Override
+	public String toString() {
+		return "ChemVO [name=" + name + ", kor=" + kor + ", us=" + us + ", eu=" + eu + ", ins=" + ins + ", cas=" + cas
+				+ ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", aus=" + aus + ", viewcnt=" + viewcnt
+				+ ", replycnt=" + replycnt + "]";
 	}
 	
 	

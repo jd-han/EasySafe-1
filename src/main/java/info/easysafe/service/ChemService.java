@@ -15,11 +15,11 @@ public interface ChemService {
 	
 //	public ChemVO readChemEngName(String engName) throws Exception;
 	
-//	public List<ProductVO> listProductKorName(String korKey) throws Exception;
+	public List<ProductVO> listProductKorName(String korKey) throws Exception;
 //	
 //	public List<ProductVO> listProductEngName(String engKey) throws Exception;
 //	
-//	public ProductVO readProductKorName(String korName) throws Exception;
+	public ProductVO readProductKorName(String korName) throws Exception;
 	
 //	public ProductVO readProductEngName(String engName) throws Exception;
 	

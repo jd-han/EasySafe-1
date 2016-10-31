@@ -24,6 +24,8 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="info.easysafe.app" />
+	<context:component-scan base-package="info.easysafe.domain" />
+	
 	
 	
 	

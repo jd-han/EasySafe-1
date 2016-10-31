@@ -5,14 +5,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import info.easysafe.domain.ChemVO;
+import info.easysafe.domain.ProductVO;
+import info.easysafe.service.ChemService;
 
 /**
  * Handles requests for the application home page.
@@ -20,11 +27,10 @@ import info.easysafe.domain.ChemVO;
 @Controller
 public class MainController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MainController.class); 
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	@Inject
+	private ChemService service;
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -42,42 +48,103 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/searchChem", method = RequestMethod.GET)
-	public List<ChemVO> searchChem(String key) throws Exception{
-		//이름이 영문인지 구분하는 코드 필요!!! 그 경우가 아니면 한글로 판단. 
-		
-//		if (이름이 영어이면) {
-//			영문검색
-//		} else{
-//			한글인 경우 검색.
-//		}
-		return null;
+	@ResponseBody
+	public List<ChemVO> searchChem (String key, Model model) throws Exception{
+		//이름이 영문인지 구분하는 코드 필요!!! 그 경우가 아니면 한글로 판단.
+		boolean iskor = false;
+		  for(int i=0;i<key.length();i++){
+		     if(Character.getType(key.charAt(i)) == 5) {
+		    	 //한글인 경우 
+		    	 iskor = true;
+		     }
+		  }
+		  
+		  List<ChemVO> list = null; 
+		  if (iskor == true) {
+			  //한글인 경우
+			  list = service.listChemKorName(key);
+			  
+		  } else {
+			 
+		//	  list = service.listChemEngName(key);
+			  System.out.println("한글아님."); //한글이 없는 경우
+		  }
+		return list;
 	}
 	
-//	@RequestMapping(value="/chemList", method = RequestMethod.GET)
-//	public void chemList(){
-//		
-//	}
-	
+	@ResponseBody
 	@RequestMapping(value="/chemDetail", method = RequestMethod.GET)
 	public ChemVO chemDetail(String name) throws Exception{
 		
-		return null;
+		boolean iskor = false;
+		  for(int i=0;i<name.length();i++){
+		     if(Character.getType(name.charAt(i)) == 5) {
+		    	 //한글인 경우 
+		    	 iskor = true;
+		     }
+		  }
+		  
+		 ChemVO chem = null; 
+		  if (iskor == true) {
+			  //한글인 경우
+			  chem = service.readChemKorName(name);
+			  
+		  } else {
+		//	  chem = service.readChemEngName(key);
+			  System.out.println("한글아님."); //한글이 없는 경우
+		  }
+		return chem;
 	}
 	
-	
-	
+	@ResponseBody
 	@RequestMapping(value="/searchProduct", method = RequestMethod.GET)
-	public void searchProduct(){
-		
+	public List<ProductVO> searchProduct(String key) throws Exception{
+		boolean iskor = false;
+		  for(int i=0;i<key.length();i++){
+		     if(Character.getType(key.charAt(i)) == 5) {
+		    	 //한글인 경우 
+		    	 iskor = true;
+		     }
+		  }
+		  
+		  List<ProductVO> list = null; 
+		  if (iskor == true) {
+			  //한글인 경우
+			  list = service.listProductKorName(key);
+			  
+		  } else {
+//			  list = service.listProductEngName(key);
+			  System.out.println("한글아님."); //한글이 없는 경우
+		  }
+		  return list;
 	}
+	 
 	
-//	@RequestMapping(value="/productList", method = RequestMethod.GET)
-//	public void productLsit(){
-//		
-//	}
+
 	
+	@ResponseBody
 	@RequestMapping(value="/productDetail", method = RequestMethod.GET)
-	public void productDetail(){
+	public ProductVO productDetail(String name) throws Exception{
 		
+		boolean iskor = false;
+		  for(int i=0;i<name.length();i++){
+		     if(Character.getType(name.charAt(i)) == 5) {
+		    	 //한글인 경우 
+		    	 iskor = true;
+		     }
+		  }
+		  
+		 ProductVO product = null; 
+		  if (iskor == true) {
+			  //한글인 경우
+			  product = service.readProductKorName(name);
+			  
+		  } else {
+			 
+		//	  product = service.readProductEngName(key);
+			  System.out.println("한글아님."); //한글이 없는 경우
+		  }		
+		  return product;
 	}
+	 
 }

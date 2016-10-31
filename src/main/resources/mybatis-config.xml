@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-<!-- 		<typeAlias type="org.zerock.domain.BoardVO" alias="BoardVO" /> -->
+		<typeAlias type="info.easysafe.domain.ChemVO" alias="ChemVO" />
+		<typeAlias type="info.easysafe.domain.ProductVO" alias="ProductVO" />
 <!-- 		<typeAlias type="org.zerock.domain.ReplyVO" alias="ReplyVO"/> -->
 <!-- 		<typeAlias type="org.zerock.domain.MessageVO" alias="MessageVO"/> -->
 	</typeAliases>
