@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace= "info.easysafe.mappers.NoticeMapper">
+
+	<insert id="insert">
+		insert into tbl_notice (title, content)
+		values (#{title}, #{content})
+	</insert>
+	
+	<select id="read" resultType="NoticeVO">
+		select *
+		from tbl_notice
+		where noticeno = #{nno}
+	</select>
+	
+	<select id="listAll" resultType="NoticeVO">
+		select title, regdate
+		from tbl_notice
+	</select>
+	
+</mapper>

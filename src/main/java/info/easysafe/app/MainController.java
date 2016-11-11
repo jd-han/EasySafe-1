@@ -1,7 +1,5 @@
 package info.easysafe.app;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -11,11 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import info.easysafe.domain.ChemVO;
 import info.easysafe.domain.ProductVO;
@@ -49,7 +45,7 @@ public class MainController {
 	
 	@RequestMapping(value="/searchChem", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ChemVO> searchChem (String key, Model model) throws Exception{
+	public List<ChemVO> searchChem (String key) throws Exception{
 		//이름이 영문인지 구분하는 코드 필요!!! 그 경우가 아니면 한글로 판단.
 		boolean iskor = false;
 		  for(int i=0;i<key.length();i++){
@@ -119,7 +115,6 @@ public class MainController {
 		  return list;
 	}
 	 
-	
 
 	
 	@ResponseBody
@@ -146,5 +141,14 @@ public class MainController {
 		  }		
 		  return product;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/productDetailWUpc", method = RequestMethod.GET)
+	public ProductVO productDetailWUpc(String upc) throws Exception{
+		System.out.println(upc);
+		return service.readUpc(upc);
+	}
+	
+	
 	 
 }

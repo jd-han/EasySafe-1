@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="info.easysafe.mapper.MainMapper">
+<mapper namespace="info.easysafe.mappers.MainMapper">
 
 	<select id="selectListChemKorName" resultType="ChemVO">
 		select *
@@ -40,5 +40,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from tb_product
 		where name like CONCAT('%', #{korKey}, '%')
 	</select>
+	
+	<select id="selectProductWBarcode" resultType="ProductVO">
+		select *
+		from tb_product
+		where upc = #{upc}
+	</select>
+	
 
 </mapper>

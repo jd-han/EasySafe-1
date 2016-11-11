@@ -7,7 +7,6 @@ public class ChemVO {
 	private String name;
 	
 	
-	
 	private String kor;
 	private String us;
 	private String eu;

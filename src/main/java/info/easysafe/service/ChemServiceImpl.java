@@ -6,8 +6,6 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.sun.xml.internal.ws.developer.Serialization;
-
 import info.easysafe.domain.ChemVO;
 import info.easysafe.domain.ProductVO;
 import info.easysafe.persistence.ChemDAO;
@@ -37,5 +35,13 @@ public class ChemServiceImpl implements ChemService {
 	public ProductVO readProductKorName(String korName) throws Exception {
 		return dao.selectOneProductKorName(korName);
 	}
+
+	@Override
+	public ProductVO readUpc(String upc) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.findProductWBarcode(upc);
+	}
+	
+	
 
 }

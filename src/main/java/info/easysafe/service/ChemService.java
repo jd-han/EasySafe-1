@@ -23,7 +23,7 @@ public interface ChemService {
 	
 //	public ProductVO readProductEngName(String engName) throws Exception;
 	
-	
+	public ProductVO readUpc(String upc) throws Exception;
 	
 
 }

@@ -6,7 +6,7 @@ public class ProductVO {
 	
 	private String upc;
 	
-	private String component;
+	private String components;
 	
 	private String producer;
 
@@ -26,12 +26,12 @@ public class ProductVO {
 		this.upc = upc;
 	}
 
-	public String getComponent() {
-		return component;
+	public String getComponents() {
+		return components;
 	}
 
-	public void setComponent(String component) {
-		this.component = component;
+	public void setComponents(String component) {
+		this.components = component;
 	}
 
 	public String getProducer() {
@@ -44,7 +44,7 @@ public class ProductVO {
 
 	@Override
 	public String toString() {
-		return "ProductVO [name=" + name + ", upc=" + upc + ", component=" + component + ", producer=" + producer + "]";
+		return "ProductVO [name=" + name + ", upc=" + upc + ", components=" + components + ", producer=" + producer + "]";
 	}
 	
 	

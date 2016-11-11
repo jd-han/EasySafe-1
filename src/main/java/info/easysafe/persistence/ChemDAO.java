@@ -16,5 +16,10 @@ public interface ChemDAO {
 	public List<ProductVO> selectListProductKorName(String korKey) throws Exception;	
 	//디테일 클릭
 	public ProductVO selectOneProductKorName(String korName) throws Exception;
+	
+	//바코드 입력, 상품 찾기
+	public ProductVO findProductWBarcode(String upc) throws Exception;
+	
+	
 
 }

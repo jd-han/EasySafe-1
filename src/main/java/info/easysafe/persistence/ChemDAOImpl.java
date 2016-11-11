@@ -15,7 +15,7 @@ public class ChemDAOImpl implements ChemDAO{
 	
 	@Inject
 	private SqlSession session;
-	private static String namespace ="info.easysafe.mapper.MainMapper";
+	private static String namespace ="info.easysafe.mappers.MainMapper";
 
 	@Override
 	public List<ChemVO> selectListChemKorName(String korKey) throws Exception {
@@ -35,6 +35,11 @@ public class ChemDAOImpl implements ChemDAO{
 	@Override
 	public ProductVO selectOneProductKorName(String korName) throws Exception {
 		return session.selectOne(namespace+".selectOneProductKorName", korName);
+	}
+
+	@Override
+	public ProductVO findProductWBarcode(String upc) throws Exception {
+		return session.selectOne(namespace+".selectProductWBarcode", upc);
 	}
 
 }
