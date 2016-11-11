@@ -21,8 +21,18 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public NoticeVO readNotice(int nno) throws Exception {
-		return dao.read(nno);
+	public NoticeVO readNotice(int no) throws Exception {
+		return dao.read(no);
+	}
+
+	@Override
+	public void updateNotice(NoticeVO vo) throws Exception {
+		dao.update(vo);
+	}
+
+	@Override
+	public void deletNotice(Integer no) throws Exception {
+		dao.delete(no);
 	}
 
 }

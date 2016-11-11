@@ -33,4 +33,19 @@ public class NoticeController {
 	public NoticeVO readNotice(int no) throws Exception{
 		return service.readNotice(no);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/updateNotice", method= RequestMethod.POST )
+	public void updateNotice(NoticeVO vo) throws Exception{
+		System.out.println("vo from controller : "+ vo);
+		service.updateNotice(vo);
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteNotice", method=RequestMethod.POST)
+	public String deleteNotice(Integer no) throws Exception{
+		service.deletNotice(no);
+		return "success";
+	}
 }

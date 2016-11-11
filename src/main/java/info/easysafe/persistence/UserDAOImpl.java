@@ -28,8 +28,10 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public void view(UserVO vo) throws Exception {
-		session.selectOne(namespace+".readAccount", vo);
+	public UserVO view(UserVO vo) throws Exception {
+		UserVO uvo = session.selectOne(namespace+".readAccount", vo);
+		uvo.setUpw(null);
+		return uvo;
 	}
 
 	@Override
@@ -45,6 +47,13 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public void updatePW(UserVO vo) throws Exception {
 		session.update(namespace+".updateAccountpw", vo);
+	}
+
+	@Override
+	public UserVO login(UserVO vo) throws Exception {
+		UserVO uvo = session.selectOne(namespace+".login", vo);
+		uvo.setUpw(null);
+		return uvo;
 	}
 
 }

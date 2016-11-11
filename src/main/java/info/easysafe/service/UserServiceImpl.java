@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void view(UserVO vo) throws Exception {
-		dao.view(vo);
+	public UserVO view(UserVO vo) throws Exception {
+		return dao.view(vo);
 	}
 
 	@Override
@@ -44,6 +44,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void updatePW(UserVO vo) throws Exception {
 		dao.updatePW(vo);
+	}
+
+	@Override
+	public UserVO login(UserVO vo) throws Exception {
+		return dao.login(vo);
 	}
 
 }

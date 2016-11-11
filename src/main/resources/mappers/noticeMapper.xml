@@ -13,12 +13,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="read" resultType="NoticeVO">
 		select *
 		from tbl_notice
-		where noticeno = #{nno}
+		where noticeno = #{no}
 	</select>
 	
 	<select id="listAll" resultType="NoticeVO">
 		select title, regdate
 		from tbl_notice
 	</select>
+	
+	<update id="update">
+		update tbl_notice
+		set title=#{title}, content=#{content}
+		where noticeno = #{noticeNo} 
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_notice
+		where noticeno = #{no}
+	</delete>
 	
 </mapper>

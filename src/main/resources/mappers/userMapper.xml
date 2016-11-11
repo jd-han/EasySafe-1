@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace= "info.easysafe.mappers.UserMapper">
 
 	<select id="listAccount" resultType="UserVO">
-		select * from tbl_user order by #{columnName}
+		select uid, umail, uname, ulevel, regdate
+		from tbl_user order by #{columnName}
 	</select>
 	
 	<insert id="createAccount" parameterType="UserVO">
@@ -33,5 +34,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where uid = #{uid}
 	</delete>
 	
+	<select id="login" resultType="UserVO">
+		select *
+		from tbl_user
+		where uid= #{uid} and upw = #{upw}
+	</select>
 	
 </mapper>

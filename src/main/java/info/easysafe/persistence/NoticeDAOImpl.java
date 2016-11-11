@@ -28,14 +28,13 @@ public class NoticeDAOImpl implements NoticeDAO {
 
 	@Override
 	public void update(NoticeVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		System.out.println("vo from DAO : "+ vo);
+		session.update(namespace+".update", vo);
 	}
 
 	@Override
 	public void delete(Integer nno) throws Exception {
-		// TODO Auto-generated method stub
-		
+		session.delete(namespace+".delete", nno);
 	}
 
 	@Override
