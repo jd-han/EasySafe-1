@@ -3,21 +3,25 @@ package info.easysafe.app;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import info.easysafe.domain.UserVO;
+import info.easysafe.dto.LoginDTO;
 import info.easysafe.service.UserService;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -81,11 +85,11 @@ public class UserController {
 	
 	@ResponseBody
 	@RequestMapping(value="/updatePW", method=RequestMethod.POST)
-	public String updatePWPost(UserVO vo, String newPW ,RedirectAttributes rttr) throws Exception{
+	public String updatePWPost(LoginDTO dto, UserVO vo, String newPW ,RedirectAttributes rttr) throws Exception{
 		logger.info("비번 번경 POST. ");
 		logger.info(vo.toString());
 		
-		UserVO uvo = service.login(vo); //비번이 틀린 경우
+		UserVO uvo = service.login(dto); //비번이 틀린 경우는 null 이다. 
 		if(uvo != null) {
 			uvo.setUpw(newPW);
 			service.updatePW(uvo);
@@ -112,10 +116,28 @@ public class UserController {
 		model.addAttribute("userVO", uvo);
 	}
 	
+	
+	@RequestMapping(value="/deleteAccount", method = RequestMethod.POST)
 	public void deleteAccount(UserVO vo) throws Exception{
 		logger.info("탈퇴데스! ");
 		service.deleteAccount(vo);
 	}
+	
+	@RequestMapping(value="/login", method = RequestMethod.GET)
+	public void loginGET(@ModelAttribute("dto") LoginDTO dto) throws Exception{		}
+	
+	
+	@RequestMapping(value="/loginPost", method = RequestMethod.POST)
+	public void loginPOST (LoginDTO dto, HttpSession session, Model model) throws Exception{
+		UserVO vo = service.login(dto);
+		
+		if (vo == null){
+			return;
+		}
+		
+		model.addAttribute("userVO", vo);
+	}
+	
 	
 	
 	

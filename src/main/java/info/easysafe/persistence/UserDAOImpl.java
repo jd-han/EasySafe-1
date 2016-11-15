@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import info.easysafe.domain.UserVO;
+import info.easysafe.dto.LoginDTO;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
@@ -54,6 +55,11 @@ public class UserDAOImpl implements UserDAO{
 		UserVO uvo = session.selectOne(namespace+".login", vo);
 		uvo.setUpw(null);
 		return uvo;
+	}
+
+	@Override
+	public UserVO login(LoginDTO dto) throws Exception {
+		return session.selectOne(namespace+".login", dto);
 	}
 
 }

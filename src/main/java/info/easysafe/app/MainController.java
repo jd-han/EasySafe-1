@@ -28,8 +28,14 @@ public class MainController {
 	@Inject
 	private ChemService service;
 	
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index(Locale locale, Model model) {
+		logger.info("Welcome index! The client locale is {}.", locale);
+		return "index";
+	}
+
+		
+		@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -40,7 +46,7 @@ public class MainController {
 //		
 //		model.addAttribute("serverTime", formattedDate );
 		
-		return "redirect:/static/index.html";
+		return "redirect:index";
 	}
 	
 	@RequestMapping(value="/searchChem", method = RequestMethod.GET)
@@ -147,6 +153,21 @@ public class MainController {
 	public ProductVO productDetailWUpc(String upc) throws Exception{
 		System.out.println(upc);
 		return service.readUpc(upc);
+	}
+	
+	
+	@RequestMapping(value="/doA", method=RequestMethod.GET)
+	public String doA(Locale locale, Model model) {
+		System.out.println("doA! I am in Maincontroller. ");
+		return "index";
+	}
+	
+	@RequestMapping(value="/doB", method=RequestMethod.GET)
+	public String doB(Locale locale, Model model) {
+		System.out.println("doB! I am in Maincontroller.");
+		model.addAttribute("result", "'result', added in doB method in MainController."); //모델에 result라는 이름이로 데이터를 주엇다. 
+		
+		return "index"; //리턴이 있으면 index.jsp를(WEB-INF/views/애 있는 ) 찾아가고 리턴이 없으면 value 안에 들어있는얘.jsp!!!!!를 찾아간다. 
 	}
 	
 	

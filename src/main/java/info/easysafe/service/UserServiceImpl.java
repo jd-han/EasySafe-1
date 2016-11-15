@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import info.easysafe.domain.UserVO;
+import info.easysafe.dto.LoginDTO;
 import info.easysafe.persistence.UserDAO;
 
 @Service
@@ -47,8 +48,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserVO login(UserVO vo) throws Exception {
-		return dao.login(vo);
+	public UserVO login(LoginDTO dto) throws Exception {
+		return dao.login(dto);
 	}
 
 }

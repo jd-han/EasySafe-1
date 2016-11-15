@@ -17,6 +17,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
 
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -26,6 +27,24 @@
 	<context:component-scan base-package="info.easysafe.app" />
 	<context:component-scan base-package="info.easysafe.domain" />
 	
+	<beans:bean id="sampleInterceptor" class="info.easysafe.interceptor.SampleInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/doA"/>
+			<mapping path="/doB"/>
+			<beans:ref bean="sampleInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<beans:bean id="loginInterceptor" class="info.easysafe.interceptor.LoginInterceptor"></beans:bean>
+	
+		<interceptors>
+			<interceptor>
+				<mapping path="/user/loginPost"/>
+				<beans:ref bean="loginInterceptor"/>
+			</interceptor>
+		</interceptors>
 	
 	
 	
