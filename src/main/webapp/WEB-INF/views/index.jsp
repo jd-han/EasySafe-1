@@ -10,7 +10,7 @@
 
 index.jsp
 
-${uvo}
+<p>uvo = ${uvo.uid}</p>
 
 </body>
 </html>

@@ -3,9 +3,11 @@ package info.easysafe.app;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.WebUtils;
 
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
@@ -47,6 +51,7 @@ public class UserController {
 		logger.info("가입 POST.......create서비스.");
 		logger.info(vo.toString());
 		
+
 		service.regist(vo);
 		
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -85,7 +90,7 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/updatePW", method=RequestMethod.POST)
+	@RequestMapping(value="/updatePWWeb", method=RequestMethod.POST)
 	public String updatePWPost(LoginDTO dto, UserVO vo, String newPW ,RedirectAttributes rttr) throws Exception{
 		logger.info("비번 번경 POST. ");
 		logger.info(vo.toString());
@@ -103,7 +108,7 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/updatePW", method=RequestMethod.GET)
+	@RequestMapping(value="/updatePWWeb", method=RequestMethod.GET)
 	public UserVO updatePWGet(UserVO vo) throws Exception{
 		logger.info("비번 번경 GET.... ");
 		return service.view(vo);
@@ -134,8 +139,30 @@ public class UserController {
 		if (vo == null){
 			return "login" ; //login.jsp
 		}
-		model.addAttribute("uvo", vo);
+		session.setAttribute("uvo", vo);
+		System.out.println("/loginpost에서 보내는 vo : "+vo);
 		return "index";
+	}
+	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws Exception{
+		
+		Object obj = session.getAttribute("login");
+		
+		if (obj != null) {
+			UserVO vo = (UserVO) obj;
+			session.removeAttribute("login");
+			session.invalidate();
+			
+			Cookie loginCookie = WebUtils.getCookie(req, "logincookie");
+			
+			if(loginCookie != null) {
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(0);
+				resp.addCookie(loginCookie);
+			}
+		}
+		return "user/logout";
 	}
 	
 	

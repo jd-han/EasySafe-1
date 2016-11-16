@@ -28,33 +28,33 @@
         <a href="/resources/index2.html"><b>EasySafe</b></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">로그인</p>
+        <p class="login-box-msg">Login</p>
 
 <form action="/app/user/loginPost" method="post">
   <div class="form-group has-feedback">
-    <input type="text" name="uid" class="form-control" placeholder="아이디"/>
+    <input type="text" name="uid" class="form-control" placeholder="ID"/>
     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
   </div>
   <div class="form-group has-feedback">
-    <input type="password" name="upw" class="form-control" placeholder="비밀번호"/>
+    <input type="password" name="upw" class="form-control" placeholder="Password"/>
     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
   </div>
   <div class="row">
     <div class="col-xs-8">    
       <div class="checkbox icheck">
         <label>
-          <input type="checkbox" name="useCookie"> 아이디 기억하기
+          <input type="checkbox" name="useCookie"> Remember Me
         </label>
       </div>                        
     </div><!-- /.col -->
     <div class="col-xs-4">
-      <button type="submit" class="btn btn-primary btn-block btn-flat">로그인</button>
+      <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
     </div><!-- /.col -->
   </div>
 </form>
 
 
-        <a href="#">비밀번호를 잊어버렸어요</a><br>
+        <a href="#">비밀번호 찾기</a><br>
         <a href="register.html" class="text-center">가입하기</a>
 
       </div><!-- /.login-box-body -->

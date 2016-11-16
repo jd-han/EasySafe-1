@@ -1,7 +1,7 @@
 package info.easysafe.interceptor;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,18 +22,30 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	
 	@Override
 	public void postHandle(HttpServletRequest req, HttpServletResponse resp,
-			Object handler, ModelAndView modelAndView ) throws Exception{
+			Object handler, ModelAndView modelAndView) throws Exception{
 		
+		System.out.println("entered loginInterceptor postHandle.");
 		HttpSession session = req.getSession();
 		
-		ModelMap modelMap = modelAndView.getModelMap();
+//		ModelMap modelMap = modelAndView.getModelMap();
 		
-		Object userVO = modelMap.get("userVO");
-		
+		Object userVO = session.getAttribute("uvo");
+		System.out.println(userVO);
 		if(userVO != null) {
+			System.out.println("새로운 로그인 성공. ");
 			logger.info("새로운 로그인 성공. ");
 			session.setAttribute(LOGIN, userVO); //userController에서 userVO를 담아 둔 상태이므로 HttpSession에 저장한다. 
 			//resp.sendRedirect("/app/index");
+			
+			if(req.getParameter("useCookie") != null) {
+				logger.info("remember me~~");
+				logger.warn("remember me 체크됨. ");
+				Cookie loginCookie = new Cookie("loginCookie", session.getId()); //amy 를 저장.
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(60*60*24*7); //일주일이다. 
+				resp.addCookie(loginCookie);
+			}
+			
 			Object dest = session.getAttribute("dest");
 			resp.sendRedirect(dest!= null ? (String)dest : "/app/index");
 			//dest가 없으니까 index로 보낸다. 
