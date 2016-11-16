@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import info.easysafe.domain.ChemVO;
 import info.easysafe.domain.ProductVO;
+import info.easysafe.domain.UserVO;
 import info.easysafe.service.ChemService;
 
 /**
@@ -22,155 +24,160 @@ import info.easysafe.service.ChemService;
  */
 @Controller
 public class MainController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class); 
-	
+
+	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+
 	@Inject
 	private ChemService service;
-	
-	
+
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) {
 		logger.info("Welcome index! The client locale is {}.", locale);
+		UserVO uVO = new UserVO();
+		uVO.setUname("user01");
+		model.addAttribute("uvo", uVO);
 		return "index";
 	}
 
-		
-		@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		String formattedDate = dateFormat.format(date);
-//		
-//		model.addAttribute("serverTime", formattedDate );
-		
+
+		// Date date = new Date();
+		// DateFormat dateFormat =
+		// DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
+		// locale);
+		//
+		// String formattedDate = dateFormat.format(date);
+		//
+		// model.addAttribute("serverTime", formattedDate );
+
 		return "redirect:/app/index";
 	}
-	
-	@RequestMapping(value="/searchChem", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/searchChem", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ChemVO> searchChem (String key) throws Exception{
-		//ÀÌ¸§ÀÌ ¿µ¹®ÀÎÁö ±¸ºĞÇÏ´Â ÄÚµå ÇÊ¿ä!!! ±× °æ¿ì°¡ ¾Æ´Ï¸é ÇÑ±Û·Î ÆÇ´Ü.
+	public ModelAndView searchChem(String key, ModelAndView mv) throws Exception {
+		// ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Úµï¿½ ï¿½Ê¿ï¿½!!! ï¿½ï¿½ ï¿½ï¿½ì°¡ ï¿½Æ´Ï¸ï¿½ ï¿½Ñ±Û·ï¿½ ï¿½Ç´ï¿½.
+		System.out.println("ì„œì¹˜ ë“¤ì–´ì˜´");
 		boolean iskor = false;
-		  for(int i=0;i<key.length();i++){
-		     if(Character.getType(key.charAt(i)) == 5) {
-		    	 //ÇÑ±ÛÀÎ °æ¿ì 
-		    	 iskor = true;
-		     }
-		  }
-		  
-		  List<ChemVO> list = null; 
-		  if (iskor == true) {
-			  //ÇÑ±ÛÀÎ °æ¿ì
-			  list = service.listChemKorName(key);
-			  
-		  } else {
-			 
-		//	  list = service.listChemEngName(key);
-			  System.out.println("ÇÑ±Û¾Æ´Ô."); //ÇÑ±ÛÀÌ ¾ø´Â °æ¿ì
-		  }
+		for (int i = 0; i < key.length(); i++) {
+			if (Character.getType(key.charAt(i)) == 5) {
+				// ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+				iskor = true;
+			}
+		}
+
+		List<ChemVO> list = null;
+		if (iskor == true) {
+			// ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+			list = service.listChemKorName(key);
+		} else {
+			// list = service.listChemEngName(key);
+			System.out.println("ï¿½Ñ±Û¾Æ´ï¿½."); // ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		}
+		mv.addObject("chemList", list);
+		return mv;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/chemDetail", method = RequestMethod.GET)
+	public ModelAndView chemDetail(String name, ModelAndView mv) throws Exception {
+		System.out.println("ì„±ë¶„ìƒì„¸ ë“¤ì–´ì˜´ : " + name);
+		boolean iskor = false;
+		for (int i = 0; i < name.length(); i++) {
+			if (Character.getType(name.charAt(i)) == 5) {
+				// ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+				iskor = true;
+			}
+		}
+
+		ChemVO chem = null;
+		if (iskor == true) {
+			// ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+			chem = service.readChemKorName(name);
+
+		} else {
+			// chem = service.readChemEngName(key);
+			System.out.println("ï¿½Ñ±Û¾Æ´ï¿½."); // ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		}
+		mv.addObject("chemResult", chem);
+		return mv;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/searchProduct", method = RequestMethod.GET)
+	public List<ProductVO> searchProduct(String key) throws Exception {
+		boolean iskor = false;
+		for (int i = 0; i < key.length(); i++) {
+			if (Character.getType(key.charAt(i)) == 5) {
+				// ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+				iskor = true;
+			}
+		}
+
+		List<ProductVO> list = null;
+		if (iskor == true) {
+			// ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+			list = service.listProductKorName(key);
+
+		} else {
+			// list = service.listProductEngName(key);
+			System.out.println("ï¿½Ñ±Û¾Æ´ï¿½."); // ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		}
 		return list;
 	}
-	
-	@ResponseBody
-	@RequestMapping(value="/chemDetail", method = RequestMethod.GET)
-	public ChemVO chemDetail(String name) throws Exception{
-		
-		boolean iskor = false;
-		  for(int i=0;i<name.length();i++){
-		     if(Character.getType(name.charAt(i)) == 5) {
-		    	 //ÇÑ±ÛÀÎ °æ¿ì 
-		    	 iskor = true;
-		     }
-		  }
-		  
-		 ChemVO chem = null; 
-		  if (iskor == true) {
-			  //ÇÑ±ÛÀÎ °æ¿ì
-			  chem = service.readChemKorName(name);
-			  
-		  } else {
-		//	  chem = service.readChemEngName(key);
-			  System.out.println("ÇÑ±Û¾Æ´Ô."); //ÇÑ±ÛÀÌ ¾ø´Â °æ¿ì
-		  }
-		return chem;
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/searchProduct", method = RequestMethod.GET)
-	public List<ProductVO> searchProduct(String key) throws Exception{
-		boolean iskor = false;
-		  for(int i=0;i<key.length();i++){
-		     if(Character.getType(key.charAt(i)) == 5) {
-		    	 //ÇÑ±ÛÀÎ °æ¿ì 
-		    	 iskor = true;
-		     }
-		  }
-		  
-		  List<ProductVO> list = null; 
-		  if (iskor == true) {
-			  //ÇÑ±ÛÀÎ °æ¿ì
-			  list = service.listProductKorName(key);
-			  
-		  } else {
-//			  list = service.listProductEngName(key);
-			  System.out.println("ÇÑ±Û¾Æ´Ô."); //ÇÑ±ÛÀÌ ¾ø´Â °æ¿ì
-		  }
-		  return list;
-	}
-	 
 
-	
 	@ResponseBody
-	@RequestMapping(value="/productDetail", method = RequestMethod.GET)
-	public ProductVO productDetail(String name) throws Exception{
-		
+	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
+	public ProductVO productDetail(String name) throws Exception {
+
 		boolean iskor = false;
-		  for(int i=0;i<name.length();i++){
-		     if(Character.getType(name.charAt(i)) == 5) {
-		    	 //ÇÑ±ÛÀÎ °æ¿ì 
-		    	 iskor = true;
-		     }
-		  }
-		  
-		 ProductVO product = null; 
-		  if (iskor == true) {
-			  //ÇÑ±ÛÀÎ °æ¿ì
-			  product = service.readProductKorName(name);
-			  
-		  } else {
-			 
-		//	  product = service.readProductEngName(key);
-			  System.out.println("ÇÑ±Û¾Æ´Ô."); //ÇÑ±ÛÀÌ ¾ø´Â °æ¿ì
-		  }		
-		  return product;
+		for (int i = 0; i < name.length(); i++) {
+			if (Character.getType(name.charAt(i)) == 5) {
+				// ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+				iskor = true;
+			}
+		}
+
+		ProductVO product = null;
+		if (iskor == true) {
+			// ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+			product = service.readProductKorName(name);
+
+		} else {
+
+			// product = service.readProductEngName(key);
+			System.out.println("ï¿½Ñ±Û¾Æ´ï¿½."); // ï¿½Ñ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		}
+		return product;
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value="/productDetailWUpc", method = RequestMethod.GET)
-	public ProductVO productDetailWUpc(String upc) throws Exception{
+	@RequestMapping(value = "/productDetailWUpc", method = RequestMethod.GET)
+	public ProductVO productDetailWUpc(String upc) throws Exception {
 		System.out.println(upc);
 		return service.readUpc(upc);
 	}
-	
-	
-	@RequestMapping(value="/doA", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/doA", method = RequestMethod.GET)
 	public String doA(Locale locale, Model model) {
 		System.out.println("doA! I am in Maincontroller. ");
 		return "index";
 	}
-	
-	@RequestMapping(value="/doB", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/doB", method = RequestMethod.GET)
 	public String doB(Locale locale, Model model) {
 		System.out.println("doB! I am in Maincontroller.");
-		model.addAttribute("result", "'result', added in doB method in MainController."); //¸ğµ¨¿¡ result¶ó´Â ÀÌ¸§ÀÌ·Î µ¥ÀÌÅÍ¸¦ ÁÖ¾ù´Ù. 
-		
-		return "index"; //¸®ÅÏÀÌ ÀÖÀ¸¸é index.jsp¸¦(WEB-INF/views/¾Ö ÀÖ´Â ) Ã£¾Æ°¡°í ¸®ÅÏÀÌ ¾øÀ¸¸é value ¾È¿¡ µé¾îÀÖ´Â¾ê.jsp!!!!!¸¦ Ã£¾Æ°£´Ù. 
+		model.addAttribute("result", "'result', added in doB method in MainController."); // ï¿½ğµ¨¿ï¿½
+																							// resultï¿½ï¿½ï¿½
+																							// ï¿½Ì¸ï¿½ï¿½Ì·ï¿½
+																							// ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½
+																							// ï¿½Ö¾ï¿½ï¿½ï¿½.
+
+		return "index"; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ index.jspï¿½ï¿½(WEB-INF/views/ï¿½ï¿½ ï¿½Ö´ï¿½ )
+						// Ã£ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ value ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´Â¾ï¿½.jsp!!!!!ï¿½ï¿½
+						// Ã£ï¿½Æ°ï¿½ï¿½ï¿½.
 	}
-	
-	
-	 
+
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="info.easysafe.domain.ChemVO" alias="ChemVO" />
+		<typeAlias type="info.easysafe.domain.ProductVO" alias="ProductVO" />
+		<typeAlias type="info.easysafe.domain.NoticeVO" alias="NoticeVO"/>
+		<typeAlias type="info.easysafe.domain.UserVO" alias="UserVO"/>
+<!-- 		<typeAlias type="org.zerock.domain.ReplyVO" alias="ReplyVO"/> -->
+<!-- 		<typeAlias type="org.zerock.domain.MessageVO" alias="MessageVO"/> -->
+	</typeAliases>
+
+</configuration>
