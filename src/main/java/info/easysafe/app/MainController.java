@@ -54,8 +54,9 @@ public class MainController {
 
 		return "redirect:/app/index";
 	}
-
-	@RequestMapping(value = "/searchChem", method = RequestMethod.GET)
+	
+	// 성분과 제품을 같이 검색함
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView searchChem(String key, ModelAndView mv) throws Exception {
 		// �̸��� �������� �����ϴ� �ڵ� �ʿ�!!! �� ��찡 �ƴϸ� �ѱ۷� �Ǵ�.
@@ -68,15 +69,18 @@ public class MainController {
 			}
 		}
 
-		List<ChemVO> list = null;
+		List<ChemVO> cList = null;
+		List<ProductVO> pList = null;
 		if (iskor == true) {
 			// �ѱ��� ���
-			list = service.listChemKorName(key);
+			cList = service.listChemKorName(key);
+			pList = service.listProductKorName(key);
 		} else {
 			// list = service.listChemEngName(key);
 			System.out.println("�ѱ۾ƴ�."); // �ѱ��� ���� ���
 		}
-		mv.addObject("chemList", list);
+		mv.addObject("chemList", cList);
+		mv.addObject("proList", pList);
 		return mv;
 	}
 
@@ -105,7 +109,7 @@ public class MainController {
 		return mv;
 	}
 
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping(value = "/searchProduct", method = RequestMethod.GET)
 	public List<ProductVO> searchProduct(String key) throws Exception {
 		boolean iskor = false;
@@ -126,11 +130,11 @@ public class MainController {
 			System.out.println("�ѱ۾ƴ�."); // �ѱ��� ���� ���
 		}
 		return list;
-	}
+	}*/
 
 	@ResponseBody
 	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
-	public ProductVO productDetail(String name) throws Exception {
+	public ModelAndView productDetail(String name, ModelAndView mv) throws Exception {
 
 		boolean iskor = false;
 		for (int i = 0; i < name.length(); i++) {
@@ -150,7 +154,16 @@ public class MainController {
 			// product = service.readProductEngName(key);
 			System.out.println("�ѱ۾ƴ�."); // �ѱ��� ���� ���
 		}
-		return product;
+		//System.out.println(product.getComponents());
+		mv.addObject("productResult", product);
+		String[] compos = product.getComponents().split(",");
+		for(int i = 0 ; i < compos.length ; i++)
+		{
+			compos[i] = compos[i].trim();
+			System.out.println(i + " 번째 " + compos[i]);
+		}
+		mv.addObject("components", (String[])compos);
+		return mv;
 	}
 
 	@ResponseBody

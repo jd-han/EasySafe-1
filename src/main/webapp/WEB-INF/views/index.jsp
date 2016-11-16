@@ -14,13 +14,13 @@ index.jsp 페이지입니다
 <br>
 ${uvo.uname} 님 환영합니다
 <br>
-<input type="text" id="inputChem" placeholder="검색할 성분명을 입력하세요" />
-<button id="searchChem">검색</button>
+<input type="text" id="keyword" placeholder="검색어를 입력하세요" />
+<button id="search">검색</button>
 
 <script type="text/javascript">
-	$("#searchChem").click(function(){
+	$("#search").click(function(){
 		//alert("성분검색누름" + $("#inputChem").val());
-		self.location = "searchChem" + "?key=" + $("#inputChem").val();
+		self.location = "search" + "?key=" + $("#keyword").val();
 	});
 </script>
 </body>
