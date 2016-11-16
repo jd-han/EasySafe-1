@@ -35,9 +35,10 @@ public class UserController {
 		return service.listAll();
 	}
 	
-	@RequestMapping(value="/registPage", method=RequestMethod.GET)
-	public void registGet () throws Exception {
+	@RequestMapping(value="/registform", method=RequestMethod.GET)
+	public String registGet () throws Exception {
 		logger.info("가입 GET........ ");
+		return "redirect:/app/static/registform.html";
 	}
 
 	@ResponseBody
@@ -123,19 +124,18 @@ public class UserController {
 		service.deleteAccount(vo);
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.GET)
+	@RequestMapping(value="/login", method = RequestMethod.GET) //void 이면 /user/login.jsp 찾아감.
 	public void loginGET(@ModelAttribute("dto") LoginDTO dto) throws Exception{		}
 	
 	
 	@RequestMapping(value="/loginPost", method = RequestMethod.POST)
-	public void loginPOST (LoginDTO dto, HttpSession session, Model model) throws Exception{
+	public String loginPOST (LoginDTO dto, HttpSession session, Model model) throws Exception{
 		UserVO vo = service.login(dto);
-		
 		if (vo == null){
-			return;
+			return "login" ; //login.jsp
 		}
-		
-		model.addAttribute("userVO", vo);
+		model.addAttribute("uvo", vo);
+		return "index";
 	}
 	
 	

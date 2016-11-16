@@ -28,6 +28,7 @@ public class MainController {
 	@Inject
 	private ChemService service;
 	
+	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) {
 		logger.info("Welcome index! The client locale is {}.", locale);
@@ -46,7 +47,7 @@ public class MainController {
 //		
 //		model.addAttribute("serverTime", formattedDate );
 		
-		return "redirect:index";
+		return "redirect:/app/index";
 	}
 	
 	@RequestMapping(value="/searchChem", method = RequestMethod.GET)

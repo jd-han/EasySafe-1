@@ -53,13 +53,17 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public UserVO login(UserVO vo) throws Exception {
 		UserVO uvo = session.selectOne(namespace+".login", vo);
-		uvo.setUpw(null);
+		uvo.setUpw("");
 		return uvo;
+
 	}
 
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
-		return session.selectOne(namespace+".login", dto);
+		UserVO uvo = session.selectOne(namespace+".login", dto);
+		uvo.setUpw("");
+		return uvo;
+
 	}
 
 }

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+alert("아무거나");
   <script type="text/javascript">
     self.location = "/app/index";
   </script>
