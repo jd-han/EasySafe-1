@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -18,7 +18,7 @@
 
 </head>	
 <body>
-<nav class="navbar navbar-fixed-top header">
+<!--<nav class="navbar navbar-fixed-top header">
  	<div class="col-md-12">
         <div class="navbar-header">
           
@@ -54,14 +54,16 @@
            </ul>
         </div>	
      </div>	
-</nav>
+</nav>-->
 
+<!--<video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+     <source src="https://youtu.be/JmgaA5fkPkI" type="video/mp4">
+          Sorry, your browser does not support HTML5 video.
+</video>-->
 
-
-	<div class="navbar navbar-default" id="subnav">
-    <div class="col-md-12">
-        <div class="navbar-header">
-          
+<div class="navbar navbar-default" id="subnav">
+	<div class="col-md-12">
+        <!--<div class="navbar-header">          
           <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
           <ul class="nav dropdown-menu">
               <li><a href="#"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
@@ -78,30 +80,35 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          </button>
-      
-        </div>
+          </button>      	
+        </div>-->
         <div class="collapse navbar-collapse" id="navbar-collapse2">
-          <ul class="nav navbar-nav navbar-right">
-             <li class="active"><a href="#">Posts</a></li>
-             <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>
-             <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
-           </ul>
+	       	<span>
+		        uvo = ${uvo.uid}
+				<br>index.jsp 페이지입니다
+				<br> ${uvo.uname} 님 환영합니다
+	        </span>
+	        <span>	        
+		        <ul class="nav navbar-nav navbar-right">
+			        <li class="active"><a href="#">Posts</a></li>
+			        <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>
+			        <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
+		        </ul>
+	        </span>
         </div>	
      </div>	
 </div>
 
 <!--main-->
 <div class="container" id="main">
-<p>	index.jsp</p>
-<br>
-	<p>uvo = ${uvo.uid}</p>
-
-	index.jsp 페이지입니다
-	<br> ${uvo.uname} 님 환영합니다
-	<br>
-	<input type="text" id="keyword" placeholder="검색어를 입력하세요" />
-	<button id="search">검색</button>
+	<h1 style="text-align: center; color: white; font-size: 50px; font-weight:bold; text-shadow: 0 0 10px black;">Easy Safe</h1>
+	<img src="${pageContext.request.contextPath}/resources/media/img/face.png" class="center-block"/>
+	<div class="input-group text-center">
+		<input type="text" id="keyword" class="form-control input-lg" placeholder="검색어를 입력하세요" />
+		<span class="input-group-btn">
+			<button id="search" class="btn btn-lg btn-success">검색</button>
+		</span>
+	</div>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script type="text/javascript">
@@ -110,6 +117,8 @@
 			self.location = "search.do" + "?key=" + $("#keyword").val();
 		});
 	</script>
+
+<!--
    <div class="row">
    <div class="col-md-4 col-sm-6">
         <div class="panel panel-default">
@@ -224,8 +233,8 @@
    		</div>
       
     </div>
-  </div><!--/row-->
-  
+  </div>
+
   <hr>
   
   <div class="row">
@@ -288,7 +297,7 @@
               
             </div>
          </div> 
-    </div><!--/articles-->
+    </div>
     </div>
     
     <hr>
@@ -308,7 +317,7 @@
             </p>
           </div>
         </div>
-      </div><!--/col-->
+      </div>
       
       <div class="col-sm-4 col-xs-6">
       	<div class="panel panel-default">
@@ -323,7 +332,7 @@
             </p>
           </div>
         </div>
-      </div><!--/col-->
+      </div>
       
       <div class="col-sm-4 col-xs-6">
       	<div class="panel panel-default">
@@ -338,7 +347,7 @@
             </p>
           </div>
         </div>
-      </div><!--/col-->
+      </div>
      
   	</div>
   
@@ -432,7 +441,7 @@
                       <div class="well well-sm">I've decided that I like wells.</div>
                     </div>
                   </div>
-                </div> <!-- /tabbable -->
+                </div> 
               
                 <div class="col-sm-12 text-center">
                   <ul class="pagination center-block" style="display:inline-block;">
@@ -448,7 +457,7 @@
               
             </div>
          </div> 
-    </div><!--playground-->
+    </div>
     
     <br>
     
@@ -459,8 +468,8 @@
     <hr>
     
   </div>
-</div><!--/main-->
-
+  -->
+</div>
 <!--login modal-->
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
