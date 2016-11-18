@@ -20,7 +20,7 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url"
-			value="jdbc:log4jdbc:mysql://192.168.0.202:3306/easysafetest"></property>
+			value="jdbc:log4jdbc:mysql://192.168.0.202:3306/easysafedb"></property>
 		<property name="username" value="small"></property>
 		<property name="password" value="1234"></property>
 	</bean>
