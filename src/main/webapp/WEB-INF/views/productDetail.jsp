@@ -13,7 +13,7 @@
 	제품명 : ${productResult.name}<br>
 	==성분들==<br>
 	<c:forEach items="${components}" var="compo">
-		<a href="chemDetail?name=${compo}">${compo}</a><br>
+		<a href="chemDetail.do?name=${compo}">${compo}</a><br>
 	</c:forEach>
 </body>
 </html>

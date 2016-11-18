@@ -1,5 +1,6 @@
 package info.easysafe.app;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import info.easysafe.domain.ChemVO;
+import info.easysafe.domain.KeywordVO;
 import info.easysafe.domain.ProductVO;
 import info.easysafe.domain.UserVO;
 import info.easysafe.service.ChemService;
+import info.easysafe.service.KeywordService;
 
 /**
  * Handles requests for the application home page.
@@ -29,6 +32,8 @@ public class MainController {
 
 	@Inject
 	private ChemService service;
+	@Inject
+	private KeywordService kService;
 
 	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) {
@@ -69,9 +74,28 @@ public class MainController {
 
 		List<ChemVO> cList = null;
 		List<ProductVO> pList = null;
+		KeywordVO kVO = new KeywordVO();
 		if (iskor == true) {
 			cList = service.listChemKorName(key);
 			pList = service.listProductKorName(key);
+			// 검색어와 현재 날짜를 VO에 삽입.
+			kVO.setKeyword(key);
+			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			kVO.setRegDate(new Date());
+			System.out.println("kVO : " + kVO.toString());
+			// 검색 결과를 받을 임시 VO 선언.
+			KeywordVO resultVO = kService.readKeywordKorName(kVO);
+			System.out.println("ResultVO : " + resultVO);
+			if(resultVO != null)	// 검색결과 있음 : 기존 검색어가 오늘 날짜로 존재함.
+			{
+				// 검색어에 해당하는 검색횟수를 1 증가.
+				kService.updateCount(kVO);
+				System.out.println("검색횟수증가");
+			}else if(resultVO == null){
+				// 검색결과 없으면 오늘 날짜로 검색어를 새로 등록.
+				kService.createKeywordKorName(kVO);
+				System.out.println("검색횟수안증가");
+			}
 		} else {
 			// list = service.listChemEngName(key);
 			System.out.println("占쎈쐻占쎈뼩疫뀐옙占쎈툡占쎈솇占쎌굲."); // 占쎈쐻占쎈뼩繹먮씮�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占�
@@ -84,7 +108,7 @@ public class MainController {
 	@ResponseBody
 	@RequestMapping(value = "/chemDetail.do", method = RequestMethod.GET)
 	public ModelAndView chemDetail(String name, ModelAndView mv) throws Exception {
-		System.out.println("�뜝�럡�뎽占쎄껀熬곣뫕留믣뜝�럡�돪 �뜝�럥援뜹뜝�럥�꽑�뜝�럩湲� : " + name);
+		System.out.println("성분상세 들어옴 : " + name);
 		boolean iskor = false;
 		for (int i = 0; i < name.length(); i++) {
 			if (Character.getType(name.charAt(i)) == 5) {
@@ -153,7 +177,7 @@ public class MainController {
 		for(int i = 0 ; i < compos.length ; i++)
 		{
 			compos[i] = compos[i].trim();
-			System.out.println(i + " �뵓怨뺣쐠占쎈윯 " + compos[i]);
+			System.out.println(i + " 번째 " + compos[i]);
 		}
 		mv.addObject("components", (String[])compos);
 		return mv;

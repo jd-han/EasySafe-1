@@ -14,11 +14,11 @@
 	검색결과<br>
 	성분 검색 결과<br>
 	<c:forEach items="${chemList}" var="chemVO">
-		<a href="chemDetail?name=${chemVO.name}">${chemVO.name}</a><br>
+		<a href="chemDetail.do?name=${chemVO.name}">${chemVO.name}</a><br>
 	</c:forEach><br>
 	제품 검색 결과<br>
 	<c:forEach items="${proList}" var="proVO">
-		<a href="productDetail?name=${proVO.name}">${proVO.name}</a><br>
+		<a href="productDetail.do?name=${proVO.name}">${proVO.name}</a><br>
 	</c:forEach>
 	
 	<script type="text/javascript">

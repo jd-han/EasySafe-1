@@ -107,7 +107,7 @@
 	<script type="text/javascript">
 		$("#search").click(function() {
 // 			alert("성분검색누름" + $("#inputChem").val());
-			self.location = "search" + "?key=" + $("#keyword").val();
+			self.location = "search.do" + "?key=" + $("#keyword").val();
 		});
 	</script>
    <div class="row">

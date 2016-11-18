@@ -29,3 +29,4 @@ target/classes/mappers/noticeMapper.xml
 target/classes/mappers/userMapper.xml
 target/classes/mybatis-config.xml
 target/test-classes/info/easysafe/app/UserDaoTest.class
+/target/
