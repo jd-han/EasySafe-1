@@ -10,8 +10,9 @@
 <body>
 
   <script type="text/javascript">
-    self.location = "/app/index";
+    self.location = "/index";
   </script>
+  
 </body>
 </html>
 

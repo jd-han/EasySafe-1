@@ -61,7 +61,9 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
 		UserVO uvo = session.selectOne(namespace+".login", dto);
-		uvo.setUpw("");
+		System.out.println("UserDAOImpl uvo : "+ uvo);
+		if (uvo != null) {
+			uvo.setUpw(""); }
 		return uvo;
 
 	}

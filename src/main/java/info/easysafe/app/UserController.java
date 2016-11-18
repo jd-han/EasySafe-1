@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-<<<<<<< HEAD
-=======
-//import org.apache.catalina.User;
->>>>>>> EasySafe/master
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -45,14 +42,14 @@ public class UserController {
 	
 	@RequestMapping(value="/registform", method=RequestMethod.GET)
 	public String registGet () throws Exception {
-		logger.info("°¡ÀÔ GET........ ");
+		logger.info("ï¿½ï¿½ï¿½ï¿½ GET........ ");
 		return "redirect:/app/static/registform.html";
 	}
 
 	@ResponseBody
 	@RequestMapping(value="/regist", method=RequestMethod.POST)
 	public String registPost (UserVO vo, RedirectAttributes rttr) throws Exception{
-		logger.info("°¡ÀÔ POST.......create¼­ºñ½º.");
+		logger.info("ï¿½ï¿½ï¿½ï¿½ POST.......createï¿½ï¿½ï¿½ï¿½.");
 		logger.info(vo.toString());
 		
 
@@ -65,10 +62,10 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value="/viewAccount", method=RequestMethod.GET)
 	public UserVO viewUser(UserVO vo) throws Exception{
-		//À¯Àú½º½º·Î°¡ ³»Á¤º¸ º¸±â. 
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. 
 		return service.view(vo);
 	}
-	//»ç¿ëÀÚ°¡ ÆĞ½º¿öµå¸¦ ÀÒ¾î¹ö¸° °æ¿ì. 
+	//ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Ğ½ï¿½ï¿½ï¿½ï¿½å¸¦ ï¿½Ò¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½. 
 //	@ResponseBody
 //	@RequestMapping(value="/viewAccount", method=RequestMethod.GET)
 //	public UserVO viewUser(UserVO vo) throws Exception{
@@ -79,7 +76,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value="/updateAccount", method=RequestMethod.POST)
 	public String updateAccountPost(UserVO vo, RedirectAttributes rttr) throws Exception{
-		logger.info("¾÷µ¥ÀÌÆ® POST. ");
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® POST. ");
 		logger.info(vo.toString());
 		service.updateAccount(vo);
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -96,10 +93,10 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value="/updatePWWeb", method=RequestMethod.POST)
 	public String updatePWPost(LoginDTO dto, UserVO vo, String newPW ,RedirectAttributes rttr) throws Exception{
-		logger.info("ºñ¹ø ¹ø°æ POST. ");
+		logger.info("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ POST. ");
 		logger.info(vo.toString());
 		
-		UserVO uvo = service.login(dto); //ºñ¹øÀÌ Æ²¸° °æ¿ì´Â null ÀÌ´Ù. 
+		UserVO uvo = service.login(dto); //ï¿½ï¿½ï¿½ï¿½ï¿½ Æ²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ null ï¿½Ì´ï¿½. 
 		if(uvo != null) {
 			uvo.setUpw(newPW);
 			service.updatePW(uvo);
@@ -111,17 +108,17 @@ public class UserController {
 		return "redirect:/viewAccount";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/updatePWWeb", method=RequestMethod.GET)
-	public UserVO updatePWGet(UserVO vo) throws Exception{
-		logger.info("ºñ¹ø ¹ø°æ GET.... ");
-		return service.view(vo);
-		
-	}
+//	@ResponseBody
+//	@RequestMapping(value="/updatePWWeb", method=RequestMethod.GET)
+//	public UserVO updatePWGet(UserVO vo) throws Exception{
+//		logger.info("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ GET.... ");
+//		return service.view(vo);
+//		
+//	}
 	
 	@RequestMapping(value="/updatePWWeb", method=RequestMethod.GET)
 	public void updatePWWebGet(UserVO vo, Model model ) throws Exception{
-		logger.info("ºñ¹ø ¹ø°æ GET webPage.... ");
+		System.out.println("ë¹„ë²ˆ ì—…ë°ì´íŠ¸ í˜ì´ì§€ ê²Ÿ");
 		UserVO uvo = service.view(vo);
 		model.addAttribute("userVO", uvo);
 	}
@@ -129,26 +126,29 @@ public class UserController {
 	
 	@RequestMapping(value="/deleteAccount", method = RequestMethod.POST)
 	public void deleteAccount(UserVO vo) throws Exception{
-		logger.info("Å»Åğµ¥½º! ");
+		System.out.println("íƒˆí‡´ ì„œë¹„ìŠ¤ í˜¸ì¶œ.");
 		service.deleteAccount(vo);
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.GET) //void ÀÌ¸é /user/login.jsp Ã£¾Æ°¨.
+	@RequestMapping(value="/login.do", method = RequestMethod.GET) //void ï¿½Ì¸ï¿½ /user/login.jsp Ã£ï¿½Æ°ï¿½.
 	public void loginGET(@ModelAttribute("dto") LoginDTO dto) throws Exception{		}
 	
 	
-	@RequestMapping(value="/loginPost", method = RequestMethod.POST)
+	@RequestMapping(value="/loginPost.do", method = RequestMethod.POST)
 	public String loginPOST (LoginDTO dto, HttpSession session, Model model) throws Exception{
+		
 		UserVO vo = service.login(dto);
+		System.out.println("loginpost :"+vo);
 		if (vo == null){
-			return "login" ; //login.jsp
+			System.out.println("vo null.");
+			return "redirect:login.do" ; //login.jsp
 		}
 		session.setAttribute("uvo", vo);
-		System.out.println("/loginpost¿¡¼­ º¸³»´Â vo : "+vo);
+		System.out.println("/loginpostì—ì„œ ë³´ë‚´ëŠ” vo : "+vo);
 		return "index";
 	}
 	
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	@RequestMapping(value="/logout.do", method = RequestMethod.GET)
 	public String logout(HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws Exception{
 		
 		Object obj = session.getAttribute("login");
@@ -166,7 +166,9 @@ public class UserController {
 				resp.addCookie(loginCookie);
 			}
 		}
-		return "user/logout";
+		System.out.println("ì„¸ì…˜ì— ìˆëŠ” ë¡œê·¸ì¸ ì¿ í‚¤ invalidated.");
+		System.out.println("ë¡œê·¸ì•„ì›ƒë¨.");
+		return "index";
 	}
 	
 	

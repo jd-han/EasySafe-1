@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-//prehandleÀ» ÀÌ¿ëÇØ ÇöÀç »ç¿ëÀÚ°¡ ·Î±×ÀÎÇÑ »óÅÂÀÎÁö¸¦ Ã¼Å©ÇÏ°í ÄÁÆ®·Ñ·¯¸¦ È£ÃâÇÏ°Ô ÇÒ °ÍÀÎÁö¸¦ °áÁ¤ÇÑ´Ù. 
+//prehandleï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï°ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. 
 public class AuthInterceptor extends HandlerInterceptorAdapter{
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
@@ -44,7 +44,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			logger.info("dest : " + (uri + query));
 			req.getSession().setAttribute("dest", uri+query);
 		}		
-		if (req.getMethod().equals("POST")) {		//·Î±×ÀÎ Å×½ºÆ® ¶§¹®¿¡ ¸¸µé¾ú´Ù. 
+		if (req.getMethod().equals("POST")) {		
 			logger.info("dest : " + (uri + query));
 			req.getSession().setAttribute("dest", "/app/index");
 		}

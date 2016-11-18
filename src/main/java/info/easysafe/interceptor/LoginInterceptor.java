@@ -32,23 +32,24 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		Object userVO = session.getAttribute("uvo");
 		System.out.println(userVO);
 		if(userVO != null) {
-			System.out.println("»õ·Î¿î ·Î±×ÀÎ ¼º°ø. ");
-			logger.info("»õ·Î¿î ·Î±×ÀÎ ¼º°ø. ");
-			session.setAttribute(LOGIN, userVO); //userController¿¡¼­ userVO¸¦ ´ã¾Æ µÐ »óÅÂÀÌ¹Ç·Î HttpSession¿¡ ÀúÀåÇÑ´Ù. 
-			//resp.sendRedirect("/app/index");
+			session.setAttribute(LOGIN, userVO); 
 			
 			if(req.getParameter("useCookie") != null) {
 				logger.info("remember me~~");
-				logger.warn("remember me Ã¼Å©µÊ. ");
-				Cookie loginCookie = new Cookie("loginCookie", session.getId()); //amy ¸¦ ÀúÀå.
+				logger.warn("remember me !! ");
+				Cookie loginCookie = new Cookie("loginCookie", session.getId()); //amy ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+				System.out.println("ë§Œë“¤ì–´ì§„ ì¿ í‚¤ : " + loginCookie);
 				loginCookie.setPath("/");
-				loginCookie.setMaxAge(60*60*24*7); //ÀÏÁÖÀÏÀÌ´Ù. 
+				loginCookie.setMaxAge(60*60*24*7); 
 				resp.addCookie(loginCookie);
 			}
 			
 			Object dest = session.getAttribute("dest");
-			resp.sendRedirect(dest!= null ? (String)dest : "/app/index");
-			//dest°¡ ¾øÀ¸´Ï±î index·Î º¸³½´Ù. 
+//			if(dest!= null) {
+//				resp.sendRedirect((String)dest);
+//			}
+			resp.sendRedirect(dest!= null ? (String)dest : "/index.do");
+			//destï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ indexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. 
 		}
 	}
 	

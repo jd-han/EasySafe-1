@@ -30,16 +30,16 @@ public class MainController {
 	@Inject
 	private ChemService service;
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) {
 		logger.info("Welcome index! The client locale is {}.", locale);
-		UserVO uVO = new UserVO();
-		uVO.setUname("user01");
-		model.addAttribute("uvo", uVO);
+//		UserVO uvo = new UserVO();
+//		uvo.setUname("user01");
+//		model.addAttribute("uvo", uvo);
 		return "index";
 	}
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
@@ -52,19 +52,17 @@ public class MainController {
 		//
 		// model.addAttribute("serverTime", formattedDate );
 
-		return "redirect:/app/index";
+		return "redirect:/index";
 	}
 	
-	// 성분과 제품을 같이 검색함
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/search.do", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView searchChem(String key, ModelAndView mv) throws Exception {
-		// �̸��� �������� �����ϴ� �ڵ� �ʿ�!!! �� ��찡 �ƴϸ� �ѱ۷� �Ǵ�.
-		System.out.println("서치 들어옴");
+		System.out.println("서치켐.");
 		boolean iskor = false;
 		for (int i = 0; i < key.length(); i++) {
 			if (Character.getType(key.charAt(i)) == 5) {
-				// �ѱ��� ���
+				// 한글인 경우.
 				iskor = true;
 			}
 		}
@@ -72,12 +70,11 @@ public class MainController {
 		List<ChemVO> cList = null;
 		List<ProductVO> pList = null;
 		if (iskor == true) {
-			// �ѱ��� ���
 			cList = service.listChemKorName(key);
 			pList = service.listProductKorName(key);
 		} else {
 			// list = service.listChemEngName(key);
-			System.out.println("�ѱ۾ƴ�."); // �ѱ��� ���� ���
+			System.out.println("占쎈쐻占쎈뼩疫뀐옙占쎈툡占쎈솇占쎌굲."); // 占쎈쐻占쎈뼩繹먮씮�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占�
 		}
 		mv.addObject("chemList", cList);
 		mv.addObject("proList", pList);
@@ -85,25 +82,23 @@ public class MainController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/chemDetail", method = RequestMethod.GET)
+	@RequestMapping(value = "/chemDetail.do", method = RequestMethod.GET)
 	public ModelAndView chemDetail(String name, ModelAndView mv) throws Exception {
-		System.out.println("성분상세 들어옴 : " + name);
+		System.out.println("�뜝�럡�뎽占쎄껀熬곣뫕留믣뜝�럡�돪 �뜝�럥援뜹뜝�럥�꽑�뜝�럩湲� : " + name);
 		boolean iskor = false;
 		for (int i = 0; i < name.length(); i++) {
 			if (Character.getType(name.charAt(i)) == 5) {
-				// �ѱ��� ���
 				iskor = true;
 			}
 		}
 
 		ChemVO chem = null;
 		if (iskor == true) {
-			// �ѱ��� ���
 			chem = service.readChemKorName(name);
 
 		} else {
 			// chem = service.readChemEngName(key);
-			System.out.println("�ѱ۾ƴ�."); // �ѱ��� ���� ���
+			System.out.println("占쎈쐻占쎈뼩疫뀐옙占쎈툡占쎈솇占쎌굲."); 
 		}
 		mv.addObject("chemResult", chem);
 		return mv;
@@ -115,44 +110,42 @@ public class MainController {
 		boolean iskor = false;
 		for (int i = 0; i < key.length(); i++) {
 			if (Character.getType(key.charAt(i)) == 5) {
-				// �ѱ��� ���
+				// 占쎈쐻占쎈뼩繹먮씮�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占�
 				iskor = true;
 			}
 		}
 
 		List<ProductVO> list = null;
 		if (iskor == true) {
-			// �ѱ��� ���
+			// 占쎈쐻占쎈뼩繹먮씮�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占�
 			list = service.listProductKorName(key);
 
 		} else {
 			// list = service.listProductEngName(key);
-			System.out.println("�ѱ۾ƴ�."); // �ѱ��� ���� ���
+			System.out.println("占쎈쐻占쎈뼩疫뀐옙占쎈툡占쎈솇占쎌굲."); // 占쎈쐻占쎈뼩繹먮씮�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占�
 		}
 		return list;
 	}*/
 
 	@ResponseBody
-	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
+	@RequestMapping(value = "/productDetail.do", method = RequestMethod.GET)
 	public ModelAndView productDetail(String name, ModelAndView mv) throws Exception {
 
 		boolean iskor = false;
 		for (int i = 0; i < name.length(); i++) {
 			if (Character.getType(name.charAt(i)) == 5) {
-				// �ѱ��� ���
 				iskor = true;
 			}
 		}
 
 		ProductVO product = null;
 		if (iskor == true) {
-			// �ѱ��� ���
 			product = service.readProductKorName(name);
 
 		} else {
 
 			// product = service.readProductEngName(key);
-			System.out.println("�ѱ۾ƴ�."); // �ѱ��� ���� ���
+			System.out.println("占쎈쐻占쎈뼩疫뀐옙占쎈툡占쎈솇占쎌굲."); 
 		}
 		//System.out.println(product.getComponents());
 		mv.addObject("productResult", product);
@@ -160,37 +153,17 @@ public class MainController {
 		for(int i = 0 ; i < compos.length ; i++)
 		{
 			compos[i] = compos[i].trim();
-			System.out.println(i + " 번째 " + compos[i]);
+			System.out.println(i + " �뵓怨뺣쐠占쎈윯 " + compos[i]);
 		}
 		mv.addObject("components", (String[])compos);
 		return mv;
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/productDetailWUpc", method = RequestMethod.GET)
+	@RequestMapping(value = "/productDetailWUpc.do", method = RequestMethod.GET)
 	public ProductVO productDetailWUpc(String upc) throws Exception {
 		System.out.println(upc);
 		return service.readUpc(upc);
-	}
-
-	@RequestMapping(value = "/doA", method = RequestMethod.GET)
-	public String doA(Locale locale, Model model) {
-		System.out.println("doA! I am in Maincontroller. ");
-		return "index";
-	}
-
-	@RequestMapping(value = "/doB", method = RequestMethod.GET)
-	public String doB(Locale locale, Model model) {
-		System.out.println("doB! I am in Maincontroller.");
-		model.addAttribute("result", "'result', added in doB method in MainController."); // �𵨿�
-																							// result���
-																							// �̸��̷�
-																							// �����͸�
-																							// �־���.
-
-		return "index"; // ������ ������ index.jsp��(WEB-INF/views/�� �ִ� )
-						// ã�ư��� ������ ������ value �ȿ� ����ִ¾�.jsp!!!!!��
-						// ã�ư���.
 	}
 
 }

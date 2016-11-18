@@ -30,7 +30,7 @@
       <div class="login-box-body">
         <p class="login-box-msg">Login</p>
 
-<form action="/app/user/loginPost" method="post">
+<form action="/user/loginPost.do" method="post">
   <div class="form-group has-feedback">
     <input type="text" name="uid" class="form-control" placeholder="ID"/>
     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
