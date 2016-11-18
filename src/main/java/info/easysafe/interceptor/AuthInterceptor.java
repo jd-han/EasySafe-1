@@ -20,6 +20,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		
 		if(session.getAttribute("login") == null) {
 			logger.info("current user is not log-ined.");
+			System.out.println("로그인 되지 않은 상태에서 로그인을 요하는 페이지에 접근함. -AuthIntercepter");
 			
 			saveDest(req);
 			
