@@ -98,7 +98,7 @@ public class MainController {
 			}
 		} else {
 			// list = service.listChemEngName(key);
-			System.out.println("占쎈쐻占쎈뼩疫뀐옙占쎈툡占쎈솇占쎌굲."); // 占쎈쐻占쎈뼩繹먮씮�굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻�뜝占�
+			System.out.println("영어 검색.");
 		}
 		mv.addObject("chemList", cList);
 		mv.addObject("proList", pList);

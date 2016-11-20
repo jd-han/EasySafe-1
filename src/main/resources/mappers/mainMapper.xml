@@ -16,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from tb_dummydata
 		where name = #{korKey}
 	</select>
+
 	
 	<select id="searchChemKorNameCount" resultType="int">
 		select count(*)
@@ -46,6 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from tb_product
 		where upc = #{upc}
 	</select>
+	
 	
 
 </mapper>

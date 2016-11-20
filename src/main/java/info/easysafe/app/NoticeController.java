@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import info.easysafe.domain.NoticeVO;
 import info.easysafe.service.NoticeService;
@@ -24,9 +25,12 @@ public class NoticeController {
 	private NoticeService service;
 	
 	@ResponseBody
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public List<NoticeVO> listAllNotice () throws Exception{
-		return service.listNotice();
+	@RequestMapping(value="/list.do", method=RequestMethod.GET)
+	public ModelAndView listAllNotice (ModelAndView mav) throws Exception{
+		System.out.println("공지사항리스트");
+		List<NoticeVO> nList = service.listNotice();
+		mav.addObject("noticeList", nList);
+		return mav;
 	}
 	
 	@ResponseBody
@@ -34,6 +38,8 @@ public class NoticeController {
 	public NoticeVO readNotice(int no) throws Exception{
 		return service.readNotice(no);
 	}
+	
+	//여기부터는 관리자만!
 	
 	@ResponseBody
 	@RequestMapping(value="/update", method= RequestMethod.POST )
@@ -46,7 +52,17 @@ public class NoticeController {
 	@ResponseBody
 	@RequestMapping(value = "/delete", method=RequestMethod.POST)
 	public String deleteNotice(Integer no) throws Exception{
-		service.deletNotice(no);
+		service.deleteNotice(no);
 		return "success";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/create", method= RequestMethod.POST)
+	public String createNotice(NoticeVO vo) throws Exception{
+		service.createNotice(vo);
+		return "";
+	}
+	
+	
+	
 }

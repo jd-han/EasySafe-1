@@ -1,5 +1,9 @@
 package info.easysafe.domain;
 
+/**
+ * @author Yoondori
+ *
+ */
 public class ChemVO {
 
 //	private String korName;
@@ -18,9 +22,17 @@ public class ChemVO {
 	private String japan;
 	private String china;
 	private String aus;
+	private String avg;
 	
+	public String getAvg() {
+		return avg;
+	}
+	public void setAvg(String avg) {
+		this.avg = avg;
+	}
 	private int viewcnt;
 	private int replycnt;
+	
 	
 	
 //	public String getKorName() {
@@ -115,12 +127,14 @@ public class ChemVO {
 	public void setReplycnt(int replycnt) {
 		this.replycnt = replycnt;
 	}
+	
 	@Override
 	public String toString() {
 		return "ChemVO [name=" + name + ", kor=" + kor + ", us=" + us + ", eu=" + eu + ", ins=" + ins + ", cas=" + cas
-				+ ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", aus=" + aus + ", viewcnt=" + viewcnt
-				+ ", replycnt=" + replycnt + "]";
+				+ ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", aus=" + aus + ", avg=" + avg
+				+ ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
 	}
+	
 	
 	
 

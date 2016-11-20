@@ -7,17 +7,17 @@ import info.easysafe.domain.ProductVO;
 
 public interface ChemDAO {
 	
-	//ÇÑ±Û·Î ¼ººÐ °Ë»öÇÑ °á°ú
+	//ï¿½Ñ±Û·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public List<ChemVO> selectListChemKorName(String korKey) throws Exception;
-	//µðÅ×ÀÏ Å¬¸¯
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½
 	public ChemVO selectOneChemKorName(String korName) throws Exception;
 	
-	//ÇÑ±Û·Î Á¦Ç° °Ë»öÇÑ °á°ú
+	//ï¿½Ñ±Û·ï¿½ ï¿½ï¿½Ç° ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public List<ProductVO> selectListProductKorName(String korKey) throws Exception;	
-	//µðÅ×ÀÏ Å¬¸¯
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½
 	public ProductVO selectOneProductKorName(String korName) throws Exception;
 	
-	//¹ÙÄÚµå ÀÔ·Â, »óÇ° Ã£±â
+	//ï¿½ï¿½ï¿½Úµï¿½ ï¿½Ô·ï¿½, ï¿½ï¿½Ç° Ã£ï¿½ï¿½
 	public ProductVO findProductWBarcode(String upc) throws Exception;
 	
 	

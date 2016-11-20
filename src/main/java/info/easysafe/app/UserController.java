@@ -168,7 +168,7 @@ public class UserController {
 		}
 		System.out.println("세션에 있는 로그인 쿠키 invalidated.");
 		System.out.println("로그아웃됨.");
-		return "index";
+		return "redirect:../index.do";
 	}
 	
 	
