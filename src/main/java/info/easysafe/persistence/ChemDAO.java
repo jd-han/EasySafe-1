@@ -20,6 +20,6 @@ public interface ChemDAO {
 	//���ڵ� �Է�, ��ǰ ã��
 	public ProductVO findProductWBarcode(String upc) throws Exception;
 	
-	
+	public List<ProductVO> findProductWComponent(String compo) throws Exception;
 
 }

@@ -42,4 +42,9 @@ public class ChemDAOImpl implements ChemDAO{
 		return session.selectOne(namespace+".selectProductWBarcode", upc);
 	}
 
+	@Override
+	public List<ProductVO> findProductWComponent(String compo) throws Exception {
+		return session.selectList(namespace+".findProductByComponent", compo);
+	}
+
 }

@@ -32,20 +32,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectOneProductKorName" resultType="ProductVO">
 		select *
-		from tb_product
+		from tbl_product
 		where name = #{korName}
 	</select>
 	
 	<select id="searchProductKorNameCount" resultType="int">
 		select count(*)
-		from tb_product
+		from tbl_product
 		where name like CONCAT('%', #{korKey}, '%')
 	</select>
 	
 	<select id="selectProductWBarcode" resultType="ProductVO">
 		select *
-		from tb_product
+		from tbl_product
 		where upc = #{upc}
+	</select>
+	
+	<select id="findProductByComponent" resultType="ProductVO">
+		select *
+		from tbl_product
+		where components like CONCAT('%', #{compo}, '%')
 	</select>
 	
 	

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -133,9 +134,16 @@ private static final Logger logger = LoggerFactory.getLogger(MainController.clas
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/getAvg.do")
+	@RequestMapping(value="/getAvg.do", method=RequestMethod.GET)
 	public ChemVO getAverageByName(String korkey) throws Exception {
 		System.out.println("이름으로 Average 찾기");
 		return service.readChemKorName(korkey);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getProductWCompo.do", method=RequestMethod.GET)
+	public List<ProductVO> getProductWCompo(String compo) throws Exception{
+		System.out.println("component로 product 찾기");
+		return service.listProductWCompo(compo);
 	}
 }

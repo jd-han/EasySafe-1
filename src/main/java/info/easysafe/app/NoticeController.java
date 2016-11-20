@@ -27,7 +27,7 @@ public class NoticeController {
 	@ResponseBody
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
 	public ModelAndView listAllNotice (ModelAndView mav) throws Exception{
-		System.out.println("공지사항리스트");
+		System.out.println("공지사항 리스트 보기");
 		List<NoticeVO> nList = service.listNotice();
 		mav.addObject("noticeList", nList);
 		return mav;

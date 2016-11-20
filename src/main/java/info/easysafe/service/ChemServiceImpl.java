@@ -41,6 +41,12 @@ public class ChemServiceImpl implements ChemService {
 		// TODO Auto-generated method stub
 		return dao.findProductWBarcode(upc);
 	}
+
+	@Override
+	public List<ProductVO> listProductWCompo(String compo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.findProductWComponent(compo);
+	}
 	
 	
 

@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="listAll" resultType="NoticeVO">
-		select title, regdate
+		select *
 		from tbl_notice
 	</select>
 	
