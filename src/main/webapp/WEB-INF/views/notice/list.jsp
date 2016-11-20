@@ -115,19 +115,32 @@
 			<div class="col-md-12">
 				<h2>공지사항</h2>
 			</div>
-			<div class="col-md-4 col-sm-6">
+			<div class="col-md-9 col-sm-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>공지사항</h4>
 					</div>
 					<div class="panel-body">
 						<div class="list-group">
-							<a href="http://bootply.com/tagged/modal" class="list-group-item">Modal
-								/ Dialog</a> <a href="http://bootply.com/tagged/datetime"
-								class="list-group-item">Datetime Examples</a> <a
-								href="http://bootply.com/tagged/datatable"
-								class="list-group-item">Data Grids</a>
+							<c:forEach items="${list}" var="noticeVO">
+								<a href="#" class="list-group-item">${noticeVO.title}</a>
+								<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${noticeVO.regDate}" />
+							</c:forEach>
+							<a href="http://bootply.com/tagged/modal" class="list-group-item">Modal/ Dialog</a> 
+							<a href="http://bootply.com/tagged/datetime" class="list-group-item">Datetime Examples</a> 
+							<a href="http://bootply.com/tagged/datatable" class="list-group-item">Data Grids</a>
 						</div>
+					<div class="col-sm-12 text-center">
+                  <ul class="pagination center-block" style="display:inline-block;">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">»</a></li>
+                  </ul>
+                </div>
 					</div>
 				</div>
 			</div>

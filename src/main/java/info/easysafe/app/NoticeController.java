@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,10 +27,12 @@ public class NoticeController {
 	
 	@ResponseBody
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
-	public ModelAndView listAllNotice (ModelAndView mav) throws Exception{
+	public ModelAndView listAllNotice (ModelAndView mav, Model model ) throws Exception{
 		System.out.println("공지사항 리스트 보기");
 		List<NoticeVO> nList = service.listNotice();
 		mav.addObject("noticeList", nList);
+		model.addAttribute("list", nList);
+		
 		return mav;
 	}
 	

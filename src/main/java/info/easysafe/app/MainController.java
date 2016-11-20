@@ -183,11 +183,5 @@ public class MainController {
 		return mv;
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/productDetailWUpc.do", method = RequestMethod.GET)
-	public ProductVO productDetailWUpc(String upc) throws Exception {
-		System.out.println(upc);
-		return service.readUpc(upc);
-	}
 
 }
