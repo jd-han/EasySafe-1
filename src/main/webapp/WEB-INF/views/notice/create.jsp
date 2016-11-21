@@ -113,40 +113,30 @@
 	<div class="container" id="main">
 		<div class="row">
 			<div class="col-md-12">
-<!-- 				<h2>공지사항</h2> -->
+				<!-- 				<h2>공지사항</h2> -->
 			</div>
 			<div class="col-md-1"></div>
 			<div class="col-md-10 col-sm-12">
+
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3>공지사항</h3>
+						<a href="/notice/list.do" class="pull-right">목록으로</a>
+						<form action="/notice/noticePost.do" method="post" class="form-horizontal" role="form">
+							<h3>공지 작성</h3>
 					</div>
-					<div class="panel-body">
-						<div class="list-group">
-							<c:forEach items="${list}" var="noticeVO">
-								<!-- <span class="list-group-item"> -->
-								<a href='/notice/read.do?no=${noticeVO.noticeNo}' class="list-group-item">
-								${noticeVO.title} 
-								<span class="pull-right"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${noticeVO.regDate}"/>
-								</span>
-								</a>
-																
-								<!-- </span> -->
-							</c:forEach>
-<!-- 							<a href="http://bootply.com/tagged/modal" class="list-group-item">Modal/ Dialog</a>  -->
-						</div>
-					<div class="col-sm-12 text-center">
-                  <ul class="pagination center-block" style="display:inline-block;">
-                    <li><a href="#">«</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">»</a></li>
-                  </ul>
-                </div>
+					<div class="form-group" style="padding: 14px;">
+					<input type="text" name="title" class="form-control" placeholder="공지 제목"/> 
+						<textarea name="content" class="form-control" placeholder="공지 내용"></textarea>
+					<hr/>
+					<div>
+						<button type="submit" class="btn btn-success pull-right" type="button">Post</button>
 					</div>
+					</div>
+
+
+					</form>
+
+					<div class="panel-body"></div>
 				</div>
 			</div>
 		</div>

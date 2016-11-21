@@ -7,26 +7,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectListChemKorName" resultType="ChemVO">
 		select *
-		from tb_dummydata
+		from tbl_dummydata
 		where name like CONCAT('%', #{korKey}, '%')
 	</select>
 	
 	<select id="selectOneChemKorName" resultType="ChemVO">
 		select *
-		from tb_dummydata
+		from tbl_dummydata
 		where name = #{korKey}
 	</select>
 
 	
 	<select id="searchChemKorNameCount" resultType="int">
 		select count(*)
-		from tb_dummydata
+		from tbl_dummydata
 		where name like CONCAT('%', #{korKey}, '%')
 	</select>
 	
 	<select id="selectListProductKorName" resultType="ProductVO">
 		select *
-		from tb_product
+		from tbl_product
 		where name like CONCAT('%', #{korKey}, '%')
 	</select>
 	

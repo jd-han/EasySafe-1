@@ -122,7 +122,7 @@ public class MainController {
 
 		} else {
 			// chem = service.readChemEngName(key);
-			System.out.println("占쎈쐻占쎈뼩疫뀐옙占쎈툡占쎈솇占쎌굲."); 
+			System.out.println("영어 성분 읽기"); 
 		}
 		mv.addObject("chemResult", chem);
 		return mv;

@@ -113,39 +113,50 @@
 	<div class="container" id="main">
 		<div class="row">
 			<div class="col-md-12">
-<!-- 				<h2>공지사항</h2> -->
+				<!-- 				<h2>공지사항</h2> -->
 			</div>
 			<div class="col-md-1"></div>
 			<div class="col-md-10 col-sm-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3>공지사항</h3>
+						<a href="/notice/list.do" class="pull-right">목록으로</a>
+						<h4>${notice.title}</h4>
 					</div>
+					
 					<div class="panel-body">
-						<div class="list-group">
-							<c:forEach items="${list}" var="noticeVO">
-								<!-- <span class="list-group-item"> -->
-								<a href='/notice/read.do?no=${noticeVO.noticeNo}' class="list-group-item">
-								${noticeVO.title} 
-								<span class="pull-right"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${noticeVO.regDate}"/>
-								</span>
-								</a>
-																
-								<!-- </span> -->
-							</c:forEach>
-<!-- 							<a href="http://bootply.com/tagged/modal" class="list-group-item">Modal/ Dialog</a>  -->
-						</div>
-					<div class="col-sm-12 text-center">
-                  <ul class="pagination center-block" style="display:inline-block;">
-                    <li><a href="#">«</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">»</a></li>
-                  </ul>
-                </div>
+<!-- 						<a href="#">Keyword: Bootstrap</a> -->
+<!-- 						<div class="clearfix"></div> -->
+<!-- 						<hr> -->
+
+						<p>${notice.content}</p>
+						
+						<p>	이지세이프 사이트가 1.1버전으로 업데이트 되었습니다. <p>
+							1.1ver 수정 사항 : 
+							공지사항 띄우기 기능.
+							<p>
+							<a
+								href="#">사이트 바로가기</a>
+						<img src="${pageContext.request.contextPath}/resources/media/img/logo_nobg3.png" class="img-circle pull-right">
+							</p>
+						
+
+						<hr>
+						 <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-8"></div>
+                <div class="col-xs-2"><a class="btn btn-info center-block" href="#">Update</a></div>
+                <div class="col-xs-2"><a class="btn btn-primary center-block" href="/notice/delete.do?no=${notice.noticeNo}" type="delete" >Delete</a></div>
+              </div>
+              <br>
+						<form>
+							<div class="input-group">
+								<div class="input-group-btn">
+									<button class="btn btn-default">+1</button>
+								</div>
+								<input type="text" class="form-control"
+									placeholder="댓글 달기..">
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

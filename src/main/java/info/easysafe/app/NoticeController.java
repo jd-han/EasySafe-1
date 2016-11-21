@@ -25,7 +25,6 @@ public class NoticeController {
 	@Inject
 	private NoticeService service;
 	
-	@ResponseBody
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
 	public ModelAndView listAllNotice (ModelAndView mav, Model model ) throws Exception{
 		System.out.println("공지사항 리스트 보기");
@@ -36,34 +35,40 @@ public class NoticeController {
 		return mav;
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/read", method = RequestMethod.GET)
-	public NoticeVO readNotice(int no) throws Exception{
-		return service.readNotice(no);
+	@RequestMapping(value="/read.do", method = RequestMethod.GET)
+	public ModelAndView readNotice(int no, Model model, ModelAndView mav) throws Exception{
+		System.out.println(no+"번 공지사항 상세 보기");
+		NoticeVO vo = service.readNotice(no);
+		model.addAttribute("notice", vo);
+		mav.addObject("noticeOb", vo);
+		return mav;
 	}
 	
 	//여기부터는 관리자만!
 	
-	@ResponseBody
-	@RequestMapping(value="/update", method= RequestMethod.POST )
+	@RequestMapping(value="/update.do", method= RequestMethod.POST )
 	public void updateNotice(NoticeVO vo) throws Exception{
 		System.out.println("vo from controller : "+ vo);
 		service.updateNotice(vo);
 	}
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "/delete", method=RequestMethod.POST)
-	public String deleteNotice(Integer no) throws Exception{
+	@RequestMapping(value = "/delete.do", method=RequestMethod.DELETE)
+	public String deleteNotice(int no) throws Exception{
 		service.deleteNotice(no);
 		return "success";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/create", method= RequestMethod.POST)
+	@RequestMapping(value = "/create.do", method= RequestMethod.GET)
+	public void noticeCreateGet(NoticeVO vo, Model model) throws Exception{
+		System.out.println("공지 작성 페이지");
+	}
+	
+	@RequestMapping(value = "/noticePost.do", method= RequestMethod.POST)
 	public String createNotice(NoticeVO vo) throws Exception{
 		service.createNotice(vo);
-		return "";
+		System.out.println("notice에서 보내는 vo : "+vo);
+		return "redirect:list.do";
 	}
 	
 	
