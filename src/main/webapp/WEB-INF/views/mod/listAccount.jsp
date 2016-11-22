@@ -1,3 +1,4 @@
+<%@page import="info.easysafe.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -13,6 +14,10 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script id="_carbonads_projs" type="text/javascript"
+	src="//srv.carbonads.net/ads/C6AILKT.json?segment=placement:bootplycom&amp;callback=_carbonads_go"></script>
+<script type="text/javascript"
+	src="//fallbacks.carbonads.com/home/e99a260b94849497ea962f674f0aebd9//bootplycom/8/"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -22,13 +27,35 @@
 	type="text/css" />
 
 
+<style>
+.table.table-hover span {
+	font-size: 16px;
+}
 
+.table.table-hover {
+	margin-top: 30px;
+}
+
+.glyphicon glyphicon-cog {
+	padding-left: 60%;
+}
+
+#savebutton {
+	margin-right: 10px;
+}
+#wrap {display: inline-block;}
+</style>
 
 </head>
 <body>
+
+
+
+
 	<nav class="navbar navbar-fixed-top header">
 	<div class="col-md-12">
 		<div class="navbar-header">
+
 
 			<a href="#" class="navbar-brand">Bootstrap</a>
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -117,30 +144,110 @@
 			</div>
 			<div class="col-md-1"></div>
 			<div class="col-md-10 col-sm-12">
-
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="/notice/list.do" class="pull-right">목록으로</a>
-						<form action="/notice/updatePost.do" method="post" class="form-horizontal" role="form">
-							<h3>공지 수정</h3>
-				
+						<!-- 						<a href="#" class="pull-right">View all</a> -->
+						<h2>전체 회원 목록 보기</h2>
+						<form action="/notice/noticePost.do" method="post"
+							class="form-horizontal" role="form">
+							<div>
+								<button id="savebutton" type="submit"
+									class="btn btn-success pull-right" type="button">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;저장&nbsp;<i
+										class="glyphicon glyphicon-cog" style="color: white;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+								</button>
+							</div>
 					</div>
-					<div class="form-group" style="padding: 14px;">
-					<input type="text" name="title" class="form-control" value="${notice.title}"/> 
-						<textarea name="content" class="form-control">${notice.content}</textarea>
-					<hr/>
-					<div>
-						<button type="submit" class="btn btn-success pull-right" type="button">Update</button>
-					</div>
-					</div>
-					<input type="hidden" value="${notice.noticeNo}" name="noticeNo"/>
+					<div class="panel-body">
+						<!-- Table -->
+						<table class="table table-hover">
+							<tr>
+								<th><span>ID</span></th>
+								<th><span>Username</span></th>
+								<th><span>E-mail</span></th>
+								<th><span>Join date</span></th>
+								<th><span>User type</span></th>
+								<th><span>Edit</span></th>
+							</tr>
 
 
-					</form>
+							<c:forEach items="${list}" var="userVO" >
+								<tr>
+									<td>${userVO.uid}</td>
+									<td>${userVO.uname}</td>
+									<td>${userVO.umail}</td>
+									<td><fmt:formatDate
+											pattern="yyyy-MM-dd hh:mm:ss" value="${userVO.regdate}"/></td>
+									
+									<td><div style="float: left;">
+<%-- 									<c:if test="${!empty list} }"> --%>
+										<select class="form-control" id="selectBox">
+											<option value="user"
+												<c:if test="${userVO.ulevel=='user'}">
+												selected="selected"
+												</c:if>
+											>일반 유저</option>
+											<option value="pro"
+											<c:if test="${userVO.ulevel=='pro'}">
+												selected="selected"
+											</c:if>
+											>전문가</option>
+											<option value="mod"
+											<c:if test="${userVO.ulevel=='admin'}">
+												selected="selected"
+											</c:if>>관리자</option>
+										</select>
+ 									
+										</div>
+										<div  style="float: right;">
+										<a class="btn btn-small pull-right" name="levelUpdate" onclick="update()">
+										변경
+										</a>
+										</div>
+									</td>
+									
+									<td>
+										<a class="btn btn-warning" href="#"onclick="deleteUser()">삭제</a>
+									</td>
+								</tr>
+							</c:forEach>
 
-					<div class="panel-body"></div>
+
+
+
+
+						</table>
+						</form>
+					</div>
 				</div>
+
+
 			</div>
 		</div>
+
+
 	</div>
+	
+	<script>
+	//수정 버튼 누를 때.
+	var selectStatus = document.getElementById("selectBox").val();
+	(function(){
+		$("#selectBox").val("${userVo.ulevel}").attr("selected", "selected");
+		
+	})()
+	 
+	var selectStatus = $('selectBox').on('change', function(){
+		$(this).find(":selected").val()
+	});
+		
+		function sendSelect() {
+			
+		}
+		function deleteUser(){
+			
+		}
+		function update() {
+
+	</script>
+</body>
 </html>

@@ -34,12 +34,6 @@ public class UserController {
 	@Inject
 	private UserService service;
 	
-	@RequestMapping(value="/listAccount", method=RequestMethod.GET)
-	@ResponseBody
-	public List<UserVO> listAccount () throws Exception{
-		return service.listAll();
-	}
-	
 	@RequestMapping(value="/registform", method=RequestMethod.GET)
 	public String registGet () throws Exception {
 		logger.info("���� GET........ ");

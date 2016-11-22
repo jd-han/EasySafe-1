@@ -68,4 +68,9 @@ public class UserDAOImpl implements UserDAO{
 
 	}
 
+	@Override
+	public void updateLevel(UserVO vo) throws Exception {
+		session.update(namespace+".updateLevel", vo);
+	}
+
 }

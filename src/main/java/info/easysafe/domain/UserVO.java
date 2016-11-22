@@ -8,6 +8,7 @@ public class UserVO {
 	private String upw;
 	private String umail;
 	private String uname;
+	private String ulevel;
 	private Date regdate;
 	
 	
@@ -42,12 +43,20 @@ public class UserVO {
 		this.regdate = regdate;
 	}
 	
+	public String getUlevel() {
+		return ulevel;
+	}
+	public void setUlevel(String ulevel) {
+		this.ulevel = ulevel;
+	}
 	
 	@Override
 	public String toString() {
-		return "UserVO [uid=" + uid + ", upw=" + upw + ", umail=" + umail + ", uname=" + uname + ", regdate=" + regdate
-				+ "]";
+		return "UserVO [uid=" + uid + ", upw=" + upw + ", umail=" + umail + ", uname=" + uname + ", ulevel=" + ulevel
+				+ ", regdate=" + regdate + "]";
 	}
+	
+	
 	
 	
 }

@@ -113,7 +113,7 @@
 	<div class="container" id="main">
 		<div class="row">
 			<div class="col-md-12">
-<!-- 				<h2>공지사항</h2> -->
+				<!-- 				<h2>공지사항</h2> -->
 			</div>
 			<div class="col-md-1"></div>
 			<div class="col-md-10 col-sm-12">
@@ -125,27 +125,33 @@
 						<div class="list-group">
 							<c:forEach items="${list}" var="noticeVO">
 								<!-- <span class="list-group-item"> -->
-								<a href='/notice/read.do?no=${noticeVO.noticeNo}' class="list-group-item">
-								${noticeVO.title} 
-								<span class="pull-right"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${noticeVO.regDate}"/>
-								</span>
+								<a href='/notice/read.do?no=${noticeVO.noticeNo}'
+									class="list-group-item"> ${noticeVO.title} <span
+									class="pull-right"><fmt:formatDate
+											pattern="yyyy-MM-dd" value="${noticeVO.regDate}" /> </span>
 								</a>
-																
+
 								<!-- </span> -->
 							</c:forEach>
-<!-- 							<a href="http://bootply.com/tagged/modal" class="list-group-item">Modal/ Dialog</a>  -->
+							<!-- 							<a href="http://bootply.com/tagged/modal" class="list-group-item">Modal/ Dialog</a>  -->
 						</div>
-					<div class="col-sm-12 text-center">
-                  <ul class="pagination center-block" style="display:inline-block;">
-                    <li><a href="#">«</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">»</a></li>
-                  </ul>
-                </div>
+						<div class="col-xs-10"></div>
+						<div class="col-xs-2">
+							<a class="btn btn-primary center-block"
+								href="/notice/create.do" type="button">공지 작성</a>
+						</div>
+						<div class="col-sm-12 text-center">
+							<ul class="pagination center-block"
+								style="display: inline-block;">
+								<li><a href="#">«</a></li>
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">»</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>

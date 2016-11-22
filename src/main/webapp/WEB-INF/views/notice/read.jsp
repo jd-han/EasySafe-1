@@ -130,10 +130,6 @@
 
 						<p>${notice.content}</p>
 						
-						<p>	이지세이프 사이트가 1.1버전으로 업데이트 되었습니다. <p>
-							1.1ver 수정 사항 : 
-							공지사항 띄우기 기능.
-							<p>
 							<a
 								href="#">사이트 바로가기</a>
 						<img src="${pageContext.request.contextPath}/resources/media/img/logo_nobg3.png" class="img-circle pull-right">
@@ -144,8 +140,14 @@
 						 <div class="panel-body">
               <div class="row">
                 <div class="col-xs-8"></div>
-                <div class="col-xs-2"><a class="btn btn-info center-block" href="#">Update</a></div>
-                <div class="col-xs-2"><a class="btn btn-primary center-block" href="/notice/delete.do?no=${notice.noticeNo}" type="delete" >Delete</a></div>
+                <div class="col-xs-2">
+                <a class="btn btn-info center-block" href="/notice/update.do?no=${notice.noticeNo}" type="button">Update</a>
+                </div>
+                
+                <div class="col-xs-2">
+                <a class="btn btn-primary center-block" href="/notice/delete.do?no=${notice.noticeNo}" type="button" >Delete</a>
+                </div>
+                
               </div>
               <br>
 						<form>

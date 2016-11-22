@@ -24,8 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="update">
 		update tbl_notice
-		set title=#{title}, content=#{content}
-		where noticeno = #{noticeNo} 
+		set title= #{title}, content= #{content}
+		where noticeno = #{noticeNo};
 	</update>
 	
 	<delete id="delete">

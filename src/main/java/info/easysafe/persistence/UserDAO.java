@@ -17,4 +17,6 @@ public interface UserDAO {
 	public UserVO login(UserVO vo) throws Exception;
 	
 	public UserVO login(LoginDTO dto) throws Exception;
+	
+	public void updateLevel(UserVO vo) throws Exception;
 }
