@@ -1,17 +1,23 @@
 package info.easysafe.app;
 
 import java.util.List;
-import java.util.Locale;
+import java.util.Properties;
 
 import javax.inject.Inject;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import info.easysafe.domain.ChemVO;
@@ -146,4 +152,70 @@ private static final Logger logger = LoggerFactory.getLogger(MainController.clas
 		System.out.println("component로 product 찾기");
 		return service.listProductWCompo(compo);
 	}
+	
+	
+	@RequestMapping(value="/emailSend.do", method=RequestMethod.POST)
+	public void emailSendPost(@RequestParam("emailTo")String toAddr, @RequestParam("emailSubject")String esubject, @RequestParam("emailContent")String econtent) throws Exception {
+/*
+		SimpleEmail  email = new SimpleEmail();
+		
+		email.setHostName("www.easysafe.info");
+		email.setSmtpPort(25);
+		email.setFrom("admin@easysafe.info", "Administrator");
+		email.setSSL(true);
+		email.setAuthentication("savio", "savio");
+		
+		email.addTo(toAddr, "고객님");
+		email.setSubject(esubject);
+		email.setMsg(econtent);
+		
+		email.send();
+*/
+        // 메일 관련 정보
+        String host = "www.easysafe.info";	// mail server hostname
+        final String username = "savio";	// username for SMTP
+        final String password = "savio";	// password for SMTP
+        int port=25;	// SMTP port number
+        
+        System.out.println("email address to : " + toAddr);
+        System.out.println("email subject : " + esubject);
+        System.out.println("email content : " + econtent);
+         
+        // 메일 내용
+        String recipient = toAddr;
+        String subject = esubject;
+        String body = econtent;
+         
+        Properties props = System.getProperties();
+         
+        
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", port);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.ssl.enable", "false");
+        props.put("mail.smtp.ssl.trust", host);
+          
+        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+            String un=username;
+            String pw=password;
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(un, pw);
+            }
+        });
+        session.setDebug(true); //for debug
+          
+        Message mimeMessage = new MimeMessage(session);
+        mimeMessage.setFrom(new InternetAddress("admin@easysafe.info"));
+        mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        mimeMessage.setSubject(subject);
+        mimeMessage.setText(body);
+        Transport.send(mimeMessage);
+	}
+	
+	
+	@RequestMapping(value="/emailSend.do", method=RequestMethod.GET)
+	public String emailSendGet() throws Exception {
+		return "email";
+	}
+
 }

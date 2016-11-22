@@ -220,6 +220,12 @@
 			<scope>compile</scope>
 		</dependency>
 		
+		<!-- for Email sending -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.7</version>
+		</dependency>
 		
 
 
