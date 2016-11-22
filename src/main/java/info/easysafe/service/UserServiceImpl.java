@@ -52,4 +52,10 @@ public class UserServiceImpl implements UserService{
 		return dao.login(dto);
 	}
 
+	@Override
+	public void updateLevel(UserVO vo) throws Exception {
+		dao.updateLevel(vo);
+		
+	}
+
 }

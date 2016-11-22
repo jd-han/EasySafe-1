@@ -33,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update tbl_user set upw = #{upw}
 		where uid = #{uid}
 	</update>
+	
 	<update id="updateLevel">
 		update tbl_user set ulevel = #{ulevel}
 		where uid = #{uid}

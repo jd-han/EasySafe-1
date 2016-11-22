@@ -246,7 +246,6 @@
 		function deleteUser(){
 			
 		}
-		function update() {
 
 	</script>
 </body>

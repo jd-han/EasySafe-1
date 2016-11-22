@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +31,13 @@ public class ModController {
 		model.addAttribute("list", uList);
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="/updateLevel.do", method = RequestMethod.GET)
+	@ResponseBody
+	public void updateLevel (UserVO vo) throws Exception{
+		System.out.println("유저레벨 바꾸기");
+		service.updateLevel(vo);
 	}
 	
 	

@@ -16,4 +16,6 @@ public interface UserService {
 	public void updatePW(UserVO vo) throws Exception;
 	
 	public UserVO login(LoginDTO dto) throws Exception;
+	
+	public void updateLevel(UserVO vo) throws Exception;
 }
