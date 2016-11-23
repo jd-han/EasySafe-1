@@ -8,6 +8,14 @@ public class ChemVO {
 
 //	private String korName;
 //	private String engName;
+	
+	private int no;
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	private String name;
 	
 	

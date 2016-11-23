@@ -6,12 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace= "info.easysafe.mappers.UserMapper">
 
 	<select id="listAccount" resultType="UserVO">
-		select uid, uname, umail, ulevel, regdate
+		select no, uid, uname, umail, ulevel, regdate
 		from tbl_user order by uid
 	</select>
 	
 	<select id="searchAccount" resultType="UserVO">
-		select uid, uname, umail, ulevel, regdate
+		select uid, uname, umail, ulevel, regdate, no
 		from tbl_user order by #{columnName}
 	</select>
 	
@@ -36,12 +36,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateLevel">
 		update tbl_user set ulevel = #{ulevel}
-		where uid = #{uid}
+		where no = #{no}
 	</update>
 	
 	<delete id="deleteAccount">
-		delete tbl_user
-		where uid = #{uid}
+		delete from tbl_user
+		where no = #{no}
 	</delete>
 	
 	<select id="login" resultType="UserVO">

@@ -36,8 +36,8 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public void deleteAccount(UserVO vo) throws Exception {
-		session.delete(namespace+".deleteAccount", vo);
+	public void deleteAccount(int no) throws Exception {
+		session.delete(namespace+".deleteAccount", no);
 	}
 
 	@Override

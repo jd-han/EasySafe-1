@@ -119,9 +119,9 @@ public class UserController {
 	
 	
 	@RequestMapping(value="/deleteAccount", method = RequestMethod.POST)
-	public void deleteAccount(UserVO vo) throws Exception{
+	public void deleteAccount(int userNo) throws Exception{
 		System.out.println("탈퇴 서비스 호출.");
-		service.deleteAccount(vo);
+		service.deleteAccount(userNo);
 	}
 	
 	@RequestMapping(value="/login.do", method = RequestMethod.GET) //void �̸� /user/login.jsp ã�ư�.

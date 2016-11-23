@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,6 +26,7 @@
 	type="text/css" />
 
 </head>
+	<%@ include file="../nav.jsp" %>
 <body class="login-page" style="">
 	<div class="login-box">
 		<!-- 		<div class="login-logo" style="text-align:center;"> -->

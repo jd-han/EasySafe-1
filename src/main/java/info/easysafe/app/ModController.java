@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,9 +36,21 @@ public class ModController {
 	
 	@RequestMapping(value="/updateLevel.do", method = RequestMethod.GET)
 	@ResponseBody
-	public void updateLevel (UserVO vo) throws Exception{
+	public void updateLevel (@RequestParam(value = "no") String no, @RequestParam(value = "ulevel")String ulevel) throws Exception{
+		UserVO userVo = new UserVO();
+		userVo.setNo(Integer.parseInt(no));
+		userVo.setUlevel(ulevel);
+		
 		System.out.println("유저레벨 바꾸기");
-		service.updateLevel(vo);
+		service.updateLevel(userVo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/deleteUser.do", method=RequestMethod.POST)
+	public void deleteUser (@RequestParam(value="no") String no) throws Exception{
+		int uno = Integer.parseInt(no);
+		System.out.println("유저 딜리트");
+		service.deleteAccount(uno);
 	}
 	
 	

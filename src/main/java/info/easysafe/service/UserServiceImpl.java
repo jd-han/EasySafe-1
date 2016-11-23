@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void deleteAccount(UserVO vo) throws Exception {
-		dao.deleteAccount(vo);
+	public void deleteAccount(int no ) throws Exception {
+		dao.deleteAccount(no);
 	}
 
 	@Override

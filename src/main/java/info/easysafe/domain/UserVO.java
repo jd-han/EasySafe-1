@@ -4,6 +4,14 @@ import java.util.Date;
 
 public class UserVO {
 
+	private int no;
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+
 	private String uid;
 	private String upw;
 	private String umail;

@@ -43,98 +43,16 @@
 #savebutton {
 	margin-right: 10px;
 }
-#wrap {display: inline-block;}
+
+#wrap {
+	display: inline-block;
+}
 </style>
 
 </head>
 <body>
 
-
-
-
-	<nav class="navbar navbar-fixed-top header">
-	<div class="col-md-12">
-		<div class="navbar-header">
-
-
-			<a href="#" class="navbar-brand">Bootstrap</a>
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#navbar-collapse1">
-				<i class="glyphicon glyphicon-search"></i>
-			</button>
-
-		</div>
-		<div class="collapse navbar-collapse" id="navbar-collapse1">
-			<form class="navbar-form pull-left">
-				<div class="input-group" style="max-width: 470px;">
-					<input type="text" class="form-control" placeholder="Search"
-						name="srch-term" id="srch-term">
-					<div class="input-group-btn">
-						<button class="btn btn-default btn-primary" type="submit">
-							<i class="glyphicon glyphicon-search"></i>
-						</button>
-					</div>
-				</div>
-			</form>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="http://www.bootply.com" target="_ext">Bootply+</a></li>
-				<li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-						class="glyphicon glyphicon-bell"></i></a>
-					<ul class="dropdown-menu">
-						<li><a href="#"><span class="badge pull-right">40</span>Link</a></li>
-						<li><a href="#"><span class="badge pull-right">2</span>Link</a></li>
-						<li><a href="#"><span class="badge pull-right">0</span>Link</a></li>
-						<li><a href="#"><span class="label label-info pull-right">1</span>Link</a></li>
-						<li><a href="#"><span class="badge pull-right">13</span>Link</a></li>
-					</ul></li>
-				<li><a href="#" id="btnToggle"><i
-						class="glyphicon glyphicon-th-large"></i></a></li>
-				<li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-	<div class="navbar navbar-default" id="subnav">
-		<div class="col-md-12">
-			<div class="navbar-header">
-
-				<a href="#" style="margin-left: 15px;"
-					class="navbar-btn btn btn-default btn-plus dropdown-toggle"
-					data-toggle="dropdown"><i class="glyphicon glyphicon-home"
-					style="color: #dd1111;"></i> Home <small><i
-						class="glyphicon glyphicon-chevron-down"></i></small></a>
-				<ul class="nav dropdown-menu">
-					<li><a href="#"><i class="glyphicon glyphicon-user"
-							style="color: #1111dd;"></i> Profile</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-dashboard"
-							style="color: #0000aa;"></i> Dashboard</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-inbox"
-							style="color: #11dd11;"></i> Pages</a></li>
-					<li class="nav-divider"></li>
-					<li><a href="#"><i class="glyphicon glyphicon-cog"
-							style="color: #dd1111;"></i> Settings</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-plus"></i>
-							More..</a></li>
-				</ul>
-
-
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#navbar-collapse2">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-
-			</div>
-			<div class="collapse navbar-collapse" id="navbar-collapse2">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">Posts</a></li>
-					<li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>
-					<li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	<%@ include file="../nav.jsp" %>
 
 	<!--main-->
 	<div class="container" id="main">
@@ -147,21 +65,22 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<!-- 						<a href="#" class="pull-right">View all</a> -->
-						<h2>전체 회원 목록 보기</h2>
-						<form action="/notice/noticePost.do" method="post"
-							class="form-horizontal" role="form">
-							<div>
-								<button id="savebutton" type="submit"
-									class="btn btn-success pull-right" type="button">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;저장&nbsp;<i
-										class="glyphicon glyphicon-cog" style="color: white;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-								</button>
-							</div>
+						<h2>전체 회원 목록</h2>
+						<!-- 						<form action="/notice/noticePost.do" method="post"
+							class="form-horizontal" role="form"> -->
+<!-- 						<div> -->
+<!-- 							<button id="savebutton" type="submit" -->
+<!-- 								class="btn btn-success pull-right" type="button"> -->
+<!-- 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;저장&nbsp;<i -->
+<!-- 									class="glyphicon glyphicon-cog" style="color: white;"></i>&nbsp;&nbsp;&nbsp;&nbsp; -->
+<!-- 							</button> -->
+<!-- 						</div> -->
 					</div>
 					<div class="panel-body">
 						<!-- Table -->
 						<table class="table table-hover">
 							<tr>
+								<th><span>User no</span></th>
 								<th><span>ID</span></th>
 								<th><span>Username</span></th>
 								<th><span>E-mail</span></th>
@@ -171,44 +90,44 @@
 							</tr>
 
 
-							<c:forEach items="${list}" var="userVO" >
+							<c:forEach items="${list}" var="userVO">
 								<tr>
+									<td>${userVO.no}</td>
 									<td>${userVO.uid}</td>
 									<td>${userVO.uname}</td>
 									<td>${userVO.umail}</td>
-									<td><fmt:formatDate
-											pattern="yyyy-MM-dd hh:mm:ss" value="${userVO.regdate}"/></td>
-									
+									<td><fmt:formatDate pattern="yyyy-MM-dd"
+											value="${userVO.regdate}" /></td>
+
 									<td><div style="float: left;">
-<%-- 									<c:if test="${!empty list} }"> --%>
-										<select class="form-control" id="selectBox">
-											<option value="user"
-												<c:if test="${userVO.ulevel=='user'}">
+											<%-- 									<c:if test="${!empty list} }"> --%>
+											<select class="form-control" id="${userVO.no}">
+												<option value="user"
+													<c:if test="${userVO.ulevel=='user'}">
 												selected="selected"
-												</c:if>
-											>일반 유저</option>
-											<option value="pro"
-											<c:if test="${userVO.ulevel=='pro'}">
+												</c:if>>일반
+													유저</option>
+												<option value="pro"
+													<c:if test="${userVO.ulevel=='pro'}">
 												selected="selected"
-											</c:if>
-											>전문가</option>
-											<option value="mod"
-											<c:if test="${userVO.ulevel=='admin'}">
+											</c:if>>전문가</option>
+												<option value="admin"
+													<c:if test="${userVO.ulevel=='admin'}">
 												selected="selected"
 											</c:if>>관리자</option>
-										</select>
- 									
+											</select>
+
 										</div>
-										<div  style="float: right;">
-										<a class="btn btn-small pull-right" name="levelUpdate" onclick="update()">
+										<div style="float: left;">
+											<a class="btn btn-small pull-right" name="levelUpdate"
+												id="updatelevel" onclick="javascript:update(${userVO.no})">
+												변경 </a>
+											<!-- <a class="btn btn-small pull-right" name="levelUpdate" id="updatelevel" >
 										변경
-										</a>
-										</div>
-									</td>
-									
-									<td>
-										<a class="btn btn-warning" href="#"onclick="deleteUser()">삭제</a>
-									</td>
+										</a> -->
+										</div></td>
+
+									<td><a class="btn btn-warning" onclick="javascript:deleteUser(${userVO.no})">삭제</a></td>
 								</tr>
 							</c:forEach>
 
@@ -217,7 +136,7 @@
 
 
 						</table>
-						</form>
+						<!-- </form> -->
 					</div>
 				</div>
 
@@ -227,26 +146,65 @@
 
 
 	</div>
-	
-	<script>
+
+
+</body>
+
+<script type="text/javascript">
 	//수정 버튼 누를 때.
-	var selectStatus = document.getElementById("selectBox").val();
-	(function(){
-		$("#selectBox").val("${userVo.ulevel}").attr("selected", "selected");
-		
-	})()
-	 
+/* 	alert("스크립트 시작");
+	
 	var selectStatus = $('selectBox').on('change', function(){
 		$(this).find(":selected").val()
+	}); */
+		
+		
+	function update(no) {
+			var userNo = no
+			var userLevel = $("#"+ no +" option:selected").val();
+			
+	 		$.ajax({
+				url: "/mod/updateLevel.do",
+				type:"GET",
+				data : {no : userNo, ulevel: userLevel},
+				//dataType : "json", 넘어올 데이터 종류 지정.
+				success : function(data){
+					alert("등급이 변경되었습니다.");
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+			        alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+			    }
+			});
+			
+		}
+	
+	function deleteUser(no) {
+		var userNo = no
+		
+		$.ajax ({
+			url:"/mod/deleteUser.do",
+			type:"POST",
+			data : {no : userNo},
+			success : function(data) {
+				alert("유저가 삭제되었습니다. ");
+				window.location.reload();
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+		        alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+			}
+		});
+	}
+	/* 
+	$("#updatelevel").click(function(){
+		alert("나와라");
 	});
 		
-		function sendSelect() {
-			
-		}
+	 $("#updatelevel").click(function updatelevel() {
+		var level = $("#"+${userVO.uid} +" option:selected").val();
+		alert("수정될 val : " + level);
+	}); 
 		function deleteUser(){
 			
-		}
-
+		}  */
 	</script>
-</body>
 </html>
