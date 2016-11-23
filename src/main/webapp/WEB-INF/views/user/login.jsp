@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-<<<<<<< HEAD
-	pageEncoding="UTF-8"%>
-=======
 	pageEncoding="utf-8"%>
->>>>>>> PKJ
 <!DOCTYPE html>
 <html>
 <head>

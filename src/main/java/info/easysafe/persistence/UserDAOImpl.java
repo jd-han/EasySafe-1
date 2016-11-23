@@ -71,14 +71,13 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void updateLevel(UserVO vo) throws Exception {
 		session.update(namespace+".updateLevel", vo);
-=======
+	}
+	@Override
 	public UserVO viewEmail(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".readEmail", vo);
->>>>>>> PKJ
-	}
 
+	}
 }

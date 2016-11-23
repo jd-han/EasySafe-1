@@ -49,9 +49,6 @@ public class UserController {
 	@Inject
 	private UserService service;
 	
-<<<<<<< HEAD
-	@RequestMapping(value="/registform", method=RequestMethod.GET)
-=======
 	@RequestMapping(value="/listAccount", method=RequestMethod.GET)
 	@ResponseBody
 	public List<UserVO> listAccount () throws Exception{

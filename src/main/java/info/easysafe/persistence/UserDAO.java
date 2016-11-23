@@ -12,7 +12,6 @@ public interface UserDAO {
 	public UserVO view(UserVO vo) throws Exception;
 	public void deleteAccount(int userNo) throws Exception;
 	public UserVO viewEmail(UserVO vo) throws Exception;
-	public void deleteAccount(UserVO vo) throws Exception;
 	
 	public void updateAccount(UserVO vo) throws Exception;
 	public void updatePW(UserVO vo) throws Exception;
