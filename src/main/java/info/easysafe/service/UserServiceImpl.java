@@ -55,7 +55,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void updateLevel(UserVO vo) throws Exception {
 		dao.updateLevel(vo);
-		
+	}
+	public UserVO viewEmail(UserVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.viewEmail(vo);
 	}
 
 }
