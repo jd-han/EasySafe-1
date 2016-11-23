@@ -35,8 +35,14 @@
          <span class="icon-bar"></span>
          </button>      	
        </div>-->
+<<<<<<< HEAD
 			<div class="collapse navbar-collapse" id="navbar-collapse2">
 				<span style="float: left;"> <!-- uvo = ${uvo.uid}
+=======
+       <div class="collapse navbar-collapse" id="navbar-collapse2">
+       <span style="float: left;">
+	        <!-- uvo = ${uvo.uid}
+>>>>>>> PKJ
 			<br>index.jsp 페이지입니다
 			<br> ${uvo.uname} 님 환영합니다-->
 					<h1 id="curPage">INDEX</h1> <%-- <c:choose>
@@ -48,6 +54,7 @@
 			        	<button id="goUserInfo">회원정보</button>
 			        </c:when>
 		        </c:choose> --%>
+<<<<<<< HEAD
 				</span> <span>
 					<ul class="nav navbar-nav navbar-right">
 						<a href="#" style="margin-left: 15px;"
@@ -99,6 +106,28 @@
 			</div>
 		</div>
 	</div>
+=======
+        </span>
+        <span>
+	        <ul class="nav navbar-nav navbar-right">
+	        	<li><a href="#">Menu</a></li>
+		        <li class="active"><a href="${pageContext.request.contextPath}/index.do">Main</a></li>		        
+		        	<c:choose>
+		        	<c:when test="${empty uvo}">
+		        		<li><a href="${pageContext.request.contextPath}/user/login.do" role="button">Login</a></li>
+		        		<li><a href="${pageContext.request.contextPath}/user/register.do" role="button">Join</a></li>
+		        	</c:when>
+		        	<c:otherwise>
+		        		<li><a href="${pageContext.request.contextPath}/user/logout.do" role="button">Logout</a></li>
+		        		<li><a href="#" role="button">UserInfo</a></li>
+		        	</c:otherwise>
+		        	</c:choose>	        	
+		        <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
+	        </ul>
+        </span>
+       </div>	
+    </div>	
+>>>>>>> PKJ
 </div>
 
 <script>

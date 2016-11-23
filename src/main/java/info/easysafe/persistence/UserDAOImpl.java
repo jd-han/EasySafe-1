@@ -31,7 +31,9 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public UserVO view(UserVO vo) throws Exception {
 		UserVO uvo = session.selectOne(namespace+".readAccount", vo);
-		uvo.setUpw(null);
+		if(uvo != null){
+			uvo.setUpw(null);
+		}
 		return uvo;
 	}
 
@@ -69,8 +71,14 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void updateLevel(UserVO vo) throws Exception {
 		session.update(namespace+".updateLevel", vo);
+=======
+	public UserVO viewEmail(UserVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace + ".readEmail", vo);
+>>>>>>> PKJ
 	}
 
 }
