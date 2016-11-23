@@ -41,7 +41,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#curPage").html("성분상세");
-			alert(chemResult);
+			//alert(chemResult);
 		});
 	</script>
 </body>

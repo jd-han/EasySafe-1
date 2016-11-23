@@ -10,6 +10,7 @@ public interface UserDAO {
 	public List<UserVO> listAll () throws Exception;
 	public void create(UserVO vo) throws Exception;
 	public UserVO view(UserVO vo) throws Exception;
+	public UserVO viewEmail(UserVO vo) throws Exception;
 	public void deleteAccount(UserVO vo) throws Exception;
 	
 	public void updateAccount(UserVO vo) throws Exception;

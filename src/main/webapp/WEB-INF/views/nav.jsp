@@ -31,7 +31,7 @@
          </button>      	
        </div>-->
        <div class="collapse navbar-collapse" id="navbar-collapse2">
-       	<span style="float: left;">
+       <span style="float: left;">
 	        <!-- uvo = ${uvo.uid}
 			<br>index.jsp 페이지입니다
 			<br> ${uvo.uname} 님 환영합니다-->
@@ -46,15 +46,17 @@
 			        </c:when>
 		        </c:choose> --%>
         </span>
-        <span>	        
+        <span>
 	        <ul class="nav navbar-nav navbar-right">
-		        <li class="active"><a href="index.do">Main</a></li>		        
+	        	<li><a href="#">Menu</a></li>
+		        <li class="active"><a href="${pageContext.request.contextPath}/index.do">Main</a></li>		        
 		        	<c:choose>
 		        	<c:when test="${empty uvo}">
-		        		<li><a href="user/login.do" role="button">Login</a></li>
+		        		<li><a href="${pageContext.request.contextPath}/user/login.do" role="button">Login</a></li>
+		        		<li><a href="${pageContext.request.contextPath}/user/register.do" role="button">Join</a></li>
 		        	</c:when>
 		        	<c:otherwise>
-		        		<li><a href="user/logout.do" role="button">Logout</a></li>
+		        		<li><a href="${pageContext.request.contextPath}/user/logout.do" role="button">Logout</a></li>
 		        		<li><a href="#" role="button">UserInfo</a></li>
 		        	</c:otherwise>
 		        	</c:choose>	        	

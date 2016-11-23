@@ -52,4 +52,10 @@ public class UserServiceImpl implements UserService{
 		return dao.login(dto);
 	}
 
+	@Override
+	public UserVO viewEmail(UserVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.viewEmail(vo);
+	}
+
 }
