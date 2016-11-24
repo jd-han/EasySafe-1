@@ -87,7 +87,6 @@
 	}
 </style>
 </head>
-	<%@ include file="../nav.jsp" %>
 <body class="login-page" style="">
 <%@ include file="../nav.jsp"%>
 	<div class="login-box">
@@ -121,7 +120,7 @@
 						</div>
 						<div class="panel-body">
 						<div class="list-group">
-						<form action="/user/loginPost.do" method="post">
+						<form action="/user/loginPost.do" method="post" id="loginForm">
 							<button id="FBloginBtn"
 								class="fb-login-button"
 								data-scope="public_profile,email" data-max-rows="1"
@@ -138,7 +137,7 @@
 							<br>
 							<br>
 							<div class="form-group has-feedback">
-								<input type="text" name="uid" class="form-control" placeholder="ID" />
+								<input type="text" id="uid" name="uid" class="form-control" placeholder="ID" />
 								<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -189,6 +188,10 @@
 				increaseArea : '20%' // optional
 			});
 		}); */
+		$(document).ready(function(){
+			$("#curPage").html("로그인");
+			startApp();
+		});
 
 		// 페이스북 로그인 부분
 		function statusChangeCallback(response) {
@@ -287,9 +290,10 @@
 		function loginAPI(response) {
 			alert(response.name + " 님, 접속 성공");
 			// 페이스북 측에서 오는 정보로 회원정보 부분을 채워넣음
-			$("#joinId").val(response.id);
+			$("#uid").val(response.id);
 			// 로그인 주소로 POST Submit
 			///user/loginPost.do
+			$("#loginForm").submit();
 		}
 	</script>
 </body>
