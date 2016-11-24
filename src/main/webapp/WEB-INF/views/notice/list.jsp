@@ -54,10 +54,12 @@
 							<!-- 							<a href="http://bootply.com/tagged/modal" class="list-group-item">Modal/ Dialog</a>  -->
 						</div>
 						<div class="col-xs-10"></div>
-						<div class="col-xs-2">
-							<a class="btn btn-primary center-block"
-								href="/notice/create.do" type="button">공지 작성</a>
-						</div>
+						<c:if test="${uvo.ulevel eq 'admin'}">
+							<div class="col-xs-2">
+								<a class="btn btn-primary center-block"
+									href="/notice/create.do" type="button">공지 작성</a>
+							</div>						
+						</c:if>
 						<div class="col-sm-12 text-center">
 							<ul class="pagination center-block"
 								style="display: inline-block;">

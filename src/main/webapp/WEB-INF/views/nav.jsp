@@ -79,7 +79,7 @@
 		        		<li><a href="${pageContext.request.contextPath}/user/logout.do" role="button">Logout</a></li>
 		        	</c:otherwise>
 		        	</c:choose>	        	
-		        <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>
+		        <li><a href="${pageContext.request.contextPath}/notice/list.do" role="button" data-toggle="modal">Notice</a></li>
 	        </ul>
         </span>
        	</div>	

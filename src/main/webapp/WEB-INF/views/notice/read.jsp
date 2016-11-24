@@ -58,15 +58,17 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-xs-8"></div>
-								<div class="col-xs-2">
-									<a class="btn btn-info center-block"
-										href="/notice/update.do?no=${notice.noticeNo}" type="button">Update</a>
-								</div>
-
-								<div class="col-xs-2">
-									<a class="btn btn-primary center-block"
-										href="/notice/delete.do?no=${notice.noticeNo}" type="button">Delete</a>
-								</div>
+								<c:if test="${uvo.ulevel eq 'admin'}">
+									<div class="col-xs-2">
+										<a class="btn btn-info center-block"
+											href="/notice/update.do?no=${notice.noticeNo}" type="button">Update</a>
+									</div>
+	
+									<div class="col-xs-2">
+										<a class="btn btn-primary center-block"
+											href="/notice/delete.do?no=${notice.noticeNo}" type="button">Delete</a>
+									</div>								
+								</c:if>
 
 							</div>
 							<br>
