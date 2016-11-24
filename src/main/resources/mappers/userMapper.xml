@@ -6,9 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace= "info.easysafe.mappers.UserMapper">
 
 	<select id="listAccount" resultType="UserVO">
-		select * from 
-		from tbl_user where no >0
-		order by no desc limit 0,10
+		
+		select *
+		from tbl_user
+		order by no desc 
+		limit 0,10
+		
 	</select>
 	
 	<select id="searchAccount" resultType="UserVO">

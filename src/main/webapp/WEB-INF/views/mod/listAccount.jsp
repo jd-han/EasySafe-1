@@ -158,7 +158,9 @@
 		$(this).find(":selected").val()
 	}); */
 		
-		
+	$(document).ready(function() {
+		$("#curPage").html("Users Modify");
+	});
 	function update(no) {
 			var userNo = no
 			var userLevel = $("#"+ no +" option:selected").val();

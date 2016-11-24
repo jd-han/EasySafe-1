@@ -87,7 +87,6 @@
 	}
 </style>
 </head>
-	<%@ include file="../nav.jsp" %>
 <body class="login-page" style="">
 <%@ include file="../nav.jsp"%>
 	<div class="login-box">
@@ -182,14 +181,9 @@
 	<!-- <script src="/resources/plugins/iCheck/icheck.min.js"
 		type="text/javascript"></script> -->
 	<script>
-		/* $(function() {
-			$('input').iCheck({
-				checkboxClass : 'icheckbox_square-blue',
-				radioClass : 'iradio_square-blue',
-				increaseArea : '20%' // optional
-			});
-		}); */
-
+		$(document).ready(function() {
+			$("#curPage").html("Log in	");
+		});
 		// 페이스북 로그인 부분
 		function statusChangeCallback(response) {
 			console.log('statusChangeCallback');
