@@ -57,6 +57,12 @@ span.buttonText {
 <body>
 	<%@ include file="../nav.jsp"%>
 	<div class="container" id="main">
+	<div class="col-sx-4 col-xs-6">
+	<img height="70%" width="70%" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png">
+	<img alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png">
+	<img height="70%" width="70%" alt="너구리냠냠" src="${pageContext.request.contextPath}/resources/media/img/omnomnom_nobg.png">
+	</div>
+	<div class="col-sx-4 col-xs-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4>가입 정보 입력</h4>
@@ -92,7 +98,6 @@ span.buttonText {
 								<button id="checkDuplicateId" class="btn btn-lg btn-success">중복확인</button>
 							</span>
 						</div>
-						<br>
 						<div class="alert alert-success" id="isDuplicateId"></div>
 						패스워드<span class="label label-danger">필수</span> <input
 							type="password" id="joinPass" name="upw"
@@ -100,7 +105,6 @@ span.buttonText {
 						확인 <input type="password" id="checkPass"
 							class="form-control input-lg" placeholder="패스워드를 확인하세요" />
 					</div>
-					<br>
 					<div class="alert alert-danger" id="isCheckPass"></div>
 					이메일<span class="label label-danger">필수</span>
 					<div class="input-group text-center">
@@ -110,13 +114,11 @@ span.buttonText {
 							<button id="checkDuplicateEmail" class="btn btn-lg btn-success">중복확인</button>
 						</span>
 					</div>
-					<br>
 					<div class="alert alert-danger" id="isDuplicateEmail"></div>
 					이름<span class="label label-danger">필수</span> <input type="text"
 						id="joinName" name="uname" class="form-control input-lg"
 						placeholder="이름을 입력하세요" /> <br>
 					<div class="alert alert-danger" id="isName"></div>
-					<br>
 					<div class="pull-right">
 						<button class="btn btn-lg btn-danger" type="reset">다시입력</button>
 						<a id="submitLink" class="btn btn-lg btn-primary">가입하기</a>
@@ -124,6 +126,7 @@ span.buttonText {
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
