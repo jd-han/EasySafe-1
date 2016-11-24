@@ -120,7 +120,7 @@
 						</div>
 						<div class="panel-body">
 						<div class="list-group">
-						<form action="/user/loginPost.do" method="post">
+						<form action="/user/loginPost.do" method="post" id="loginForm">
 							<button id="FBloginBtn"
 								class="fb-login-button"
 								data-scope="public_profile,email" data-max-rows="1"
@@ -137,7 +137,7 @@
 							<br>
 							<br>
 							<div class="form-group has-feedback">
-								<input type="text" name="uid" class="form-control" placeholder="ID" />
+								<input type="text" id="uid" name="uid" class="form-control" placeholder="ID" />
 								<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
@@ -181,9 +181,18 @@
 	<!-- <script src="/resources/plugins/iCheck/icheck.min.js"
 		type="text/javascript"></script> -->
 	<script>
-		$(document).ready(function() {
-			$("#curPage").html("Log in	");
+		/* $(function() {
+			$('input').iCheck({
+				checkboxClass : 'icheckbox_square-blue',
+				radioClass : 'iradio_square-blue',
+				increaseArea : '20%' // optional
+			});
+		}); */
+		$(document).ready(function(){
+			$("#curPage").html("로그인");
+			startApp();
 		});
+
 		// 페이스북 로그인 부분
 		function statusChangeCallback(response) {
 			console.log('statusChangeCallback');
@@ -281,9 +290,10 @@
 		function loginAPI(response) {
 			alert(response.name + " 님, 접속 성공");
 			// 페이스북 측에서 오는 정보로 회원정보 부분을 채워넣음
-			$("#joinId").val(response.id);
+			$("#uid").val(response.id);
 			// 로그인 주소로 POST Submit
 			///user/loginPost.do
+			$("#loginForm").submit();
 		}
 	</script>
 </body>

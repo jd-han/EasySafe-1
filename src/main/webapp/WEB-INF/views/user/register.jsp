@@ -35,19 +35,17 @@ span.label {
 }
 
 span.icon {
-	background: url('https://www.google.com/favicon.ico') transparent 5px
+	background: url('https://www.google.com/favicon.ico') transparent 1px
 		50% no-repeat;
 	display: inline-block;
-	vertical-align: middle;
+	vertical-align: middle;	
 	width: 42px;
 	height: 42px;
 }
 
 span.buttonText {
-	display: inline-block;
 	vertical-align: middle;
-	padding-right: 12px;
-	font-size: 14px;
+	font-size: 24px;
 	font-weight: bold;
 	/* Use the Roboto font that is loaded in the <head> */
 	font-family: 'Roboto', sans-serif;
@@ -120,7 +118,7 @@ span.buttonText {
 						placeholder="이름을 입력하세요" /> <br>
 					<div class="alert alert-danger" id="isName"></div>
 					<div class="pull-right">
-						<button class="btn btn-lg btn-danger" type="reset">다시입력</button>
+						<button id="resetBtn" class="btn btn-lg btn-danger">다시입력</button>
 						<a id="submitLink" class="btn btn-lg btn-primary">가입하기</a>
 					</div>
 				</form>
@@ -339,8 +337,9 @@ span.buttonText {
 		});
 
 		// 아이디 중복여부 체크
-		$("#joinId").change(function(){
+		$("#checkDuplicateId").click(function(){
 			idChk();
+			return false;
 		});	
 		function idChk() {
 			$.ajax({
@@ -362,6 +361,9 @@ span.buttonText {
 		}
 		// 비밀번호, 비번확인 입력시마다 호출되어 일치 여부 판단
 		$(":password").change(function() {
+			passChk();
+		});
+		function passChk(){
 			$.ajax({
 				url : "../user/checkPass.do",
 				type : "POST",
@@ -374,9 +376,10 @@ span.buttonText {
 				$("#isCheckPass").css("visibility", result.show);
 				$("#isCheckPass").html(result.msg);
 			});
-		});
-		$("#joinEmail").change(function(){
+		}
+		$("#checkDuplicateEmail").click(function(){
 			emailChk();
+			return false;
 		});
 		function emailChk() {
 			$.ajax({
@@ -422,6 +425,19 @@ span.buttonText {
 								}
 							});
 				});
+		$("#resetBtn").click(function(){
+			$("#joinId").val("");
+			$("#joinPass").val("");
+			$("#checkPass").val("");
+			$("#joinEmail").val("");
+			$("#joinName").val("");
+			
+			idChk();
+			passChk();
+			emailChk();
+			
+			return false;
+		});
 	</script>
 </body>
 </html>
