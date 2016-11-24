@@ -15,8 +15,6 @@
 <!-- 2016.11.21 : 위 3줄은 nav.jsp 에만 선언해둬도 모든 파일에 적용됨
 	(nav.jsp는 모든 파일에서 include 하기 때문) -->
 
-
-
 </head>	
 <body>
 <!--<nav class="navbar navbar-fixed-top header">
