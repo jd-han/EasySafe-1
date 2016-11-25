@@ -31,10 +31,9 @@
 	<div class="container" id="main">
 		<div class="row">
 			<div class="col-md-12">
-				<!-- 				<h2>공지사항</h2> -->
-			</div>
-			<div class="col-md-1"></div>
-			<div class="col-md-10 col-sm-12">
+	
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10 col-xs-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3>공지사항</h3>
@@ -75,6 +74,28 @@
 					</div>
 				</div>
 			</div>
+<!-- 			<div class="col-xs-1 col-xs-12"> -->
+<%-- 			<img height="630px" width="500px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"> --%>
+<%-- 				<a href="${pageContext.request.contextPath}/index.do"><img --%>
+<!-- 						class="center-block" alt="너구리" -->
+<%-- 						src="${pageContext.request.contextPath}/resources/media/img/panda01_nobg.png" --%>
+<!-- 						style="width: 100%; height: 100%;" /></a> -->
+<!-- 			</div> -->
+
+		</div></div></div>
+		<div class="row">
+			<div class="col-md-12">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10 col-xs-12">
+<!-- 			<div class="col-md-4 col-sm-12"> -->
+			<img height="60px" width="1200px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png">
+                   <a href="${pageContext.request.contextPath}/index.do"><img
+                             alt="너구리"
+                             src="${pageContext.request.contextPath}/resources/media/img/panda01_nobg.png"
+                             style="width: 22%; height: 22%;" /></a>
+			
+			</div>
 		</div>
-	</div>
+		
+		
 </html>
