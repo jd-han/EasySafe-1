@@ -90,17 +90,13 @@
 <body class="login-page" style="">
 <%@ include file="../nav.jsp"%>
 	<div class="login-box">
-		<!-- 		<div class="login-logo" style="text-align:center;"> -->
 		<!-- title was here -->
 
 	</div>
 	<!-- /.login-logo -->
 	<div class="login-box-body">
 
-
 		<div class="container" id="main">
-
-			<%-- 				 ${uvo.uname} 님 환영합니당 <br> --%>
 
 			<div class="row">
 				<div class="col-md-4 col-sm-6"></div>

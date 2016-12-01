@@ -30,21 +30,21 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 //		ModelMap modelMap = modelAndView.getModelMap();
 		
 		Object userVO = session.getAttribute("uvo");
-		System.out.println(userVO);
+		System.out.println("로긴 인터셉터 포스트핸들에서 session.getAttribute하고 userVO에 집어넣은 uvo :"+userVO);
 		if(userVO != null) {
 			session.setAttribute(LOGIN, userVO); 
 			
 			if(req.getParameter("useCookie") != null) {
-				logger.info("remember me~~");
-				logger.warn("remember me !! ");
+				logger.warn("postHandle : remember me !! ");
 				Cookie loginCookie = new Cookie("loginCookie", session.getId()); //amy �� ����.
-				System.out.println("만들어진 쿠키 : " + loginCookie);
+				System.out.println("postHandle 만들어진 쿠키 : " + loginCookie);
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(60*60*24*7); 
 				resp.addCookie(loginCookie);
 			}
 			
 			Object dest = session.getAttribute("dest");
+			System.out.println("dest Object get : "+dest);
 //			if(dest!= null) {
 //				resp.sendRedirect((String)dest);
 //			}
@@ -58,7 +58,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		
 		HttpSession session = req.getSession();
 		if(session.getAttribute(LOGIN)!= null) {
-			logger.info("clear login data before");
+			System.out.println("로긴 인터셉터 prehandle, login data clear! ");
 			session.removeAttribute(LOGIN);
 		}
 		

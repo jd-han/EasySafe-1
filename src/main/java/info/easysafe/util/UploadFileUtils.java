@@ -16,8 +16,7 @@ import org.springframework.util.FileCopyUtils;
 public class UploadFileUtils {
 	private static final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
 	
-	
-	//ÆÄÀÏ ÀúÀåµÉ °æ·Î¸¦ °è»ê. 
+	//í˜„ì¬ ì‹œìŠ¤í…œì˜ ë‚ ì§œì— ë§ëŠ” ë°ì´í„°ë¥¼ ì–»ì–´ë‚¸ë‹¤. ê¸°ë³¸ ê²½ë¡œì™€ í•¨ê»˜ makeDirì— ì „ë‹¬ë˜ì–´ í´ë”ê°€ ìƒì„±ëœë‹¤. 
 	private static String calcPath(String uploadPath){
 		Calendar cal = Calendar.getInstance();
 		String yearPath = File.separator+cal.get(Calendar.YEAR);
@@ -43,7 +42,6 @@ public class UploadFileUtils {
 		}
 	}
 	
-	//ÀÌ¹ÌÁö ÆÄÀÏÀÎ °æ¿ì ½æ³×ÀÏ »ı¼º.
 	private static String makeThumbnail(
 			String uploadPath,
 			String path,
@@ -63,14 +61,12 @@ public class UploadFileUtils {
 		return thumbnailName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 	
-	//ÀÌ¹ÌÁö ÆÄÀÏÀÌ ¾Æ´Ñ °æ¿ì´Â °æ·Î Ã³¸®¸¦ ÇÏ´Â ¹®ÀÚ¿­ÀÇ Ä¡È¯. 
 	private static String makeIcon(String uploadPath, String path, String fileName) throws Exception{
 		String iconName = uploadPath + path + File.separator+fileName;
 		
 		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 	
-	//ÃÖÁ¾ ÆÄÀÏ ¾÷·Îµå Ã³¸®
 	public static String uploadFile(String uploadPath, String originalName, byte[] fileData) throws Exception{
 		UUID uid = UUID.randomUUID();
 		String savedName = uid.toString()+"_"+originalName;
@@ -78,10 +74,9 @@ public class UploadFileUtils {
 		
 		File target = new File(uploadPath + savedPath, savedName); 
 		
-		//¿øº» ÆÄÀÏÀ» ÀúÀåÇÏ´Â ºÎºĞ. 
+		//ë°ì´í„°ë¥¼ ë°›ì•„ì„œ ì›ë³¸ íŒŒì¼ì„ ì €ì¥í•˜ëŠ” ë¶€ë¶„
 		FileCopyUtils.copy(fileData, target);
 		
-		//¿øº» ÆÄÀÏÀÇ È®ÀåÀÚ
 		String formatName = originalName.substring(originalName.lastIndexOf(".")+1);
 		
 		String uploadedFileName = null;

@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="updateAccount">
-		update tbl_user set umail=#{umail}, uname=#{uname} 
+		update tbl_user set upw=#{upw}, uname=#{uname}, umail=#{umail}, uinfo=#{uinfo} 
 		where uid = #{uid}
 	</update>
 	
@@ -57,6 +57,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from tbl_user
 		where uid= #{uid} and upw = #{upw}
 	</select>
+	
+	<insert id="addPic">
+		insert into tbl_userpic(fileName, no) values(#{fileName}, #{no})
+	</insert>
 	
 	
 	

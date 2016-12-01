@@ -1,11 +1,15 @@
 package info.easysafe.app;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -19,14 +23,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
 import info.easysafe.service.UserService;
+import info.easysafe.util.TokenUtil;
+import info.easysafe.util.UploadFileUtils;
 
 @Controller
 @RequestMapping("/user")
@@ -46,8 +54,21 @@ public class UserController {
 	// 이름을 입력했는지 체크하는 변수
 	private boolean isName = false;
 	
+	@Resource(name ="uploadPath")
+	private String uploadPath;
+	
 	@Inject
 	private UserService service;
+	
+
+	
+	 
+	public String getCurrentDayTime(){
+	    long time = System.currentTimeMillis();
+	    SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.KOREA);
+	    return dayTime.format(new Date(time));
+	}
+	
 	
 	@RequestMapping(value="/listAccount", method=RequestMethod.GET)
 	@ResponseBody
@@ -71,6 +92,8 @@ public class UserController {
 						"\nPASS: " + isPass + "\nName: " + isName);
 			if(isDuId && isDuEmail && isPass && isEmail && isName)
 			{
+				String ourApiKey = TokenUtil.apiKeyCreate();
+				vo.setApikey(ourApiKey);
 				// 이름이 공백이 아니고 상기 4가지 조건이 모두 참일때 가입 실행.
 				service.regist(vo);
 				return "OK";
@@ -233,7 +256,7 @@ public class UserController {
 			resultMap.put("show", "visible");
 			resultMap.put("removeClass", "alert-danger");
 			resultMap.put("addClass", "alert-success");
-			resultMap.put("msg", "이메일 사용 가능합니다.");
+			resultMap.put("msg", "사용 가능한 이메일입니다.");
 			isDuEmail = true;
 			isEmail = true;
 			return resultMap;
@@ -279,71 +302,62 @@ public class UserController {
 	@RequestMapping(value="/viewAccount", method=RequestMethod.GET)
 	public UserVO viewUser(UserVO vo) throws Exception{
 		//���������ΰ� ������ ����. 
+		System.out.println("userController - viewAccount controller 들어옴");
 		return service.view(vo);
 	}
-	//����ڰ� �н����带 �Ҿ���� ���. 
-//	@ResponseBody
-//	@RequestMapping(value="/viewAccount", method=RequestMethod.GET)
-//	public UserVO viewUser(UserVO vo) throws Exception{
-//		
-//		return service.view(vo);
-//	}
+
 	
-	@ResponseBody
-	@RequestMapping(value="/updateAccount", method=RequestMethod.POST)
-	public String updateAccountPost(UserVO vo, RedirectAttributes rttr) throws Exception{
-		logger.info("������Ʈ POST. ");
+	@RequestMapping(value="/updateAccount.do", method=RequestMethod.POST)
+	public String updateAccountPost(UserVO vo, MultipartRequest mreq, HttpSession session) throws Exception{
+		logger.info("어카운트업데이트 POST 진입. ");
 		logger.info(vo.toString());
-		service.updateAccount(vo);
-		rttr.addFlashAttribute("msg", "SUCCESS");
-		 return "redirect:/viewAccount";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/updateAccount", method=RequestMethod.GET)
-	public UserVO updateAccountGet(UserVO vo) throws Exception{
-		logger.info("update Account GET.... ");
-		return service.view(vo);
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/updatePWWeb", method=RequestMethod.POST)
-	public String updatePWPost(LoginDTO dto, UserVO vo, String newPW ,RedirectAttributes rttr) throws Exception{
-		logger.info("��� ���� POST. ");
-		logger.info(vo.toString());
+		MultipartFile file = mreq.getFile("upic");
 		
-		UserVO uvo = service.login(dto); //����� Ʋ�� ���� null �̴�. 
-		if(uvo != null) {
-			uvo.setUpw(newPW);
-			service.updatePW(uvo);
-			rttr.addFlashAttribute("msg", "SUCCESS");
-		}
-		else {
-			rttr.addFlashAttribute("msg", "FAIL");
-		}
-		return "redirect:/viewAccount";
+		logger.info("original name : "+file.getOriginalFilename());
+		logger.info("size : "+file.getSize());
+		
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
+		vo.setNo(uvo.getNo());
+		String savedName =UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+		vo.setFileName(savedName);
+
+		service.updateAccount(vo);
+		System.out.println("updateAccount 서비스에 넣은 VO : "+vo);
+		
+		return"redirect:mypage.do";
+		 
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value="/updatePWWeb", method=RequestMethod.GET)
-//	public UserVO updatePWGet(UserVO vo) throws Exception{
-//		logger.info("��� ���� GET.... ");
-//		return service.view(vo);
-//		
-//	}
-	
-	@RequestMapping(value="/updatePWWeb", method=RequestMethod.GET)
-	public void updatePWWebGet(UserVO vo, Model model ) throws Exception{
-		System.out.println("비번 업데이트 페이지 겟");
-		UserVO uvo = service.view(vo);
-		model.addAttribute("userVO", uvo);
+	@RequestMapping(value="/mypage.do", method=RequestMethod.GET)
+	public void updateAccountGet() throws Exception{
+		logger.info("MYPAGE GET.... ");
 	}
 	
 	
-	@RequestMapping(value="/deleteAccount", method = RequestMethod.POST)
-	public void deleteAccount(int userNo) throws Exception{
+	@RequestMapping(value="/deleteAccount.do", method = RequestMethod.POST)
+	public String deleteAccount(@RequestParam(value="no") String no,HttpServletRequest req, HttpServletResponse resp, RedirectAttributes rttr, HttpSession session ) throws Exception{
+		int uno = Integer.parseInt(no);
 		System.out.println("탈퇴 서비스 호출.");
-		service.deleteAccount(userNo);
+		service.deleteAccount(uno);
+		
+		Object obj = session.getAttribute("login");
+		if (obj != null) {
+			UserVO uvo = (UserVO) obj;
+			session.removeAttribute("login");
+			session.invalidate();
+			
+			Cookie loginCookie = WebUtils.getCookie(req, "logincookie");
+			
+			if(loginCookie != null) {
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(0);
+				resp.addCookie(loginCookie);
+			}
+		}
+		System.out.println("세션에 있는 로그인 쿠키 invalidated.");
+		System.out.println("로그아웃됨.");
+		 return "redirect:/index.do";
+		
 	}
 	
 	@RequestMapping(value="/login.do", method = RequestMethod.GET) //void �̸� /user/login.jsp ã�ư�.
@@ -354,13 +368,14 @@ public class UserController {
 	public String loginPOST (LoginDTO dto, HttpSession session, Model model) throws Exception{
 		
 		UserVO vo = service.login(dto);
-		System.out.println("loginpost :"+vo);
 		if (vo == null){
-			System.out.println("vo null.");
+			System.out.println("vo null. 로그인 실패");
+			
 			return "redirect:login.do" ; //login.jsp
 		}
 		session.setAttribute("uvo", vo);
-		System.out.println("/loginpost에서 보내는 vo : "+vo);
+		System.out.println("컨트롤러/loginpost에서 uvo라는 이름으로 세션에 setAttribute로 집어넣음. uvo : "+vo);
+		
 		return "index";
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
@@ -37,9 +38,16 @@ public class UserServiceImpl implements UserService{
 		dao.deleteAccount(no);
 	}
 
+	@Transactional
 	@Override
 	public void updateAccount(UserVO vo) throws Exception {
+		System.out.println("updateAccount service. : "+vo);
 		dao.updateAccount(vo);
+		
+		String file = vo.getFileName();
+		if(file ==null) {return;}
+		System.out.println("dao addpic : "+file);
+		dao.addPic(vo);
 	}
 
 	@Override
@@ -60,5 +68,6 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return dao.viewEmail(vo);
 	}
+
 
 }

@@ -44,6 +44,7 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public void updateAccount(UserVO vo) throws Exception {
+		System.out.println("daoimpl updateAccount :" +vo);
 		session.update(namespace+".updateAccount", vo);
 	}
 
@@ -57,7 +58,6 @@ public class UserDAOImpl implements UserDAO{
 		UserVO uvo = session.selectOne(namespace+".login", vo);
 		uvo.setUpw("");
 		return uvo;
-
 	}
 
 	@Override
@@ -67,7 +67,6 @@ public class UserDAOImpl implements UserDAO{
 		if (uvo != null) {
 			uvo.setUpw(""); }
 		return uvo;
-
 	}
 
 	@Override
@@ -78,6 +77,18 @@ public class UserDAOImpl implements UserDAO{
 	public UserVO viewEmail(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".readEmail", vo);
-
 	}
+
+	@Override
+	public void addPic(UserVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		session.insert(namespace+".addPic", vo);
+	}
+
+	@Override
+	public void applogin(UserVO vo) throws Exception {
+		session.selectOne(namespace+".login", vo);
+	}
+
+	
 }

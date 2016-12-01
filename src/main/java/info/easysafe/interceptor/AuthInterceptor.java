@@ -24,7 +24,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			
 			saveDest(req);
 			
-			resp.sendRedirect("/user/login");
+			resp.sendRedirect("/user/login.do");
 			return false;
 		}
 		return true;

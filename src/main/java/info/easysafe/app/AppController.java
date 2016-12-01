@@ -27,7 +27,7 @@ import info.easysafe.service.ChemService;
 @Controller
 @RequestMapping("/app")
 public class AppController {
-private static final Logger logger = LoggerFactory.getLogger(MainController.class); 
+private static final Logger logger = LoggerFactory.getLogger(AppController.class); 
 	
 	@Inject
 	private ChemService service;
