@@ -5,27 +5,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="info.easysafe.mappers.AppMapper">
 	
-	<select id="giveToken1" resultType="UserVO">
-		select *
-		from tbl_user
-		where uid=#{uid} and upw=#{upw}
-	</select>
-		
-	<select id="giveToken2" resultType="UserVO">
-		select *
-		from tbl_user
-		where uid=#{uid}
-	</select>
-	
-	<select id="selectByToken" resultType="UserVO">
-		select *
-		from tbl_user
-		where token=#{token}
-	</select>
-	
-	<insert id="createAccount" parameterType="UserVO">
-		insert into tbl_user (uid, upw, umail, uname) 
-		values ( #{uid}, #{upw}, #{umail}, #{uname})
-	</insert>
-
+ 
 </mapper>

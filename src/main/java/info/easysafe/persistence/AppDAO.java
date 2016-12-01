@@ -6,7 +6,7 @@ import info.easysafe.dto.LoginDTO;
 public interface AppDAO {
 	
 	/*패스워드 재발급*/
-	public void sendEmail(String emailUrl) throws Exception;
+//	public void sendEmail(String emailUrl) throws Exception;
 	
 //	회원가입
 	public int joinMember(UserVO vo) throws Exception;

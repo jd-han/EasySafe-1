@@ -14,11 +14,7 @@ public class AppDAOImpl implements AppDAO{
 	@Inject
 	private SqlSession session;
 	private static String namespace ="info.easysafe.mappers.AppMapper";
-	@Override
-	public void sendEmail(String emailUrl) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
 	public int joinMember(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
