@@ -1,6 +1,8 @@
 package info.easysafe.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -37,5 +39,29 @@ public class KeywordServiceImpl implements KeywordService {
 	public void updateCount(KeywordVO kVO) throws Exception {
 		// TODO Auto-generated method stub
 		dao.updateCount(kVO);
+	}
+
+	@Override
+	public List<KeywordVO> listStatAdminKeywordKorName(String regDate) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectListStatAdminKeywordKorName(regDate);
+	}
+
+	@Override
+	public List<Map<String, Object>> listStatUserKeywordKorName(String userName) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectListStatUserKeywordKorName(userName);
+	}
+
+	@Override
+	public List<String> listAllDate() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectListAllDate();
+	}
+
+	@Override
+	public List<String> listAllKeyword() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectListAllKeyword();
 	}
 }

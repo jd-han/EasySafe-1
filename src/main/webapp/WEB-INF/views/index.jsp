@@ -63,6 +63,7 @@
 <%@ include file="nav.jsp" %>
 <!-- 2016.11.21 : 상단 네비게이션은 nav.jsp 파일로 빠짐 -->
 
+
 <!--main-->
 <div class="container" id="main">
 	<h1 style="text-align: center; color: white; font-size: 50px; font-weight:bold; text-shadow: 0 0 10px black;">Easy Safe</h1>
@@ -78,10 +79,9 @@
 	<script type="text/javascript">
 		$("#search").click(function() {
 // 			alert("성분검색누름" + $("#inputChem").val());
-			self.location = "search.do" + "?key=" + $("#keyword").val();
+			self.location = "search.do" + "?key=" + $("#keyword").val() + "&user=" + '${login.uid}';
 		});
 	</script>
-
 <!--
    <div class="row">
    <div class="col-md-4 col-sm-6">

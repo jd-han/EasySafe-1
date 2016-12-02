@@ -6,7 +6,16 @@ public class KeywordVO {
 	private String keyword;
 	private Date regDate;
 	private int count;	
+	private String user;
 	
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -33,6 +42,6 @@ public class KeywordVO {
 
 	@Override
 	public String toString() {
-		return "KeywordVO [keyword=" + keyword + ", regDate=" + regDate + ", count=" + count + "]";
+		return "KeywordVO [keyword=" + keyword + ", regDate=" + regDate + ", count=" + count + ", user=" + user + "]";
 	}	
 }
