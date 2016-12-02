@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!-- JQuery import -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type='text/javascript' src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
 	  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
 	  crossorigin="anonymous">
@@ -31,7 +32,7 @@
 				 	<c:when test="${uvo.ulevel eq 'user'}">
 				          <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Menu <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
 				          <ul class="nav dropdown-menu custommenu">
-				              <li><a href="#"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
+				              <li><a href="${pageContext.request.contextPath}/user/mypage.do"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
 				              <li><a href="${pageContext.request.contextPath}/history/history.do"><i class="glyphicon glyphicon-dashboard" style="color:#0000aa;"></i> History</a></li>
 				<!--               <li><a href="#"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Pages</a></li> -->
 				              <li class="nav-divider"></li>
@@ -46,7 +47,7 @@
 				          
 				          <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Menu <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
 				          <ul class="nav dropdown-menu custommenu">
-				              <li><a href="#"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
+				              <li><a href="${pageContext.request.contextPath}/user/mypage.do"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
 				              <li class="nav-divider"></li>
 				              <li><a href="${pageContext.request.contextPath}/mod/listAccount.do"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Modify Users</a></li>
 				              <li><a href="#"><i class="glyphicon glyphicon-cog" style="color:#dd1111;"></i> Settings</a></li>
@@ -85,8 +86,3 @@
        	</div>	
     </div>	
 </div>
-<script>
-	$(".navbar-header").click(function(){		
-		$(this).hasClass("open") ? $(this).removeClass("open") : $(this).addClass("open");  
-	});
-</script>
