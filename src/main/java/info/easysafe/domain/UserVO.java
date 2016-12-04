@@ -4,12 +4,6 @@ import java.util.Date;
 
 public class UserVO {
 
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
 
 	private int no;
 	private String uid;
@@ -19,13 +13,20 @@ public class UserVO {
 	private String ulevel;
 	private Date regdate;
 	private String uinfo;
-	private String fileName;
+	
+	private String file;
 	private String apikey;
 	private String token;
 	private String joinFlag;
 	
 	
 
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public String getJoinFlag() {
 		return joinFlag;
 	}
@@ -43,12 +44,6 @@ public class UserVO {
 	}
 	public void setToken(String token) {
 		this.token = token;
-	}
-	public String getFileName() {
-		return fileName;
-	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
 	}
 	public String getUinfo() {
 		return uinfo;
@@ -93,15 +88,18 @@ public class UserVO {
 	public void setUlevel(String ulevel) {
 		this.ulevel = ulevel;
 	}
+	
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
 	@Override
 	public String toString() {
 		return "UserVO [no=" + no + ", uid=" + uid + ", upw=" + upw + ", umail=" + umail + ", uname=" + uname
-				+ ", ulevel=" + ulevel + ", regdate=" + regdate + ", uinfo=" + uinfo + "]";
+				+ ", ulevel=" + ulevel + ", regdate=" + regdate + ", uinfo=" + uinfo + ", file=" + file + ", apikey="
+				+ apikey + ", token=" + token + ", joinFlag=" + joinFlag + "]";
 	}
-	
-
-	
-	
-	
 	
 }

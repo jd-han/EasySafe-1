@@ -9,7 +9,7 @@ public interface UserService {
 
 	public List<UserVO> listAll () throws Exception;
 	public void regist(UserVO vo) throws Exception;
-	public UserVO view(UserVO vo) throws Exception;
+	public UserVO view(String uid) throws Exception;
 	public void deleteAccount(int uno) throws Exception;
 	public UserVO viewEmail(UserVO vo) throws Exception;
 	
