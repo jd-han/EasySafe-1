@@ -14,51 +14,55 @@ public class AppDAOImpl implements AppDAO{
 	@Inject
 	private SqlSession session;
 	private static String namespace ="info.easysafe.mappers.AppMapper";
+	
 	@Override
-	public void sendEmail(String emailUrl) throws Exception {
+	public int registerUser(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		
+		return session.insert("registerUser", vo);
 	}
 	@Override
-	public int joinMember(UserVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public UserVO loginMember(String uid) throws Exception {
+	public UserVO loginUser(String uid) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public UserVO getMemberByInfo(String uid) throws Exception {
+	public UserVO getUserById(String uid) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("AppDAOImpl uid : " + uid);
+		return session.selectOne(namespace+".selectUserById", uid);
 	}
 	@Override
-	public UserVO getMemberByToken(String ourToken) throws Exception {
+	public UserVO getUserByToken(String ourToken) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne(namespace + ".getUserByToken");
 	}
 	@Override
-	public int modifyMember(UserVO vo) throws Exception {
+	public int modifyUser(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
-	public void exitMember(String id) throws Exception {
+	public void deleteUser(String id) throws Exception {
 		// TODO Auto-generated method stub
+		session.delete(namespace + ".deleteUserById", id);
 		
 	}
 	@Override
-	public void modifyMemberOurToken(UserVO vo) throws Exception {
+	public void updateUserToken(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		
+		session.update(namespace + ".updateUserToken", vo);
 	}
 	@Override
-	public int getMemberByNo(String id) throws Exception {
+	public int getUserByNo(String id) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	@Override
+	public UserVO getUserByMail(String umail) {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".selectUserByMail", umail);
+	}
+	
 
 	
 }

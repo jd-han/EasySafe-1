@@ -1,4 +1,5 @@
-package kr.co.bacode.common.util;
+package info.easysafe.util;
+
 
 import java.security.MessageDigest;
 

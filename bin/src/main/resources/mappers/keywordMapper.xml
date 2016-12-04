@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="info.easysafe.mappers.KeywordMapper">
+
+	<select id="selectListKeywordKorName" resultType="KeywordVO">
+		select *
+		from tbl_searchlog
+		where keyword like CONCAT('%', #{keyword}, '%')
+	</select>
+	<!-- 해당 검색어와 날짜가 존재하는지 조회하는 구문 -->
+	<select id="selectOneKeywordKorName" resultType="KeywordVO">
+		select *
+		from tbl_searchlog
+		where keyword = #{keyword}
+		and date(regdate) = date(#{regDate})
+	</select>
+	<!-- 새로운 키워드와 날짜를 등록 -->
+	<insert id="insertKeywordKorName" parameterType="KeywordVO">
+		insert into tbl_searchlog
+		(keyword, regdate)
+		values (#{keyword}, #{regDate})
+	</insert>
+	<!-- 같은 날짜에 존재하는 같은 키워드에 대한 검색횟수 증가 -->
+	<update id="updateKeywordCount">
+		update tbl_searchlog
+		set count = (count + 1)
+		where keyword = #{keyword}
+		and date(regdate) = date(#{regDate})
+	</update>
+</mapper>

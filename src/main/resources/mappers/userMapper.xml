@@ -20,8 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="createAccount" parameterType="UserVO">
-		insert into tbl_user (uid, upw, umail, uname) 
-		values ( #{uid}, #{upw}, #{umail}, #{uname})
+		insert into tbl_user (uid, upw, umail, uname, apikey) 
+		values ( #{uid}, #{upw}, #{umail}, #{uname}, #{apikey})
 	</insert>
 	
 	<select id="readAccount" resultType="UserVO">
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select umail from tbl_user where umail = #{umail}
 	</select>
 	
-	<update id="updateAccount">
+	<update id="updateAccount" >
 		update tbl_user set upw=#{upw}, uname=#{uname}, umail=#{umail}, uinfo=#{uinfo} 
 		where uid = #{uid}
 	</update>

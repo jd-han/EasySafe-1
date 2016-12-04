@@ -88,12 +88,12 @@ public class UserController {
 		if(!vo.getUname().equals(""))
 		{
 			isName = true;
-			logger.info("가입 유형 : \nAPI: " + isAPI + "\nID: " + isDuId + "\nEmail: " + isDuEmail + isEmail + 
+			logger.info("가입 유형 : \nAPI: " + isAPI + "\nID: " + isDuId + "\nEmail: " + isDuEmail + 
 						"\nPASS: " + isPass + "\nName: " + isName);
 			if(isDuId && isDuEmail && isPass && isEmail && isName)
 			{
-				String ourApiKey = TokenUtil.apiKeyCreate();
-				vo.setApikey(ourApiKey);
+				String apiKey = TokenUtil.apiKeyCreate();
+				vo.setApikey(apiKey);
 				// 이름이 공백이 아니고 상기 4가지 조건이 모두 참일때 가입 실행.
 				service.regist(vo);
 				return "OK";
