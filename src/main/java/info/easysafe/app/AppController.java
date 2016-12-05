@@ -84,7 +84,11 @@ private static final Logger logger = LoggerFactory.getLogger(AppController.class
 	@ResponseBody
 	@RequestMapping(value="/searchProduct.do", method = RequestMethod.GET)
 	public List<ProductVO> searchProduct(String key) throws Exception{
-		boolean iskor = false;
+		logger.info("searchProduct.do : "+key);
+		List<ProductVO> list = null; 
+		list = service.listProductKorName(key);
+		return list;
+/*		boolean iskor = false;
 		  for(int i=0;i<key.length();i++){
 		     if(Character.getType(key.charAt(i)) == 5) {
 		    	 //�ѱ��� ��� 
@@ -101,7 +105,7 @@ private static final Logger logger = LoggerFactory.getLogger(AppController.class
 //			  list = service.listProductEngName(key);
 			  System.out.println("�ѱ۾ƴ�."); //�ѱ��� ���� ���
 		  }
-		  return list;
+		  return list;*/
 	}
 	 
 	
@@ -110,8 +114,9 @@ private static final Logger logger = LoggerFactory.getLogger(AppController.class
 	@ResponseBody
 	@RequestMapping(value="/productDetail.do", method = RequestMethod.GET)
 	public ProductVO productDetail(String name) throws Exception{
-		
-		boolean iskor = false;
+		logger.info("productDetail.do : "+name);
+		return service.readProductKorName(name);
+/*		boolean iskor = false;
 		  for(int i=0;i<name.length();i++){
 		     if(Character.getType(name.charAt(i)) == 5) {
 		    	 //�ѱ��� ��� 
@@ -129,14 +134,21 @@ private static final Logger logger = LoggerFactory.getLogger(AppController.class
 		//	  product = service.readProductEngName(key);
 			  System.out.println("�ѱ۾ƴ�."); //�ѱ��� ���� ���
 		  }		
-		  return product;
+		  return product;*/
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/productDetailWUpc.do", method = RequestMethod.GET)
 	public ProductVO productDetailWUpc(String upc) throws Exception {
-		System.out.println(upc);
+		logger.info("productDetailWUpc : "+upc);
 		return service.readUpc(upc);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/productListSelectByUpc.do", method = RequestMethod.GET)
+	public List<ProductVO> productListSelectByUpc(String upc) throws Exception {
+		logger.info("productListSelectByUpc : "+upc);
+		return service.productListSelectByUpc(upc);
 	}
 	
 	@ResponseBody

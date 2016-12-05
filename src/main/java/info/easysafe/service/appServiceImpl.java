@@ -15,53 +15,61 @@ public class appServiceImpl implements appService{
 	private AppDAO dao;
 
 	@Override
-	public int joinMember(UserVO vo) throws Exception {
+	public int registerUser(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
+		return dao.registerUser(vo);
+	}
+
+	@Override
+	public UserVO loginUser(String uid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.loginUser(uid);
+	}
+
+	@Override
+	public UserVO getUserById(String uid) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("appServiceImpl uid : " + uid);
+		return dao.getUserById(uid);
+	}
+
+	@Override
+	public UserVO getUserByToken(String token) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getUserByToken(token);
+	}
+
+	@Override
+	public int modifyUser(UserVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.modifyUser(vo);
 		return 0;
 	}
 
 	@Override
-	public UserVO loginMember(String uid) throws Exception {
+	public void deleteUser(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		dao.deleteUser(id);
 	}
 
 	@Override
-	public UserVO getMemberByInfo(String uid) throws Exception {
+	public void updateUserToken(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		dao.updateUserToken(vo);
 	}
 
 	@Override
-	public UserVO getMemberByToken(String ourToken) throws Exception {
+	public int getUserByNo(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getUserByNo(id);
 	}
 
 	@Override
-	public int modifyMember(UserVO vo) throws Exception {
+	public UserVO getUserByMail(String umail) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.getUserByMail(umail);
 	}
 
-	@Override
-	public void exitMember(String id) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void modifyMemberOurToken(UserVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int getMemberByNo(String id) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 	
 
 }

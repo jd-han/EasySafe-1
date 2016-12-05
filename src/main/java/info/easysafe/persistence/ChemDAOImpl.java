@@ -47,4 +47,10 @@ public class ChemDAOImpl implements ChemDAO{
 		return session.selectList(namespace+".findProductByComponent", compo);
 	}
 
+	@Override
+	public List<ProductVO> productListSelectByUpc(String upc) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".productListSelectByUpc", upc);
+	}
+
 }

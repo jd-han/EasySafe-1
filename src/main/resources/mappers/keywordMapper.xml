@@ -10,24 +10,54 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from tbl_searchlog
 		where keyword like CONCAT('%', #{keyword}, '%')
 	</select>
-	<!-- 해당 검색어와 날짜가 존재하는지 조회하는 구문 -->
+	<!-- 해당 검색어와 날짜와 유저가 존재하는지 조회하는 구문 -->
 	<select id="selectOneKeywordKorName" resultType="KeywordVO">
 		select *
 		from tbl_searchlog
 		where keyword = #{keyword}
 		and date(regdate) = date(#{regDate})
+		and user = #{user}
 	</select>
-	<!-- 새로운 키워드와 날짜를 등록 -->
+	<!-- 새로운 키워드와 날짜, 검색한 유저를 등록 -->
 	<insert id="insertKeywordKorName" parameterType="KeywordVO">
 		insert into tbl_searchlog
-		(keyword, regdate)
-		values (#{keyword}, #{regDate})
+		(keyword, regdate, user)
+		values (#{keyword}, #{regDate}, #{user})
 	</insert>
-	<!-- 같은 날짜에 존재하는 같은 키워드에 대한 검색횟수 증가 -->
+	<!-- 같은 날짜에 존재하는 같은 키워드와 유저에 대한 검색횟수 증가 -->
 	<update id="updateKeywordCount">
 		update tbl_searchlog
 		set count = (count + 1)
 		where keyword = #{keyword}
 		and date(regdate) = date(#{regDate})
+		and user = #{user}
 	</update>
+	<!-- 날짜 하나씩 모두 뽑아오기 -->
+	<select id="selectAllDate" resultType="string">
+		select regdate
+		from tbl_searchlog
+		group by regdate
+		order by regdate asc
+	</select>
+	<!-- 키워드 하나씩 모두 뽑아오기 -->
+	<select id="selectAllKeyword" resultType="string">
+		select keyword
+		from tbl_searchlog
+		group by keyword
+	</select>
+	<!-- 관리자 페이지용 통계 산출 쿼리문 -->
+	<select id="selectStatAdminKeywordKorName" resultType="KeywordVO" parameterType="string">
+		select sum(count) as count, keyword
+		from tbl_searchlog
+		group by regdate, keyword
+		having regdate=#{regDate}
+	</select>
+	<!-- 유저용 검색내역 산출 쿼리문 -->
+	<select id="selectStatUserKeywordKorName" resultType="hashmap" parameterType="string">
+		select count(regdate) as cdate, sum(count) as count, keyword, max(regdate) as lastdate
+		from tbl_searchlog
+		group by keyword, user
+		having user=#{user}
+		order by cdate desc
+	</select>
 </mapper>

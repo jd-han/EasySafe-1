@@ -62,8 +62,9 @@ public class MainController {
 	
 	@RequestMapping(value = "/search.do", method = RequestMethod.GET)
 	@ResponseBody
-	public ModelAndView searchChem(String key, ModelAndView mv) throws Exception {
-		System.out.println("서치켐.");
+	public ModelAndView searchChem(String key, String user, ModelAndView mv) throws Exception {
+		logger.info("검색 실행됨.");
+		logger.info("검색 파라메터 유입 : " + key + ", 검색자 : " + user);
 		boolean iskor = false;
 		for (int i = 0; i < key.length(); i++) {
 			if (Character.getType(key.charAt(i)) == 5) {
@@ -78,10 +79,13 @@ public class MainController {
 		if (iskor == true) {
 			cList = service.listChemKorName(key);
 			pList = service.listProductKorName(key);
-			// 검색어와 현재 날짜를 VO에 삽입.
+			// 검색어와 현재 날짜, 검색 유저를 VO에 삽입.
 			kVO.setKeyword(key);
-			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			kVO.setRegDate(new Date());
+			// 유저 아이디가 존재하지않으면 유저 아이디를 anon 으로 설정해 VO 에 삽입.
+			if(user.equalsIgnoreCase("")){ kVO.setUser("anon"); }
+			else{ kVO.setUser(user); }
+			
 			System.out.println("kVO : " + kVO.toString());
 			// 검색 결과를 받을 임시 VO 선언.
 			KeywordVO resultVO = kService.readKeywordKorName(kVO);
