@@ -21,5 +21,7 @@ public interface ChemDAO {
 	public ProductVO findProductWBarcode(String upc) throws Exception;
 	
 	public List<ProductVO> findProductWComponent(String compo) throws Exception;
+	
+	public List<ProductVO> productListSelectByUpc(String upc) throws Exception;
 
 }

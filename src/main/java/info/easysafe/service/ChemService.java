@@ -26,6 +26,8 @@ public interface ChemService {
 	public ProductVO readUpc(String upc) throws Exception;
 	
 	public List<ProductVO> listProductWCompo(String compo) throws Exception;
+
+	public List<ProductVO> productListSelectByUpc(String upc) throws Exception;
 	
 
 }

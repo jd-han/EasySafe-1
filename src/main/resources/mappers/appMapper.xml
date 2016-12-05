@@ -4,6 +4,60 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="info.easysafe.mappers.AppMapper">
+
+	<select id="giveToken1" resultType="UserVO">
+		select *
+		from tbl_user
+		where
+		uid=#{uid} and upw=#{upw}
+	</select>
+
+	<select id="giveToken2" resultType="UserVO">
+		select *
+		from tbl_user
+		where
+		uid=#{uid}
+	</select>
+
+	<select id="getUserByToken" resultType="UserVO">
+		select *
+		from tbl_user
+		where token=#{token}
+	</select>
+
+	<insert id="registerUser" parameterType="UserVO">
+		insert into tbl_user
+		(uid, upw, umail, uname, apikey)
+		values ( #{uid}, #{upw}, #{umail},
+		#{uname}, #{apikey})
+	</insert>
+
+	<select id="selectUserById" resultType="UserVO">
+		select *
+		from tbl_user
+		where uid = #{uid}
+	</select>
+
+
+	<select id="selectUserByNo" resultType="UserVO">
+		select *
+		from tbl_user
+		where no = #{no}
+	</select>
+	<select id="selectUserByMail" resultType="UserVO">
+		select *
+		from tbl_user
+		where umail = #{umail}
+	</select>
+
+	<update id="updateUserToken" parameterType="UserVO">
+		update tbl_user
+		set token = #{token}
+		where uid = #{uid}
+	</update>
 	
- 
+	<delete id="deleteUserById" parameterType="UserVO">
+	
+	
+	</delete>
 </mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="info.easysafe.mappers.MainMapper">
+
+	<select id="selectListChemKorName" resultType="ChemVO">
+		select *
+		from tbl_dummydata
+		where name like CONCAT('%', #{korKey}, '%')
+	</select>
+	
+	<select id="selectOneChemKorName" resultType="ChemVO">
+		select *
+		from tbl_dummydata
+		where name = #{korKey}
+	</select>
+
+	
+	<select id="searchChemKorNameCount" resultType="int">
+		select count(*)
+		from tbl_dummydata
+		where name like CONCAT('%', #{korKey}, '%')
+	</select>
+	
+	<select id="selectListProductKorName" resultType="ProductVO">
+		select *
+		from tbl_product
+		where name like CONCAT('%', #{korKey}, '%')
+	</select>
+	
+	<select id="selectOneProductKorName" resultType="ProductVO">
+		select *
+		from tbl_product
+		where name = #{korName}
+	</select>
+	
+	<select id="searchProductKorNameCount" resultType="int">
+		select count(*)
+		from tbl_product
+		where name like CONCAT('%', #{korKey}, '%')
+	</select>
+	
+	<select id="selectProductWBarcode" resultType="ProductVO">
+		select *
+		from tbl_product
+		where upc = #{upc}
+	</select>
+	
+	<select id="findProductByComponent" resultType="ProductVO">
+		select *
+		from tbl_product
+		where components like CONCAT('%', #{compo}, '%')
+	</select>
+	
+	
+
+</mapper>
