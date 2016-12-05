@@ -1,6 +1,9 @@
 package info.easysafe.app;
 
+import java.util.Map;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,15 +58,7 @@ public class AppUserController {
 			return false;
 		}
 	}
-	
-<<<<<<< HEAD
 
-	//  회원가입
-	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public Map<String, Object> joinMember(@RequestBody UserVO vo, HttpSession session) {
-		System.out.println("aaaaabbbbbb");
-		System.out.println(vo.toString());
-=======
 	// 메일 중복체크
 	@ResponseBody
 	@RequestMapping(value = "/mailCheck.do", method = RequestMethod.POST)
@@ -72,7 +67,6 @@ public class AppUserController {
 	}
 	
 	public boolean emailChecker(String umail){
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 		try {
 			if(service.getUserByMail(umail) != null){
 				System.out.println("메일 있음");
@@ -120,11 +114,6 @@ public class AppUserController {
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-<<<<<<< HEAD
-	// 로그인 메소드
-	public Map<String, Object> loginCommonMember(UserVO voSub, HttpSession session){
-=======
 		return vo;
 	}
 	
@@ -132,7 +121,6 @@ public class AppUserController {
 	@RequestMapping(value="/getUserByToken.do", method = RequestMethod.POST)
 	@ResponseBody
 	public UserVO getUserByToken(@RequestBody UserVO voSub) throws Exception{
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 		String tempToken = null;
 		UserVO vo = null;
 		vo = service.getUserByToken(voSub.getToken());
@@ -209,7 +197,6 @@ public class AppUserController {
 	}
 =======
 		}*/
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 
 	
 	// 토큰 생성 메소드
