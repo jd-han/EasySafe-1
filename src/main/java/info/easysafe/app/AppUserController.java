@@ -152,12 +152,12 @@ public class AppUserController {
 					// 패스워드 안맞음.
 					throw new Exception();
 				}
-			}else if(voSub.getFacebookId() != null || voSub.getGoogleId() != null){
-				// 외부 로그인
-				// 토큰 생성
-				vo = service.getMemberByInfo(voSub.getUid());
-				tempToken = makeToken(vo);
-				vo.setToken(tempToken);
+//			}else if(voSub.getFacebookId() != null || voSub.getGoogleId() != null){
+//				// 외부 로그인
+//				// 토큰 생성
+//				vo = service.getMemberByInfo(voSub.getUid());
+//				tempToken = makeToken(vo);
+//				vo.setToken(tempToken);
 			}else if(voSub.getToken() != null){
 				// 토큰 로그인 - 자동 로그인 - app - 토큰 생성 안함.
 				vo = service.getMemberByToken(voSub.getToken());
@@ -173,9 +173,7 @@ public class AppUserController {
 			}
 			mapMemberInfo.put("ourToken", tempToken);
 			// 로그인 세션 처리
-			List<FieldVO> fieldList = service.getFieldByMember(vo.getNo());
 			session.setAttribute("member", vo);
-			session.setAttribute("field", fieldList);
 			return mapMemberInfo;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -184,7 +182,21 @@ public class AppUserController {
 		}*/
 
 	
+<<<<<<< HEAD
 
+=======
+	//	 로그인 
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public Map<String, Object> loginMember(@RequestBody UserVO vo, HttpSession session) {
+		mapMemberInfo = new HashMap<>();
+		// 변형된 암호를 비교하기 위한 작업
+		if(vo.getUpw() != null){
+			vo.setUpw(Sha512Encrypt.hash(vo.getUpw()));
+		}
+		mapMemberInfo = loginCommonMember(vo, session);
+		return mapMemberInfo;
+	}
+>>>>>>> origin/master
 
 	// 토큰 생성 메소드
 	public String makeToken(UserVO vo){

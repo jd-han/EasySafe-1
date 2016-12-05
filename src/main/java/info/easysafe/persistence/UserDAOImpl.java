@@ -29,8 +29,8 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public UserVO view(UserVO vo) throws Exception {
-		UserVO uvo = session.selectOne(namespace+".readAccount", vo);
+	public UserVO view(String uid) throws Exception {
+		UserVO uvo = session.selectOne(namespace+".readAccount", uid);
 		if(uvo != null){
 			uvo.setUpw(null);
 		}
@@ -46,6 +46,11 @@ public class UserDAOImpl implements UserDAO{
 	public void updateAccount(UserVO vo) throws Exception {
 		System.out.println("daoimpl updateAccount :" +vo);
 		session.update(namespace+".updateAccount", vo);
+	}
+	@Override
+	public void addPic(UserVO vo) throws Exception {
+		System.out.println("daoiple addPic");
+		session.insert(namespace+".addPic", vo);
 	}
 
 	@Override
@@ -79,11 +84,6 @@ public class UserDAOImpl implements UserDAO{
 		return session.selectOne(namespace + ".readEmail", vo);
 	}
 
-	@Override
-	public void addPic(UserVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		session.insert(namespace+".addPic", vo);
-	}
 
 	@Override
 	public void applogin(UserVO vo) throws Exception {

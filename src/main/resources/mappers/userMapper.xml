@@ -25,16 +25,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="readAccount" resultType="UserVO">
-		select * from tbl_user where uid = #{uid}
+		select a.*, filename as file
+		from tbl_user a
+	 	where uid = #{uid}
 	</select>
 	
 	<select id="readEmail" resultType="UserVO">
 		select umail from tbl_user where umail = #{umail}
 	</select>
 	
+<<<<<<< HEAD
 	<update id="updateAccount" >
 		update tbl_user set upw=#{upw}, uname=#{uname}, umail=#{umail}, uinfo=#{uinfo} 
+=======
+	<update id="updateAccount">
+		update tbl_user set upw=#{upw}, uname=#{uname}, umail=#{umail}, uinfo=#{uinfo}, filename=#{file}
+>>>>>>> origin/master
 		where uid = #{uid}
+	</update>
+	
+	<update id="addPic">
+		update tbl_user set fileName = #{file}
+		where no = #{no}
 	</update>
 	
 	<update id="updateAccountpw">
@@ -53,14 +65,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="login" resultType="UserVO">
-		select *
-		from tbl_user
+		select a.*, filename as file
+		from tbl_user a
 		where uid= #{uid} and upw = #{upw}
 	</select>
 	
-	<insert id="addPic">
-		insert into tbl_userpic(fileName, no) values(#{fileName}, #{no})
-	</insert>
 	
 	
 	

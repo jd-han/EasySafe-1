@@ -4,3 +4,7 @@ target/*
 .project
 /target/
 .springBeans
+.png
+.jpg
+.gif
+.jpeg

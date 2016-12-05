@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserVO view(UserVO vo) throws Exception {
-		return dao.view(vo);
+	public UserVO view(String uid) throws Exception {
+		return dao.view(uid);
 	}
 
 	@Override
@@ -42,12 +42,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void updateAccount(UserVO vo) throws Exception {
 		System.out.println("updateAccount service. : "+vo);
-		dao.updateAccount(vo);
 		
-		String file = vo.getFileName();
+		String file = vo.getFile();
 		if(file ==null) {return;}
 		System.out.println("dao addpic : "+file);
-		dao.addPic(vo);
+		dao.updateAccount(vo);
+//		dao.addPic(vo);
 	}
 
 	@Override

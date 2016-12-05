@@ -15,7 +15,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 	
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-		
+		logger.info("AuthInterceptor");
 		HttpSession session = req.getSession();
 		
 		if(session.getAttribute("login") == null) {

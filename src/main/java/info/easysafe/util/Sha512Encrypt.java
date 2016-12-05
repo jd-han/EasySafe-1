@@ -1,5 +1,8 @@
 package info.easysafe.util;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 
 import java.security.MessageDigest;
 

@@ -16,7 +16,11 @@ public class AppDAOImpl implements AppDAO{
 	private static String namespace ="info.easysafe.mappers.AppMapper";
 	
 	@Override
+<<<<<<< HEAD
 	public int registerUser(UserVO vo) throws Exception {
+=======
+	public int joinMember(UserVO vo) throws Exception {
+>>>>>>> origin/master
 		// TODO Auto-generated method stub
 		return session.insert("registerUser", vo);
 	}
