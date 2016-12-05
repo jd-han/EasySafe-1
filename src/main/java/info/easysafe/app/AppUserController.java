@@ -49,7 +49,6 @@ Map<String, Object> mapMemberInfo = null;
 	public Map<String, Object> joinMember(@RequestBody UserVO vo, HttpSession session) {
 		System.out.println("aaaaabbbbbb");
 		System.out.println(vo.toString());
-		mapMemberInfo = new HashMap<>();
 		try {
 			if(vo.getUpw() != null || vo.getUpw() == ""){
 				System.out.println("비밀번호 있음 ::: 일반 로그인");
@@ -130,7 +129,6 @@ Map<String, Object> mapMemberInfo = null;
 		
 	// 로그인 메소드
 	public Map<String, Object> loginCommonMember(UserVO voSub, HttpSession session){
-		mapMemberInfo = new HashMap<>();
 		String tempToken = null;
 		UserVO vo = null; 
 		try {
@@ -182,7 +180,6 @@ Map<String, Object> mapMemberInfo = null;
 	//	 로그인 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Map<String, Object> loginMember(@RequestBody UserVO vo, HttpSession session) {
-		mapMemberInfo = new HashMap<>();
 		// 변형된 암호를 비교하기 위한 작업
 		if(vo.getUpw() != null){
 			vo.setUpw(Sha512Encrypt.hash(vo.getUpw()));
@@ -280,7 +277,6 @@ Map<String, Object> mapMemberInfo = null;
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
@@ -295,7 +291,6 @@ Map<String, Object> mapMemberInfo = null;
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
