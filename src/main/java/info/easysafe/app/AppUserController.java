@@ -182,22 +182,6 @@ public class AppUserController {
 		}*/
 
 	
-<<<<<<< HEAD
-
-=======
-	//	 로그인 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public Map<String, Object> loginMember(@RequestBody UserVO vo, HttpSession session) {
-		mapMemberInfo = new HashMap<>();
-		// 변형된 암호를 비교하기 위한 작업
-		if(vo.getUpw() != null){
-			vo.setUpw(Sha512Encrypt.hash(vo.getUpw()));
-		}
-		mapMemberInfo = loginCommonMember(vo, session);
-		return mapMemberInfo;
-	}
->>>>>>> origin/master
-
 	// 토큰 생성 메소드
 	public String makeToken(UserVO vo){
 		// 토큰 생성후 ourApiKey 와  ourToken 을 DB에 update 또는 insert한다.
@@ -211,15 +195,9 @@ public class AppUserController {
 		}
 		return ourToken;
 	}
-	
-
-
-
-
 
 	
-	
-	/* 회원수정 */
+/*	 회원수정 
 	@RequestMapping(value = "/updateUser.do", method = RequestMethod.POST)
 	public ResponseEntity<String> updateUser(@RequestBody UserVO vo) {
 		ResponseEntity<String> entity = null;
@@ -239,7 +217,7 @@ public class AppUserController {
 		return entity;
 	}
 
-	/* 회원탈퇴 */
+	// 회원탈퇴 
 	@RequestMapping(value = "/deleteUser.do", method = RequestMethod.POST)
 	public ResponseEntity<String> deleteUser(@RequestBody UserVO vo) {
 		System.out.println(vo.getUid());
@@ -252,7 +230,7 @@ public class AppUserController {
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
-	}
+	}*/
 	
 	
 //	//추가 정보 입력

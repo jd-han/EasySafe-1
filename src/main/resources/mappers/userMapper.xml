@@ -34,13 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select umail from tbl_user where umail = #{umail}
 	</select>
 	
-<<<<<<< HEAD
-	<update id="updateAccount" >
-		update tbl_user set upw=#{upw}, uname=#{uname}, umail=#{umail}, uinfo=#{uinfo} 
-=======
 	<update id="updateAccount">
 		update tbl_user set upw=#{upw}, uname=#{uname}, umail=#{umail}, uinfo=#{uinfo}, filename=#{file}
->>>>>>> origin/master
 		where uid = #{uid}
 	</update>
 	
