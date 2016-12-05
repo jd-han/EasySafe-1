@@ -17,7 +17,6 @@ public class AppDAOImpl implements AppDAO{
 	
 	@Override
 	public int registerUser(UserVO vo) throws Exception {
-	public int joinMember(UserVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return session.insert("registerUser", vo);
 	}

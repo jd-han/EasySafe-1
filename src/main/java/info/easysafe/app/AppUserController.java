@@ -1,11 +1,8 @@
 package info.easysafe.app;
 
-<<<<<<< HEAD
 import java.util.Map;
-
-=======
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,18 +26,16 @@ public class AppUserController {
 	private static final Logger logger = LoggerFactory.getLogger(AppUserController.class);
 
 	@Inject
-	private appService service;
+	private appService service;	
 	
-	
-	//	아이디 존재 여부 체크 true : 
-<<<<<<< HEAD
-	
+	//	아이디 존재 여부 체크 true : 	
 	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
 	public @ResponseBody String idCheck(@RequestBody UserVO vo){
 		logger.info("input UserVO : " + vo);
 		System.out.println("idCheck : id : " + vo.getUid());
 		return idChecker(vo.getUid())? "true" : "false";
 	}
+	
 	
 	//	아이디 존재 여부 체크 메소드
 	public boolean idChecker(String uid){
@@ -68,49 +63,6 @@ public class AppUserController {
 	public String emailCheck(@RequestBody UserVO vo){
 		return emailChecker(vo.getUmail())? "true" : "false";
 	}
-	
-	//  회원가입
-	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public Map<String, Object> joinMember(@RequestBody UserVO vo, HttpSession session) {
-		System.out.println("aaaaabbbbbb");
-		System.out.println(vo.toString());
-=======
-	
-	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
-	public @ResponseBody String idCheck(@RequestBody UserVO vo){
-		logger.info("input UserVO : " + vo);
-		System.out.println("idCheck : id : " + vo.getUid());
-		return idChecker(vo.getUid())? "true" : "false";
-	}
-	
-	//	아이디 존재 여부 체크 메소드
-	public boolean idChecker(String uid){
-		System.out.println("idChecker : id : " + uid);
-		try {
-			System.out.println("try inner uid : " + uid);
-				service.getUserById(uid);
-				System.out.println("after");
-			
-			if(service.getUserById(uid) != null){
-				System.out.println("아이디 있음");
-				return true;
-			}else{
-				throw new Exception();
-			}
-		} catch (Exception e) {
-			//			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	// 메일 중복체크
-	@ResponseBody
-	@RequestMapping(value = "/mailCheck.do", method = RequestMethod.POST)
-	public String emailCheck(@RequestBody UserVO vo){
-		return emailChecker(vo.getUmail())? "true" : "false";
-	}
-	
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 	public boolean emailChecker(String umail){
 		try {
 			if(service.getUserByMail(umail) != null){
@@ -122,11 +74,9 @@ public class AppUserController {
 		} catch (Exception e) {
 			//			e.printStackTrace();
 			return false;
-<<<<<<< HEAD
 		}
 	}
-	
-	
+		
 	//자체 회원가입
 	@ResponseBody
 	@RequestMapping(value="/register.do", method=RequestMethod.POST)
@@ -143,28 +93,6 @@ public class AppUserController {
 		return null;		
 	}
 	
-=======
-		}
-	}
-	
-	
-	//자체 회원가입
-	@ResponseBody
-	@RequestMapping(value="/register.do", method=RequestMethod.POST)
-	public UserVO register(@RequestBody UserVO vo) throws Exception{
-		String apiKey = TokenUtil.apiKeyCreate();
-		vo.setApikey(apiKey);
-		System.out.println("회원가입 들어옴 ");
-		if(service.registerUser(vo) == 1){
-			System.out.println("회원가입 성공, 로그인을 통한 토큰 돌려주기 시도");
-			
-			return loginAppUser(vo);
-		}
-		System.out.println("회원가입 실패");
-		return null;		
-	}
-	
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 	// 자체 로그인
 	@ResponseBody
 	@RequestMapping(value="/ourlogin.do", method=RequestMethod.POST)
@@ -183,11 +111,6 @@ public class AppUserController {
 			// TODO: handle exception
 		}
 		
-<<<<<<< HEAD
-	// 로그인 메소드
-	public Map<String, Object> loginCommonMember(UserVO voSub, HttpSession session){
-=======
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 		return vo;
 	}
 	
@@ -256,20 +179,6 @@ public class AppUserController {
 			mapMemberInfo.put("ourToken", "Fail");
 			return mapMemberInfo;
 		}*/
-<<<<<<< HEAD
-
-	//	 로그인 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public Map<String, Object> loginMember(@RequestBody UserVO vo, HttpSession session) {
-		// 변형된 암호를 비교하기 위한 작업
-		if(vo.getUpw() != null){
-			vo.setUpw(Sha512Encrypt.hash(vo.getUpw()));
-		}
-		mapMemberInfo = loginCommonMember(vo, session);
-		return mapMemberInfo;
-	}
-=======
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 
 	
 	// 토큰 생성 메소드
@@ -285,17 +194,7 @@ public class AppUserController {
 		}
 		return ourToken;
 	}
-<<<<<<< HEAD
-	
 
-
-
-
-
-	
-	
-	/* 회원수정 */
-=======
 
 	
 /*	 회원수정 
@@ -319,11 +218,11 @@ public class AppUserController {
 		return entity;
 	}
 
-<<<<<<< HEAD
-	/* 회원탈퇴 */
-=======
+
+
+
 	// 회원탈퇴 
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
+
 	@RequestMapping(value = "/deleteUser.do", method = RequestMethod.POST)
 	public ResponseEntity<String> deleteUser(@RequestBody UserVO vo) {
 		System.out.println(vo.getUid());

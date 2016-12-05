@@ -4,10 +4,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="info.easysafe.mappers.AppMapper">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 
 	<select id="giveToken1" resultType="UserVO">
 		select *
@@ -62,18 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<delete id="deleteUserById" parameterType="UserVO">
 	
-<<<<<<< HEAD
 	
 	</delete>
 
-
-
-=======
-	
- 
->>>>>>> origin/master
-=======
-	
-	</delete>
->>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 </mapper>
