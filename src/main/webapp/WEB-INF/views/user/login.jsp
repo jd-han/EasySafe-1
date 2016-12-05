@@ -272,8 +272,7 @@
 		}
 		
 		// 페이스북, 구글 API 로그인 성공시 들어오는 부분
-		function loginAPI(response) {
-			alert(response.name + " 님, 접속 성공");
+		function loginAPI(response) {			
 			// 페이스북 측에서 오는 정보로 회원정보 부분을 채워넣음
 			$("#uid").val(response.id);
 			// 로그인 주소로 POST Submit

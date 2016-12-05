@@ -19,7 +19,7 @@ public class ChemVO {
 	private String name;
 	
 	
-	private String kor;
+	private String korea;
 	private String us;
 	private String eu;
 	
@@ -57,8 +57,8 @@ public class ChemVO {
 //	}
 	
 	
-	public String getKor() {
-		return kor;
+	public String getKorea() {
+		return korea;
 	}
 	public String getName() {
 		return name;
@@ -72,8 +72,8 @@ public class ChemVO {
 	public void setAus(String aus) {
 		this.aus = aus;
 	}
-	public void setKor(String kor) {
-		this.kor = kor;
+	public void setKorea(String korea) {
+		this.korea = korea;
 	}
 	public String getUs() {
 		return us;
@@ -138,7 +138,7 @@ public class ChemVO {
 	
 	@Override
 	public String toString() {
-		return "ChemVO [name=" + name + ", kor=" + kor + ", us=" + us + ", eu=" + eu + ", ins=" + ins + ", cas=" + cas
+		return "ChemVO [name=" + name + ", korea=" + korea + ", us=" + us + ", eu=" + eu + ", ins=" + ins + ", cas=" + cas
 				+ ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", aus=" + aus + ", avg=" + avg
 				+ ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
 	}
