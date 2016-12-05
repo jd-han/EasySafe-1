@@ -92,11 +92,20 @@ public class UserController {
 	public String registPost(UserVO vo) throws Exception {
 		if (!vo.getUname().equals("")) {
 			isName = true;
+<<<<<<< HEAD
+			logger.info("가입 유형 : \nAPI: " + isAPI + "\nID: " + isDuId + "\nEmail: " + isDuEmail + 
+						"\nPASS: " + isPass + "\nName: " + isName);
+			if(isDuId && isDuEmail && isPass && isEmail && isName)
+			{
+				String apiKey = TokenUtil.apiKeyCreate();
+				vo.setApikey(apiKey);
+=======
 			logger.info("가입 유형 : \nAPI: " + isAPI + "\nID: " + isDuId + "\nEmail: " + isDuEmail + isEmail + "\nPASS: "
 					+ isPass + "\nName: " + isName);
 			if (isDuId && isDuEmail && isPass && isEmail && isName) {
 				String ourApiKey = TokenUtil.apiKeyCreate();
 				vo.setApikey(ourApiKey);
+>>>>>>> origin/master
 				// 이름이 공백이 아니고 상기 4가지 조건이 모두 참일때 가입 실행.
 				service.regist(vo);
 				return "OK";

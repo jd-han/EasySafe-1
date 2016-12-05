@@ -2,8 +2,11 @@ package info.easysafe.domain;
 
 import java.util.Date;
 
-public class UserVO {
 
+<<<<<<< HEAD
+public class UserVO {
+=======
+>>>>>>> origin/master
 
 	private int no;
 	private String uid;
@@ -18,8 +21,6 @@ public class UserVO {
 	private String apikey;
 	private String token;
 	private String joinFlag;
-	
-	
 
 	public int getNo() {
 		return no;
@@ -101,5 +102,8 @@ public class UserVO {
 				+ ", ulevel=" + ulevel + ", regdate=" + regdate + ", uinfo=" + uinfo + ", file=" + file + ", apikey="
 				+ apikey + ", token=" + token + ", joinFlag=" + joinFlag + "]";
 	}
+<<<<<<< HEAD
+=======
 	
+>>>>>>> origin/master
 }

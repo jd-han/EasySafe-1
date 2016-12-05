@@ -3,12 +3,18 @@ package info.easysafe.domain;
 public class ProductVO {
 	
 	private String name;
-	
 	private String upc;
-	
 	private String components;
-	
 	private String producer;
+	private String thumimg;
+
+	public String getThumimg() {
+		return thumimg;
+	}
+
+	public void setThumimg(String thumimg) {
+		this.thumimg = thumimg;
+	}
 
 	public String getName() {
 		return name;

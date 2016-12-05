@@ -1,7 +1,5 @@
 package info.easysafe.app;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -31,107 +29,124 @@ public class AppUserController {
 	@Inject
 	private appService service;
 	
-	@RequestMapping(value="/register.do", method=RequestMethod.POST)
-	public String joinPost(UserVO vo) throws Exception{
-		String ourApiKey = TokenUtil.apiKeyCreate();
-		vo.setApikey(ourApiKey);
-		service.joinMember(vo);
-		return "success";		
+	
+	//	아이디 존재 여부 체크 true : 
+	
+	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
+	public @ResponseBody String idCheck(@RequestBody UserVO vo){
+		logger.info("input UserVO : " + vo);
+		System.out.println("idCheck : id : " + vo.getUid());
+		return idChecker(vo.getUid())? "true" : "false";
 	}
 	
+	//	아이디 존재 여부 체크 메소드
+	public boolean idChecker(String uid){
+		System.out.println("idChecker : id : " + uid);
+		try {
+			System.out.println("try inner uid : " + uid);
+				service.getUserById(uid);
+				System.out.println("after");
+			
+			if(service.getUserById(uid) != null){
+				System.out.println("아이디 있음");
+				return true;
+			}else{
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			//			e.printStackTrace();
+			return false;
+		}
+	}
 	
-Map<String, Object> mapMemberInfo = null;
+	// 메일 중복체크
+	@ResponseBody
+	@RequestMapping(value = "/mailCheck.do", method = RequestMethod.POST)
+	public String emailCheck(@RequestBody UserVO vo){
+		return emailChecker(vo.getUmail())? "true" : "false";
+	}
 	
-	
-
 	//  회원가입
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public Map<String, Object> joinMember(@RequestBody UserVO vo, HttpSession session) {
 		System.out.println("aaaaabbbbbb");
 		System.out.println(vo.toString());
+	public boolean emailChecker(String umail){
 		try {
-			if(vo.getUpw() != null || vo.getUpw() == ""){
-				System.out.println("비밀번호 있음 ::: 일반 로그인");
-				if(!idCheck(vo.getUid())){
-					// 기존 회원가입
-					if(vo.getJoinFlag() != null){
-						if(vo.getJoinFlag().equals("joinGive")){
-							// 인증 완료.
-							System.out.println("이메일 ? 인증중..");
-							vo.setJoinFlag("addInfomation");
-							mapMemberInfo.put("vo", vo);
-							return mapMemberInfo;
-						}else if(vo.getJoinFlag().equals("addInfomation")){
-							// 추가정보 입력
-							System.out.println("추가정보 입력");
-							vo.setJoinFlag("joinSuccess");
-							mapMemberInfo.put("vo", vo);
-							return mapMemberInfo;
-						}else if(vo.getJoinFlag().equals("joinSuccess")){
-							System.out.println("간다간다 가입하러 숑 간다!!");
-							vo.setJoinFlag("letJoin");
-							mapMemberInfo.put("vo", vo);
-							return mapMemberInfo;
-						}else{
-							throw new Exception();
-						}
-					}else{
-						System.out.println("웹 로그인이 아님...");
-						vo.setJoinFlag("fail");
-						mapMemberInfo.put("vo", vo);
-					}
-					vo.setUpw(Sha512Encrypt.hash(vo.getUpw()));
-					System.out.println("닉네임 :::::::::: " + vo.getUname());
-					String ourApiKey = TokenUtil.apiKeyCreate();
-					vo.setApikey(ourApiKey);
-					service.joinMember(vo);
-					System.out.println("회원가입 성공!!!");
-					mapMemberInfo.put("ourToken", "success");
-				}
+			if(service.getUserByMail(umail) != null){
+				System.out.println("메일 있음");
+				return true;
 			}else{
-				// 외부 접속
-				System.out.println("외부 접속");
-				System.out.println(vo.toString());
-				if(vo.getToken() == null){
-					// 외부 회원가입
-					if(!idCheck(vo.getUid())){
-						System.out.println("외부 로그인 아이디 없음.");
-						if(vo.getJoinFlag() != null){
-							if(vo.getJoinFlag().equals("joinSuccess")){
-								System.out.println("외부 가입하러 숑 간다!!");
-//								vo.setJoinFlag("letJoin");
-								mapMemberInfo.put("vo", vo);
-								System.out.println("=================================================");
-								System.out.println("vo ::::::::"+vo.toString());
-								System.out.println("mapMemberInfo ::::::::"+mapMemberInfo.get("vo").toString());
-								System.out.println("=================================================");
-								return mapMemberInfo;
-							}
-						}
-						String ourApiKey = TokenUtil.apiKeyCreate();
-						vo.setApikey(ourApiKey);
-						service.joinMember(vo);
-					}else{
-						System.out.println("넌 이미 가입되어 있다!!");
-						service.modifyMember(vo);
-					}
-				}
+				throw new Exception();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			mapMemberInfo.put("ourToken", "Fail");
-			return mapMemberInfo;
+			//			e.printStackTrace();
+			return false;
 		}
-		return loginCommonMember(vo, session);
-//		System.out.println("로그인 가는중....막긔!");
-//		return mapMemberInfo;
 	}
+	
+	
+	//자체 회원가입
+	@ResponseBody
+	@RequestMapping(value="/register.do", method=RequestMethod.POST)
+	public UserVO register(@RequestBody UserVO vo) throws Exception{
+		String apiKey = TokenUtil.apiKeyCreate();
+		vo.setApikey(apiKey);
+		System.out.println("회원가입 들어옴 ");
+		if(service.registerUser(vo) == 1){
+			System.out.println("회원가입 성공, 로그인을 통한 토큰 돌려주기 시도");
+			
+			return loginAppUser(vo);
+		}
+		System.out.println("회원가입 실패");
+		return null;		
+	}
+	
+	// 자체 로그인
+	@ResponseBody
+	@RequestMapping(value="/ourlogin.do", method=RequestMethod.POST)
+	public UserVO loginAppUser(@RequestBody UserVO voSub){
+		String tempToken = null;
+		UserVO vo = null;
+		System.out.println("자체 로그인 들어옴");
+		try{
+			vo = service.getUserById(voSub.getUid());
+			if(vo.getUpw().equals(voSub.getUpw())){
+				tempToken = makeToken(vo);
+				vo.setToken(tempToken);
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	// 로그인 메소드
 	public Map<String, Object> loginCommonMember(UserVO voSub, HttpSession session){
+		return vo;
+	}
+	
+	// 토큰으로 정보 가져오기(로그인)
+	@RequestMapping(value="/getUserByToken.do", method = RequestMethod.POST)
+	@ResponseBody
+	public UserVO getUserByToken(@RequestBody UserVO voSub) throws Exception{
 		String tempToken = null;
-		UserVO vo = null; 
-		try {
+		UserVO vo = null;
+		vo = service.getUserByToken(voSub.getToken());
+		if(TokenUtil.tokenVerify(voSub.getToken(), vo.getApikey())){
+			//토큰 사용 가능
+			tempToken = voSub.getToken();
+		}else{
+			//토큰 새로 만들들기
+			tempToken = makeToken(vo);
+		}
+		
+		return service.getUserByToken(vo.getToken());
+	
+	}
+
+	
+		/*try {
+			//외부로그인은 비번이 없다.
 			if(voSub.getUpw() != null){
 				vo = service.getMemberByInfo(voSub.getUid());
 //				System.out.println(vo.getPassword());
@@ -174,9 +189,8 @@ Map<String, Object> mapMemberInfo = null;
 			e.printStackTrace();
 			mapMemberInfo.put("ourToken", "Fail");
 			return mapMemberInfo;
-		}
-	}
-	
+		}*/
+
 	//	 로그인 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Map<String, Object> loginMember(@RequestBody UserVO vo, HttpSession session) {
@@ -194,7 +208,7 @@ Map<String, Object> mapMemberInfo = null;
 		String ourToken = TokenUtil.createJWT(vo.getUid(), vo.getUpw(), vo.getApikey());
 		vo.setToken(ourToken);
 		try {
-			service.modifyMemberOurToken(vo);
+			service.updateUserToken(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("컨트롤러 서비스 진입 에러");
@@ -202,77 +216,25 @@ Map<String, Object> mapMemberInfo = null;
 		return ourToken;
 	}
 	
-//	//	전체 유저 조회 
-//	@RequestMapping(value = "/list", method = RequestMethod.GET)
-//	public List<UserVO> listMember() {
-//		List<UserVO> list = null;
-//		try {
-//			list = service.listMember();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return list;
-//	}
-
-	//	1인 조회 - 아이디 
-	@RequestMapping(value = "/list", method = RequestMethod.POST)
-	public UserVO getByInfoMember(String uid) {
-		UserVO voInfo = null;
-		try {
-			System.out.println("id(email) ::: " + uid);
-			voInfo = service.getMemberByInfo(uid);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return voInfo;
-	}
-	
-	//	아이디 존재 여부 체크
-	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-	public boolean emailCheckMember(@RequestBody UserVO vo){
-		System.out.println("id :: " + vo.getUid());
-		return idCheck(vo.getUid());
-	}
-	
-	//	아이디 존재 여부 체크 메소드
-	public boolean idCheck(String uid){
-		System.out.println("id(email) ::: " + uid);
-		try {
-			if(service.getMemberByInfo(uid) != null){
-				return true;
-			}else{
-				throw new Exception();
-			}
-		} catch (Exception e) {
-			//			e.printStackTrace();
-			return false;
-		}
-	}
 
 
-	/* 로그아웃 */
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public Map<String, Object> logoutMember(HttpSession session) {
-		// 전부를 지워주는 단계
-		// session.invalidate();
-		session.removeAttribute("member");
-		mapMemberInfo.put("ourToken", "logout Success");
-		return mapMemberInfo;
-	}
+
+
 
 	
 	
 	/* 회원수정 */
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public ResponseEntity<String> modifyMember(@RequestBody UserVO vo) {
+	@RequestMapping(value = "/updateUser.do", method = RequestMethod.POST)
+	public ResponseEntity<String> updateUser(@RequestBody UserVO vo) {
 		ResponseEntity<String> entity = null;
 		System.out.println(vo.toString());
+		mapMemberInfo = new HashMap<>();
 		try {
 			if(vo.getUpw() != null){
 				vo.setUpw(Sha512Encrypt.hash(vo.getUpw()));
 			}
 			
-			service.modifyMember(vo);
+			service.modifyUser(vo);
 
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
@@ -282,12 +244,12 @@ Map<String, Object> mapMemberInfo = null;
 	}
 
 	/* 회원탈퇴 */
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public ResponseEntity<String> exitMember(@RequestBody UserVO vo) {
+	@RequestMapping(value = "/deleteUser.do", method = RequestMethod.POST)
+	public ResponseEntity<String> deleteUser(@RequestBody UserVO vo) {
 		System.out.println(vo.getUid());
 		ResponseEntity<String> entity = null;
 		try {
-			service.exitMember(vo.getUid());
+			service.deleteUser(vo.getUid());
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -295,11 +257,6 @@ Map<String, Object> mapMemberInfo = null;
 		return entity;
 	}
 	
-	//마이페이지
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public void memberMypage(int memberNo){
-		
-	}
 	
 //	//추가 정보 입력
 //	@RequestMapping(value = "/addInfo", method = RequestMethod.POST)
@@ -319,14 +276,16 @@ Map<String, Object> mapMemberInfo = null;
 //		service.modifyMember(vo);
 //	}
 //	
+
+	
 	// 아이디 비밀번호 확인하고 submit 하기 위한 flag값 넘겨주는 메소드
-	@RequestMapping(value = "/confirmMember", method = RequestMethod.POST)
+	@RequestMapping(value = "/confirmMember.do", method = RequestMethod.POST)
 	public boolean confirmMember(UserVO vo){
 		boolean flag = false;
 		String password = new String();
 		try {
-			if(idCheck(vo.getUid())){
-				password = service.getMemberByInfo(vo.getUid()).getUpw();
+			if(idChecker(vo.getUid())){
+				password = service.getUserById(vo.getUid()).getUpw();
 				if(password == null && vo.getUpw().length()==0){
 					flag = true;
 				}else{
@@ -382,18 +341,6 @@ Map<String, Object> mapMemberInfo = null;
 //		}
 //		return confirm;
 //	}
-	
-	@RequestMapping(value="/getInfo", method = RequestMethod.POST)
-	@ResponseBody
-	public UserVO getInfo(@RequestBody UserVO vo) throws Exception{
-		
-		
-//		vo.setOurToken("Fail");
-		return service.getMemberByToken(vo.getToken());
-	}
-	
-	
-	
 	
 	
 	

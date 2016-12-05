@@ -49,6 +49,15 @@
 		
 	</interceptors>
 	
+	<mvc:cors>
+
+		<mvc:mapping max-age="3600" allow-credentials="false"
+			exposed-headers="" allowed-headers="origin, accept, content-type, X-PAINTEE-HASH"
+			allowed-methods="GET, PUT, POST, DELETE, OPTIONS" allowed-origins="*"
+			path="/app*/**" />
+
+	</mvc:cors>
+	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	<beans:property name="maxUploadSize" value="104857600"></beans:property>
 	</beans:bean>
@@ -56,9 +65,5 @@
 	<beans:bean id="uploadPath" class="java.lang.String">
 	<beans:constructor-arg value="D:/Spring/workspace4Spring/EasySafe/src/main/webapp/resources/profiles"></beans:constructor-arg>
 	</beans:bean>
-	
-
-
-
 
 </beans:beans>
