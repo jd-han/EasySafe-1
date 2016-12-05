@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import info.easysafe.domain.Criteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
 import info.easysafe.persistence.UserDAO;
@@ -21,6 +22,16 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<UserVO> listAll() throws Exception {
 		return dao.listAll();
+	}
+
+	@Override
+	public List<UserVO> listCriteria(Criteria cri) throws Exception {
+		return dao.listCriteria(cri);
+	}
+
+	@Override
+	public int listCountCriteria(Criteria cri) throws Exception {
+		return dao.countPaging(cri);
 	}
 
 	@Override
@@ -44,9 +55,12 @@ public class UserServiceImpl implements UserService{
 		System.out.println("updateAccount service. : "+vo);
 		
 		String file = vo.getFile();
-		if(file ==null) {return;}
+		if(file ==null) {
+			dao.updateAccountNoPic(vo);
+		}else{
+			dao.updateAccount(vo);
+		}
 		System.out.println("dao addpic : "+file);
-		dao.updateAccount(vo);
 //		dao.addPic(vo);
 	}
 
@@ -68,6 +82,8 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return dao.viewEmail(vo);
 	}
+
+
 
 
 }

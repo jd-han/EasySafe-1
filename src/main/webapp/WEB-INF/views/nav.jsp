@@ -49,7 +49,7 @@
 				          <ul class="nav dropdown-menu custommenu">
 				              <li><a href="${pageContext.request.contextPath}/user/mypage.do"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
 				              <li class="nav-divider"></li>
-				              <li><a href="${pageContext.request.contextPath}/mod/listAccount.do"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Modify Users</a></li>
+				              <li><a href="${pageContext.request.contextPath}/mod/listPage.do"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Modify Users</a></li>
 				              <li><a href="#"><i class="glyphicon glyphicon-cog" style="color:#dd1111;"></i> Settings</a></li>
 				              <li><a href="#"> More..</a></li>
 				          </ul>

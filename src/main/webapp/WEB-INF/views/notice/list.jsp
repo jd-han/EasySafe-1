@@ -54,7 +54,9 @@
 						</div>
 						<div class="col-xs-10"></div>
 						<c:if test="${uvo.ulevel eq 'admin'}">
-							<div class="col-xs-2">
+							<div class="col-xs-7"></div>
+							<div class="col-xs-3"></div>
+							<div class="col-xs-2" >
 								<a class="btn btn-primary center-block"
 									href="/notice/create.do" type="button">공지 작성</a>
 							</div>						
@@ -74,14 +76,6 @@
 					</div>
 				</div>
 			</div>
-<!-- 			<div class="col-xs-1 col-xs-12"> -->
-<%-- 			<img height="630px" width="500px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"> --%>
-<%-- 				<a href="${pageContext.request.contextPath}/index.do"><img --%>
-<!-- 						class="center-block" alt="너구리" -->
-<%-- 						src="${pageContext.request.contextPath}/resources/media/img/panda01_nobg.png" --%>
-<!-- 						style="width: 100%; height: 100%;" /></a> -->
-<!-- 			</div> -->
-
 		</div></div></div>
 		<div class="row">
 			<div class="col-md-12">

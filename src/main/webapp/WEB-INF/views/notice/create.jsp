@@ -43,19 +43,19 @@
 						<form action="/notice/noticePost.do" method="post" class="form-horizontal" role="form">
 							<h3>공지 작성</h3>
 					</div>
+						<div class="panel-body">
 					<div class="form-group" style="padding: 14px;">
-					<input type="text" name="title" class="form-control" placeholder="공지 제목"/> 
-						<textarea name="content" class="form-control" placeholder="공지 내용"></textarea>
-					<hr/>
-					<div>
-						<button type="submit" class="btn btn-success pull-right" type="button">Post</button>
-					</div>
+					<input type="text" name="title" class="form-control" placeholder="공지 제목" /> 
+					<br>
+						<textarea rows="15" name="content" class="form-control" placeholder="공지 내용" ></textarea>
+						<button type="submit" class="btn btn-success pull-right" type="button" style="margin-top: 15px;">작성 완료</button>
+					<hr>
 					</div>
 
 
 					</form>
 
-					<div class="panel-body"></div>
+						</div>
 				</div>
 			</div>
 		</div>
