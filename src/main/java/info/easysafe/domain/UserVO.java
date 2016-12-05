@@ -4,10 +4,13 @@ import java.util.Date;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 public class UserVO {
 =======
 >>>>>>> origin/master
 
+=======
+>>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 	private int no;
 	private String uid;
 	private String upw;
@@ -103,7 +106,10 @@ public class UserVO {
 				+ apikey + ", token=" + token + ", joinFlag=" + joinFlag + "]";
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	
 >>>>>>> origin/master
+=======
+>>>>>>> 1f8ac89956d4317e34caf6251e0e4c68903cdad1
 }
