@@ -60,7 +60,7 @@
 						</div>
 						<div style="width: 90%; margin: auto;">
 							<!-- 								<div class="input-group"> -->
-							<img id="pic" alt="ori"
+							<img id="pic" alt="ori" style="height: 200px; width:200px; border: 2px dotted lightslategrey; margin: 5px;"
 								src="/user/displayFile.do?filename=<c:out value="${login.file}"/>" /><br>
 							<b>내 아이디 : </b>
 							<c:out value="${login.uid}" />
@@ -70,7 +70,7 @@
 							<c:out value="${login.umail}" />
 							<br> <b>자기소개 : </b>
 							<c:out value="${login.uinfo}" />
-							<br> <input type="text" id="no"
+							<br> <input type="text" id="no" style="display: none;"
 								value="<c:out value="${login.no}" />" />
 							<div class=" col-xs-12"></div>
 							<div class="row">
@@ -112,16 +112,17 @@
 					</h3>
 				</div>
 				<div class="modal-body">
-					프로필 사진, 비밀번호, 이름, 이메일, 자기소개를 수정합니다.<br> <br> <img
-						id="pic" alt="ori"
+					프로필 사진, 비밀번호, 이름, 이메일, 자기소개를 수정합니다.<br> <br> 
+					<img
+						id="oripic" alt="ori" style="height: 200px; border: 2px dotted lightslategrey; margin: 5px" 
 						src="/user/displayFile.do?filename=<c:out value="${login.file}"/>" />
 
 					<form action="/user/updateAccount.do" method="post"
-						name="updateForm"  enctype="multipart/form-data">  
+						name="updateForm" onsubmit="chkUpdate()" enctype="multipart/form-data">  
 						 
 
 						<div class="form-group">
-							<div id="list"></div>
+							<div id="list" onChange></div>
 							<input type="file" id="files" name="filename" /> <a>내 프로필
 								삭제하기</a><br>
 						</div>
@@ -168,51 +169,6 @@
 	<script type="text/javascript">
 
 $(document).ready(function() {
-	 /*
-    $("#saveChange").submit(function() {
-    	
-    		
-    	
-       var result = true;
-             if ($("#oripw").val() == "") {
-                alert("현재 비밀번호를 입력하세요. ");
-                $("#pwd2").focus();
- 					result = false;
-             }else if ($("#upw").val() == "") {
-                alert("비밀번호를 입력하세요!");
-                $("#upw").focus();
-                result = false;
-            } else if ($("#pw2").val() == "") {
-                alert("비밀번호확인 을 입력하세요!");
-                $("#pwd2").focus();
-                result = false;
-            } else if ($("#upw").val() != $("#pw2").val()) {
-                alert("비밀번호와 비밀번호 확인이 일치하지않습니다.");
-                $("#upw").val("");
-                $("#pw2").val("");
-                $("#upw").focus();
-                result = false;
-            } else if ($("#uname").val() == "") {
-                alert("이름을 입력하세요");
-                $("#name").focus();
-                result = false;
-            } else if ($("#umail").val() == "") {
-                alert("이메일을 입력하세요");
-                $("#email").focus();
-                result = false;
-            } else if ($("#uinfo").val() == "") {
-                alert("자기소개를 입력하세요");
-                $("#uinfo").focus();
-                result = false;
-            } 
-             if (result == true) {
-                alert("내 정보 변경이 완료되었습니다. ");            	 
-             }
-             
-			 
-        });
-    */
-    
  
     });
     
@@ -258,7 +214,6 @@ function chkUpdate() {
 	<script type="text/javascript">    
 function handleFileSelect(evt) {
     var files = evt.target.files;
-
     // Loop through the FileList and render image files as thumbnails.
     for (var i = 0, f; f = files[i]; i++) {
 
@@ -276,7 +231,7 @@ function handleFileSelect(evt) {
           var span = document.createElement('span');
           span.innerHTML = 
           [
-            '<img style="height: 75px; border: 1px solid #000; margin: 5px" src="', 
+            '<img style="height: 200px; width:200px; border: 2px dotted lightslategrey; margin: 5px;"; src="', 
             e.target.result,
             '" title="', escape(theFile.name), 
             '"/>'
@@ -288,6 +243,7 @@ function handleFileSelect(evt) {
 
       // Read in the image file as a data URL.
       reader.readAsDataURL(f);
+      document.getElementById('oripic').style.display="none";
     }
   }
 

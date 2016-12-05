@@ -10,8 +10,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from tbl_user
 		order by no desc 
-		limit 0,10
-		
+<!-- 		limit 0,10 -->
+	</select>
+	
+	<select id="listPage" resultType="UserVO">
+		select *
+		from tbl_user
+		order by no desc, regdate desc
+		limit #{page}, 10
+	</select>
+	
+	<select id="listCriteria" resultType="UserVO">
+		<![CDATA[
+		select *
+		from tbl_user
+		where no > 0
+		order by no desc, regdate desc
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="countPaging" resultType="int">
+	<![CDATA[
+		select count(no)
+		from tbl_user
+		where no >0
+	]]>
 	</select>
 	
 	<select id="searchAccount" resultType="UserVO">
@@ -36,6 +60,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateAccount">
 		update tbl_user set upw=#{upw}, uname=#{uname}, umail=#{umail}, uinfo=#{uinfo}, filename=#{file}
+		where uid = #{uid}
+	</update>
+	
+	<update id="updateAccountNoPic">
+		update tbl_user set upw=#{upw}, uname=#{uname}, umail=#{umail}, uinfo=#{uinfo}
 		where uid = #{uid}
 	</update>
 	

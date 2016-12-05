@@ -38,6 +38,8 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
+import info.easysafe.domain.Criteria;
+import info.easysafe.domain.PageMaker;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
 import info.easysafe.service.UserService;
@@ -69,12 +71,15 @@ public class UserController {
 	@Inject
 	private UserService service;
 
+	
+	
 	public String getCurrentDayTime() {
 		long time = System.currentTimeMillis();
 		SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.KOREA);
 		return dayTime.format(new Date(time));
 	}
 
+	//사용되지 않음. 
 	@RequestMapping(value = "/listAccount", method = RequestMethod.GET)
 	@ResponseBody
 	public List<UserVO> listAccount() throws Exception {

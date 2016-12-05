@@ -143,23 +143,18 @@
 								style="display: inline-block;">
 								<!-- 돌아가는  화살표 -->
 								<c:if test="${pageMaker.prev}">
-								<li><a href="listAccount?page=${pageMaker.startPage-1}">«</a></li>
+								<li><a href="listPage.do?page=${pageMaker.startPage-1}">«</a></li>
 								 </c:if>
 								 <!-- 1,2,3,4... -->
 								 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var = "idx">
-								<!-- 숫자들 중 현재 페이지는 파랗게 하이라이트 하는 것도 반복에 껴넣는다.  -->
 								<li
 								<c:out value="${pageMaker.cri.page ==idx? 'class=active':''}"/>>
-								<a href="listAccount?page=${idx}">${idx}</a>
+								<a href="listPage.do?page=${idx}">${idx}</a>
 								</li>
 								 </c:forEach>
-<!-- 								<li><a href="#">2</a></li> -->
-<!-- 								<li><a href="#">3</a></li> -->
-<!-- 								<li><a href="#">4</a></li> -->
-<!-- 								<li><a href="#">5</a></li> -->
 								<!-- 다음 페이지들로 가는 호ㅏ살표 -->
 								<c:if test="${pageMaker.next && pageMaker.endPage>0}">
-								<li><a href="listAccount?page=${pageMaker.endPage +1}">»</a></li>
+								<li><a href="listPage.do?page=${pageMaker.endPage +1}">»</a></li>
 								</c:if>
 							</ul>
 						</div>

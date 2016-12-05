@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import info.easysafe.domain.Criteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
 
@@ -48,10 +49,16 @@ public class UserDAOImpl implements UserDAO{
 		session.update(namespace+".updateAccount", vo);
 	}
 	@Override
-	public void addPic(UserVO vo) throws Exception {
-		System.out.println("daoiple addPic");
-		session.insert(namespace+".addPic", vo);
+	public void updateAccountNoPic(UserVO vo) throws Exception {
+		System.out.println("update account no pic. : " + vo);
+		session.update(namespace+".updateAccountNoPic", vo);
+		
 	}
+//	@Override
+//	public void addPic(UserVO vo) throws Exception {
+//		System.out.println("daoiple addPic");
+//		session.insert(namespace+".addPic", vo);
+//	}
 
 	@Override
 	public void updatePW(UserVO vo) throws Exception {
@@ -89,6 +96,27 @@ public class UserDAOImpl implements UserDAO{
 	public void applogin(UserVO vo) throws Exception {
 		session.selectOne(namespace+".login", vo);
 	}
+
+	@Override
+	public List<UserVO> listPage(int page) throws Exception {
+		// TODO Auto-generated method stub
+		if (page <=0){
+			page =1;
+		}
+		page = (page-1)*10;
+		return session.selectList(namespace+".listPage", page);
+	}
+
+	@Override
+	public List<UserVO> listCriteria(Criteria cri) throws Exception {
+		return session.selectList(namespace+".listCriteria", cri);
+	}
+
+	@Override
+	public int countPaging(Criteria cri) throws Exception {
+		return session.selectOne(namespace+".countPaging", cri);
+	}
+
 
 	
 }
