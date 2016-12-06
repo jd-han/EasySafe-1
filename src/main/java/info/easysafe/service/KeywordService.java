@@ -15,4 +15,5 @@ public interface KeywordService {
 	public List<String> listAllKeyword() throws Exception;
 	public List<KeywordVO> listStatAdminKeywordKorName(String regDate) throws Exception;
 	public List<Map<String, Object>> listStatUserKeywordKorName(String userName) throws Exception;
+	public List<KeywordVO> selectKeywordByUser(String user);
 }

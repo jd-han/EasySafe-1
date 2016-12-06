@@ -64,4 +64,10 @@ public class KeywordServiceImpl implements KeywordService {
 		// TODO Auto-generated method stub
 		return dao.selectListAllKeyword();
 	}
+
+	@Override
+	public List<KeywordVO> selectKeywordByUser(String user) {
+		// TODO Auto-generated method stub
+		return dao.selectKeywordByUser(user);
+	}
 }

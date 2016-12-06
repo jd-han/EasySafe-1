@@ -68,4 +68,10 @@ public class KeywordDAOImpl implements KeywordDAO {
 		return session.selectList(namespace + ".selectAllKeyword");
 	}
 
+	@Override
+	public List<KeywordVO> selectKeywordByUser(String user) {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".selectKeywordByUser", user);
+	}
+
 }
