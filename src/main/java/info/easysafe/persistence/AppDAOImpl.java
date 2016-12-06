@@ -32,9 +32,10 @@ public class AppDAOImpl implements AppDAO{
 		return session.selectOne(namespace+".selectUserById", uid);
 	}
 	@Override
-	public UserVO getUserByToken(String ourToken) throws Exception {
+	public UserVO getUserByToken(String token) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectOne(namespace + ".getUserByToken");
+		System.out.println("Daoimp token : " + token);
+		return session.selectOne(namespace + ".getUserByToken", token);
 	}
 	@Override
 	public int modifyUser(UserVO vo) throws Exception {

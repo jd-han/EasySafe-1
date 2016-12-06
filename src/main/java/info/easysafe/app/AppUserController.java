@@ -109,6 +109,9 @@ public class AppUserController {
 			if(vo.getUpw().equals(voSub.getUpw())){
 				tempToken = makeToken(vo);
 				vo.setToken(tempToken);
+			}else{
+				logger.info("로그인 실패 : 받은 vo : " + voSub);
+				logger.info("로그인 실패 : 꺼낸 vo : " + vo);
 			}
 			
 		}catch (Exception e) {
@@ -123,7 +126,9 @@ public class AppUserController {
 	public UserVO getUserByToken(@RequestBody UserVO voSub) throws Exception{
 		String tempToken = null;
 		UserVO vo = null;
+		logger.info("getUserByToken : 받은 토큰 : " + voSub.getToken());
 		vo = service.getUserByToken(voSub.getToken());
+		logger.info("꺼낸 vo : " + vo);
 		if(TokenUtil.tokenVerify(voSub.getToken(), vo.getApikey())){
 			//토큰 사용 가능
 			tempToken = voSub.getToken();

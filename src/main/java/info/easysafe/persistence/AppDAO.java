@@ -18,7 +18,7 @@ public interface AppDAO {
 	public UserVO getUserById(String uid) throws Exception;
 	
 //	토큰관련 (로그인)
-	public UserVO getUserByToken(String ourToken) throws Exception;
+	public UserVO getUserByToken(String token) throws Exception;
 	
 //	회원수정
 	public int modifyUser(UserVO vo) throws Exception;
