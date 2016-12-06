@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import info.easysafe.domain.NoticeVO;
+import info.easysafe.domain.PageMaker;
+import info.easysafe.domain.SearchCriteria;
 import info.easysafe.service.NoticeService;
 
 @Controller
@@ -27,36 +30,82 @@ public class NoticeController {
 	@Inject
 	private NoticeService service;
 	
-	@RequestMapping(value="/list.do", method=RequestMethod.GET)
-	public ModelAndView listAllNotice (ModelAndView mav, Model model ) throws Exception{
-		System.out.println("공지사항 리스트 보기");
-		List<NoticeVO> nList = service.listNotice();
-		mav.addObject("noticeList", nList);
-		model.addAttribute("list", nList);
+	//ver 4
+	@RequestMapping(value="/listPage.do", method=RequestMethod.GET)
+	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model) throws Exception{
 		
-		return mav;
+		System.out.println("회원 페이징하기. ");
+		logger.info(cri.toString());
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listSearchCount(cri)); 	 	
+		model.addAttribute("pageMaker", pageMaker);
+		
+		logger.info("mid");
+		model.addAttribute("list", service.listSearchCriteria(cri));
+		logger.info("end");
+		
 	}
 	
+	//ver 3.
+//	@RequestMapping(value="/listPage.do", method=RequestMethod.GET)
+//	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model) throws Exception{
+//		
+//		System.out.println("회원 페이징하기. ");
+//		logger.info(cri.toString());
+//		
+//		model.addAttribute("list", service.listCriteria(cri));
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCri(cri);
+//		pageMaker.setTotalCount(service.listCountCriteria(cri)); 	 	
+//		
+//		model.addAttribute("pageMaker", pageMaker);
+//	}
+	
+//	@RequestMapping(value="/list.do", method=RequestMethod.GET)
+//	public ModelAndView listAllNotice (ModelAndView mav, Model model ) throws Exception{
+//		System.out.println("공지사항 리스트 보기");
+//		List<NoticeVO> nList = service.listNotice();
+//		mav.addObject("noticeList", nList);
+//		model.addAttribute("list", nList);
+//		
+//		return mav;
+//	}
+	
 	@RequestMapping(value="/read.do", method = RequestMethod.GET)
-	public ModelAndView readNotice(int no, Model model, ModelAndView mav) throws Exception{
+	public void readNotice(@RequestParam("no")int no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
 		System.out.println(no+"번 공지사항 상세 보기");
-		NoticeVO vo = service.readNotice(no);
-		model.addAttribute("notice", vo);
-		mav.addObject("noticeOb", vo);
-		return mav;
+		model.addAttribute(service.readNotice(no));
 	}
+//	@RequestMapping(value="/read.do", method = RequestMethod.GET)
+//	public ModelAndView readNotice(int no, Model model, ModelAndView mav) throws Exception{
+//		System.out.println(no+"번 공지사항 상세 보기");
+//		NoticeVO vo = service.readNotice(no);
+//		model.addAttribute("notice", vo);
+//		mav.addObject("noticeOb", vo);
+//		return mav;
+//	}
 	
 	//여기부터는 관리자만!
 	
 	@RequestMapping(value="/updatePost.do", method= RequestMethod.POST )
-	public String updateNotice(NoticeVO vo) throws Exception{
+	public String updateNotice(NoticeVO vo, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
 		System.out.println("vo from controller : "+ vo);
+		logger.info(cri.toString());
 		service.updateNotice(vo);
-		return "redirect:list.do";
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
+		logger.info("rttr : " +rttr.toString());
+		return "redirect:listPage.do";
 	}
 	
 	@RequestMapping(value="/update.do")
-	public void updateNoticeGet(@RequestParam("no")int no, Model model) throws Exception{
+	public void updateNoticeGet(@RequestParam("no")int no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
 		/*model.addAttribute(service.readNotice(no));*/
 		
 		NoticeVO vo = service.readNotice(no);
@@ -66,10 +115,15 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/delete.do", method=RequestMethod.GET)
-	public String deleteNotice(int no) throws Exception{
+	public String deleteNotice(int no, SearchCriteria cri, RedirectAttributes rttr) throws Exception{
 		service.deleteNotice(no);
 		System.out.println("지울 공지 번호 딜리트 서비스에 넣었음.");
-		return "redirect:list.do";
+		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		return "redirect:listPage.do";
 	}
 	
 	@RequestMapping(value = "/create.do", method= RequestMethod.GET)
@@ -81,7 +135,7 @@ public class NoticeController {
 	public String createNotice(NoticeVO vo) throws Exception{
 		service.createNotice(vo);
 		System.out.println("notice에서 보내는 vo : "+vo);
-		return "redirect:list.do";
+		return "redirect:listPage.do";
 	}
 	
 	

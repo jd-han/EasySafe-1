@@ -36,22 +36,31 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10 col-sm-12">
 
+
+						
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<a href="/notice/list.do" class="pull-right">목록으로</a>
-						<form action="/notice/updatePost.do" method="post" class="form-horizontal" role="form">
 							<h3>공지 수정</h3>
 				
 					</div>
-					<div class="form-group" style="padding: 14px;">
-					<input type="text" name="title" class="form-control" value="${notice.title}"/> 
-						<textarea name="content" class="form-control">${notice.content}</textarea>
-					<hr/>
-					<div>
-						<button type="submit" class="btn btn-success pull-right" type="button">Update</button>
-					</div>
-					</div>
-					<input type="hidden" value="${notice.noticeNo}" name="noticeNo"/>
+						<form action="/notice/updatePost.do" method="post" class="form-horizontal" role="form">
+							<div class="form-group" style="padding: 14px;">
+								<input type="text" name="title" class="form-control" value="${notice.title}"/> 
+								<textarea name="content" class="form-control">${notice.content}</textarea>
+						<hr/>
+								<div>
+									<button type="submit" class="btn btn-success pull-right" type="button">Update</button>
+								</div>
+					
+							</div>
+						<input type="hidden" value="${notice.noticeNo}" name="noticeNo"/>
+					
+<%-- 					<input type='hidden' name='no' value="${noticeVO.noticeNo}">  --%>
+						<input type='hidden' name='page' value="${cri.page}"> 
+						<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+						<input type='hidden' name='searchType' value="${cri.searchType}">
+						<input type='hidden' name='keyword' value="${cri.keyword}">
 
 
 					</form>

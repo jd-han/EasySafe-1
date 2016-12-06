@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class NoticeVO {
 	
-	private Integer noticeNo;
+	private int noticeNo;
 	private String title;
 	private String content;
 //	private String writer;
 	private Date regDate;
 	
-	public Integer getNoticeNo() {
+	public int getNoticeNo() {
 		return noticeNo;
 	}
-	public void setNoticeNo(Integer noticeNo) {
+	public void setNoticeNo(int noticeNo) {
 		this.noticeNo = noticeNo;
 	}
 	public String getTitle() {
