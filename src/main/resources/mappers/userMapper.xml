@@ -93,8 +93,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from tbl_user a
 		where uid= #{uid} and upw = #{upw}
 	</select>
-	
-	
-	
+	<!-- 유저 전문가 신청 현황 부분 -->
+	<!-- N: 일반 상태, R: 전문가신청상태, D: 완료되어 전문가 등업 상태 X: 해당없음 -->
+	<!-- 전체 유저의 등업신청 조회 -->
+	<select id="selectRequestList" resultType="string">
+		select request
+		from tbl_user
+	</select>
+	<!-- 특정 유저의 등업신청 조회 -->
+	<select id="selectRequestOne" resultType="string" parameterType="string">
+		select request
+		from tbl_user
+		where user=#{user}
+	</select>
+	<!-- 특정 유저가 신청시 현황 수정 -->
+	<update id="updateRequest" parameterType="UserVO">
+		update tbl_user 
+		set request=#{request} 
+		where user=#{user}
+	</update>
 	
 </mapper>

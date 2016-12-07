@@ -34,6 +34,29 @@
 	
 			<div class="col-xs-1"></div>
 			<div class="col-xs-10 col-xs-12">
+			<div class="well">
+			<form class="form-inline">
+			 <select name="searchType" class="form-control">
+						<option value="no"
+							<c:out value="${cri.searchType == null?'selected':''}"/>>
+							검색유형을 선택하세요</option>
+						<option value="title"
+							<c:out value="${cri.searchType eq 'title'?'selected':''}"/>>
+							제목으로 검색</option>
+						<option value="content"
+							<c:out value="${cri.searchType eq 'content'?'selected':''}"/>>
+							내용으로 검색</option>
+						<option value="titlecontent"
+							<c:out value="${cri.searchType eq 'titlecontent'?'selected':''}"/>>
+							제목이나 내용으로 검색</option>
+					</select> <input type="text" class="form-control" placeholder="검색어 입력" name='keyword' id="keywordInput"
+						value='${cri.keyword }'/>
+					<a id='searchBtn' class="btn btn-default" href="#">검색</a>
+			</form>
+			</div>
+			
+			
+			
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3>공지사항</h3>
@@ -42,8 +65,9 @@
 						<div class="list-group">
 							<c:forEach items="${list}" var="noticeVO">
 								<!-- <span class="list-group-item"> -->
-								<a href='/notice/read.do?no=${noticeVO.noticeNo}'
-									class="list-group-item"> ${noticeVO.title} <span
+								<a href='/notice/read.do${pageMaker.makeSearch(pageMaker.cri.page)}&no=${noticeVO.noticeNo}'
+									class="list-group-item"> ${noticeVO.title} 
+									<span
 									class="pull-right"><fmt:formatDate
 											pattern="yyyy-MM-dd" value="${noticeVO.regDate}" /> </span>
 								</a>
@@ -64,17 +88,30 @@
 						<div class="col-sm-12 text-center">
 							<ul class="pagination center-block"
 								style="display: inline-block;">
-								<li><a href="#">«</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">»</a></li>
+								<!-- 돌아가는  화살표 -->
+								<c:if test="${pageMaker.prev}">
+								<li><a href="listPage.do${pageMaker.makeSearch(pagemaker.startPage-1)}">«</a></li>
+								 </c:if>
+								 <!-- 1,2,3,4... -->
+								 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var = "idx">
+								<li
+								<c:out value="${pageMaker.cri.page ==idx? 'class=active':''}"/>>
+								<a href="listPage.do?page=${idx}">${idx}</a>
+								</li>
+								 </c:forEach>
+								<!-- 다음 페이지들로 가는 호ㅏ살표 -->
+								<c:if test="${pageMaker.next && pageMaker.endPage>0 }">
+								<li><a href="listPage.do${pageMaker.makeSearch(pageMaker.endPage +1) }">»</a></li>
+								</c:if>
 							</ul>
 						</div>
 					</div>
 				</div>
+				
+
+				<div class="panel panel-default"></div>
+				
+				
 			</div>
 		</div></div></div>
 		<div class="row">
@@ -90,6 +127,22 @@
 			
 			</div>
 		</div>
+		
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#searchBtn').on(
+			"click",
+			function (event) {
+				self.location="listPage.do"
+						+'${pageMaker.makeQuery(1)}'
+						+"&searchType="
+						+$("select option:selected").val()
+						+"&keyword="+$('#keywordInput').val();
+							}
+					);
+})
+
+</script>
 		
 		
 </html>

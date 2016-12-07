@@ -21,4 +21,5 @@ public interface KeywordDAO {
 	public List<Map<String, Object>> selectListStatUserKeywordKorName(String userName) throws Exception;
 	public List<String> selectListAllDate() throws Exception;
 	public List<String> selectListAllKeyword() throws Exception;
+	public List<KeywordVO> selectKeywordByUser(String user);
 }

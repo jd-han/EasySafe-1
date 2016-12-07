@@ -75,7 +75,12 @@
 							<div class=" col-xs-12"></div>
 							<div class="row">
 								<div class="col-xs-3"></div>
-								<div class="col-xs-3"></div>
+								<div class="col-xs-3">
+									<c:if test="${login.ulevel eq 'user'}">
+									<a class="btn btn-danger center-block"
+										onclick="javascript:levelUpUser(${login.no})">전문가 신청</a>
+									</c:if>
+								</div>
 								<div class="col-xs-3">
 									<a class="btn btn-primary center-block"
 										onclick="javascript:deleteUser(${login.no})">탈퇴하기</a>

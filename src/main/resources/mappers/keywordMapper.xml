@@ -60,4 +60,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		having user=#{user}
 		order by cdate desc
 	</select>
+	
+	<select id="selectKeywordByUser" resultType="KeywordVO" parameterType="string">
+		select  keyword, max(regdate) as regDate
+		from tbl_searchlog
+		group by keyword, user
+		having user=#{user}
+		order by regDate desc, keyword desc
+	</select>
 </mapper>

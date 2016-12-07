@@ -39,7 +39,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<a href="/notice/list.do" class="pull-right">목록으로</a>
-						<h4>${notice.title}</h4>
+						<h4>${noticeVO.title}</h4>
 					</div>
 
 					<div class="panel-body">
@@ -47,11 +47,16 @@
 						<!-- 						<div class="clearfix"></div> -->
 						<!-- 						<hr> -->
 
-						<p>${notice.content}</p>
+						<p>${noticeVO.content}</p>
 
-						<a href="#">사이트 바로가기</a> <img
+						<a href="#">사이트 바로가기</a> 
+						
+						<div class="col-md-12">
+						<img style="width: 150px; height: 150px;"
 							src="${pageContext.request.contextPath}/resources/media/img/logo_nobg3.png"
-							class="img-circle pull-right">
+							align="right">
+						</div>
+							
 
 
 						<hr>
@@ -60,13 +65,24 @@
 								<div class="col-xs-8"></div>
 								<c:if test="${uvo.ulevel eq 'admin'}">
 									<div class="col-xs-2">
-										<a class="btn btn-info center-block"
-											href="/notice/update.do?no=${notice.noticeNo}" type="button">Update</a>
+										
+										
+				<form role="form" action="update.do" method="post">
+						<input type='hidden' name='no' value="${noticeVO.noticeNo}"> 
+						<input type='hidden' name='page' value="${cri.page}"> 
+						<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+						<input type='hidden' name='searchType' value="${cri.searchType}">
+						<input type='hidden' name='keyword' value="${cri.keyword}">
+				</form>
+										
+										<a class="btn btn-info center-block" id="updatePageBtn"
+<%-- 											href="/notice/update.do?no=${notice.noticeNo}"  --%>
+											type="button">Update</a>
 									</div>
 	
 									<div class="col-xs-2">
 										<a class="btn btn-primary center-block"
-											href="/notice/delete.do?no=${notice.noticeNo}" type="button">Delete</a>
+											href="/notice/delete.do?no=${noticeVO.noticeNo}" type="button">Delete</a>
 									</div>								
 								</c:if>
 
@@ -86,4 +102,20 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			
+			var formObj = $("form[role='form']");
+			console.log(formObj);
+			
+			$("#updatePageBtn").on(
+					"click",
+					function (event) {
+				formObj.attr("action", "/notice/update.do");
+				formObj.attr("method", "get");		
+				formObj.submit();
+					});
+		});
+	</script>
 </html>

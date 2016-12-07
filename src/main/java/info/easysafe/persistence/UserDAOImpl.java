@@ -117,6 +117,9 @@ public class UserDAOImpl implements UserDAO{
 		return session.selectOne(namespace+".countPaging", cri);
 	}
 
-
-	
+	@Override
+	public List<String> viewAllRequest() {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".selectRequestList");
+	}
 }

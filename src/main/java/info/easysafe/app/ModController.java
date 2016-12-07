@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import info.easysafe.domain.Criteria;
 import info.easysafe.domain.PageMaker;
+import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.service.UserService;
 import sun.util.logging.resources.logging;
@@ -31,20 +32,41 @@ public class ModController {
 	@Inject
 	private UserService service;
 	
+	
+	
+	//ver 3.  페이징, 검색 있는 컨트롤러. 
 	@RequestMapping(value="/listPage.do", method=RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri")Criteria cri, Model model) throws Exception{
+	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model) throws Exception{
 		
-		System.out.println("회원 페이징하기. ");
+		System.out.println("회원 페이징과 검색. ");
 		logger.info(cri.toString());
 		
 		model.addAttribute("list", service.listCriteria(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-//		pageMaker.setTotalCount(131);
 		pageMaker.setTotalCount(service.listCountCriteria(cri));
 		
 		model.addAttribute("pageMaker", pageMaker);
 	}
+	
+//	ver 2.
+//	@RequestMapping(value="/listPage.do", method=RequestMethod.GET)
+//	public void listPage(@ModelAttribute("cri")Criteria cri, Model model) throws Exception{
+//		
+//		System.out.println("회원 페이징하기. ");
+//		logger.info(cri.toString());
+//		
+//		model.addAttribute("list", service.listCriteria(cri));
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCri(cri);
+////		pageMaker.setTotalCount(131);
+//		pageMaker.setTotalCount(service.listCountCriteria(cri));
+//		
+//		model.addAttribute("pageMaker", pageMaker);
+//	}
+	
+	
+//	ver 1.
 //	@RequestMapping(value="/listAccount.do", method=RequestMethod.GET)
 //	@ResponseBody
 //	public ModelAndView listAccount (ModelAndView mav, Model model) throws Exception{

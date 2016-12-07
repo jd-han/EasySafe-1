@@ -20,9 +20,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getUserByToken" resultType="UserVO">
-		select *
-		from tbl_user
-		where token=#{token}
+		select * 
+		from tbl_user 
+		where token = #{token}
 	</select>
 
 	<insert id="registerUser" parameterType="UserVO">

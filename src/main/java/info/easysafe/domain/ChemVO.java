@@ -10,34 +10,28 @@ public class ChemVO {
 //	private String engName;
 	
 	private int no;
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
 	private String name;
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> 4142a1f69d12c8c79613ae15008a98d30e872638
 	private String korea;
 	private String us;
 	private String eu;
-	
 	private String ins;
 	private String cas;
 	private String codex;
-	
 	private String japan;
 	private String china;
+	private String australia;
 	private String aus;
 	private String avg;
 	
-	public String getAvg() {
-		return avg;
+	public int getNo() {
+		return no;
 	}
-	public void setAvg(String avg) {
-		this.avg = avg;
-	}
+<<<<<<< HEAD
 	private int viewcnt;
 	private int replycnt;
 	
@@ -59,6 +53,10 @@ public class ChemVO {
 	
 	public String getKorea() {
 		return korea;
+=======
+	public void setNo(int no) {
+		this.no = no;
+>>>>>>> 4142a1f69d12c8c79613ae15008a98d30e872638
 	}
 	public String getName() {
 		return name;
@@ -66,12 +64,15 @@ public class ChemVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAus() {
-		return aus;
+	public String getKorea() {
+		return korea;
 	}
+<<<<<<< HEAD
 	public void setAus(String aus) {
 		this.aus = aus;
 	}
+=======
+>>>>>>> 4142a1f69d12c8c79613ae15008a98d30e872638
 	public void setKorea(String korea) {
 		this.korea = korea;
 	}
@@ -118,34 +119,36 @@ public class ChemVO {
 		this.china = china;
 	}
 	public String getAustralia() {
+		return australia;
+	}
+	public void setAustralia(String australia) {
+		this.australia = australia;
+	}
+	public String getAus() {
 		return aus;
 	}
-	public void setAustralia(String aus) {
+	public void setAus(String aus) {
 		this.aus = aus;
 	}
-	public int getViewcnt() {
-		return viewcnt;
+	public String getAvg() {
+		return avg;
 	}
-	public void setViewcnt(int viewcnt) {
-		this.viewcnt = viewcnt;
-	}
-	public int getReplycnt() {
-		return replycnt;
-	}
-	public void setReplycnt(int replycnt) {
-		this.replycnt = replycnt;
+	public void setAvg(String avg) {
+		this.avg = avg;
 	}
 	
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 		return "ChemVO [name=" + name + ", korea=" + korea + ", us=" + us + ", eu=" + eu + ", ins=" + ins + ", cas=" + cas
 				+ ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", aus=" + aus + ", avg=" + avg
 				+ ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
+=======
+		return "ChemVO [no=" + no + ", name=" + name + ", korea=" + korea + ", us=" + us + ", eu=" + eu + ", ins=" + ins
+				+ ", cas=" + cas + ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", australia="
+				+ australia + ", aus=" + aus + ", avg=" + avg + "]";
+>>>>>>> 4142a1f69d12c8c79613ae15008a98d30e872638
 	}
 	
 	
-	
-
-	
-
 }

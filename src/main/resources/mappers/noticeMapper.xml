@@ -22,6 +22,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by regdate desc
 	</select>
 	
+	<select id="listSearch" resultType="NoticeVO">
+		<![CDATA[
+		select *
+		from tbl_notice
+		where noticeno > 0
+		]]>
+			<include refid="search"></include>
+		<![CDATA[
+		order by noticeno desc
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="listSearchCount" resultType="int">
+	<![CDATA[
+		select count(noticeno)
+		from tbl_notice
+		where noticeno >0
+	]]>
+			<include refid="search"></include>
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 'title'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'content'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'titlecontent'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%') OR content like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+	
+	<select id="listCriteria" resultType="NoticeVO">
+		<![CDATA[
+ 		select * 
+ 		from tbl_notice 
+ 		where noticeno > 0 
+ 		order by noticeno desc, regdate desc 
+ 		limit #{pageStart}, #{perPageNum} 
+ 		]]> 
+	</select>
+	
+	<select id="countPaging" resultType="int">
+	<![CDATA[
+ 		select count(noticeno) 
+ 		from tbl_notice 
+ 		where noticeno >0 
+ 	]]> 
+	</select>
+	
 	<update id="update">
 		update tbl_notice
 		set title= #{title}, content= #{content}

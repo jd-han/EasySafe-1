@@ -25,4 +25,5 @@ public interface UserService {
 	
 	public void updateLevel(UserVO vo) throws Exception;
 	
+	public List<String> listRequUser() throws Exception;
 }

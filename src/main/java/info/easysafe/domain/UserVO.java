@@ -17,7 +17,16 @@ public class UserVO {
 	private String apikey;
 	private String token;
 	private String joinFlag;
+	
+	private String request;
+	
 
+	public String getRequest() {
+		return request;
+	}
+	public void setRequest(String request) {
+		this.request = request;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -96,6 +105,6 @@ public class UserVO {
 	public String toString() {
 		return "UserVO [no=" + no + ", uid=" + uid + ", upw=" + upw + ", umail=" + umail + ", uname=" + uname
 				+ ", ulevel=" + ulevel + ", regdate=" + regdate + ", uinfo=" + uinfo + ", file=" + file + ", apikey="
-				+ apikey + ", token=" + token + ", joinFlag=" + joinFlag + "]";
+				+ apikey + ", token=" + token + ", joinFlag=" + joinFlag + ", request=" + request + "]";
 	}
 }

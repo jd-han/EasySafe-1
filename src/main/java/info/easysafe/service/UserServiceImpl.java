@@ -83,6 +83,12 @@ public class UserServiceImpl implements UserService{
 		return dao.viewEmail(vo);
 	}
 
+	@Override
+	public List<String> listRequUser() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.viewAllRequest();
+	}
+
 
 
 

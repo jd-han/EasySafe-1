@@ -165,7 +165,7 @@ private static final Logger logger = LoggerFactory.getLogger(AppController.class
 		return service.listProductWCompo(compo);
 	}
 	
-	
+	// 메일 발송 기능
 	@RequestMapping(value="/emailSend.do", method=RequestMethod.POST)
 	public void emailSendPost(@RequestParam("emailTo")String toAddr, @RequestParam("emailSubject")String esubject, @RequestParam("emailContent")String econtent) throws Exception {
 /*

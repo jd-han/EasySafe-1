@@ -30,5 +30,6 @@ public interface UserDAO {
 	public void updateLevel(UserVO vo) throws Exception;
 	
 	public void applogin(UserVO vo) throws Exception;
+	public List<String> viewAllRequest();
 	
 }

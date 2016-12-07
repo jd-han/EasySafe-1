@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace= "info.easysafe.mappers.MsgMapper">
+
+	<select id="listAllSendMsg" parameterType="string" resultType="MsgVO">
+		select *
+		from tbl_msg
+		where senduser = #{user}
+		order by regdate desc
+	</select>
+	
+	<select id="listAllReceiveMsg" parameterType="string" resultType="MsgVO">
+		select *
+		from tbl_msg
+		where receiveuser = #{user}
+		order by regdate desc
+	</select>
+	
+	<select id="detailMsg" resultType="MsgVO">
+		select *
+		from tbl_msg
+		where msgno = #{msgNo}
+	</select>
+	
+	<insert id="sendMsg" parameterType="MsgVO">
+		insert into tbl_msg (receiveuser, senduser, msg, msgtitle, readable)
+		values (#{receiveUser}, #{sendUser}, #{msg}, #{msgTitle}, #{readable})
+	</insert>
+	
+	<delete id="deleteMsg">
+		delete from tbl_msg
+		where msgno = #{msgNo}
+	</delete>
+	
+	<update id="readMsg" parameterType="MsgVO">
+		update tbl_msg		
+		set readable = #{readable}
+		where msgNo = #{msgNo}
+	</update>
+	
+</mapper>

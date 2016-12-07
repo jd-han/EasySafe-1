@@ -47,6 +47,16 @@
 #wrap {
 	display: inline-block;
 }
+/* .glowicon{
+	animation-name: glow;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+@keyframes glow {
+    from {opacity: 1.0}
+    to {opacity: 0.1}
+} */
 </style>
 
 </head>
@@ -57,11 +67,7 @@
 	<!--main-->
 	<div class="container" id="main">
 		<div class="row">
-			<div class="col-md-12">
-				<!-- 				<h2>공지사항</h2> -->
-			</div>
-			<div class="col-md-1"></div>
-			<div class="col-md-10 col-sm-12">
+			<div class="col-md-12 col-sm-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<!-- 						<a href="#" class="pull-right">View all</a> -->
@@ -127,7 +133,14 @@
 										</a> -->
 										</div></td>
 
-									<td><a class="btn btn-warning" onclick="javascript:deleteUser(${userVO.no})">삭제</a></td>
+									<td>
+										<a class="btn btn-warning" onclick="javascript:deleteUser(${userVO.no})">삭제</a>
+										<c:if test="${userVO.request eq 'R'}">
+										<a href="#requestModal" role="button" data-toggle="modal" onclick="modalRequUser('${userVO.uid}');">
+											<img data-toggle="tooltip" data-placement="bottom" title="유저가 전문가 신청을 해왔습니다" class="glowicon" height="30px;" src="${pageContext.request.contextPath}/resources/media/img/email.png" />
+										</a>
+										</c:if>
+									</td>
 								</tr>
 							</c:forEach>
 
@@ -167,7 +180,27 @@
 
 
 	</div>
-
+<!-- 등업신청 모달 -->
+	<div id="requestModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+					<h3 class="text-center" id="requUserName">
+						내 정보 수정
+					</h3>
+				</div>
+				<div class="modal-body">
+					
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;수락&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;거부&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					<button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;취소&nbsp;&nbsp;&nbsp;&nbsp;</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 
@@ -181,25 +214,31 @@
 		
 	$(document).ready(function() {
 		$("#curPage").html("Users Modify");
+		$("#isRequestUser").css("display", "none");
 	});
+	
+	/* 유저 아이디를 받아서 데이터를 모달창에 띄움 */
+	function modalRequUser(uid){
+		$("#requUserName").html(uid + " 회원에 대한 승급 처리");
+	}
+	
 	function update(no) {
-			var userNo = no
-			var userLevel = $("#"+ no +" option:selected").val();
-			
-	 		$.ajax({
-				url: "/mod/updateLevel.do",
-				type:"GET",
-				data : {no : userNo, ulevel: userLevel},
-				//dataType : "json", 넘어올 데이터 종류 지정.
-				success : function(data){
-					alert("등급이 변경되었습니다.");
-				},
-				error : function(jqXHR, textStatus, errorThrown) {
-			        alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
-			    }
-			});
-			
-		}
+		var userNo = no
+		var userLevel = $("#"+ no +" option:selected").val();
+		
+ 		$.ajax({
+			url: "/mod/updateLevel.do",
+			type:"GET",
+			data : {no : userNo, ulevel: userLevel},
+			//dataType : "json", 넘어올 데이터 종류 지정.
+			success : function(data){
+				alert("등급이 변경되었습니다.");
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+		        alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+		    }
+		}); 		
+	}
 	
 	function deleteUser(no) {
 		var userNo = no
