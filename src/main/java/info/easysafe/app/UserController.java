@@ -40,6 +40,7 @@ import org.springframework.web.util.WebUtils;
 
 import info.easysafe.domain.Criteria;
 import info.easysafe.domain.PageMaker;
+import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
 import info.easysafe.service.UserService;
@@ -80,11 +81,12 @@ public class UserController {
 	}
 
 	//사용되지 않음. 
-	@RequestMapping(value = "/listAccount", method = RequestMethod.GET)
-	@ResponseBody
-	public List<UserVO> listAccount() throws Exception {
-		return service.listAll();
-	}
+//	@RequestMapping(value = "/listAccount", method = RequestMethod.GET)
+//	@ResponseBody
+//	public List<UserVO> listAccount() throws Exception {
+//		return service.listAll();
+//	}
+	
 
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
 	public void registGet() throws Exception {

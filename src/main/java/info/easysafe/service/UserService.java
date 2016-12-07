@@ -3,6 +3,7 @@ package info.easysafe.service;
 import java.util.List;
 
 import info.easysafe.domain.Criteria;
+import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
 
@@ -10,8 +11,10 @@ public interface UserService {
 
 	public List<UserVO> listAll () throws Exception;
 	public List<UserVO> listCriteria(Criteria cri) throws Exception;
-	
 	public int listCountCriteria(Criteria cri) throws Exception;
+
+	public List<UserVO> listSearchCriteria(SearchCriteria cri) throws Exception;
+	public int listSearchCount(SearchCriteria cri) throws Exception;
 	
  	public void regist(UserVO vo) throws Exception;
 	public UserVO view(String uid) throws Exception;

@@ -11,11 +11,6 @@ public class ChemVO {
 	
 	private int no;
 	private String name;
-<<<<<<< HEAD
-	
-	
-=======
->>>>>>> 4142a1f69d12c8c79613ae15008a98d30e872638
 	private String korea;
 	private String us;
 	private String eu;
@@ -28,35 +23,13 @@ public class ChemVO {
 	private String aus;
 	private String avg;
 	
+	private int viewcnt;
+	private int replycnt;
 	public int getNo() {
 		return no;
 	}
-<<<<<<< HEAD
-	private int viewcnt;
-	private int replycnt;
-	
-	
-	
-//	public String getKorName() {
-//		return korName;
-//	}
-//	public void setKorName(String korName) {
-//		this.korName = korName;
-//	}
-//	public String getEngName() {
-//		return engName;
-//	}
-//	public void setEngName(String engName) {
-//		this.engName = engName;
-//	}
-	
-	
-	public String getKorea() {
-		return korea;
-=======
 	public void setNo(int no) {
 		this.no = no;
->>>>>>> 4142a1f69d12c8c79613ae15008a98d30e872638
 	}
 	public String getName() {
 		return name;
@@ -67,12 +40,6 @@ public class ChemVO {
 	public String getKorea() {
 		return korea;
 	}
-<<<<<<< HEAD
-	public void setAus(String aus) {
-		this.aus = aus;
-	}
-=======
->>>>>>> 4142a1f69d12c8c79613ae15008a98d30e872638
 	public void setKorea(String korea) {
 		this.korea = korea;
 	}
@@ -136,19 +103,23 @@ public class ChemVO {
 	public void setAvg(String avg) {
 		this.avg = avg;
 	}
-	
+	public int getViewcnt() {
+		return viewcnt;
+	}
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
+	}
+	public int getReplycnt() {
+		return replycnt;
+	}
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
 	@Override
 	public String toString() {
-<<<<<<< HEAD
-		return "ChemVO [name=" + name + ", korea=" + korea + ", us=" + us + ", eu=" + eu + ", ins=" + ins + ", cas=" + cas
-				+ ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", aus=" + aus + ", avg=" + avg
-				+ ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
-=======
 		return "ChemVO [no=" + no + ", name=" + name + ", korea=" + korea + ", us=" + us + ", eu=" + eu + ", ins=" + ins
 				+ ", cas=" + cas + ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", australia="
-				+ australia + ", aus=" + aus + ", avg=" + avg + "]";
->>>>>>> 4142a1f69d12c8c79613ae15008a98d30e872638
+				+ australia + ", aus=" + aus + ", avg=" + avg + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
 	}
-	
 	
 }

@@ -1,27 +1,21 @@
 package info.easysafe.app;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import info.easysafe.domain.Criteria;
 import info.easysafe.domain.PageMaker;
 import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.service.UserService;
-import sun.util.logging.resources.logging;
 
 @Controller
 @RequestMapping("/mod")
@@ -41,12 +35,15 @@ public class ModController {
 		System.out.println("회원 페이징과 검색. ");
 		logger.info(cri.toString());
 		
-		model.addAttribute("list", service.listCriteria(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.listCountCriteria(cri));
-		
+		pageMaker.setTotalCount(service.listSearchCount(cri)); 	 	
 		model.addAttribute("pageMaker", pageMaker);
+		
+		logger.info("mid");
+		model.addAttribute("list", service.listSearchCriteria(cri));
+		logger.info("end");
+		
 	}
 	
 //	ver 2.

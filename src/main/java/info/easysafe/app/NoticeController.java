@@ -34,7 +34,7 @@ public class NoticeController {
 	@RequestMapping(value="/listPage.do", method=RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model) throws Exception{
 		
-		System.out.println("회원 페이징하기. ");
+		System.out.println("공지 페이징하기. ");
 		logger.info(cri.toString());
 		
 		PageMaker pageMaker = new PageMaker();

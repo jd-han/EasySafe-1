@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import info.easysafe.domain.Criteria;
+import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
 
@@ -121,5 +122,17 @@ public class UserDAOImpl implements UserDAO{
 	public List<String> viewAllRequest() {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".selectRequestList");
+	}
+
+	@Override
+	public List<UserVO> listSearch(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".listSearch", cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".listSearchCount", cri);
 	}
 }
