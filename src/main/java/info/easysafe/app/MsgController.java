@@ -86,7 +86,7 @@ public class MsgController {
 	
 	// 그 중에 하나 찍어서 상세보기 -> 메시지 상세 페이지로 이동
 	@RequestMapping(value="/msgDetail.do", method = RequestMethod.GET)
-	public ModelAndView msgDetail(int msgNo, ModelAndView mav) throws Exception{
+	public ModelAndView msgDetail(int msgNo, String isSend, ModelAndView mav) throws Exception{
 		System.out.println(msgNo+" 번 메시지 들어옴");
 		MsgVO mvo = service.msgDetail(msgNo);
 		// 읽는 와중에 열람을 건드리게 된다.
@@ -100,6 +100,7 @@ public class MsgController {
 			service.onReadable(mvo);
 		}
 		mav.addObject("msgDetail", mvo);
+		if(isSend.equalsIgnoreCase("N")){ mav.addObject("replyBtn", "OFF"); }
 		return mav;
 	}
 	
@@ -109,13 +110,13 @@ public class MsgController {
 	@RequestMapping(value="/sendMsg.do", method= RequestMethod.POST )
 	public String sendMsg(MsgVO mvo) throws Exception{
 		System.out.println("mvo from controller : "+ mvo);
-		/*if(isAdmin.equalsIgnoreCase("admin")){
+		if(mvo.getReadable().equalsIgnoreCase("admin")){
 			// 송신자가 운영자일경우 특별 메시지 모드. (readable변수:A=운영자메시지읽기전,E=메시지읽은후)
-			//mvo.setReadable("A");
+			mvo.setReadable("A");
 		}else{
 			// 송신자가 일반유저일경우 일반 메시지 모드. (readable변수:N=메시지읽기전,Y=메시지읽은후)
-			//mvo.setReadable("N");
-		}*/
+			mvo.setReadable("N");
+		}
 		service.sendMsg(mvo);
 		return "redirect:/msg/msgList.do";
 	}
@@ -127,5 +128,17 @@ public class MsgController {
 		service.deleteMsg(msgNo);
 		System.out.println(msgNo + " 를 삭제함.");
 		//return "redirect:/msg/msgList.do";
+	}
+	
+	// 유저 아이디가 DB에 있는지 조회하는 메소드
+	@RequestMapping(value="/searchId.do", method=RequestMethod.POST)
+	@ResponseBody
+	public boolean searchUser(String findId) throws Exception{
+		logger.info("메시지 받을 유저 있는지 검색 들어옴");
+		if(service.searchUser(findId))
+		{
+			return true;
+		}
+		return false;
 	}
 }

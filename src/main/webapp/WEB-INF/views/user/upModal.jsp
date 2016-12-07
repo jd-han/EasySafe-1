@@ -3,12 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
-<!-- 메시지 모달 -->
-<div id="msgModal" class="modal fade" tabindex="-1" role="dialog"
+<!-- 등업신청 모달 -->
+<div id="upModal" class="modal fade" tabindex="-1" role="dialog"
 	aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-		<form action="${pageContext.request.contextPath}/msg/sendMsg.do" method="POST">
+		<form action="${pageContext.request.contextPath}/msg/sendMsg.do" method="POST" enctype="multipart/request">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
 				<div style="font-size: 30px;" class="text-center" id="msgTitletag">

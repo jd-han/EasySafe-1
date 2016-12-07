@@ -105,5 +105,9 @@ public class ModController {
 		return service.listRequUser().contains("R") ? true : false;		
 	}
 	
-	
+	@RequestMapping(value="/askLevelUp.do", method=RequestMethod.POST)
+	public String askLvUp() throws Exception
+	{		
+		return "redirect:/user/mypage.do";		
+	}
 }

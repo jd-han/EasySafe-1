@@ -52,4 +52,14 @@ public class MsgDAOImpl implements MsgDAO {
 		session.update(namespace + ".readMsg", mvo);
 	}
 
+	@Override
+	public boolean findUser(String findId) {
+		// TODO Auto-generated method stub
+		if(session.selectOne(namespace + ".searchUser", findId) != null)
+		{
+			return true;
+		}
+		return false;
+	}
+
 }

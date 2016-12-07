@@ -9,6 +9,7 @@
 </head>
 <body>
 <%@ include file="../nav.jsp"%>
+<%@ include file="msgModal.jsp"%>
 	<div class="container" id="main">
 		<div class="well">
 			보낸 사람
@@ -27,19 +28,30 @@
 			<div class="input-group text-center">
 				<input type="text" class="form-control input-lg" value="<fmt:formatDate value="${msgDetail.regDate}" pattern="yyyy-MM-dd HH:mm:ss" />" readonly="readonly" />				
 			</div>
+			<c:if test="${replyBtn eq 'OFF'}">
+			<div class="col-xs-2">
+				<a href="#msgModal" data-toggle="modal" class="btn btn-primary center-block" onclick="replyModal()">답장 보내기</a>
+			</div>
+			</c:if>
+			<div class="col-xs-2">
+				<a href="${pageContext.request.contextPath}/msg/msgList.do" class="btn btn-warning center-block">목록으로</a>
+			</div>
 		</div>
-		번호:${msgDetail.msgNo}
-		받는유저:${msgDetail.receiveUser}
-		보낸유저:${msgDetail.sendUser}
-		내용:${msgDetail.msg}
-		제목:${msgDetail.msgTitle}
-		날짜:${msgDetail.regDate}
-		열람:${msgDetail.readable}
 	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#curPage").html("메시지 내용");
 	});
+	
+	function replyModal(){
+		findId = false;
+		$("#msgUser").val("${msgDetail.sendUser}");
+		$("#msgUser").attr("readonly", true);
+		$("#findBtn").css("display", "none");
+		$("#msgTitle").val("${msgDetail.msgTitle}");
+		$("#msgContent").val("RE : ${msgDetail.msg}");
+		$("#isExistId").css("display", "none");
+	}
 </script>
 </body>
 </html>

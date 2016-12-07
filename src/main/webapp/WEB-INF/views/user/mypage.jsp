@@ -45,6 +45,7 @@
 </head>
 <body>
 	<%@ include file="../nav.jsp"%>
+	<%@ include file="upModal.jsp" %>
 	<div class="container" id="main">
 		<div class="row">
 			<div class="col-xs-8">
@@ -76,9 +77,12 @@
 							<div class="row">
 								<div class="col-xs-3"></div>
 								<div class="col-xs-3">
-									<c:if test="${login.ulevel eq 'user'}">
+									<c:if test="${login.ulevel eq 'user' && login.request eq 'N'}">
 									<a class="btn btn-danger center-block"
 										onclick="javascript:levelUpUser(${login.no})">전문가 신청</a>
+									</c:if>
+									<c:if test="${login.ulevel eq 'user' && login.request eq 'R'}">
+									<div class="btn btn-warning center-block">전문가 신청대기중</div>
 									</c:if>
 								</div>
 								<div class="col-xs-3">

@@ -35,8 +35,7 @@
 	<div class="col-md-12">
        <div class="collapse navbar-collapse" id="navbar-collapse2">
        <span style="float: left;">
-			<h4 id="curPage">INDEX</h4>	
-			<a href="#alertModal" data-toggle="modal" onclick="callAlert('눌러봄','눌렀다고','ync');">ff</a>	        
+			<h4 id="curPage">INDEX</h4>		        
        </span>
        <div class="navbar-header">
 <%--        <c:out value="${uvo.ulevel}"></c:out> --%>
@@ -44,7 +43,7 @@
 		 <c:when test="${!empty uvo}"> 
 		 		<c:choose>
 		 		
-				 	<c:when test="${uvo.ulevel eq 'user'}">
+				 	<c:when test="${uvo.ulevel ne 'admin'}">
 				 		<span id="isMsg"></span>
 				          <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Menu <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
 				          <ul class="nav dropdown-menu custommenu">

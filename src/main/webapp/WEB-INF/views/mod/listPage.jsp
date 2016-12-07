@@ -47,16 +47,6 @@
 #wrap {
 	display: inline-block;
 }
-/* .glowicon{
-	animation-name: glow;
-	animation-duration: 1s;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
-}
-@keyframes glow {
-    from {opacity: 1.0}
-    to {opacity: 0.1}
-} */
 </style>
 
 </head>

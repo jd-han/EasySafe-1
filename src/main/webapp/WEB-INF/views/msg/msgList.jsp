@@ -42,13 +42,19 @@
 										<tr style="height: 50px;">
 										<c:choose>
 											<c:when test="${msgReceive.readable eq 'A' || msgReceive.readable eq 'E'}">													
-												<td style="font-weight: bold;" class="col-md-2"><a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgReceive.msgNo}">${msgReceive.sendUser}</a></td>												
+												<td style="font-weight: bold;" class="col-md-2">
+												<%-- <a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgReceive.msgNo}"></a> --%>
+												${msgReceive.sendUser}
+												</td>												
 											</c:when>
 											<c:otherwise>
-												<td class="col-md-2"><a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgReceive.msgNo}">${msgReceive.sendUser}</a></td>
+												<td class="col-md-2">
+												<%-- <a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgReceive.msgNo}"></a> --%>
+												${msgReceive.sendUser}
+												</td>
 											</c:otherwise>
 										</c:choose>
-										<td class="col-md-2"><a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgReceive.msgNo}">${msgReceive.msgTitle}</a></td>
+										<td class="col-md-2"><a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgReceive.msgNo}&isSend=N">${msgReceive.msgTitle}</a></td>
 										<td class="col-md-2"><fmt:formatDate value="${msgReceive.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										<c:choose>
 											<c:when test="${msgReceive.readable eq 'A'}">
@@ -89,10 +95,11 @@
 							<c:forEach items="${msgSendList}" var="msgSend">
 								<tr style="height: 50px;">
 									<td class="col-md-2">
-										<a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgSend.msgNo}">${msgSend.receiveUser}</a>
+										<%-- <a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgSend.msgNo}">${msgSend.receiveUser}</a> --%>
+										${msgSend.receiveUser}
 									</td>
 									<td class="col-md-2">
-										<a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgSend.msgNo}">${msgSend.msgTitle}</a>
+										<a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgSend.msgNo}&isSend=Y">${msgSend.msgTitle}</a>
 									</td>
 									<td class="col-md-2"><fmt:formatDate value="${msgSend.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 									<c:choose>
@@ -116,7 +123,7 @@
 				</div>
 			</div>
 			<div class="col-xs-2">
-				<a class="btn btn-primary center-block">메시지 전송</a>
+				<a href="#msgModal" data-toggle="modal" class="btn btn-primary center-block" onclick="resetModal()">메시지 작성</a>
 			</div>
 			</div>
 		</div>
@@ -126,6 +133,17 @@
 		$("#curPage").html("메시지");
 		$("#isMsg").css("display", "none");
 	});
+	
+	function resetModal(){
+		findId = false;
+		$("#msgUser").val("");
+		$("#msgUser").attr("readonly", false);
+		$("#findBtn").css("display", "inline-block");
+		$("#msgTitle").val("");
+		$("#msgContent").val("");
+		$("#isExistId").css("display", "block");
+		$("#isExistId").removeClass("alert-success").removeClass("alert-danger").addClass("alert-warning").html("메시지를 받을 유저의 ID를 먼저 검색해 주세요");	
+	}
 	
 	function deleteMsg(delmsgNo){
 		$.ajax({

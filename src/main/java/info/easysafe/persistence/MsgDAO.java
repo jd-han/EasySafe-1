@@ -16,4 +16,6 @@ public interface MsgDAO {
 	void deleteMsg(int msgNo);
 
 	void updateMsg(MsgVO mvo);
+
+	boolean findUser(String findId);
 }

@@ -17,4 +17,6 @@ public interface MsgService {
 	void deleteMsg(int msgNo);
 
 	void onReadable(MsgVO mvo);
+
+	boolean searchUser(String findId);
 }

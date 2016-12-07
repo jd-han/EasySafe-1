@@ -51,4 +51,10 @@ public class MsgServiceImpl implements MsgService {
 		dao.updateMsg(mvo);
 	}
 
+	@Override
+	public boolean searchUser(String findId) {
+		// TODO Auto-generated method stub
+		return dao.findUser(findId);
+	}
+
 }

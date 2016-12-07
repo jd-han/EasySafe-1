@@ -40,5 +40,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set readable = #{readable}
 		where msgNo = #{msgNo}
 	</update>
+	<!-- MSG 부분에 있지만 유저 테이블을 조회한다.. 사실 원래 유저 컨트롤러에 있어야 하는건가? -->
+	<select id="searchUser" parameterType="string" resultType="UserVO">
+		select uid
+		from tbl_user
+		where uid = #{findId}
+	</select>
 	
 </mapper>
