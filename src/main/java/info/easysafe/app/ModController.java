@@ -75,7 +75,13 @@ public class ModController {
 		service.deleteAccount(uno);
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value="/listAll.do", method=RequestMethod.POST)
+	public boolean listAllRequUser() throws Exception
+	{
+		// 쿼리 결과중에 등업 신청(R) 이 하나라도 있다면 true 반환.
+		return service.listRequUser().contains("R") ? true : false;		
+	}
 	
 	
 }
