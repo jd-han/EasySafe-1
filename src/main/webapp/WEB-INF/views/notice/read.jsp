@@ -38,7 +38,7 @@
 			<div class="col-md-10 col-sm-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="/notice/list.do" class="pull-right">목록으로</a>
+						<a href="/notice/listPage.do" class="pull-right">목록으로</a>
 						<h4>${noticeVO.title}</h4>
 					</div>
 

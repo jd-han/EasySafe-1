@@ -3,6 +3,7 @@ package info.easysafe.persistence;
 import java.util.List;
 
 import info.easysafe.domain.ChemVO;
+import info.easysafe.domain.NoticeVO;
 import info.easysafe.domain.ProductVO;
 
 public interface ChemDAO {
@@ -23,5 +24,7 @@ public interface ChemDAO {
 	public List<ProductVO> findProductWComponent(String compo) throws Exception;
 	
 	public List<ProductVO> productListSelectByUpc(String upc) throws Exception;
+	
+	public List<NoticeVO> listNotice() throws Exception;
 
 }

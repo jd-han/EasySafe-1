@@ -57,7 +57,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<delete id="deleteUserById" parameterType="UserVO">
-	
-	
 	</delete>
+	
+	<select id="listNotice" resultType="NoticeVO">
+		select *
+		from tbl_notice
+		order by regdate desc
+	</select>
 </mapper>

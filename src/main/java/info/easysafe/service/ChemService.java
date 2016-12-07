@@ -3,7 +3,9 @@ package info.easysafe.service;
 import java.util.List;
 
 import info.easysafe.domain.ChemVO;
+import info.easysafe.domain.NoticeVO;
 import info.easysafe.domain.ProductVO;
+import info.easysafe.domain.SearchCriteria;
 
 public interface ChemService {
 	
@@ -28,6 +30,9 @@ public interface ChemService {
 	public List<ProductVO> listProductWCompo(String compo) throws Exception;
 
 	public List<ProductVO> productListSelectByUpc(String upc) throws Exception;
+
+	public List<NoticeVO> listNotice() throws Exception;
+
 	
 
 }

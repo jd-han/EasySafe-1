@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import info.easysafe.domain.ChemVO;
+import info.easysafe.domain.NoticeVO;
 import info.easysafe.domain.ProductVO;
 
 @Repository
@@ -51,6 +52,12 @@ public class ChemDAOImpl implements ChemDAO{
 	public List<ProductVO> productListSelectByUpc(String upc) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".productListSelectByUpc", upc);
+	}
+
+	@Override
+	public List<NoticeVO> listNotice() throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+"listNotice");
 	}
 
 }

@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import info.easysafe.domain.ChemVO;
+import info.easysafe.domain.NoticeVO;
 import info.easysafe.domain.ProductVO;
 import info.easysafe.service.ChemService;
 
@@ -31,6 +33,13 @@ private static final Logger logger = LoggerFactory.getLogger(AppController.class
 	
 	@Inject
 	private ChemService service;
+	
+	@ResponseBody
+	@RequestMapping(value="/list.do", method=RequestMethod.GET)
+	public List<NoticeVO> listAllNotice (Model model) throws Exception{
+		logger.info("공지사항 리스트 보기");
+		return service.listNotice();
+	}
 		
 	@RequestMapping(value="/searchChem.do", method = RequestMethod.GET)
 	@ResponseBody
@@ -51,7 +60,6 @@ private static final Logger logger = LoggerFactory.getLogger(AppController.class
 			  
 		  } else {
 			 
-		//	  list = service.listChemEngName(key);
 			  System.out.println("�ѱ۾ƴ�."); //�ѱ��� ���� ���
 		  }
 		return list;

@@ -126,7 +126,7 @@
                              style="width: 22%; height: 22%;" /></a>
 			
 			</div>
-		</div>
+		</div></div>
 		
 <script type="text/javascript">
 $(document).ready(function(){
@@ -145,4 +145,5 @@ $(document).ready(function(){
 </script>
 		
 		
+		</body>
 </html>

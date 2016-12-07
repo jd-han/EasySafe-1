@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import info.easysafe.domain.ChemVO;
+import info.easysafe.domain.NoticeVO;
 import info.easysafe.domain.ProductVO;
 import info.easysafe.persistence.ChemDAO;
 
@@ -52,6 +53,12 @@ public class ChemServiceImpl implements ChemService {
 	public List<ProductVO> productListSelectByUpc(String upc) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.productListSelectByUpc(upc);
+	}
+
+	@Override
+	public List<NoticeVO> listNotice() throws Exception{
+		// TODO Auto-generated method stub
+		return dao.listNotice();
 	}
 	
 	
