@@ -58,6 +58,42 @@
 	<div class="container" id="main">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
+			<div class="well">
+			<form class="form-inline">
+			 <select name="searchType" class="form-control">
+						<option value="n"
+							<c:out value="${cri.searchType == null?'selected':''}"/>>
+							검색유형을 선택하세요</option>
+						<option value="no"
+							<c:out value="${cri.searchType eq 'no'?'selected':''}"/>>
+							유저번호</option>
+						<option value="ID"
+							<c:out value="${cri.searchType eq 'ID'?'selected':''}"/>>
+							ID</option>
+						<option value="username"
+							<c:out value="${cri.searchType eq 'username'?'selected':''}"/>>
+							유저네임</option>
+						<option value="email"
+							<c:out value="${cri.searchType eq 'email'?'selected':''}"/>>
+							이메일</option>
+						<option disabled="disabled">-유저 타입별 검색-</option>
+						<option value="admin"
+							<c:out value="${cri.searchType eq 'admin'?'selected':''}"/>>
+							관리자</option>
+						<option value="pro"
+							<c:out value="${cri.searchType eq 'pro'?'selected':''}"/>>
+							전문가</option>
+						<option value="user"
+							<c:out value="${cri.searchType eq 'user'?'selected':''}"/>>
+							일반유저</option>
+							
+					</select> <input type="text" class="form-control" placeholder="검색어 입력" name='keyword' id="keywordInput"
+						value='${cri.keyword }'/>
+					<a id='searchBtn' class="btn btn-default" href="#">검색</a>
+					
+			</form>
+			</div>
+			
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<!-- 						<a href="#" class="pull-right">View all</a> -->
@@ -205,7 +241,18 @@
 	$(document).ready(function() {
 		$("#curPage").html("Users Modify");
 		$("#isRequestUser").css("display", "none");
-	});
+		
+		$('#searchBtn').on(
+				"click",
+					function (event) {
+						self.location="listPage.do"
+								+'${pageMaker.makeQuery(1)}'
+								+"&searchType="
+								+$("select option:selected").val()
+								+"&keyword="+$('#keywordInput').val();
+									}
+							);
+				});
 	
 	/* 유저 아이디를 받아서 데이터를 모달창에 띄움 */
 	function modalRequUser(uid){
@@ -246,17 +293,7 @@
 			}
 		});
 	}
-	/* 
-	$("#updatelevel").click(function(){
-		alert("나와라");
-	});
-		
-	 $("#updatelevel").click(function updatelevel() {
-		var level = $("#"+${userVO.uid} +" option:selected").val();
-		alert("수정될 val : " + level);
-	}); 
-		function deleteUser(){
-			
-		}  */
+	
+
 	</script>
 </html>

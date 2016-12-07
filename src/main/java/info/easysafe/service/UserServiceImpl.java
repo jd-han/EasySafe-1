@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import info.easysafe.domain.Criteria;
+import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
 import info.easysafe.persistence.UserDAO;
@@ -87,6 +88,18 @@ public class UserServiceImpl implements UserService{
 	public List<String> listRequUser() throws Exception {
 		// TODO Auto-generated method stub
 		return dao.viewAllRequest();
+	}
+
+	@Override
+	public List<UserVO> listSearchCriteria(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listSearch(cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listSearchCount(cri);
 	}
 
 
