@@ -25,6 +25,6 @@ public interface ChemDAO {
 	
 	public List<ProductVO> productListSelectByUpc(String upc) throws Exception;
 	
-	public List<NoticeVO> listNotice() throws Exception;
+	public List<NoticeVO> listNotice(int no) throws Exception;
 
 }
