@@ -115,7 +115,4 @@ public class ChemVO {
 				+ ", cas=" + cas + ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", australia="
 				+ australia + ", avg=" + avg + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
 	}
-
-}
-	
 }

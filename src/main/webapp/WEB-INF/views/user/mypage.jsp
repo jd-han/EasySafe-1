@@ -6,16 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link
+<title>EasySafe - 마이페이지</title>
+<!-- <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css" />
+	rel="stylesheet" type="text/css" /> -->
 
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
 <!-- Bootstrap 3.3.4 -->
-<link rel="stylesheet"
+<%-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/recources/bootstrap/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
@@ -26,7 +26,7 @@
 	href="${pageContext.request.contextPath}/resources/bootstrap/css/styles.css"
 	type="text/css" />
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.min.js"></script> --%>
 <style type="text/css">
 .modal-dialog {
 	width: 450px;
@@ -79,7 +79,7 @@
 								<div class="col-xs-3">
 									<c:if test="${login.ulevel eq 'user' && login.request eq 'N'}">
 									<a class="btn btn-danger center-block"
-										onclick="javascript:levelUpUser(${login.no})">전문가 신청</a>
+										href="#upModal" data-toggle="modal" onclick="resetUpModal();">전문가 신청</a>
 									</c:if>
 									<c:if test="${login.ulevel eq 'user' && login.request eq 'R'}">
 									<div class="btn btn-warning center-block">전문가 신청대기중</div>
@@ -109,71 +109,62 @@
 
 
 <!-- 마이페이지 모달 -->
-	<div id="myModal" class="modal fade" tabindex="-1" role="dialog"
-		aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h3 class="text-center">
-						<br>내 정보 수정
-					</h3>
-				</div>
-				<div class="modal-body">
-					프로필 사진, 비밀번호, 이름, 이메일, 자기소개를 수정합니다.<br> <br> 
-					<img
-						id="oripic" alt="ori" style="height: 200px; border: 2px dotted lightslategrey; margin: 5px" 
-						src="/user/displayFile.do?filename=<c:out value="${login.file}"/>" />
-
-					<form action="/user/updateAccount.do" method="post"
-						name="updateForm" onsubmit="chkUpdate()" enctype="multipart/form-data">  
-						 
-
-						<div class="form-group">
-							<div id="list" onChange></div>
-							<input type="file" id="files" name="filename" /> <a>내 프로필
-								삭제하기</a><br>
-						</div>
-
-
-						<div class="form-group">
-							<b>내 아이디 : </b>
-							<c:out value="${login.uid}" />
-							<br> <br> <b>기존 비밀번호 : </b> <input type="password"
-								class="form-control input" id="oripw" name="oripw">
-							<code>Tip : 비밀번호에 특수문자를 추가하여 사용하면 기억하기도 쉽고 비밀번호 안전도가 높아져
-								도용의 위험이 줄어듭니다.</code>
-							<br> <b>비밀번호 : </b> <input type="password"
-								class="form-control input" id="upw" name="upw"
-								placeholder="새 비밀번호"> <br> <b>비밀번호 확인 : </b> <input
-								type="password" class="form-control input" id="pw2" name="pw2"
-								placeholder="새 비밀번호 확인" /> <br> <br> <b>이름 : </b> <input
-								type="text" class="form-control input" id="uname" name="uname"
-								value="<c:out value="${login.uname}"/>" /> <br> <b>이메일
-								: </b> <input type="text" class="form-control input" id="umail"
-								name="umail" value="<c:out value="${login.umail}"/>"> <br>
-							<b>자기소개 : </b> 
-							<input type="text" class="form-control input"
-								id="uinfo" name="uinfo" 
-								value="<c:out value="${login.uinfo}" />">
-
-							<input type="hidden" id="uid" name="uid"
-								value="<c:out value="${login.uid}"/>"> <br>
-						</div>
-
-						<button class="btn btn-primary pull-right" type="submit"
-							id="saveChange">내 정보 변경하기</button>
-					</form>
-				</div>
-
-				<div>
-					<button class="btn" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;취소&nbsp;&nbsp;&nbsp;&nbsp;</button>
-				</div>
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 class="text-center">
+					<br>내 정보 수정
+				</h3>
 			</div>
-			<div class="modal-footer"></div>
+			<div class="modal-body">
+				프로필 사진, 비밀번호, 이름, 이메일, 자기소개를 수정합니다.<br> <br> 
+				<img id="oripic" alt="ori" style="height: 200px; border: 2px dotted lightslategrey; margin: 5px" 
+					src="${pageContext.request.contextPath}/user/displayFile.do?filename=<c:out value="${login.file}"/>" />
+
+				<form action="/user/updateAccount.do" method="post"
+					name="updateForm" onsubmit="chkUpdate();" enctype="multipart/form-data">
+					<div class="form-group">
+						<div id="list" onChange></div>
+						<input type="file" id="files" name="filename" /> 
+						<a>내 프로필 삭제하기</a><br>
+					</div>
+					<div class="form-group">
+						<b>내 아이디 : </b>
+						<c:out value="${login.uid}" />
+						<br> <br> <b>기존 비밀번호 : </b> <input type="password"
+							class="form-control input" id="oripw" name="oripw">
+						<code>Tip : 비밀번호에 특수문자를 추가하여 사용하면 기억하기도 쉽고 비밀번호 안전도가 높아져
+							도용의 위험이 줄어듭니다.</code>
+						<br> <b>비밀번호 : </b> <input type="password"
+							class="form-control input" id="upw" name="upw"
+							placeholder="새 비밀번호"> <br> <b>비밀번호 확인 : </b> <input
+							type="password" class="form-control input" id="pw2" name="pw2"
+							placeholder="새 비밀번호 확인" /> <br> <br> <b>이름 : </b> <input
+							type="text" class="form-control input" id="uname" name="uname"
+							value="<c:out value="${login.uname}"/>" /> <br> <b>이메일
+							: </b> <input type="text" class="form-control input" id="umail"
+							name="umail" value="<c:out value="${login.umail}"/>"> <br>
+						<b>자기소개 : </b>
+						<input type="text" class="form-control input"
+							id="uinfo" name="uinfo" 
+							value="<c:out value="${login.uinfo}" />">
+
+						<input type="hidden" id="uid" name="uid"
+							value="<c:out value="${login.uid}"/>"> <br>
+					</div>
+					<button class="btn btn-primary pull-right" type="submit"
+						id="saveChange">내 정보 변경하기</button>
+				</form>
+			</div>
+			<div>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;취소&nbsp;&nbsp;&nbsp;&nbsp;</button>
+			</div>
 		</div>
+		<div class="modal-footer"></div>
 	</div>
+</div>
 
 	<script type="text/javascript">
 
@@ -236,6 +227,7 @@ function handleFileSelect(evt) {
       // Closure to capture the file information.
       reader.onload = (function(theFile) {
         return function(e) {
+        	document.getElementById('list').innerHTML = "";
           // Render thumbnail.
           var span = document.createElement('span');
           span.innerHTML = 

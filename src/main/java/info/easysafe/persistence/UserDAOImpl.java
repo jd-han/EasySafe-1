@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import info.easysafe.domain.Criteria;
+import info.easysafe.domain.MsgVO;
 import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
@@ -134,5 +135,29 @@ public class UserDAOImpl implements UserDAO{
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".listSearchCount", cri);
+	}
+
+	@Override
+	public void updateAsk(UserVO uvo) {
+		// request 컬럼을 R 또는 N 또는 D 로 바꿈
+		session.selectOne(namespace + ".updateRequest", uvo);
+	}
+
+	@Override
+	public void goPro(UserVO uvo) {
+		// TODO Auto-generated method stub
+		session.update(namespace + ".goPro", uvo);
+	}
+
+	@Override
+	public UserVO chkAccount(UserVO uvo) {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace + ".chkAccount", uvo);
+	}
+
+	@Override
+	public void resetPass(UserVO uvo) {
+		// TODO Auto-generated method stub
+		session.update(namespace + ".resetPass", uvo);
 	}
 }

@@ -62,4 +62,22 @@ public class MsgDAOImpl implements MsgDAO {
 		return false;
 	}
 
+	@Override
+	public void sendAskLvUp(MsgVO mvo) {
+		// TODO Auto-generated method stub
+		session.insert(namespace + ".sendLvUp", mvo);
+	}
+
+	@Override
+	public MsgVO selectUpMsg(String userId) {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace + ".selectUpMsg", userId);
+	}
+
+	@Override
+	public void completeMsg(int msgNo) {
+		// TODO Auto-generated method stub
+		session.update(namespace + ".completeUpMsg", msgNo);
+	}
+
 }

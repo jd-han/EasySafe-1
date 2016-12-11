@@ -1,6 +1,7 @@
 package info.easysafe.util;
 
 import java.security.MessageDigest;
+import java.util.Random;
 
 /**
 @class Sha512Encrypt
@@ -45,7 +46,8 @@ public class Sha512Encrypt {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		tempPassword = tempPassword.substring(0, 10);
 		return tempPassword;
 	}
 
@@ -62,6 +64,19 @@ public class Sha512Encrypt {
 		String tmpText = hash(plainText);
 		
 		return tmpText.equals(hashText);
+	}
+	
+	public static String genTempPass(){
+		char[] tempAlpha = {'A','1','B','2','C','3','F','4','G','5','H','6','I','7','J','8','K','9','L','0','M'};
+		Random r = new Random();
+		String tempStr = ""; 
+		for(int i = 0 ; i < 7 ; i++)
+		{
+			tempStr += tempAlpha[r.nextInt(tempAlpha.length)];
+		}
+		System.out.println("생성된 임시 비번 : " + tempStr);
+		System.out.println("해시된 임시 비번 : " + hash(tempStr));
+		return tempStr;
 	}
 	
 	public static void main(String[] args) {

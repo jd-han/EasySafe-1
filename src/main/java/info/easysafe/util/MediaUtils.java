@@ -16,7 +16,6 @@ public class MediaUtils {
 		mediaMap.put("PNG", MediaType.IMAGE_PNG);
 	}
 	
-	
 	public static MediaType getMediaType(String type) {
 		return mediaMap.get(type.toUpperCase());
 	}

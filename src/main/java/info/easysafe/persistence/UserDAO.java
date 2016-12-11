@@ -3,6 +3,7 @@ package info.easysafe.persistence;
 import java.util.List;
 
 import info.easysafe.domain.Criteria;
+import info.easysafe.domain.MsgVO;
 import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
@@ -36,5 +37,8 @@ public interface UserDAO {
 	
 	public void applogin(UserVO vo) throws Exception;
 	public List<String> viewAllRequest();
-	
+	public void updateAsk(UserVO uvo);
+	public void goPro(UserVO uvo);
+	public UserVO chkAccount(UserVO uvo);
+	public void resetPass(UserVO uvo);	
 }

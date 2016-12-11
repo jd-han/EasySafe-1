@@ -89,6 +89,7 @@
 </head>
 <body class="login-page" style="">
 <%@ include file="../nav.jsp"%>
+<%@ include file="findModal.jsp"%>
 	<div class="login-box">
 		<!-- title was here -->
 
@@ -154,7 +155,7 @@
 							<div class="col-xs-5 pull-right">
 							<button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
 							<br>
-							<a href="#">비밀번호 찾기</a><br><a href="register.do">가입하기</a>
+							<a href="#findModal" data-toggle="modal" onclick="resetFindModal();">비밀번호 찾기</a><br><a href="register.do">가입하기</a>
 							</div>
 						</form>
 						</div>

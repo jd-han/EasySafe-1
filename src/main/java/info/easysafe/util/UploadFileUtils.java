@@ -83,10 +83,13 @@ public class UploadFileUtils {
 		
 		if(MediaUtils.getMediaType(formatName) != null){
 			uploadedFileName = makeThumbnail(uploadPath, savedPath, savedName);
+		}else{
+			logger.info("uploadPath=" + uploadPath);
+			logger.info("savedPath=" + savedPath);
+			logger.info("savedName=" + savedName);
+			uploadedFileName = savedPath + "\\" + savedName;
+			logger.info("uploadedFileName=" + uploadedFileName);
 		}
 		return uploadedFileName;
 	}
-	
-	
-
 }

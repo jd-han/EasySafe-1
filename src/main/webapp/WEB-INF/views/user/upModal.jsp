@@ -8,38 +8,30 @@
 	aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-		<form action="${pageContext.request.contextPath}/msg/sendMsg.do" method="POST" enctype="multipart/request">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
 				<div style="font-size: 30px;" class="text-center" id="msgTitletag">
-					메시지 보내기
+					전문가등급 신청서 작성
 				</div>
 			</div>
-			<div class="modal-body">
-				<div id="usertag">받는 사람</div>
+		<form action="/mod/askLevelUp.do" method="post" enctype="multipart/form-data" >
+			<div class="modal-body">	
+				<input id="msgSender" name="sendUser" type="hidden" value="${login.uid}"/>				
+				제목<br>
 				<div class="form-control">
-					<div class="input-group text-center">
-						<input id="msgUser" name="receiveUser" />
-						<span class="input-group-btn" id="findBtn">
-							<button id="idSearch" class="btn btn-sm btn-success" type="button">아이디 확인</button>
-						</span>
-					</div>
-					<input id="msgSender" name="sendUser" type="hidden" value="${login.uid}"/>
-					<input id="isAdmin" name="readable" type="hidden" value="${login.ulevel}"/>
-				</div>
-				<div class="alert alert-warning" id="isExistId">메시지를 받을 유저의 ID를 먼저 검색해 주세요</div>
-				<br>
-				메시지 제목<br>
-				<div class="form-control">
-					<input id="msgTitle" name="msgTitle"/>				
+					<input id="msgTitle" name="msgTitle" type="text"/>
 				</div><br>
-				메시지 내용<br>
+				내용<br>
 				<div class="form-control">
-					<input id="msgContent" name="msg"/>				
+					<input id="msgContent" name="msg" type="text"/>
 				</div>
-			</div>			
+				첨부파일<br>
+				<div class="form-control">
+					<input id="lvUpFile" name="lvUpFile" type="file"/>
+				</div>
+			</div>
 			<div class="modal-footer" id="msgBtns">
-				<button class="btn btn-primary" type="submit">전송</button>			
+				<button class="btn btn-primary" type="submit">신청</button>			
 				<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">취소</button>
 			</div>
 		</form>
@@ -48,7 +40,12 @@
 </div>
 
 <script>
-	var findId = false;
+	function resetUpModal(){
+		$("#msgTitle").val("");
+		$("#msgContent").val("");
+		$("#lvUpFile").val("");
+	}
+	/* var findId = false;
 	$("#idSearch").click(function(){
 		$.ajax({
 			url: "${pageContext.request.contextPath}/msg/searchId.do",
@@ -68,5 +65,5 @@
 				findId = false;
 			}
 		});		
-	});
+	}); */
 </script>

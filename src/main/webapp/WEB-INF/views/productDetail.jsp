@@ -13,21 +13,29 @@
 	<div class="container" id="main">
 		<div class="well">
 			<h1>${productResult.name}</h1>
-		</div><br><br>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4>제품에 포함된 성분들</h4>
-			</div>
-			<div class="panel-body">
-				<c:if test="${!empty productResult}">
-					<c:forEach items="${components}" var="compo">
-					<div class="list-group">
-						<a href="chemDetail.do?name=${compo}">${compo}</a><br>
-					</div>
-					</c:forEach>
-				</c:if>
+		</div>
+		<div style="float: left; width: 100%;" class="well">
+			<img class="well" style="width: 50%;" src="${productResult.thumimg}" />
+			<div style="float: right; width: 50%;">
+				<div class="well">
+					<h4>제조사</h4>
+					${productResult.producer}	
+				</div>
+				<div style="width: 100%;" class="well">
+					<h4>제품에 포함된 성분들</h4>			
+					<c:if test="${!empty productResult}">
+						<c:forEach items="${components}" var="compo">
+						<div class="list-group">
+							<a href="chemDetail.do?name=${compo}">${compo}</a><br>
+						</div>
+						</c:forEach>
+					</c:if>	
+				</div>
 			</div>
 		</div>
+		<br>
+		<br>
+		
 	</div>
 	
 	<script type="text/javascript">

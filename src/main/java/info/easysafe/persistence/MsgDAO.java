@@ -18,4 +18,10 @@ public interface MsgDAO {
 	void updateMsg(MsgVO mvo);
 
 	boolean findUser(String findId);
+
+	void sendAskLvUp(MsgVO mvo);
+
+	MsgVO selectUpMsg(String userId);
+
+	void completeMsg(int msgNo);
 }
