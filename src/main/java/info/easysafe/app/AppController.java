@@ -36,13 +36,14 @@ private static final Logger logger = LoggerFactory.getLogger(AppController.class
 	
 	@ResponseBody
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
-	public List<NoticeVO> listAllNotice (Model model) throws Exception{
-		logger.info("공지사항 리스트 보기");
-		return service.listNotice();
+	public List<NoticeVO> listAllNotice (@RequestParam String no) throws Exception{
+		logger.info("공지사항 리스트 보기 : " + no);
+		
+		return service.listNotice(Integer.parseInt(no));
 	}
 		
-	@RequestMapping(value="/searchChem.do", method = RequestMethod.GET)
 	@ResponseBody
+	@RequestMapping(value="/searchChem.do", method = RequestMethod.GET)
 	public List<ChemVO> searchChem (String key, Model model) throws Exception{
 		//�̸��� �������� �����ϴ� �ڵ� �ʿ�!!! �� ��찡 �ƴϸ� �ѱ۷� �Ǵ�.
 		boolean iskor = false;

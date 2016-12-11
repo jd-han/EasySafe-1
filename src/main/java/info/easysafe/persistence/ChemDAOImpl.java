@@ -55,9 +55,9 @@ public class ChemDAOImpl implements ChemDAO{
 	}
 
 	@Override
-	public List<NoticeVO> listNotice() throws Exception {
+	public List<NoticeVO> listNotice(int no) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList(namespace+"listNotice");
+		return session.selectList(namespace+".listNotice", no);
 	}
 
 }
