@@ -10,7 +10,21 @@ public class MsgVO {
 	private String msg;
 	private Date regDate;
 	private String readable;
+	private String lvUpFile;
 	
+	
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public String getLvUpFile() {
+		return lvUpFile;
+	}
+	public void setLvUpFile(String lvUpFile) {
+		this.lvUpFile = lvUpFile;
+	}
 	public String getMsgTitle() {
 		return msgTitle;
 	}
@@ -41,12 +55,6 @@ public class MsgVO {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public Date getRegDate() {
-		return regDate;
-	}
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
 	public String getReadable() {
 		return readable;
 	}
@@ -56,6 +64,7 @@ public class MsgVO {
 	@Override
 	public String toString() {
 		return "MsgVO [msgNo=" + msgNo + ", receiveUser=" + receiveUser + ", sendUser=" + sendUser + ", msgTitle="
-				+ msgTitle + ", msg=" + msg + ", regDate=" + regDate + ", readable=" + readable + "]";
-	}	
+				+ msgTitle + ", msg=" + msg + ", regDate=" + regDate + ", readable=" + readable + ", lvUpFile="
+				+ lvUpFile + "]";
+	}
 }

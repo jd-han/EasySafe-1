@@ -121,12 +121,12 @@ public class MainController {
 		}
 
 		ChemVO chem = null;
-		ProductVO prod = null;
+		List<ProductVO> prod = null;
 		if (iskor == true) {
 			// 성분의 이름으로 상세정보 조회.
 			chem = service.readChemKorName(name);
 			// 성분의 이름으로 포함 제품 조회.
-			prod = service.readProductKorName(name);
+			prod = service.listProductKorName(name);
 		} else {
 			// chem = service.readChemEngName(key);
 			System.out.println("영어 성분 읽기"); 

@@ -3,6 +3,7 @@ package info.easysafe.service;
 import java.util.List;
 
 import info.easysafe.domain.Criteria;
+import info.easysafe.domain.MsgVO;
 import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
@@ -29,4 +30,8 @@ public interface UserService {
 	public void updateLevel(UserVO vo) throws Exception;
 	
 	public List<String> listRequUser() throws Exception;
+	public void updateAskLvUp(UserVO uvo);
+	public void goPro(UserVO uvo);
+	public UserVO chkAccount(UserVO uvo);
+	public void resetPass(UserVO uvo);
 }

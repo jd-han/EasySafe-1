@@ -57,4 +57,22 @@ public class MsgServiceImpl implements MsgService {
 		return dao.findUser(findId);
 	}
 
+	@Override
+	public void insertLvUpForm(MsgVO mvo) {
+		// TODO Auto-generated method stub
+		dao.sendAskLvUp(mvo);
+	}
+
+	@Override
+	public MsgVO selectUpMsg(String userId) {
+		// TODO Auto-generated method stub
+		return dao.selectUpMsg(userId);
+	}
+
+	@Override
+	public void completeMsg(int msgNo) {
+		// TODO Auto-generated method stub
+		dao.completeMsg(msgNo);
+	}
+
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import info.easysafe.domain.Criteria;
+import info.easysafe.domain.MsgVO;
 import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
@@ -102,7 +103,27 @@ public class UserServiceImpl implements UserService{
 		return dao.listSearchCount(cri);
 	}
 
+	@Override
+	public void updateAskLvUp(UserVO uvo) {
+		// TODO Auto-generated method stub
+		dao.updateAsk(uvo);
+	}
 
+	@Override
+	public void goPro(UserVO uvo) {
+		// TODO Auto-generated method stub
+		dao.goPro(uvo);
+	}
 
+	@Override
+	public UserVO chkAccount(UserVO uvo) {
+		// TODO Auto-generated method stub
+		return dao.chkAccount(uvo);
+	}
 
+	@Override
+	public void resetPass(UserVO uvo) {
+		// TODO Auto-generated method stub
+		dao.resetPass(uvo);
+	}
 }

@@ -56,11 +56,9 @@ public class ChemServiceImpl implements ChemService {
 	}
 
 	@Override
-	public List<NoticeVO> listNotice() throws Exception{
+	public List<NoticeVO> listNotice(int no) throws Exception{
 		// TODO Auto-generated method stub
-		return dao.listNotice();
+		return dao.listNotice(no);
 	}
-	
-	
 
 }

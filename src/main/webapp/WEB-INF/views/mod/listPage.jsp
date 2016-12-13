@@ -213,15 +213,35 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
 					<h3 class="text-center" id="requUserName">
-						내 정보 수정
+						등업신청자 아이디 적히는 부분
 					</h3>
 				</div>
 				<div class="modal-body">
-					
+					<input id="msgNo" name="msgNo" type="hidden"/>				
+					<input id="msgReceiver" name="msgReceiver" type="hidden"/>
+					제목<br>
+					<div class="form-control">
+						<input id="msgTitle" name="msgTitle" type="text" readonly="readonly"/>
+					</div><br>
+					내용<br>
+					<div class="form-control">
+						<input id="msgContent" name="msg" type="text" readonly="readonly"/>
+					</div>
+					첨부파일<br>
+					<div id="filePlace">
+					</div>
+					신청일<br>
+					<div class="form-control">
+						<input id="msgRegDate" name="date" type="text" readonly="readonly" />
+					</div>
+				</div>
+				수락/거부 사유를 적어주세요<br>
+				<div class="form-control">
+					<input id="cause" name="cause" type="text"/>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;수락&nbsp;&nbsp;&nbsp;&nbsp;</button>
-					<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;거부&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="submitUp('OK');">&nbsp;&nbsp;&nbsp;&nbsp;수락&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" onclick="submitUp('NO');">&nbsp;&nbsp;&nbsp;&nbsp;거부&nbsp;&nbsp;&nbsp;&nbsp;</button>
 					<button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;취소&nbsp;&nbsp;&nbsp;&nbsp;</button>
 				</div>
 			</div>
@@ -256,7 +276,60 @@
 	
 	/* 유저 아이디를 받아서 데이터를 모달창에 띄움 */
 	function modalRequUser(uid){
-		$("#requUserName").html(uid + " 회원에 대한 승급 처리");
+		$.ajax({
+			url: "${pageContext.request.contextPath}/mod/requestUpUser.do",
+			type: "GET",
+			data: {userId: uid}
+		})
+		.done(function(result) {
+            // MsgVO 내용이 올라옴
+			$("#requUserName").html(result.sendUser + " 회원에 대한 승급 처리");
+            $("#msgTitle").val(result.msgTitle);
+            $("#msgContent").val(result.msg);
+            $("#msgNo").val(result.msgNo);
+            $("#msgReceiver").val(result.sendUser);
+            var date = new Date(result.regDate);
+            $("#msgRegDate").val(date.getFullYear()+"-"+parseDate(date.getMonth()+1)+"-"+parseDate(date.getDate()));
+            // 첨부파일이 있고 없고 따라 다운로드 링크 생성
+            if(result.lvUpFile != null){
+            	var oriFileName = result.lvUpFile.substring(result.lvUpFile.indexOf("_")+1, result.lvUpFile.length);
+            	$("#filePlace").html("<div class='alert alert-success'>"+ oriFileName
+            			+"<a href='${pageContext.request.contextPath}/user/displayFile.do?filename="+result.lvUpFile+"&cate=expert' class='btn btn-primary'>첨부파일 다운로드</a></div>");
+            }else{
+            	$("#filePlace").html("<a class='btn btn-danger'>첨부파일 없음</a>");
+            }
+        });
+	}
+	function parseDate(vari){
+		vari = vari+"";
+		if(vari.length < 2){
+			return "0"+vari;
+		}
+		return vari;
+	}
+	/* 등업을 수락/거부 */
+	function submitUp(isokno){
+		var title = "";
+		var requ = "";
+		if(isokno == 'OK'){
+			// 승낙
+			title = "등업 신청이 수락되었습니다.";
+			requ = "D";
+		}else{
+			// 거부
+			title = "등업 신청이 거부되었습니다.";
+			requ = "N";
+		}
+		$.ajax({
+			url: "${pageContext.request.contextPath}/mod/completeUpUser.do",
+			type: "POST",
+			data: {msgNo: $("#msgNo").val(), msgTitle: title, msgContent: $("#cause").val(), 
+					requStat: requ, sender: '${login.uid}', receiver: $("#msgReceiver").val()
+			}
+		})
+		.done(function(result) {
+			window.location.reload();
+        });
 	}
 	
 	function update(no) {

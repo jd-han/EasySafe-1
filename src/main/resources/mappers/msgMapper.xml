@@ -9,13 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from tbl_msg
 		where senduser = #{user}
+		and receiveuser != 'completedLvUp'
 		order by regdate desc
 	</select>
 	
 	<select id="listAllReceiveMsg" parameterType="string" resultType="MsgVO">
 		select *
 		from tbl_msg
-		where receiveuser = #{user}
+		where receiveuser = #{user}		
 		order by regdate desc
 	</select>
 	
@@ -28,6 +29,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="sendMsg" parameterType="MsgVO">
 		insert into tbl_msg (receiveuser, senduser, msg, msgtitle, readable)
 		values (#{receiveUser}, #{sendUser}, #{msg}, #{msgTitle}, #{readable})
+	</insert>
+	
+	<insert id="sendLvUp" parameterType="MsgVO">
+		insert into tbl_msg (senduser, msg, msgtitle, readable, lvupfile)
+		values (#{sendUser}, #{msg}, #{msgTitle}, 'N', #{lvUpFile})
 	</insert>
 	
 	<delete id="deleteMsg">
@@ -46,5 +52,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from tbl_user
 		where uid = #{findId}
 	</select>
-	
+	<!-- 해당 아이디로 보낸 메시지 중에 받는사람이 없는 메시지, 즉 등업신청만 추려서 뽑는다 -->
+	<select id="selectUpMsg" resultType="MsgVO" parameterType="string">
+		select *
+		from tbl_msg
+		where receiveuser is null
+		and senduser = #{uid}
+	</select>
+	<!-- 신청이 수락/거부되면 해당 메시지는 편집됨. 번호 정보가 추출되므로 그것으로 판별. -->
+	<update id="completeUpMsg" parameterType="int">
+		update tbl_msg set
+		receiveuser='completedLvUp'
+		where msgno=#{msgNo}
+	</update>
 </mapper>

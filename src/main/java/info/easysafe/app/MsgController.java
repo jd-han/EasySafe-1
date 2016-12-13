@@ -39,6 +39,7 @@ public class MsgController {
 		if (obj != null)
 		{
 			UserVO uvo = (UserVO)obj;			
+			logger.info("유저 아이디 : " + uvo.getUid());
 			List<MsgVO> msgSendList = service.listSendMsg(uvo.getUid());
 			mav.addObject("msgSendList", msgSendList);
 			List<MsgVO> msgReceiveList = service.listReceiveMsg(uvo.getUid());

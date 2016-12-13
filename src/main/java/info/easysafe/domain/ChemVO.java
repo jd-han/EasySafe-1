@@ -26,22 +26,7 @@ public class ChemVO {
 	private int replycnt;
 	public int getNo() {
 		return no;
-	}	
-	
-	
-//	public String getKorName() {
-//		return korName;
-//	}
-//	public void setKorName(String korName) {
-//		this.korName = korName;
-//	}
-//	public String getEngName() {
-//		return engName;
-//	}
-//	public void setEngName(String engName) {
-//		this.engName = engName;
-//	}
-	
+	}
 	public void setNo(int no) {
 		this.no = no;
 	}
@@ -123,11 +108,11 @@ public class ChemVO {
 	public void setReplycnt(int replycnt) {
 		this.replycnt = replycnt;
 	}
+	
 	@Override
 	public String toString() {
 		return "ChemVO [no=" + no + ", name=" + name + ", korea=" + korea + ", us=" + us + ", eu=" + eu + ", ins=" + ins
 				+ ", cas=" + cas + ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", australia="
 				+ australia + ", avg=" + avg + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
 	}
-	
 }

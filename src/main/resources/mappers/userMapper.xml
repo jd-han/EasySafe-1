@@ -142,7 +142,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateRequest" parameterType="UserVO">
 		update tbl_user 
 		set request=#{request} 
-		where user=#{user}
+		where uid=#{uid}
 	</update>
-	
+	<!-- 신청 완료시 전문가로 등업 -->
+	<update id="goPro" parameterType="UserVO">
+		update tbl_user 
+		set ulevel = #{ulevel}
+		where uid=#{uid}
+	</update>
+	<!-- 유저 아이디와 이메일 존재여부 검증 -->
+	<select id="chkAccount" parameterType="UserVO" resultType="UserVO">
+		select uid, umail
+		from tbl_user
+		where uid=#{uid}
+		and umail=#{umail}
+	</select>
+	<!-- 유저 아이디와 이메일로 판단하고 암호를 지정된 문자열로 교체 -->
+	<update id="resetPass" parameterType="UserVO">
+		update tbl_user 
+		set upw=#{upw}
+		where uid=#{uid}
+		and umail=#{umail}
+	</update>
 </mapper>

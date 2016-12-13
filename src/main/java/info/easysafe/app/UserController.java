@@ -8,11 +8,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -39,14 +46,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import info.easysafe.domain.Criteria;
+import info.easysafe.domain.MsgVO;
 import info.easysafe.domain.PageMaker;
 import info.easysafe.domain.SearchCriteria;
 import info.easysafe.domain.UserVO;
 import info.easysafe.dto.LoginDTO;
+import info.easysafe.service.MsgService;
 import info.easysafe.service.UserService;
 import info.easysafe.util.TokenUtil;
 import info.easysafe.util.UploadFileUtils;
 import info.easysafe.util.MediaUtils;
+import info.easysafe.util.Sha512Encrypt;
 
 @Controller
 @RequestMapping("/user")
@@ -71,22 +81,21 @@ public class UserController {
 
 	@Inject
 	private UserService service;
+	@Inject
+	private MsgService mService;
 
-	
-	
 	public String getCurrentDayTime() {
 		long time = System.currentTimeMillis();
 		SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.KOREA);
 		return dayTime.format(new Date(time));
 	}
 
-	//사용되지 않음. 
-//	@RequestMapping(value = "/listAccount", method = RequestMethod.GET)
-//	@ResponseBody
-//	public List<UserVO> listAccount() throws Exception {
-//		return service.listAll();
-//	}
-	
+	// 사용되지 않음.
+	// @RequestMapping(value = "/listAccount", method = RequestMethod.GET)
+	// @ResponseBody
+	// public List<UserVO> listAccount() throws Exception {
+	// return service.listAll();
+	// }
 
 	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
 	public void registGet() throws Exception {
@@ -99,12 +108,13 @@ public class UserController {
 	public String registPost(UserVO vo) throws Exception {
 		if (!vo.getUname().equals("")) {
 			isName = true;
-			logger.info("가입 유형 : \nAPI: " + isAPI + "\nID: " + isDuId + "\nEmail: " + isDuEmail + 
-						"\nPASS: " + isPass + "\nName: " + isName);
-			if(isDuId && isDuEmail && isPass && isEmail && isName)
-			{
+			logger.info("가입 유형 : \nAPI: " + isAPI + "\nID: " + isDuId + "\nEmail: " + isDuEmail + "\nPASS: " + isPass
+					+ "\nName: " + isName);
+			if (isDuId && isDuEmail && isPass && isEmail && isName) {
 				String apiKey = TokenUtil.apiKeyCreate();
 				vo.setApikey(apiKey);
+				// 입력된 패스워드를 암호화 하여 저장.
+				vo.setUpw(Sha512Encrypt.hash(vo.getUpw()));
 				// 이름이 공백이 아니고 상기 4가지 조건이 모두 참일때 가입 실행.
 				service.regist(vo);
 				return "OK";
@@ -323,23 +333,27 @@ public class UserController {
 		logger.info(userVO.toString());
 
 		MultipartFile file = mreq.getFile("filename");
-		if (file != null) {
+		if (file != null && !file.getOriginalFilename().equalsIgnoreCase("")) {
 			System.out.println("파일을 mreq에서 가져왔다. ");
+			logger.info("original name : " + file.getOriginalFilename());
+			logger.info("size : " + file.getSize());
+			// 프사 업로드용 경로를 추가 해줌.
+			uploadPath = uploadPath + "/profiles";
+			String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+			// 업로드 패스를 위에서 변경했기 때문에 원래 값으로 강제복원 해줘야 함.
+			uploadPath = "C:/easysafe/resources/";
+			// savedName = "/profiles" + savedName;
+			logger.info("정보수정용프사 경로 : " + savedName);
+			userVO.setFile(savedName);
 		}
-
-		logger.info("original name : " + file.getOriginalFilename());
-		logger.info("size : " + file.getSize());
-
-		String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-		userVO.setFile(savedName);
-
+		// 입력된 비밀번호 암호화.
+		userVO.setUpw(Sha512Encrypt.hash(userVO.getUpw()));
 		service.updateAccount(userVO);
 		System.out.println("updateAccount 서비스에 넣은 VO : " + userVO);
 
 		return "redirect:mypage.do";
-
 	}
-	
+
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
 	public void updateAccountGet(HttpServletRequest req) throws Exception {
 		logger.info("MYPAGE GET.... ");
@@ -347,25 +361,30 @@ public class UserController {
 
 		// ModelMap modelMap = modelAndView.getModelMap();
 
-		UserVO vo = (UserVO)session.getAttribute("uvo");
-		logger.info("sends VO : "+ vo);
+		UserVO vo = (UserVO) session.getAttribute("uvo");
+		logger.info("sends VO : " + vo);
 		String uid = vo.getUid();
 		UserVO voFromDB = service.view(uid);
 		session.setAttribute("login", voFromDB);
 		logger.info("/mypage.do contrColler sends voFromDB : " + voFromDB.toString());
-		
-//		return voFromDB;
+
+		// return voFromDB;
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/displayFile.do")
-	public ResponseEntity<byte[]> displayFile(String filename) throws Exception {
+	public ResponseEntity<byte[]> displayFile(String filename, String cate) throws Exception {
 
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
-
+		// 어떤 파일의 경로가 요청되냐에 따라 저장 폴더 가리키는 경로를 변경
+		if (cate != null && cate.equalsIgnoreCase("expert")) {
+			filename = "/experts/" + filename;
+		} else {
+			// 프로필 보여주기를 하려면 경로명 앞에 profiles 디렉토리 추가.
+			filename = "/profiles" + filename;
+		}
 		logger.info("FILE NAME: " + filename);
-		System.out.println();
 
 		try {
 
@@ -374,7 +393,6 @@ public class UserController {
 			MediaType mType = MediaUtils.getMediaType(formatName);
 
 			HttpHeaders headers = new HttpHeaders();
-
 			in = new FileInputStream(uploadPath + filename);
 
 			if (mType != null) {
@@ -433,6 +451,10 @@ public class UserController {
 	@RequestMapping(value = "/loginPost.do", method = RequestMethod.POST)
 	public String loginPOST(LoginDTO dto, HttpSession session, Model model) throws Exception {
 
+		// 입력된 비번을 암호화
+		String tempPass = Sha512Encrypt.hash(dto.getUpw());
+		dto.setUpw(tempPass);
+		System.out.println("로그인때 쓰인 비번 암호화 결과 : " + tempPass);
 		UserVO vo = service.login(dto);
 		if (vo == null) {
 			System.out.println("vo null. 로그인 실패");
@@ -468,4 +490,113 @@ public class UserController {
 		return "redirect:../index.do";
 	}
 
+	// 메일 발송 기능
+	@RequestMapping(value = "/emailSend.do", method = RequestMethod.POST)
+	public void emailSendPost(String emailTo, String toUser) throws Exception {
+
+		// 메일 관련 정보
+		String host = "www.easysafe.info"; // mail server hostname
+		final String username = "savio"; // username for SMTP
+		final String password = "savio"; // password for SMTP
+		int port = 25; // SMTP port number
+		// toUser 에 해당하는 id 의 비밀번호를 암호화된 비번으로 강제 변경
+		UserVO uvo = new UserVO();
+		uvo.setUid(toUser);
+		uvo.setUmail(emailTo);
+		// 암호화 모듈로 임시 비밀번호를 생성.
+		// 메일링하는 임시 비번은 암호화 전의 것으로 보내고, DB 에는 암호화 해 저장하면
+		// 어차피 로그인 하러 올때 암호화 해서 비교하므로 로그인 할수 있...다?
+		String tempPass =Sha512Encrypt.genTempPass();
+		uvo.setUpw(Sha512Encrypt.hash(tempPass));
+		service.resetPass(uvo);
+		// 해당 비밀번호를 emailTo 의 주소로 내용 꾸며서 발송 
+		// 메일 제목과 내용
+		String esubject = toUser + " 님의 임시 비밀번호가 발급되었습니다.";
+		String econtent = "";/*= toUser + " 님의 임시 비밀번호는 [ " + tempPass + " ] 입니다. 바로 로그인 하시고 다른 암호로 변경하시기 바랍니다.";*/
+				econtent += "<!DOCTYPE html>";
+				econtent += "<html>";
+				econtent += "<head>";
+				econtent += "<title>{{title}}</title>";
+				econtent += "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />";
+				econtent += "</head>";
+				econtent += "<body style='background-color: rgb(230,230,230); width: 100%; height: 100%'>";
+				econtent += "<link href='https://fonts.googleapis.com/css?family=Roboto|Pacifico' rel='stylesheet' type='text/css'>";
+				econtent += "<div style='background-color: rgb(230,230,230); width: 100%; height: 100%; min-height:300px; padding-top:20px;'>";
+				econtent += "<div style='width:400px; background-color:rgb(255,255,255); font-family: 'Roboto', sans-serif; margin:auto; margin-top: 20px; text-align: left; padding: 10px;'>";
+				econtent += "<div style='font-family: 'Pacifico-Regular', 'Pacifico',  sans-serif; font-size: 24px; margin: 10px; color: rgb(80,80,80);'>";
+				econtent += "EasySafe";
+				econtent += "</div>";
+				econtent += "<div style='font-size: 12px; color: rgb(100,100,100); margin: 10px;'>";
+				econtent += toUser + " 님의 임시 비밀번호는 아래와 같습니다<br>바로 로그인하여 비밀번호를 변경해 주시기 바랍니다.";
+				econtent += "<div style='background-color: rgb(180,220,250); padding: 5px; border-radius: 5px; font-size: 14px; width: auto; margin: auto; width: 200px; text-align: center;'>";
+				econtent += "<a href='http://easysafe.info/user/login.do'>"+ tempPass + "</a>";
+				econtent += "</div><br>";
+				econtent += "</div>";
+				econtent += "<div style='font-size: 9px; color: rgb(200,200,200);'>";
+				econtent += "</div>";
+				econtent += "</div>";
+				econtent += "</div>";
+				econtent += "</body>";
+				econtent += "</html>";
+		 
+		System.out.println("email address to : " + emailTo);
+		System.out.println("email subject : " + esubject);
+		System.out.println("email content : " + econtent);
+
+		// 메일 내용
+		String recipient = emailTo;
+		String subject = esubject;
+		String body = econtent;
+
+		Properties props = System.getProperties();
+
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.port", port);
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.ssl.enable", "false");
+		props.put("mail.smtp.ssl.trust", host);
+
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			String un = username;
+			String pw = password;
+
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(un, pw);
+			}
+		});
+		session.setDebug(true); // for debug
+
+		Message mimeMessage = new MimeMessage(session);
+		mimeMessage.setFrom(new InternetAddress("admin@easysafe.info"));
+		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+		mimeMessage.setSubject(subject);
+		mimeMessage.setText(body);
+		Transport.send(mimeMessage);
+	}
+	
+	@RequestMapping(value = "/chkAccount.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> checkAccount(String findId, String findEmail) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		UserVO uvo = new UserVO();
+		uvo.setUid(findId);
+		uvo.setUmail(findEmail);
+		UserVO chk = service.chkAccount(uvo);
+		if(chk != null && chk.getUid().equals(findId) && chk.getUmail().equals(findEmail)){
+			// 아이디와 메일 모두 일치하는 경우에만 비번찾기 허용
+			map.put("disabled", false);
+			map.put("show", "visible");
+			map.put("removeClass", "alert-danger");
+			map.put("addClass", "alert-success");
+			map.put("msg", "비밀번호 찾기를 누르면 해당 이메일로 임시 번호가 발급됩니다");
+		}else{
+			map.put("disabled", true);
+			map.put("show", "visible");
+			map.put("removeClass", "alert-success");
+			map.put("addClass", "alert-danger");
+			map.put("msg", "올바르지 않은 입력 사항이 있습니다");
+		}
+		
+		return map;
+	}
 }

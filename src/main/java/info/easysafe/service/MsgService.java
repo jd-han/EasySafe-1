@@ -19,4 +19,10 @@ public interface MsgService {
 	void onReadable(MsgVO mvo);
 
 	boolean searchUser(String findId);
+
+	void insertLvUpForm(MsgVO mvo);
+
+	MsgVO selectUpMsg(String userId);
+
+	void completeMsg(int msgNo);
 }
