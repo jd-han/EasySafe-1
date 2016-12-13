@@ -21,15 +21,16 @@
 <body>
 <%@ include file="../nav.jsp" %>
 	<div class="container" id="main">
-		<h1>사용자의 검색 내역을 그래프화 합니다.</h1>
+		<span class="fa fa-area-chart fa-3x"></span>
+		<b style="font-size: 30px;">사용자의 검색 내역을 그래프화 합니다.</b>
 		<br><br><br><br>
-		<div id="chartdiv"></div>
+		<div id="chartdiv" style="height: 1000px;"></div>
 	</div>
 	
 	<script type="text/javascript">
 		var chart = AmCharts.makeChart("chartdiv", 
 		{
-			"startDuration": 0.2,
+			"startDuration": 0.01,
 		    "type": "serial",
 		    "theme": "light",
 		    "marginRight": 40,
@@ -38,7 +39,7 @@
 		    "mouseWheelZoomEnabled":true,
 		    "dataDateFormat": "YYYY-MM-DD",
 		    "valueAxes": [{
-		        "id": "v1",
+		        "id": "",
 		        "axisAlpha": 0,
 		        "position": "left",
 		        "ignoreAxisWidth":true
@@ -49,7 +50,7 @@
 		    },
 		    "graphs": [${graphs}],		    	
 		    "chartScrollbar": {
-		        "graph": "g1",
+		        "graph": "",
 		        "oppositeAxis":false,
 		        "offset":30,
 		        "scrollbarHeight": 80,
@@ -76,7 +77,7 @@
 		    "valueScrollbar":{
 		      "oppositeAxis":false,
 		      "offset":50,
-		      "scrollbarHeight":10
+		      "scrollbarHeight":100
 		    },
 		    "categoryField": "date",
 		    "categoryAxis": {

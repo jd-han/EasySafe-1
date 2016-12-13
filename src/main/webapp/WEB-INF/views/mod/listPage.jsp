@@ -313,11 +313,11 @@
 		var requ = "";
 		if(isokno == 'OK'){
 			// 승낙
-			title = "등업 신청이 수락되었습니다.";
+			title = "전문가 신청이 수락되었습니다";
 			requ = "D";
 		}else{
 			// 거부
-			title = "등업 신청이 거부되었습니다.";
+			title = "전문가 신청이 거부되었습니다";
 			requ = "N";
 		}
 		$.ajax({

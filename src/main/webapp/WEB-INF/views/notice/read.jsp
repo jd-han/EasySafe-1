@@ -20,14 +20,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/bootstrap/css/styles.css"
 	type="text/css" />
-
-
-
-
 </head>
 <body>
 	<%@ include file="../nav.jsp"%>
-
 	<!--main-->
 	<div class="container" id="main">
 		<div class="row">
@@ -38,57 +33,50 @@
 			<div class="col-md-10 col-sm-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="/notice/listPage.do" class="pull-right">목록으로</a>
-						<h4>${noticeVO.title}</h4>
+						<b>${noticeVO.title}</b>
+						<hr>
 					</div>
-
 					<div class="panel-body">
-						<!-- 						<a href="#">Keyword: Bootstrap</a> -->
-						<!-- 						<div class="clearfix"></div> -->
-						<!-- 						<hr> -->
-
 						<p>${noticeVO.content}</p>
-
-						<a href="#">사이트 바로가기</a> 
-						
+						<a href="#">사이트 바로가기</a>						
 						<div class="col-md-12">
 						<img style="width: 150px; height: 150px;"
-							src="${pageContext.request.contextPath}/resources/media/img/logo_nobg3.png"
-							align="right">
+							src="${pageContext.request.contextPath}/resources/media/img/logo_nobg3.png"	align="right">
 						</div>
-							
-
-
+						<br><br><br><br>
 						<hr>
 						<div class="panel-body">
-							<div class="row">
+							<!-- <div class="row"> -->
 								<div class="col-xs-8"></div>
 								<c:if test="${uvo.ulevel eq 'admin'}">
-									<div class="col-xs-2">
-										
-										
-				<form role="form" action="update.do" method="post">
-						<input type='hidden' name='no' value="${noticeVO.noticeNo}"> 
-						<input type='hidden' name='page' value="${cri.page}"> 
-						<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
-						<input type='hidden' name='searchType' value="${cri.searchType}">
-						<input type='hidden' name='keyword' value="${cri.keyword}">
-				</form>
-										
-										<a class="btn btn-info center-block" id="updatePageBtn"
-<%-- 											href="/notice/update.do?no=${notice.noticeNo}"  --%>
-											type="button">Update</a>
+									<!-- <div class="col-xs-1"> -->
+									<form role="form" action="update.do" method="post">
+											<input type='hidden' name='no' value="${noticeVO.noticeNo}"> 
+											<input type='hidden' name='page' value="${cri.page}"> 
+											<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+											<input type='hidden' name='searchType' value="${cri.searchType}">
+											<input type='hidden' name='keyword' value="${cri.keyword}">
+									</form>
+									<br><br><br><br>
+									<div style="margin-left: 70%; width: 100%;">
+										<div class="col-xs-1">
+											<a class="btn btn-warning" id="updatePageBtn" type="button">수정</a>
+										</div>
+										<!-- </div>	 -->
+										<div class="col-xs-1">
+											<a class="btn btn-danger" href="/notice/delete.do?no=${noticeVO.noticeNo}" type="button">삭제</a>
+										</div>
 									</div>
-	
-									<div class="col-xs-2">
-										<a class="btn btn-primary center-block"
-											href="/notice/delete.do?no=${noticeVO.noticeNo}" type="button">Delete</a>
-									</div>								
 								</c:if>
-
-							</div>
-							<br>
+								<div class="col-xs-1">
+									<a class="btn btn-primary" href="/notice/listPage.do" type="button">목록</a>
+								</div>
+								<br><br>						
+							<!-- </div> -->
+							<hr>
 							<form>
+							<span class="fa fa-comment fa-2x"></span>
+							<b>댓글</b>
 								<div class="input-group">
 									<div class="input-group-btn">
 										<button class="btn btn-default">+1</button>
@@ -105,7 +93,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function () {
-			
+			$("#curPage").html("Notice Content");
 			var formObj = $("form[role='form']");
 			console.log(formObj);
 			

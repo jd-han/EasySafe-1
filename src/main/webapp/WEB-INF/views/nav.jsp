@@ -10,6 +10,7 @@
 	  crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/styles.css" 
 	  type="text/css"/>
+<script src="https://use.fontawesome.com/05b4ca7dc3.js"></script>
 <style type="text/css">
 	.navbar-header{
 		position: absolute;
@@ -29,59 +30,63 @@
 	a{
 		text-decoration: none !important;
 	}
+	b{
+		font-size: 20px;
+	}
+	#curPage{
+		font-size: 30px;
+		font-weight: normal;
+	}
 </style>
 <%@ include file="alertModal.jsp" %>
 <div class="navbar navbar-default" id="subnav">
 	<div class="col-md-12">
        <div class="collapse navbar-collapse" id="navbar-collapse2">
-       <span style="float: left;">
-			<h4 id="curPage">INDEX</h4>		        
+       <span style="float: left; line-height: 300%; padding-top: 5px;">
+			<label id="curPage">INDEX</label>		        
        </span>
        <div class="navbar-header">
 <%--        <c:out value="${uvo.ulevel}"></c:out> --%>
 <c:choose> 
-		 <c:when test="${!empty uvo}"> 
-		 		<c:choose>
-		 		
-				 	<c:when test="${uvo.ulevel ne 'admin'}">
-				 		<span id="isMsg"></span>
-				          <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Menu <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
-				          <ul class="nav dropdown-menu custommenu">
-				              <li><a href="${pageContext.request.contextPath}/user/mypage.do"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
-				              <li><a href="${pageContext.request.contextPath}/history/history.do"><i class="glyphicon glyphicon-dashboard" style="color:#0000aa;"></i> History</a></li>
-				              <li><a href="${pageContext.request.contextPath}/msg/msgList.do"><i class="glyphicon glyphicon-envelope" style="color:#ffae00;"></i> Message</a></li>
-				<!--               <li><a href="#"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Pages</a></li> -->
-				              <li class="nav-divider"></li>
-				              <li><a href="#"><i class="glyphicon glyphicon-cog" style="color:#dd1111;"></i> Settings</a></li>
-				              <li><a href="#"> More..</a></li>
-				          </ul>
-				 	</c:when>
-				 	
-				 	<c:when test="${uvo.ulevel eq 'admin'}">
-				 		<span id="isMsg"></span>
-				 		<span id="isRequestUser"></span>
-				          <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Menu <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
-				          <ul class="nav dropdown-menu custommenu">
-				              <li><a href="${pageContext.request.contextPath}/user/mypage.do"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
-				              <li><a href="${pageContext.request.contextPath}/history/history.do"><i class="glyphicon glyphicon-dashboard" style="color:#0000aa;"></i> History</a></li>
-				              <li><a href="${pageContext.request.contextPath}/msg/msgList.do"><i class="glyphicon glyphicon-envelope" style="color:#ffae00;"></i> Message</a></li>
-				              <li class="nav-divider"></li>
-				              <li><a href="${pageContext.request.contextPath}/mod/listPage.do"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Modify Users</a></li>
-				              <li><a href="#"><i class="glyphicon glyphicon-cog" style="color:#dd1111;"></i> Settings</a></li>
-				              <li><a href="#"> More..</a></li>
-				          </ul>
-				 	</c:when>
-	         </c:choose>
-	      
-	 </c:when>
- 
+	 <c:when test="${!empty uvo}"> 
+	 		<c:choose>		 		
+			 	<c:when test="${uvo.ulevel ne 'admin'}">
+			 		<span id="isMsg">
+			 		<%-- <b>&nbsp;<c:out value="${uvo.uname}" />&nbsp;님 환영합니다</b> --%></span>
+			          <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Menu <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
+			          <ul class="nav dropdown-menu custommenu">			          	  
+			          	  <!-- <li class="nav-divider"> -->
+			              <li><a href="${pageContext.request.contextPath}/user/mypage.do"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
+			              <li><a href="${pageContext.request.contextPath}/history/history.do"><i class="fa fa-pie-chart" style="color:#009605;"></i> History</a></li>
+			              <li><a href="${pageContext.request.contextPath}/msg/msgList.do"><i class="glyphicon glyphicon-envelope" style="color:#ffae00;"></i> Message</a></li>
+			<!--               <li><a href="#"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Pages</a></li> -->
+			              <!-- <li class="nav-divider"></li>
+			              <li><a href="#"><i class="glyphicon glyphicon-cog" style="color:#dd1111;"></i> Settings</a></li>
+			              <li><a href="#"> More..</a></li> -->
+			          </ul>
+			 	</c:when>
+			 	
+			 	<c:when test="${uvo.ulevel eq 'admin'}">
+			 		<span id="isMsg"></span>
+			 		<span id="isRequestUser"></span>
+			 		<%-- <b>&nbsp;<c:out value="${uvo.uname}" />&nbsp;님 관리자 로그인</b> --%>
+			          <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Menu <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
+			          <ul class="nav dropdown-menu custommenu">
+			              <li><a href="${pageContext.request.contextPath}/user/mypage.do"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
+			              <li><a href="${pageContext.request.contextPath}/history/history.do"><i class="fa fa-area-chart" style="color:#009605;"></i> History</a></li>
+			              <li><a href="${pageContext.request.contextPath}/msg/msgList.do"><i class="glyphicon glyphicon-envelope" style="color:#ffae00;"></i> Message</a></li>
+			              <li class="nav-divider"></li>
+			              <li><a href="${pageContext.request.contextPath}/mod/listPage.do"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Modify Users</a></li>
+			              <li><a href="#"><i class="glyphicon glyphicon-cog" style="color:#dd1111;"></i> Settings</a></li>
+			              <li><a href="#"> More..</a></li>
+			          </ul>
+			 	</c:when>
+         </c:choose>	      
+	 </c:when> 
 	 <c:otherwise>
-	 </c:otherwise>
- 
+	 </c:otherwise> 
 </c:choose>
-      
-      
-        </div>
+	</div>
        <span>
 	   		<ul class="nav navbar-nav navbar-right">
 		        <li class="active"><a href="${pageContext.request.contextPath}/index.do">Main</a></li>		        

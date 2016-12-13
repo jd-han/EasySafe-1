@@ -374,7 +374,10 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/displayFile.do")
 	public ResponseEntity<byte[]> displayFile(String filename, String cate) throws Exception {
-
+		
+		// 업로드 패스를 위에서 변경했기 때문에 원래 값으로 강제복원 해줘야 함.
+		uploadPath = "C:/easysafe/resources/";
+		
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
 		// 어떤 파일의 경로가 요청되냐에 따라 저장 폴더 가리키는 경로를 변경
@@ -513,14 +516,14 @@ public class UserController {
 		// 메일 제목과 내용
 		String esubject = toUser + " 님의 임시 비밀번호가 발급되었습니다.";
 		String econtent = "";/*= toUser + " 님의 임시 비밀번호는 [ " + tempPass + " ] 입니다. 바로 로그인 하시고 다른 암호로 변경하시기 바랍니다.";*/
-				econtent += "<!DOCTYPE html>";
+				/*econtent += "<!DOCTYPE html>";
 				econtent += "<html>";
 				econtent += "<head>";
 				econtent += "<title>{{title}}</title>";
 				econtent += "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />";
-				econtent += "</head>";
-				econtent += "<body style='background-color: rgb(230,230,230); width: 100%; height: 100%'>";
-				econtent += "<link href='https://fonts.googleapis.com/css?family=Roboto|Pacifico' rel='stylesheet' type='text/css'>";
+				econtent += "</head>";*/
+				/*econtent += "<body style='background-color: rgb(230,230,230); width: 100%; height: 100%'>";
+				econtent += "<link href='https://fonts.googleapis.com/css?family=Roboto|Pacifico' rel='stylesheet' type='text/css'>";*/
 				econtent += "<div style='background-color: rgb(230,230,230); width: 100%; height: 100%; min-height:300px; padding-top:20px;'>";
 				econtent += "<div style='width:400px; background-color:rgb(255,255,255); font-family: 'Roboto', sans-serif; margin:auto; margin-top: 20px; text-align: left; padding: 10px;'>";
 				econtent += "<div style='font-family: 'Pacifico-Regular', 'Pacifico',  sans-serif; font-size: 24px; margin: 10px; color: rgb(80,80,80);'>";
@@ -536,8 +539,8 @@ public class UserController {
 				econtent += "</div>";
 				econtent += "</div>";
 				econtent += "</div>";
-				econtent += "</body>";
-				econtent += "</html>";
+				//econtent += "</body>";
+				//econtent += "</html>";
 		 
 		System.out.println("email address to : " + emailTo);
 		System.out.println("email subject : " + esubject);

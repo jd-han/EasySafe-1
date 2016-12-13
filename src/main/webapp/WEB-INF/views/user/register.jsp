@@ -13,39 +13,74 @@
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="129490733099-cbhgf7srukhsjjs31stn7mtcdes5l47s.apps.googleusercontent.com"> -->
 <style type="text/css">
-.customGPlusSignIn {
-     display: inline-block;
-     background: white;
-     color: #444;
-     width: 125px;
-     border-radius: 5px;
-     border: thin solid #888;
-     box-shadow: 1px 1px 1px grey;
-     white-space: nowrap;
-}
-.customGPlusSignIn:hover {
-     cursor: pointer;
-     opacity: 0.5;
-}
-span.label {
-     font-family: serif;
-     font-weight: normal;
-}
-span.icon {
-     background: url('https://www.google.com/favicon.ico') transparent 1px
-          50% no-repeat;
-     display: inline-block;
-     vertical-align: middle;
-     width: 42px;
-     height: 42px;
-}
-span.buttonText {
-     vertical-align: middle;
-     font-size: 24px;
-     font-weight: bold;
-     /* Use the Roboto font that is loaded in the <head> */
-     font-family: 'Roboto', sans-serif;
-}
+	#gSignInWrapper{
+		width: 100%;
+		padding: 0 0 0 0;
+	}
+	#FBloginBtn{
+		width: 100%;
+		background: linear-gradient(#4c69ba, #3b55a0) !important;
+		border-radius: 5px;
+		border: thin solid #888;
+		box-shadow: 1px 1px 1px grey;
+		white-space: nowrap;
+		margin-bottom: 5px;
+	}
+	#FBloginBtn:HOVER{
+		opacity: 0.5;
+	}
+	.customGPlusSignIn {
+		display: inline-block;
+		background: white;
+		color: #444;
+		width: 100%;
+		border-radius: 5px;
+		border: thin solid #888;
+		box-shadow: 1px 1px 1px grey;
+		white-space: nowrap;
+	}
+	
+	.customGPlusSignIn:hover {
+		cursor: pointer;
+		opacity: 0.5;
+	}
+	
+	/* .customGPlusSignIn {
+	     display: inline-block;
+	     background: white;
+	     color: #444;
+	     width: 125px;
+	     border-radius: 5px;
+	     border: thin solid #888;
+	     box-shadow: 1px 1px 1px grey;
+	     white-space: nowrap;
+	}
+	.customGPlusSignIn:hover {
+	     cursor: pointer;
+	     opacity: 0.5;
+	} */
+	span.label {
+	     font-family: serif;
+	     font-weight: normal;
+	}
+	span.icon {
+	     background: url('https://www.google.com/favicon.ico') transparent 1px
+	          50% no-repeat;
+	     display: inline-block;
+	     vertical-align: middle;
+	     width: 42px;
+	     height: 42px;
+	}
+	span.buttonText {
+	     vertical-align: middle;
+	     font-size: 24px;
+	     font-weight: bold;
+	     /* Use the Roboto font that is loaded in the <head> */
+	     font-family: 'Roboto', sans-serif;
+	}
+	b{
+		font-size: 20px;
+	}
 </style>
 </head>
 <body>
@@ -60,8 +95,9 @@ span.buttonText {
           <div class="col-md-5">
               <div class="panel panel-default">
                    <div class="panel-heading">
-                        <h4>가입 정보 입력</h4>
+                        <b style="font-size: 30px;">가입 정보 입력</b>
                    </div>
+                   <hr>
                    <div class="panel-body" style="width: 100%;">
                         <form action="registerForm.do" method="POST" id="registForm">
                              <button id="FBloginBtn" style="background: none; border: none;"
@@ -82,36 +118,39 @@ span.buttonText {
                              </button>
                              <br>
                              <!--<img alt="" src="" id="FBimage" />-->
-                             <div class="alert alert-warning" style="text-align: center;"
-                                  id="status"></div>
-                        
+                             <div class="alert alert-warning" style="text-align: center;" id="status"></div>                        
                              <div style= "width: 90%;margin: auto;">
                                   <div class="apihidden">
-                                      ID&nbsp;<span class="label label-danger"
-                                           style="margin-bottom: 10px">필수</span>
+                                  	  <span class="fa fa-user fa-2x"></span>
+                                      <b>ID</b>&nbsp;
+                                      <span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
                                       <div class="input-group">
-                                           <input type="text" id="joinId" name="uid" class="form-control"
-                                                placeholder="ID를 입력하세요" /> <span class="input-group-btn">
-                                                <button id="checkDuplicateId" class="btn btn-success">중복확인</button>
-                                           </span>
+                                      	<input type="text" id="joinId" name="uid" class="form-control" placeholder="ID를 입력하세요" /> 
+                                        <span class="input-group-btn">
+                                        	<button id="checkDuplicateId" class="btn btn-success">중복확인</button>
+                                        </span>
                                       </div>
                                       <div class="alert alert-success" id="isDuplicateId"></div>
-                                      패스워드&nbsp;<span class="label label-danger">필수</span> <input
-                                           type="password" id="joinPass" name="upw"
-                                           class="form-control input" placeholder="패스워드를 입력하세요" /> 패스워드
-                                      확인 <input type="password" id="checkPass"
-                                           class="form-control input" placeholder="패스워드를 확인하세요" />
+                                      <span class="fa fa-lock fa-2x"></span>
+                                      <b>패스워드</b>&nbsp;
+                                      <span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
+                                      	<input type="password" id="joinPass" name="upw" class="form-control input" placeholder="패스워드를 입력하세요" />
+                                      <span class="fa fa-unlock-alt fa-2x"></span>
+                                      <b>패스워드확인</b>
+                                      	<input type="password" id="checkPass" class="form-control input" placeholder="패스워드를 확인하세요" />
                                   </div>
                                   <div class="alert alert-danger" id="isCheckPass"></div>
-                                  이름&nbsp;<span class="label label-danger">필수</span> <input
-                                      type="text" id="joinName" name="uname" class="form-control"
-                                      placeholder="이름을 입력하세요" /> <br>
-<!--                                   <div class="alert alert-danger" id="isName"></div> -->
-                                  이메일&nbsp;<span class="label label-danger">필수</span>
+                                  <span class="fa fa-pencil fa-2x"></span>
+                                  	<b>이름&nbsp;</b>
+                                  	<span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
+										<input type="text" id="joinName" name="uname" class="form-control" placeholder="이름을 입력하세요" />
+								  <br>
+								  <span class="fa fa-envelope fa-2x"></span>
+                                  	<b>이메일</b>&nbsp;
+                                  	<span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
                                   <div class="input-group text-center">
-                                      <input type="text" id="joinEmail" name="umail"
-                                           class="form-control input" placeholder="Email을 입력하세요" /> <span
-                                           class="input-group-btn">
+                                      <input type="text" id="joinEmail" name="umail" class="form-control input" placeholder="Email을 입력하세요" />
+                                      <span class="input-group-btn">
                                            <button id="checkDuplicateEmail" class="btn btn-success">중복확인</button>
                                       </span>
                                   </div>

@@ -114,7 +114,8 @@
 				<div class="col-md-4 col-sm-6">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4>Log in</h4>
+							<b style="font-size: 30px;">Log in</b>
+							<hr>
 						</div>
 						<div class="panel-body">
 						<div class="list-group">

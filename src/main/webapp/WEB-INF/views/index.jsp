@@ -68,19 +68,23 @@
 <div class="container" id="main">
 	<h1 style="text-align: center; color: white; font-size: 50px; font-weight:bold; text-shadow: 0 0 10px black;">Easy Safe</h1>
 	<img src="${pageContext.request.contextPath}/resources/media/img/face.png" class="center-block"/>
+	<form action="search.do" method="get" onsubmit="chkSearch()">
 	<div class="input-group text-center">
-		<input type="text" id="keyword" class="form-control input-lg" placeholder="검색어를 입력하세요" />
+		<input type="text" id="keyword" name="key" class="form-control input-lg" placeholder="검색어를 입력하세요" />
+		<input type="hidden" name="user" value="${login.uid}" />
 		<span class="input-group-btn">
-			<button id="search" class="btn btn-lg btn-success">검색</button>
+			<button id="search" class="btn btn-lg btn-success" type="submit">검색</button>
 		</span>
 	</div>
+	</form>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script type="text/javascript">
-		$("#search").click(function() {
-// 			alert("성분검색누름" + $("#inputChem").val());
-			self.location = "search.do" + "?key=" + $("#keyword").val() + "&user=" + '${login.uid}';
-		});
+		function chkSearch(){
+			if($("#keyword").val() == ""){
+				return false;
+			}
+		}
 	</script>
 <!--
    <div class="row">
