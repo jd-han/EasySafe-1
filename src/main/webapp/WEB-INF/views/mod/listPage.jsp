@@ -188,7 +188,7 @@
 								 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var = "idx">
 								<li
 								<c:out value="${pageMaker.cri.page ==idx? 'class=active':''}"/>>
-								<a href="listPage.do?page=${idx}">${idx}</a>
+								<a href="listPage.do${pageMaker.makeSearch(idx)}">${idx}</a>
 								</li>
 								 </c:forEach>
 								<!-- 다음 페이지들로 가는 호ㅏ살표 -->

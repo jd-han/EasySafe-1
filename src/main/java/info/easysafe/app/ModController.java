@@ -52,12 +52,15 @@ public class ModController {
 		System.out.println("회원 페이징과 검색. ");
 		logger.info(cri.toString());
 		
-		model.addAttribute("list", service.listSearchCriteria(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.listSearchCount(cri));
-		
+		pageMaker.setTotalCount(service.listSearchCount(cri)); 	 	
 		model.addAttribute("pageMaker", pageMaker);
+		
+		logger.info("mid");
+		model.addAttribute("list", service.listSearchCriteria(cri));
+		logger.info("end");
+		
 	}
 	
 //	ver 2.

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="info.easysafe.mapper.IssueMapper">
+
+	<insert id="create">
+		insert into tbl_issue (title, content, writer)
+		values(#{title},#{content}, #{writer})
+	</insert>
+
+	<select id="read" resultType="IssueVO">
+		select
+		ino, title, content, writer,
+		regdate, viewcount , replycount
+		from
+		tbl_issue
+		where ino = #{ino}
+	</select>
+
+	<select id="listAll" resultType="IssueVO">
+ <![CDATA[
+ select 
+   ino, title, content, writer, regdate, viewcount 
+ from 
+   tbl_issue 
+ where ino > 0 
+ order by ino desc, regdate desc
+ ]]>
+	</select>
+
+	<select id="listPage" resultType="IssueVO">
+ <![CDATA[
+ select 
+   ino, title, content, writer, regdate, viewcount , replycount
+ from 
+   tbl_issue 
+ where ino > 0 
+ order by ino desc, regdate desc
+ limit #{page}, 10
+ ]]>
+	</select>
+
+	<select id="listCriteria" resultType="IssueVO">
+ <![CDATA[
+ select 
+   ino, title, content, writer, regdate, viewcount , replycount
+ from 
+   tbl_issue 
+ where ino > 0 
+ order by ino desc, regdate desc
+ limit #{pageStart}, #{perPageNum}
+ ]]>
+	</select>
+
+
+	<update id="update">
+		update tbl_issue set title =#{title}, content=#{content}
+		where ino = #{ino}
+	</update>
+
+	<delete id="delete">
+		delete from tbl_issue where ino = #{ino}
+	</delete>
+
+
+
+	<select id="countPaging" resultType="int">
+ <![CDATA[
+ select 
+   count(ino) 
+ from 
+   tbl_issue 
+ where 
+   ino > 0 
+ ]]>
+	</select>
+
+
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and writer like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%') OR content
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and ( content like CONCAT('%', #{keyword}, '%') OR writer
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%')
+				OR
+				content
+				like CONCAT('%', #{keyword}, '%')
+				OR
+				writer like CONCAT('%',
+				#{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+
+	<select id="listSearch" resultType="IssueVO">
+<![CDATA[  
+  select * 
+  from tbl_issue 
+  where ino > 0 
+]]>
+
+		<include refid="search"></include>
+  
+<![CDATA[    
+  order by ino desc
+  limit #{pageStart}, #{perPageNum}
+]]>
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+<![CDATA[  
+  select count(ino) 
+  from tbl_issue 
+  where ino > 0 
+]]>
+		<include refid="search"></include>
+
+	</select>
+
+
+
+	<update id="updateReplyCnt">
+		update tbl_issue set replycount = replycount + #{amount} where ino = #{ino}
+	</update>
+
+
+	<update id="updateViewCnt">
+		update tbl_issue set viewcount = viewcount +1 where ino = #{ino}
+	</update>
+
+
+
+	<insert id="addAttach">
+		insert into tbl_issueattach(fullName, ino) values (#{fullName}, LAST_INSERT_ID())
+	</insert>
+
+
+	<select id="getAttach" resultType="string">
+		select fullname from tbl_issueattach where ino = #{ino} order by regdate
+	</select>
+
+
+	<delete id="deleteAttach">
+		delete from tbl_issueattach where ino = #{ino}
+	</delete>
+
+	<insert id="replaceAttach">
+		insert into tbl_issueattach(fullName, ino) values (#{fullName}, #{ino})
+	</insert>
+
+
+</mapper>

@@ -22,11 +22,20 @@
 <body>
 <%@ include file="../nav.jsp" %>
 	<!--main-->
+<<<<<<< HEAD
 	<div class="container" id="main">
 		<!-- <div class="row">
 			<!-- <div class="col-md-12">	
 			<div class="col-xs-1"></div>
 			<div class="col-xs-10 col-xs-12">
+=======
+	<div class="container-fluid" id="main">
+		<div class="row">
+			<div class="col-md-12">
+	
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+>>>>>>> 7dc5caf1a74d12cc7b69179d84229f78d3916519
 			<div class="well">
 			
 			</div>-->
@@ -96,7 +105,8 @@
 								 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var = "idx">
 								<li
 								<c:out value="${pageMaker.cri.page ==idx? 'class=active':''}"/>>
-								<a href="listPage.do?page=${idx}">${idx}</a>
+<%-- 								<a href="listPage.do?page=${idx}">${idx}</a> --%>
+								<a href="listPage.do${pageMaker.makeSearch(idx)}">${idx}</a>
 								</li>
 								 </c:forEach>
 								<!-- 다음 페이지들로 가는 호ㅏ살표 -->
@@ -128,6 +138,7 @@
 						<!-- <div class="col-xs-6"></div> -->
 					</div>
 				</div>
+<<<<<<< HEAD
 			</div>
 		<!-- </div></div></div> -->
 		<!-- <div class="row">
@@ -139,6 +150,30 @@
                    			
 			<!-- </div>
 		</div></div> -->		
+=======
+				
+
+				<div class="panel panel-default"></div>
+				
+				
+		</div>
+			<div class="col-md-3">
+			
+			<img height="500px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>
+                   <a href="${pageContext.request.contextPath}/index.do">
+                   <img alt="너구리"
+                             src="${pageContext.request.contextPath}/resources/media/img/panda01_nobg.png"
+                             style="width: 80%; height: 80%;" /></a>
+			</div>
+		</div>
+			</div>
+			
+			</div>
+			
+			
+		</body>
+		
+>>>>>>> 7dc5caf1a74d12cc7b69179d84229f78d3916519
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#curPage").html("Notice");
@@ -153,6 +188,13 @@ $(document).ready(function(){
 							}
 					);
 })
+<<<<<<< HEAD
 </script>		
 </body>
+=======
+
+</script>
+		
+		
+>>>>>>> 7dc5caf1a74d12cc7b69179d84229f78d3916519
 </html>

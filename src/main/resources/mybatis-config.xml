@@ -10,6 +10,8 @@
 		<typeAlias type="info.easysafe.domain.UserVO" alias="UserVO"/>
 		<typeAlias type="info.easysafe.domain.KeywordVO" alias="KeywordVO"/>
 		<typeAlias type="info.easysafe.domain.MsgVO" alias="MsgVO"/>
+		<typeAlias type="info.easysafe.domain.IssueVO" alias="IssueVO"/>
+		<typeAlias type="info.easysafe.domain.ReplyVO" alias="ReplyVO"/>
 <!-- 	<typeAlias type="org.zerock.domain.MessageVO" alias="MessageVO"/> -->
 	</typeAliases>
 
