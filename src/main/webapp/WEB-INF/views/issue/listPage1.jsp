@@ -37,20 +37,29 @@
 			<div class="well">
 			<form class="form-inline">
 			 <select name="searchType" class="form-control">
-						<option value="no"
+						<option value="n"
 							<c:out value="${cri.searchType == null?'selected':''}"/>>
-							검색유형을 선택하세요</option>
-						<option value="title"
-							<c:out value="${cri.searchType eq 'title'?'selected':''}"/>>
-							제목으로 검색</option>
-						<option value="content"
-							<c:out value="${cri.searchType eq 'content'?'selected':''}"/>>
-							내용으로 검색</option>
-						<option value="titlecontent"
-							<c:out value="${cri.searchType eq 'titlecontent'?'selected':''}"/>>
-							제목이나 내용으로 검색</option>
-					</select> <input type="text" class="form-control" placeholder="검색어 입력" name='keyword' id="keywordInput"
-						value='${cri.keyword }'/>
+							---</option>
+						<option value="t"
+							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							제목</option>
+						<option value="c"
+							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							내용</option>
+						<option value="w"
+							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+							글쓴이</option>
+						<option value="tc"
+							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+							제목이나 내용</option>
+						<option value="cw"
+							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
+							내용이나 글쓴이</option>
+						<option value="tcw"
+							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
+							제목, 글쓴이, 내용</option>
+					</select> <input type="text" name='keyword' id="keywordInput"
+						value='${cri.keyword }'>
 					<a id='searchBtn' class="btn btn-default" href="#">검색</a>
 			</form>
 			</div>

@@ -26,8 +26,6 @@ public class ModController {
 	@Inject
 	private UserService service;
 	
-	
-	
 	//ver 3.  페이징, 검색 있는 컨트롤러. 
 	@RequestMapping(value="/listPage.do", method=RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model) throws Exception{

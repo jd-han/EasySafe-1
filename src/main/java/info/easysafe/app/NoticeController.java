@@ -48,44 +48,13 @@ public class NoticeController {
 		
 	}
 	
-	//ver 3.
-//	@RequestMapping(value="/listPage.do", method=RequestMethod.GET)
-//	public void listPage(@ModelAttribute("cri")SearchCriteria cri, Model model) throws Exception{
-//		
-//		System.out.println("회원 페이징하기. ");
-//		logger.info(cri.toString());
-//		
-//		model.addAttribute("list", service.listCriteria(cri));
-//		PageMaker pageMaker = new PageMaker();
-//		pageMaker.setCri(cri);
-//		pageMaker.setTotalCount(service.listCountCriteria(cri)); 	 	
-//		
-//		model.addAttribute("pageMaker", pageMaker);
-//	}
 	
-//	@RequestMapping(value="/list.do", method=RequestMethod.GET)
-//	public ModelAndView listAllNotice (ModelAndView mav, Model model ) throws Exception{
-//		System.out.println("공지사항 리스트 보기");
-//		List<NoticeVO> nList = service.listNotice();
-//		mav.addObject("noticeList", nList);
-//		model.addAttribute("list", nList);
-//		
-//		return mav;
-//	}
 	
 	@RequestMapping(value="/read.do", method = RequestMethod.GET)
 	public void readNotice(@RequestParam("no")int no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception{
 		System.out.println(no+"번 공지사항 상세 보기");
 		model.addAttribute(service.readNotice(no));
 	}
-//	@RequestMapping(value="/read.do", method = RequestMethod.GET)
-//	public ModelAndView readNotice(int no, Model model, ModelAndView mav) throws Exception{
-//		System.out.println(no+"번 공지사항 상세 보기");
-//		NoticeVO vo = service.readNotice(no);
-//		model.addAttribute("notice", vo);
-//		mav.addObject("noticeOb", vo);
-//		return mav;
-//	}
 	
 	//여기부터는 관리자만!
 	
@@ -127,7 +96,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/create.do", method= RequestMethod.GET)
-	public void createNoticeGet(NoticeVO vo, Model model) throws Exception{
+	public void createNoticeGet() throws Exception{
 		System.out.println("공지 작성 페이지");
 	}
 	

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="info.easysafe.mapper.ReplyMapper">
+
+	<select id="list" resultType="ReplyVO">
+		select *
+		from tbl_issuereply
+		where ino = #{ino}
+		order by rno asc
+	</select>
+	
+	<select id="listPage" resultType="ReplyVO">
+		select * from tbl_issuereply
+		where ino = #{ino}
+		order by rno desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<select id="count">
+		select count(ino) from tbl_issuereply where ino = #{ino}
+	</select>
+	
+	<insert id="create">
+		insert into tbl_issuereply(ino, replytext, replyer)
+		values(#{ino}, #{replytext}, #{replyer})
+	</insert>
+	
+	<update id="update">
+		update tbl_issuereply set replytext = #{replytext}, updatedate=now()
+		where rno = #{rno}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_issuereply where rno = #{rno}
+	</delete>
+	
+	<delete id="deleteWholeReply">
+		delete from tbl_issuereply where ino = #{ino}
+	</delete>
+	
+	<select id="getIno" resultType="int" >
+		select ino from tbl_issuereply where rno = #{rno}
+	</select>
+	
+	
+	
+</mapper>

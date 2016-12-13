@@ -13,7 +13,7 @@
 <style type="text/css">
 	.navbar-header{
 		position: absolute;
-		right: 235px;
+		right: 320px;
 		vertical-align: middle;
 	}
 	.glowicon{
@@ -96,6 +96,7 @@
 		        		<li><a href="${pageContext.request.contextPath}/user/logout.do" role="button">Logout</a></li>
 		        	</c:otherwise>
 		        	</c:choose>	        	
+		        <li><a href="${pageContext.request.contextPath}/issue/listPage.do" role="button" data-toggle="modal">Issues</a></li>
 		        <li><a href="${pageContext.request.contextPath}/notice/listPage.do" role="button" data-toggle="modal">Notice</a></li>
 	        </ul>
         </span>

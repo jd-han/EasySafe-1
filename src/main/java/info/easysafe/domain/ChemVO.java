@@ -26,11 +26,7 @@ public class ChemVO {
 	private int replycnt;
 	public int getNo() {
 		return no;
-	}
-<<<<<<< HEAD
-	private int viewcnt;
-	private int replycnt;
-	
+	}	
 	
 	
 //	public String getKorName() {
@@ -46,8 +42,6 @@ public class ChemVO {
 //		this.engName = engName;
 //	}
 	
-=======
->>>>>>> 4b3bebde22ad4a73a5ddabfd949df445c18c386d
 	public void setNo(int no) {
 		this.no = no;
 	}
@@ -117,8 +111,6 @@ public class ChemVO {
 	public void setAvg(String avg) {
 		this.avg = avg;
 	}
-<<<<<<< HEAD
-=======
 	public int getViewcnt() {
 		return viewcnt;
 	}
@@ -131,17 +123,11 @@ public class ChemVO {
 	public void setReplycnt(int replycnt) {
 		this.replycnt = replycnt;
 	}
->>>>>>> 4b3bebde22ad4a73a5ddabfd949df445c18c386d
 	@Override
 	public String toString() {
 		return "ChemVO [no=" + no + ", name=" + name + ", korea=" + korea + ", us=" + us + ", eu=" + eu + ", ins=" + ins
 				+ ", cas=" + cas + ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", australia="
-<<<<<<< HEAD
 				+ australia + ", avg=" + avg + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
 	}
-=======
-				+ australia + ", aus=" + aus + ", avg=" + avg + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
-	}
 	
->>>>>>> 4b3bebde22ad4a73a5ddabfd949df445c18c386d
 }
