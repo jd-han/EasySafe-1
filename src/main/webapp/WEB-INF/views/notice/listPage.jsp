@@ -21,24 +21,7 @@
 </head>
 <body>
 <%@ include file="../nav.jsp" %>
-	<!--main-->
-<<<<<<< HEAD
 	<div class="container" id="main">
-		<!-- <div class="row">
-			<!-- <div class="col-md-12">	
-			<div class="col-xs-1"></div>
-			<div class="col-xs-10 col-xs-12">
-=======
-	<div class="container-fluid" id="main">
-		<div class="row">
-			<div class="col-md-12">
-	
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
->>>>>>> 7dc5caf1a74d12cc7b69179d84229f78d3916519
-			<div class="well">
-			
-			</div>-->
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<span class="fa fa-newspaper-o fa-2x"></span>
@@ -65,7 +48,6 @@
 									<button id="searchBtn" class="btn btn-success" type="button">검색</button>
 								</span>
 							</div>
-								<!-- <a id='searchBtn' class="btn btn-success" href="#">검색</a> -->
 						</form>
 					<hr>
 					</div>
@@ -88,8 +70,6 @@
 							</c:forEach>
 						</table>
 						<c:if test="${uvo.ulevel eq 'admin'}">
-							<!-- <div class="col-xs-7"></div>
-							<div class="col-xs-3"></div> -->
 							<div class="col-xs-2" >
 								<a class="btn btn-primary pull-left"
 									href="/notice/create.do" type="button">공지 작성</a>
@@ -105,7 +85,6 @@
 								 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var = "idx">
 								<li
 								<c:out value="${pageMaker.cri.page ==idx? 'class=active':''}"/>>
-<%-- 								<a href="listPage.do?page=${idx}">${idx}</a> --%>
 								<a href="listPage.do${pageMaker.makeSearch(idx)}">${idx}</a>
 								</li>
 								 </c:forEach>
@@ -122,58 +101,9 @@
 	                	style="width: 30%; height: 30%; margin-left: 10%; margin-top: 5%;" />
 	                </a>
 					</div>
-						<%-- <div class="list-group">
-							<span class="list-group-item">제목 
-								<span class="pull-right">작성일자&nbsp;&nbsp;&nbsp;</span>
-							</span>
-							<c:forEach items="${list}" var="noticeVO">
-								<!-- <span class="list-group-item"> -->
-								<a href='/notice/read.do${pageMaker.makeSearch(pageMaker.cri.page)}&no=${noticeVO.noticeNo}' class="list-group-item">${noticeVO.title} 
-									<span class="pull-right"><fmt:formatDate pattern="yyyy-MM-dd" value="${noticeVO.regDate}" /></span>
-								</a>
-								<!-- </span> -->
-							</c:forEach>
-							<!-- 							<a href="http://bootply.com/tagged/modal" class="list-group-item">Modal/ Dialog</a>  -->
-						</div> --%>
-						<!-- <div class="col-xs-6"></div> -->
 					</div>
 				</div>
-<<<<<<< HEAD
 			</div>
-		<!-- </div></div></div> -->
-		<!-- <div class="row">
-			<div class="col-md-12">
-			<div class="col-xs-1"></div>
-			<div class="col-xs-10 col-xs-12"> -->
-<!-- 			<div class="col-md-4 col-sm-12"> -->
-			<%-- <img height="60px" width="1200px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"> --%>
-                   			
-			<!-- </div>
-		</div></div> -->		
-=======
-				
-
-				<div class="panel panel-default"></div>
-				
-				
-		</div>
-			<div class="col-md-3">
-			
-			<img height="500px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>
-                   <a href="${pageContext.request.contextPath}/index.do">
-                   <img alt="너구리"
-                             src="${pageContext.request.contextPath}/resources/media/img/panda01_nobg.png"
-                             style="width: 80%; height: 80%;" /></a>
-			</div>
-		</div>
-			</div>
-			
-			</div>
-			
-			
-		</body>
-		
->>>>>>> 7dc5caf1a74d12cc7b69179d84229f78d3916519
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#curPage").html("Notice");
@@ -188,13 +118,6 @@ $(document).ready(function(){
 							}
 					);
 })
-<<<<<<< HEAD
 </script>		
 </body>
-=======
-
-</script>
-		
-		
->>>>>>> 7dc5caf1a74d12cc7b69179d84229f78d3916519
 </html>
