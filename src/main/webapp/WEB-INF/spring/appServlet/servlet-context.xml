@@ -44,6 +44,7 @@
 <!-- 			//로그인하지 않은 상태에서 index에 접근하면 로그인하라고 뜸.  -->
 		<interceptor>
 			<mapping path="/user/mypage.do"/>
+			<mapping path="/issue/create.do"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 		

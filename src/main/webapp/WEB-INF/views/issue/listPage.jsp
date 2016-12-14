@@ -21,6 +21,14 @@
 	href="${pageContext.request.contextPath}/resources/bootstrap/css/styles.css"
 	type="text/css" />
 
+<style type="text/css">
+.writerkan {
+text-align: center;
+display:inline-block;
+width: 100px;
+}
+</style>
+
 </head>
 <body>
 		<%@ include file="../nav.jsp" %>
@@ -29,38 +37,9 @@
 		<div class="row">
 			<div class="col-md-12">
 	
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-			<div class="well">
-			<form class="form-inline">
-			 <select name="searchType" class="form-control">
-					<option value="n"
-							<c:out value="${cri.searchType == null?'selected':''}"/>>
-							검색 유형</option>
-						<option value="t"
-							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-							제목</option>
-						<option value="c"
-							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
-							내용</option>
-						<option value="w"
-							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
-							글쓴이</option>
-						<option value="tc"
-							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-							제목이나 내용</option>
-						<option value="cw"
-							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
-							내용이나 글쓴이</option>
-						<option value="tcw"
-							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-							제목, 글쓴이, 내용</option>
-					</select> 
-						 <input type="text" class="form-control" placeholder="검색어 입력" name='keyword' id="keywordInput"
-						value='${cri.keyword }'/>
-					<a id='searchBtn' class="btn btn-default" href="#">검색</a>
-			</form>
-			</div>
+			<div class="col-md-1"></div>
+			<div class="col-md-8">
+<!-- 			<div class="well">			</div> -->
 			
 			
 			
@@ -76,23 +55,22 @@
 									class="list-group-item"> 
 										${IssueVO.title} 
 										 <strong>[${IssueVO.replycount }]</strong>
-										<span>${IssueVO.writer}</span>
 										<span
 										class="pull-right">
+										<span class="writerkan">${IssueVO.writer}</span>
 										<fmt:formatDate	pattern="yyyy-MM-dd" value="${IssueVO.regdate}" /> </span>
 								</a>
 
 							</c:forEach>
 						</div>
 						<div class="col-xs-10"></div>
-						<c:if test="${!empty uvo}">
+						<c:if test="${!empty uvo}"></c:if>
 							<div class="col-xs-7"></div>
 							<div class="col-xs-3"></div>
 							<div class="col-xs-2" >
 								<a class="btn btn-primary center-block"
 									href="/issue/create.do" type="button">글 올리기</a>
 							</div>						
-						</c:if>
 <%-- 						<c:if test="${uvo.ulevel eq 'admin'}"> --%>
 <!-- 							<div class="col-xs-7"></div> -->
 <!-- 							<div class="col-xs-3"></div> -->
@@ -122,6 +100,36 @@
 								</c:if>
 							</ul>
 						</div>
+						
+							<form class="form-inline">
+			 <select name="searchType" class="form-control" style="margin-left: 210px">
+					<option value="n"
+							<c:out value="${cri.searchType == null?'selected':''}"/>>
+							검색 유형</option>
+						<option value="t"
+							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							제목</option>
+						<option value="c"
+							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							내용</option>
+						<option value="w"
+							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+							글쓴이</option>
+						<option value="tc"
+							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+							제목이나 내용</option>
+						<option value="cw"
+							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
+							내용이나 글쓴이</option>
+						<option value="tcw"
+							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
+							제목, 글쓴이, 내용</option>
+					</select> 
+						 <input type="text" class="form-control" placeholder="검색어 입력" name='keyword' id="keywordInput"
+						value='${cri.keyword }'/>
+					<a id='searchBtn' class="btn btn-default" href="#">검색</a>
+			</form>
+						
 					</div>
 				</div>
 				
@@ -132,11 +140,11 @@
 		</div>
 			<div class="col-md-3">
 			
-			<img height="450px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>
+			<img height="420px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>
                    <a href="${pageContext.request.contextPath}/index.do">
                    <img alt="너구리"
-                             src="${pageContext.request.contextPath}/resources/media/img/panda03_nobg.png"
-                             style="width: 80%; height: 80%;" /></a>
+                             src="${pageContext.request.contextPath}/resources/media/img/glassholding.png"
+                             style="width: 80%; height: 80%" /></a>
 			</div>
 		</div>
 			</div>
