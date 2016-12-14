@@ -87,11 +87,13 @@ public class AppUserController {
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
 	public UserVO register(@RequestBody UserVO vo) throws Exception {
 		String apiKey = TokenUtil.apiKeyCreate();
+		String tempUpw = vo.getUpw();
 		vo.setApikey(apiKey);
+		vo.setUpw(Sha512Encrypt.hash(vo.getUpw()));
 		System.out.println("회원가입 들어옴 ");
 		if (service.registerUser(vo) == 1) {
 			System.out.println("회원가입 성공, 로그인을 통한 토큰 돌려주기 시도");
-
+			vo.setUpw(tempUpw);
 			return loginAppUser(vo);
 		}
 		System.out.println("회원가입 실패");
@@ -107,7 +109,11 @@ public class AppUserController {
 		System.out.println("자체 로그인 들어옴");
 		try {
 			vo = service.getUserById(voSub.getUid());
-			if (vo.getUpw().equals(voSub.getUpw())) {
+
+			logger.info("vo.getUpw() : " + vo.getUpw());
+			logger.info("Sha512Encrypt.hash(voSub.getUpw()) : " + Sha512Encrypt.hash(voSub.getUpw()));
+			
+			if (vo.getUpw().equals(Sha512Encrypt.hash(voSub.getUpw()))) {
 				tempToken = makeToken(vo);
 				vo.setToken(tempToken);
 			} else {

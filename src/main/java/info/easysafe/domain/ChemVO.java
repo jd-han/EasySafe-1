@@ -24,14 +24,6 @@ public class ChemVO {
 	private String type;	
 	private int viewcnt;
 	private int replycnt;
-	
-	
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
 	public int getNo() {
 		return no;
 	}
@@ -104,6 +96,12 @@ public class ChemVO {
 	public void setAvg(String avg) {
 		this.avg = avg;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public int getViewcnt() {
 		return viewcnt;
 	}
@@ -116,7 +114,6 @@ public class ChemVO {
 	public void setReplycnt(int replycnt) {
 		this.replycnt = replycnt;
 	}
-	
 	@Override
 	public String toString() {
 		return "ChemVO [no=" + no + ", name=" + name + ", korea=" + korea + ", us=" + us + ", eu=" + eu + ", ins=" + ins
@@ -124,4 +121,8 @@ public class ChemVO {
 				+ australia + ", avg=" + avg + ", type=" + type + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt
 				+ "]";
 	}
+	
+	
+	
+
 }

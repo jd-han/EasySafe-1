@@ -337,10 +337,17 @@ public class UserController {
 			System.out.println("파일을 mreq에서 가져왔다. ");
 			logger.info("original name : " + file.getOriginalFilename());
 			logger.info("size : " + file.getSize());
+
+			//			리눅스 경로
+//			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
+			uploadPath = "C:/easysafe/resources/";
 			// 프사 업로드용 경로를 추가 해줌.
 			uploadPath = uploadPath + "/profiles";
 			String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
 			// 업로드 패스를 위에서 변경했기 때문에 원래 값으로 강제복원 해줘야 함.
+//리눅스 경로			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources/"; 일반경로 uploadPath = "C:/easysafe/resources/";
+//			리눅스 경로
+//			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
 			uploadPath = "C:/easysafe/resources/";
 			// savedName = "/profiles" + savedName;
 			logger.info("정보수정용프사 경로 : " + savedName);
@@ -376,6 +383,9 @@ public class UserController {
 	public ResponseEntity<byte[]> displayFile(String filename, String cate) throws Exception {
 		
 		// 업로드 패스를 위에서 변경했기 때문에 원래 값으로 강제복원 해줘야 함.
+		//경로 리셋
+//리눅스 경로 uploadPath = "/usr/tomcat8/webapps/EasySafe/resources/";
+//		uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
 		uploadPath = "C:/easysafe/resources/";
 		
 		InputStream in = null;
@@ -514,16 +524,10 @@ public class UserController {
 		service.resetPass(uvo);
 		// 해당 비밀번호를 emailTo 의 주소로 내용 꾸며서 발송 
 		// 메일 제목과 내용
-		String esubject = toUser + " 님의 임시 비밀번호가 발급되었습니다.";
+		String esubject = "[EasySafe] " + toUser + " 님의 임시 비밀번호가 발급되었습니다.";
 		String econtent = "";/*= toUser + " 님의 임시 비밀번호는 [ " + tempPass + " ] 입니다. 바로 로그인 하시고 다른 암호로 변경하시기 바랍니다.";*/
-				/*econtent += "<!DOCTYPE html>";
-				econtent += "<html>";
-				econtent += "<head>";
-				econtent += "<title>{{title}}</title>";
-				econtent += "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />";
-				econtent += "</head>";*/
-				/*econtent += "<body style='background-color: rgb(230,230,230); width: 100%; height: 100%'>";
-				econtent += "<link href='https://fonts.googleapis.com/css?family=Roboto|Pacifico' rel='stylesheet' type='text/css'>";*/
+				econtent += "<body style='background-color: rgb(230,230,230); width: 100%; height: 100%'>";
+				econtent += "<link href='https://fonts.googleapis.com/css?family=Roboto|Pacifico' rel='stylesheet' type='text/css'>";
 				econtent += "<div style='background-color: rgb(230,230,230); width: 100%; height: 100%; min-height:300px; padding-top:20px;'>";
 				econtent += "<div style='width:400px; background-color:rgb(255,255,255); font-family: 'Roboto', sans-serif; margin:auto; margin-top: 20px; text-align: left; padding: 10px;'>";
 				econtent += "<div style='font-family: 'Pacifico-Regular', 'Pacifico',  sans-serif; font-size: 24px; margin: 10px; color: rgb(80,80,80);'>";
@@ -539,8 +543,7 @@ public class UserController {
 				econtent += "</div>";
 				econtent += "</div>";
 				econtent += "</div>";
-				//econtent += "</body>";
-				//econtent += "</html>";
+				econtent += "</body>";
 		 
 		System.out.println("email address to : " + emailTo);
 		System.out.println("email subject : " + esubject);
@@ -573,7 +576,8 @@ public class UserController {
 		mimeMessage.setFrom(new InternetAddress("admin@easysafe.info"));
 		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 		mimeMessage.setSubject(subject);
-		mimeMessage.setText(body);
+		mimeMessage.setContent(body, "text/html; charset=UTF-8");
+		
 		Transport.send(mimeMessage);
 	}
 	
