@@ -101,7 +101,7 @@
 								<div class="input-group-btn">
 									<button class="btn btn-default" id="replyAddBtn">+1</button>
 								</div>
-								<input type="text" class="form-control" id="newReplyText"
+								<input type="text" class="form-control" id="newReplyText"/>
 							</div>
 						</div>
 					</div>
@@ -176,9 +176,6 @@
 								formObj.submit();
 							});
 						});
-		
-		
-							});
 
 		$("#replyAddBtn").on("click",function() {
 
