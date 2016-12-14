@@ -61,7 +61,7 @@
 		<span class="fa fa-user-circle fa-2x"></span>
 		<label style="font-size: 30px;">마이페이지</label>
 	</div>
-	<div class="col-xs-8" style="padding-left: 0px !important; padding-right: 0px !important;">
+	<div class="col-xs-8" style="padding-left: 0px !important; padding-right: 0px !important; float: left;">
 		<div class="alert alert-info">
 			<strong>개인정보 안내: </strong> 비밀번호의 주기적인 변경을 통해 개인정보를 안전하게 보호하세요.
 		</div>
@@ -248,11 +248,6 @@
 </div>
 
 <script type="text/javascript">
-
-$(document).ready(function() {
-		$("#curPage").html("나의 정보");
-	});
-    
 function chkUpdate() {	
     var result = true;
           if ($("#oripw").val() == "") {

@@ -49,10 +49,6 @@
 		</div>
 	</div>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#curPage").html("메시지 내용");
-	});
-	
 	function replyModal(){
 		findId = false;
 		$("#msgUser").val("${msgDetail.sendUser}");

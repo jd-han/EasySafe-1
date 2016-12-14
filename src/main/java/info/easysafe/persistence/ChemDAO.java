@@ -16,7 +16,7 @@ public interface ChemDAO {
 	//�ѱ۷� ��ǰ �˻��� ���
 	public List<ProductVO> selectListProductKorName(String korKey) throws Exception;	
 	//������ Ŭ��
-	public ProductVO selectOneProductKorName(String korName) throws Exception;
+	public ProductVO selectOneProductKorName(ProductVO pvo) throws Exception;
 	
 	//���ڵ� �Է�, ��ǰ ã��
 	public ProductVO findProductWBarcode(String upc) throws Exception;

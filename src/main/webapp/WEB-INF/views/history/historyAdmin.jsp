@@ -14,21 +14,29 @@
 <style type="text/css">
 	#chartdiv {
 		width	: 100%;
-		height	: 500px;
-	}		
+		height: 650px;
+	}
+	/* .amcharts-chart-div > svg{
+		height: 600px !important;
+	}*/
+	.amChartsLegend > svg{
+		margin-left: 100px;
+	/*	height: 200px !important;
+		overflow: visible !important;*/
+	} 
 </style>
 </head>
 <body>
 <%@ include file="../nav.jsp" %>
-	<div class="container" id="main">
+	<div class="container" id="main" style="text-align: center;">
 		<span class="fa fa-area-chart fa-3x"></span>
 		<b style="font-size: 30px;">사용자의 검색 내역을 그래프화 합니다.</b>
 		<br><br><br><br>
-		<div id="chartdiv" style="height: 1000px;"></div>
+		<div id="chartdiv"></div>
 	</div>
 	
 	<script type="text/javascript">
-		var chart = AmCharts.makeChart("chartdiv", 
+		var chart = AmCharts.makeChart("chartdiv",
 		{
 			"startDuration": 0.01,
 		    "type": "serial",

@@ -259,7 +259,6 @@
 	}); */
 		
 	$(document).ready(function() {
-		$("#curPage").html("Users Modify");
 		$("#isRequestUser").css("display", "none");
 		
 		$('#searchBtn').on(

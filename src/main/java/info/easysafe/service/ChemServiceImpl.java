@@ -33,8 +33,8 @@ public class ChemServiceImpl implements ChemService {
 	}
 
 	@Override
-	public ProductVO readProductKorName(String korName) throws Exception {
-		return dao.selectOneProductKorName(korName);
+	public ProductVO readProductKorName(ProductVO pvo) throws Exception {
+		return dao.selectOneProductKorName(pvo);
 	}
 
 	@Override

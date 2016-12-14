@@ -120,12 +120,13 @@ private static final Logger logger = LoggerFactory.getLogger(AppController.class
 	
 
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping(value="/productDetail.do", method = RequestMethod.GET)
 	public ProductVO productDetail(String name) throws Exception{
 		logger.info("productDetail.do : "+name);
 		return service.readProductKorName(name);
-/*		boolean iskor = false;
+		return null;
+		boolean iskor = false;
 		  for(int i=0;i<name.length();i++){
 		     if(Character.getType(name.charAt(i)) == 5) {
 		    	 //�ѱ��� ��� 
@@ -143,8 +144,8 @@ private static final Logger logger = LoggerFactory.getLogger(AppController.class
 		//	  product = service.readProductEngName(key);
 			  System.out.println("�ѱ۾ƴ�."); //�ѱ��� ���� ���
 		  }		
-		  return product;*/
-	}
+		  return product;
+	}*/
 	
 	@ResponseBody
 	@RequestMapping(value = "/productDetailWUpc.do", method = RequestMethod.GET)

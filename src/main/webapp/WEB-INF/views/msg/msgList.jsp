@@ -153,7 +153,6 @@
 	</div>	
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#curPage").html("Message");
 		$("#isMsg").css("display", "none");
 	});
 	
