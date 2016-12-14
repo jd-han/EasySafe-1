@@ -21,9 +21,11 @@ public class ChemVO {
 	private String china;
 	private String australia;
 	private String avg;
+	private String type;
 	
 	private int viewcnt;
 	private int replycnt;
+	
 	public int getNo() {
 		return no;
 	}
@@ -108,11 +110,19 @@ public class ChemVO {
 	public void setReplycnt(int replycnt) {
 		this.replycnt = replycnt;
 	}
-	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	@Override
 	public String toString() {
 		return "ChemVO [no=" + no + ", name=" + name + ", korea=" + korea + ", us=" + us + ", eu=" + eu + ", ins=" + ins
 				+ ", cas=" + cas + ", codex=" + codex + ", japan=" + japan + ", china=" + china + ", australia="
-				+ australia + ", avg=" + avg + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
+				+ australia + ", avg=" + avg + ", type=" + type + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt
+				+ "]";
 	}
+	
+
 }

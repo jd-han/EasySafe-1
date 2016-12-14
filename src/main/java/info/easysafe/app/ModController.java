@@ -133,10 +133,12 @@ public class ModController {
 			logger.info("original name : " + file.getOriginalFilename());
 			logger.info("size : " + file.getSize());
 			// 증빙서류 업로드용 경로를 추가 해줌.
+			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
 			uploadPath = uploadPath + "/experts";
 			String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
 			// 업로드 패스를 위에서 변경했기 때문에 원래 값으로 강제복원 해줘야 함.
-			uploadPath = "C:/easysafe/resources/";
+// 리눅스 경로 조심 uploadPath = "C:/easysafe/resources/"; uploadPath = "/usr/tomcat8/webapps/EasySafe/resources/";
+			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources/";
 			logger.info("파일 이름  : " + savedName);
 			mvo.setLvUpFile(savedName);
 		}		
