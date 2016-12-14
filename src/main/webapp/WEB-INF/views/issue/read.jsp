@@ -52,11 +52,6 @@
 					</div>
 
 					<div class="panel-body">
-						<!-- 						<a href="#">Keyword: Bootstrap</a> -->
-						<!-- 						<div class="clearfix"></div> -->
-						<!-- 						<hr> -->
-
-						<p>${issueVO.content}</p>
 						<fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
 							value="${issueVO.regdate}" />
 
@@ -101,18 +96,13 @@
 							<!-- <form> -->
 							<ul class="list-group" id="replies">
 								<li>이것이 뜨면 댓글 에이작스가 실행되지 않은 것이다. </li>
-
 							</ul>
 							<div class="input-group">
 								<div class="input-group-btn">
 									<button class="btn btn-default" id="replyAddBtn">+1</button>
 								</div>
 								<input type="text" class="form-control" id="newReplyText"
-									placeholder="댓글 달기.."> <input type="hidden"
-									id="newReplyWriter" value="${uvo.uname}"> <input
-									type="hidden" id="ino" value="${issueVO.ino}">
 							</div>
-							<!-- </form> -->
 						</div>
 					</div>
 				</div>
@@ -188,40 +178,13 @@
 						});
 		
 		
-		function getAllList(ino) {
-			$.getJSON(
-						"/replies/all/" + ino +".do",
-							function(data) {
-								var str = "";
-								console.log(data.length);
-
-								$(data).each(function() {
-													str +=
-														"<li class='list-group-item' data-rno='"+this.rno+"' title='"+this.replytext+"'> no : "+this.rno+"  "
-															+this.replyer+ " : "+ this.replytext
-															+ new Date(this.regdate).toISOString().slice(0,10)
-															+ "<span class='pull-right'>"
-															+ "<a onclick='replyMod("+this.rno+",\""+this.replytext+"\");' class='btn btn-xs btn-default' id='replyModBtn' href='#myModal'"
-															+ "role='button' data-toggle='modal'>update</a>&nbsp;"
-															+ "<a onclick='replyDel("+this.rno+",\""+this.replytext+"\");' class='btn btn-xs btn-default' id='replyDelBtn'>delete</a>"
-															+ "</li>"
-															+"</span>";
-												});
-								$("#replies").html(str);
-
 							});
-				
-			}
 
 		$("#replyAddBtn").on("click",function() {
 
-							var replyerObj = $("#newReplyWriter");
 							var replytextObj = $("#newReplyText");
-							var replyer = replyerObj.val();
 							var replytext = replytextObj.val();
 							var ino = ${issueVO.ino};
-// 							alert(ino + "번 글에서 " + replyer + "이름으로 "
-// 									+ replytext + "라는 내용을 써서 덧글 등록 버튼 클릭했다. ");
 							confirm("댓글을 등록할까요?");
 							$.ajax({type : 'POST',
 										url : '/replies/register.do',

@@ -63,34 +63,6 @@ public class ModController {
 		
 	}
 	
-//	ver 2.
-//	@RequestMapping(value="/listPage.do", method=RequestMethod.GET)
-//	public void listPage(@ModelAttribute("cri")Criteria cri, Model model) throws Exception{
-//		
-//		System.out.println("회원 페이징하기. ");
-//		logger.info(cri.toString());
-//		
-//		model.addAttribute("list", service.listCriteria(cri));
-//		PageMaker pageMaker = new PageMaker();
-//		pageMaker.setCri(cri);
-////		pageMaker.setTotalCount(131);
-//		pageMaker.setTotalCount(service.listCountCriteria(cri));
-//		
-//		model.addAttribute("pageMaker", pageMaker);
-//	}
-	
-	
-//	ver 1.
-//	@RequestMapping(value="/listAccount.do", method=RequestMethod.GET)
-//	@ResponseBody
-//	public ModelAndView listAccount (ModelAndView mav, Model model) throws Exception{
-//		System.out.println("회원 전체 리스트 보기");
-//		List<UserVO> uList = service.listAll();
-//		mav.addObject("userList", uList);
-//		model.addAttribute("list", uList);
-//		
-//		return mav;
-//	}
 	
 	@RequestMapping(value="/updateLevel.do", method = RequestMethod.GET)
 	@ResponseBody
@@ -136,9 +108,13 @@ public class ModController {
 			logger.info("original name : " + file.getOriginalFilename());
 			logger.info("size : " + file.getSize());
 			// 증빙서류 업로드용 경로를 추가 해줌.
+			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
 			uploadPath = uploadPath + "/experts";
 			String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
 			// 업로드 패스를 위에서 변경했기 때문에 원래 값으로 강제복원 해줘야 함.
+// 리눅스 경로 조심 uploadPath = "C:/easysafe/resources/"; uploadPath = "/usr/tomcat8/webapps/EasySafe/resources/";
+//			리눅스 경로
+//			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
 			uploadPath = "C:/easysafe/resources/";
 			logger.info("파일 이름  : " + savedName);
 			mvo.setLvUpFile(savedName);

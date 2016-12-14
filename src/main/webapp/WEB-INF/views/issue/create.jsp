@@ -53,6 +53,7 @@
 					</div>
 					
 					<input type="hidden" name="writer" value="${uvo.uname}">
+					<input type="hidden" name="writerid" value="${uvo.uid}">
 
 
 					</form>
