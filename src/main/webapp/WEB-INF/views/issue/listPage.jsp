@@ -22,6 +22,12 @@
 	type="text/css" />
 
 <style type="text/css">
+
+
+.activeme {
+background-color: 	#eef2f7 !important;
+}
+
 .writerkan {
 text-align: center;
 display:inline-block;
@@ -45,10 +51,27 @@ width: 100px;
 			
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3>이슈 게시판</h3>
+						<br>
+						<span>&nbsp;&nbsp;</span><span class="fa fa-newspaper-o fa-2x"></span>
+						<b style="font-size: 30px;">이슈게시판</b>
 					</div>
+					
+					
 					<div class="panel-body">
 						<div class="list-group">
+<!-- 게시물 목록 헤더 시작 -->						
+						<a class="list-group-item activeme">&nbsp;
+						<span><i class="fa fa-tag" aria-hidden="true"></i></span>&nbsp;
+						제목
+						
+						<span class="pull-right">
+						
+						조회수 <span>&nbsp;</span>
+						<i class="fa fa-pencil-square-o" aria-hidden="true"></i> 글쓴이  <span>&nbsp;&nbsp;</span><span>&nbsp;&nbsp;</span>
+						<span class="fa fa-clock-o fa-1x"></span>&nbsp;작성일자
+						</span></a>
+<!-- 게시물 목록 헤더 끝 -->						
+						
 							<c:forEach items="${list}" var="IssueVO">
 								<!-- <span class="list-group-item"> -->
 								<a href='/issue/read.do${pageMaker.makeSearch(pageMaker.cri.page)}&ino=${IssueVO.ino}'
@@ -57,6 +80,7 @@ width: 100px;
 										 <strong>[${IssueVO.replycount }]</strong>
 										<span
 										class="pull-right">
+										<span>${IssueVO.viewcount}</span>
 										<span class="writerkan">${IssueVO.writer}</span>
 										<fmt:formatDate	pattern="yyyy-MM-dd" value="${IssueVO.regdate}" /> </span>
 								</a>
@@ -71,14 +95,6 @@ width: 100px;
 								<a class="btn btn-primary center-block"
 									href="/issue/create.do" type="button">글 올리기</a>
 							</div>						
-<%-- 						<c:if test="${uvo.ulevel eq 'admin'}"> --%>
-<!-- 							<div class="col-xs-7"></div> -->
-<!-- 							<div class="col-xs-3"></div> -->
-<!-- 							<div class="col-xs-2" > -->
-<!-- 								<a class="btn btn-primary center-block" -->
-<!-- 									href="/issue/create.do" type="button">이슈 작성</a> -->
-<!-- 							</div>						 -->
-<%-- 						</c:if> --%>
 						<div class="col-sm-12 text-center">
 							<ul class="pagination center-block"
 								style="display: inline-block;">
@@ -140,11 +156,11 @@ width: 100px;
 		</div>
 			<div class="col-md-3">
 			
-			<img height="420px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>
+			<img height="480px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>
                    <a href="${pageContext.request.contextPath}/index.do">
-                   <img alt="너구리"
+                   <img alt="너구리" 
                              src="${pageContext.request.contextPath}/resources/media/img/glassholding.png"
-                             style="width: 80%; height: 80%" /></a>
+                             style="width: 70%; height: 70%; padding-left: 20px;"  /></a>
 			</div>
 		</div>
 			</div>
