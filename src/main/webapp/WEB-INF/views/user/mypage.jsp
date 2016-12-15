@@ -59,12 +59,12 @@
 <div class="container-fluid" id="main">
 	<div class="row">
 	<div class="col-xs-8" style="padding-left: 35px !important; padding-right: 0px !important; ">
-	<div class="well col-xs-8" style="margin-bottom: 10px !important">  
+	<div class="well col-xs-12" style="margin-bottom: 10px !important">  
 		<span class="fa fa-user-circle fa-2x"></span>
 		<label style="font-size: 30px;">마이페이지</label>
 	</div>
 	<div>
-	<div class="col-xs-12">
+	<div class="col-xs-12" style="padding: 0 0 0 0 !important;">
 		<div class="alert alert-info" style="margin-bottom: 10px !important">
 			<strong>개인정보 안내: </strong> 비밀번호의 주기적인 변경을 통해 개인정보를 안전하게 보호하세요.
 		</div>
@@ -77,7 +77,7 @@
 							src="/user/displayFile.do?filename=<c:out value="${login.file}"/>" />
 		</div>
 		<div style="float: left; width: 60%; height: 300px; margin-left: 2%;" class="well">
-			<div style="padding-top:20px; text-align: center; float: left; width: 48%; height: 40%; border-bottom: 1px solid #d6d6d6; border-right: 1px solid #d6d6d6;">
+			<div style="padding-top:20px; margin-left:10px; text-align: center; float: left; width: 48%; height: 40%; border-bottom: 1px solid #d6d6d6; border-right: 1px solid #d6d6d6;">
 				<span class="fa fa-user fa-2x"></span>
 				<b>아이디</b>
 				<br><br>
@@ -89,7 +89,7 @@
 				<br><br>
 				<c:out value="${login.uname}" />
 			</div>
-			<div style="padding-top:20px; text-align: center; clear: left; float: left; width: 48%; height: 40%; border-top: 1px solid #d6d6d6; border-right: 1px solid #d6d6d6;">
+			<div style="padding-top:20px; margin-left:10px; text-align: center; clear: left; float: left; width: 48%; height: 40%; border-top: 1px solid #d6d6d6; border-right: 1px solid #d6d6d6;">
 				<span class="fa fa-envelope fa-2x"></span>
 				<b>이메일</b>
 				<br><br>
@@ -102,18 +102,25 @@
 				<c:out value="${login.uinfo}" />
 				<%-- <input type="hidden" id="no" value="<c:out value="${login.no}" />" /> --%>
 			</div>
-			<div style="clear: left; padding-top: -10px; display: inline-block; width: 432px;"   >
+			<div style="clear: left; padding-top: -10px; display: inline-block; width: 450px;"   >
 			<br>
-			<hr style="margin-bottom: 10px; margin-top: 0px;">
-				<c:if test="${login.ulevel eq 'user' && login.request eq 'N'}">
-					<a class="btn btn-success" style="margin-left: 5px; width: 32%;" href="#upModal" data-toggle="modal" onclick="resetUpModal();">전문가 신청</a>
-				</c:if>
-				<c:if test="${login.ulevel eq 'user' && login.request eq 'R'}">
-					<div class="btn btn-warning" style="margin-left: 5px; width: 32%;">전문가 신청대기중</div>
-				</c:if>
-				
-				<a class="btn btn-danger" style="width: 32%;" href="#exitModal" role="button" data-toggle="modal" onclick="resetExitModal()">탈퇴하기</a>
-				<a class="btn btn-primary" style="width: 32%;" href="#myModal" role="button" data-toggle="modal">내 정보 수정</a>
+			<hr style="margin-bottom: 10px; margin-top: 0px; margin-left: 10px; width: 432px;">
+			<c:choose>
+				<c:when test="${login.ulevel eq 'user' && login.request eq 'N'}">
+					<a class="btn btn-success" style="margin-left: 7px; width: 32%;" href="#upModal" data-toggle="modal" onclick="resetUpModal();">전문가 신청</a>
+					<a class="btn btn-danger" style="width: 32%;" href="#exitModal" role="button" data-toggle="modal" onclick="resetExitModal()">탈퇴하기</a>
+					<a class="btn btn-primary" style="width: 32%;" href="#myModal" role="button" data-toggle="modal">내 정보 수정</a>
+				</c:when>
+				<c:when test="${login.ulevel eq 'user' && login.request eq 'R'}">
+					<div class="btn btn-warning" style="margin-left: 7px; width: 32%;">전문가 신청대기중</div>
+					<a class="btn btn-danger" style="width: 32%;" href="#exitModal" role="button" data-toggle="modal" onclick="resetExitModal()">탈퇴하기</a>
+					<a class="btn btn-primary" style="width: 32%;" href="#myModal" role="button" data-toggle="modal">내 정보 수정</a>
+				</c:when>
+				<c:otherwise>
+					<a class="btn btn-danger" style="width: 32%; margin-left: 82px;" href="#exitModal" role="button" data-toggle="modal" onclick="resetExitModal()">탈퇴하기</a>
+					<a class="btn btn-primary" style="width: 32%;" href="#myModal" role="button" data-toggle="modal">내 정보 수정</a>
+				</c:otherwise>
+			</c:choose>
 			</div>
 		</div>	
 		
