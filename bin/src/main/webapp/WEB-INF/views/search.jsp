@@ -32,10 +32,5 @@
 			</c:forEach>
 		</c:if>
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#curPage").html("검색결과");
-		});
-	</script>
 </body>
 </html>

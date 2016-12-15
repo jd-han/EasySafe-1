@@ -95,7 +95,7 @@
           <div class="col-md-5">
               <div class="panel panel-default">
                    <div class="panel-heading">
-                        <b style="font-size: 30px;">가입 정보 입력</b>
+                        <b style="font-size: 30px;"> <i class="fa fa-address-card-o" aria-hidden="true"></i>&nbsp;가입 정보 입력</b>
                    </div>
                    <hr>
                    <div class="panel-body" style="width: 100%;">
@@ -123,7 +123,7 @@
                                   <div class="apihidden">
                                   	  <span class="fa fa-user fa-2x"></span>
                                       <b>ID</b>&nbsp;
-                                      <span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
+                                      <span class="label label-danger" style="margin-bottom: 10px; font-size: 13px;">필수</span>
                                       <div class="input-group">
                                       	<input type="text" id="joinId" name="uid" class="form-control" placeholder="ID를 입력하세요" /> 
                                         <span class="input-group-btn">
@@ -133,8 +133,9 @@
                                       <div class="alert alert-success" id="isDuplicateId"></div>
                                       <span class="fa fa-lock fa-2x"></span>
                                       <b>패스워드</b>&nbsp;
-                                      <span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
+                                      <span class="label label-danger" style="margin-bottom: 10px; font-size: 13px;">필수</span>
                                       	<input type="password" id="joinPass" name="upw" class="form-control input" placeholder="패스워드를 입력하세요" />
+                                      <br>
                                       <span class="fa fa-unlock-alt fa-2x"></span>
                                       <b>패스워드확인</b>
                                       	<input type="password" id="checkPass" class="form-control input" placeholder="패스워드를 확인하세요" />
@@ -142,12 +143,12 @@
                                   <div class="alert alert-danger" id="isCheckPass"></div>
                                   <span class="fa fa-pencil fa-2x"></span>
                                   	<b>이름&nbsp;</b>
-                                  	<span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
+                                  	<span class="label label-danger" style="margin-bottom: 10px; font-size: 13px;">필수</span>
 										<input type="text" id="joinName" name="uname" class="form-control" placeholder="이름을 입력하세요" />
 								  <br>
 								  <span class="fa fa-envelope fa-2x"></span>
                                   	<b>이메일</b>&nbsp;
-                                  	<span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
+                                  	<span class="label label-danger" style="margin-bottom: 10px; font-size: 13px;">필수</span>
                                   <div class="input-group text-center">
                                       <input type="text" id="joinEmail" name="umail" class="form-control input" placeholder="Email을 입력하세요" />
                                       <span class="input-group-btn">
@@ -168,15 +169,18 @@
      </div>
      <script type="text/javascript">
           $(document).ready(function() {
-              $("#curPage").html("회원가입");
-              $("#isDuplicateId").css("visibility", "hidden");
-              $("#isCheckPass").css("visibility", "hidden");
-              $("#isDuplicateEmail").css("visibility", "hidden");
-              $("#isName").css("visibility", "hidden");
-              startApp(); // 구글 로그인 관련 초기화
-              $("#googleLogoutBtn").hide();
-              document.getElementById('status').innerHTML = "외부 API로 로그인하면<br> 따로 아이디와 비밀번호를 입력할 필요가 없습니다";
-          });
+     		//네비바 메뉴 누르면 밑줄 그어줌
+     		$(".topmenu").removeClass("active");
+     		$(".joinmenu").addClass("active");
+     		
+            $("#isDuplicateId").css("visibility", "hidden");
+            $("#isCheckPass").css("visibility", "hidden");
+            $("#isDuplicateEmail").css("visibility", "hidden");
+            $("#isName").css("visibility", "hidden");
+            startApp(); // 구글 로그인 관련 초기화
+            $("#googleLogoutBtn").hide();
+            document.getElementById('status').innerHTML = "외부 API로 로그인하면<br> 따로 아이디와 비밀번호를 입력할 필요가 없습니다";
+        });
           // 페이스북 로그인 부분
           // This is called with the results from from FB.getLoginStatus().
           function statusChangeCallback(response) {

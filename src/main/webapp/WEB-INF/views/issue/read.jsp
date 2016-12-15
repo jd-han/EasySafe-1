@@ -52,11 +52,6 @@
 					</div>
 
 					<div class="panel-body">
-						<!-- 						<a href="#">Keyword: Bootstrap</a> -->
-						<!-- 						<div class="clearfix"></div> -->
-						<!-- 						<hr> -->
-
-						<p>${issueVO.content}</p>
 						<fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
 							value="${issueVO.regdate}" />
 
@@ -65,9 +60,8 @@
 								src="${pageContext.request.contextPath}/resources/media/img/logo_nobg3.png"
 								align="right">
 						</div>
-		
-						&nbsp;<br>
-						&nbsp;<br>
+
+						&nbsp;<br> &nbsp;<br>
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-xs-8"></div>
@@ -77,11 +71,10 @@
 								</c:if>
 								<form role="form" action="update.do" method="post">
 									<input type='hidden' name='no' value="${issueVO.ino}">
-									<input type='hidden' name='page' value="${cri.page}"> <input
-										type='hidden' name='perPageNum' value="${cri.perPageNum}">
-									<input type='hidden' name='searchType'
-										value="${cri.searchType}"> <input type='hidden'
-										name='keyword' value="${cri.keyword}">
+									<input type='hidden' name='page' value="${cri.page}"> 
+									<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+									<input type='hidden' name='searchType' value="${cri.searchType}"> 
+									<input type='hidden' name='keyword' value="${cri.keyword}">
 								</form>
 								<div class="col-xs-2">
 
@@ -94,78 +87,82 @@
 									<a class="btn btn-primary center-block"
 										href="/issue/delete.do?ino=${issueVO.ino}" type="button">Delete</a>
 								</div>
-<%-- 								${issueVO.ino} --%>
+								<%-- 								${issueVO.ino} --%>
 							</div>
 							<br>
-				<h4>댓글 리스트&nbsp;<span class='glyphicon glyphicon-comment'></span></h4>
+							<h4>
+								댓글 리스트&nbsp;<span class='glyphicon glyphicon-comment'></span>
+							</h4>
 							<!-- <form> -->
 							<ul class="list-group" id="replies">
-								<li>이것이 뜨면 댓글 에이작스가 실행되지 않은 것이다. </li>
-
+								<li>이것이 뜨면 댓글 에이작스가 실행되지 않은 것이다.</li>
 							</ul>
 							<div class="input-group">
 								<div class="input-group-btn">
 									<button class="btn btn-default" id="replyAddBtn">+1</button>
 								</div>
-								<input type="text" class="form-control" id="newReplyText"
-									placeholder="댓글 달기.."> <input type="hidden"
-									id="newReplyWriter" value="${uvo.uname}"> <input
-									type="hidden" id="ino" value="${issueVO.ino}">
+								<input type="text" class="form-control" id="newReplyText" />
 							</div>
-							<!-- </form> -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-<!-- 덧글 수정 모달 시작 -->
+
+	<!-- 덧글 수정 모달 시작 -->
 	<div id="myModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
 					<h3 class="text-center">
 						<br>덧글 수정
 					</h3>
 				</div>
-				
-				
+
+
 				<div class="modal-body">
-				
-							<input type="hidden" id="uid" name="uid"
-								value="<c:out value="${login.uid}"/>"> <br>
-								
-							<div >
-							<span class='modal-title' id="modno"></span><span>번 댓글을 수정합니다. </span>
-							</div>
-							<div id="modDiv">
-								<input type="text" class="form-control" id="replytext" >
-							</div>
-							
-							<br>
-						<div>
+
+					<input type="hidden" id="uid" name="uid"
+						value="<c:out value="${login.uid}"/>"> <br>
+
+					<div>
+						<span class='modal-title' id="modno"></span><span>번 댓글을
+							수정합니다. </span>
+					</div>
+					<div id="modDiv">
+						<input type="text" class="form-control" id="replytext">
+					</div>
+
+					<br>
+					<div>
 						<button class="btn btn-primary pull-right" type="button"
-							id="replyModBtn" onclick='replyUpdate();' data-dismiss="modal" aria-hidden="true" >댓글 수정하기</button>
-					<button class="btn" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;취소&nbsp;&nbsp;&nbsp;&nbsp;</button>
-						 </div>
-							
-				</div>
+							id="replyModBtn" onclick='replyUpdate();' data-dismiss="modal"
+							aria-hidden="true">댓글 수정하기</button>
+						<button class="btn" data-dismiss="modal" aria-hidden="true">&nbsp;&nbsp;&nbsp;&nbsp;취소&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					</div>
 
 				</div>
 
 			</div>
-			<div class="modal-footer"></div>
+
 		</div>
-<!-- 댓글 수정 모달 끝 -->	
+		<div class="modal-footer"></div>
+	</div>
+	<!-- 댓글 수정 모달 끝 -->
 
 
 
 	<script type="text/javascript">
 	var ino = ${issueVO.ino};
 		$(document).ready(function() {
+							//네비바 메뉴 누르면 밑줄 그어줌
+							$(".topmenu").removeClass("active");
+							$(".issuemenu").addClass("active");
+				
 							console.log("document ready" + ino);
 							console.log("getAllList");
 							
@@ -182,42 +179,12 @@
 								formObj.submit();
 							});
 						});
-		
-		
-		function getAllList(ino) {
-			$.getJSON(
-						"/replies/all/" + ino +".do",
-							function(data) {
-								var str = "";
-								console.log(data.length);
-
-								$(data).each(function() {
-													str +=
-														"<li class='list-group-item' data-rno='"+this.rno+"' title='"+this.replytext+"'> no : "+this.rno+"  "
-															+this.replyer+ " : "+ this.replytext
-															+ new Date(this.regdate).toISOString().slice(0,10)
-															+ "<span class='pull-right'>"
-															+ "<a onclick='replyMod("+this.rno+",\""+this.replytext+"\");' class='btn btn-xs btn-default' id='replyModBtn' href='#myModal'"
-															+ "role='button' data-toggle='modal'>update</a>&nbsp;"
-															+ "<a onclick='replyDel("+this.rno+",\""+this.replytext+"\");' class='btn btn-xs btn-default' id='replyDelBtn'>delete</a>"
-															+ "</li>"
-															+"</span>";
-												});
-								$("#replies").html(str);
-
-							});
-				
-			}
 
 		$("#replyAddBtn").on("click",function() {
 
-							var replyerObj = $("#newReplyWriter");
 							var replytextObj = $("#newReplyText");
-							var replyer = replyerObj.val();
 							var replytext = replytextObj.val();
 							var ino = ${issueVO.ino};
-// 							alert(ino + "번 글에서 " + replyer + "이름으로 "
-// 									+ replytext + "라는 내용을 써서 덧글 등록 버튼 클릭했다. ");
 							confirm("댓글을 등록할까요?");
 							$.ajax({type : 'POST',
 										url : '/replies/register.do',
@@ -257,7 +224,41 @@
 		// 		});
 
 		// 		$("#replyModBtn").on("click",function(){
+		function getAllList(ino) {
+	$.getJSON(
+			"/replies/all/" + ino +".do",
+			function(data) {
+					var str = "";
+					console.log(data.length);
+					$(data).each(function() {
+							if ('${login.uid}' == this.replyer) {
+											str +=
+												"<li class='list-group-item' data-rno='"+this.rno+"' title='"+this.replytext+"'> no : "+this.rno+"  "
+													+this.replyer+ " : "+ this.replytext
+													+ "<span class='pull-right'>"
+													+ "<span class='mini'>"
+													+ new Date(this.regdate).toLocaleString()
+													+ "</span>&nbsp;&nbsp;"
+													+ "<a onclick='replyMod("+this.rno+",\""+this.replytext+"\");' class='btn btn-xs btn-default' id='replyModBtn' href='#myModal'"
+													+ "role='button' data-toggle='modal'>update</a>&nbsp;"
+													+ "<a onclick='replyDel("+this.rno+",\""+this.replytext+"\");' class='btn btn-xs btn-default' id='replyDelBtn'>delete</a>"
+													+ "</li>"
+													+ "</span>";
+									} else {	
+										str +=
+											"<li class='list-group-item' data-rno='"+this.rno+"' title='"+this.replytext+"'> no : "+this.rno+"  "
+											+this.replyer+ " : "+ this.replytext
+											+ "<span class='pull-right'>"
+											+ "<span class='mini'>"
+											+ new Date(this.regdate).toLocaleString()
+											+ "</span>&nbsp;&nbsp;";
+									}
+							});
+										
+				$("#replies").html(str);
+					});
 
+	}
 		function replyMod(rno, title) {
 			console.log("댓글번호 : " + rno);
 			console.log("댓글 내용 : " + title);

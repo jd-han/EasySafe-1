@@ -45,9 +45,10 @@
 						</div>
 						<br><br><br><br>
 						<hr>
-						<div class="panel-body">
+						<div class="panel-body" style="padding-top: 30px !important;">
 							<!-- <div class="row"> -->
-								<div class="col-xs-8"></div>
+								<div class="col-xs-2"></div>
+								<div class="pull-right">
 								<c:if test="${uvo.ulevel eq 'admin'}">
 									<!-- <div class="col-xs-1"> -->
 									<form role="form" action="update.do" method="post">
@@ -58,32 +59,24 @@
 											<input type='hidden' name='keyword' value="${cri.keyword}">
 									</form>
 									<br><br><br><br>
-									<div style="margin-left: 70%; width: 100%;">
-										<div class="col-xs-1">
-											<a class="btn btn-warning" id="updatePageBtn" type="button">수정</a>
-										</div>
-										<!-- </div>	 -->
-										<div class="col-xs-1">
-											<a class="btn btn-danger" href="/notice/delete.do?no=${noticeVO.noticeNo}" type="button">삭제</a>
-										</div>
-									</div>
+											<a class="btn btn-warning" id="updatePageBtn" type="button"> &nbsp; &nbsp;수정 &nbsp; &nbsp;</a> &nbsp;
+											<a class="btn btn-danger" href="/notice/delete.do?no=${noticeVO.noticeNo}" type="button"> &nbsp; &nbsp;삭제 &nbsp; &nbsp;</a> &nbsp;
 								</c:if>
-								<div class="col-xs-1">
-									<a class="btn btn-primary" href="/notice/listPage.do" type="button">목록</a>
-								</div>
+											<a class="btn btn-primary" href="/notice/listPage.do" type="button"> &nbsp; &nbsp;목록 &nbsp; &nbsp;</a>
+								</div>	
 								<br><br>						
 							<!-- </div> -->
 							<hr>
-							<form>
-							<span class="fa fa-comment fa-2x"></span>
-							<b>댓글</b>
-								<div class="input-group">
-									<div class="input-group-btn">
-										<button class="btn btn-default">+1</button>
-									</div>
-									<input type="text" class="form-control" placeholder="댓글 달기..">
-								</div>
-							</form>
+<!-- 							<form> -->
+<!-- 							<span class="fa fa-comment fa-2x"></span> -->
+<!-- 							<b>댓글</b> -->
+<!-- 								<div class="input-group"> -->
+<!-- 									<div class="input-group-btn"> -->
+<!-- 										<button class="btn btn-default">+1</button> -->
+<!-- 									</div> -->
+<!-- 									<input type="text" class="form-control" placeholder="댓글 달기.."> -->
+<!-- 								</div> -->
+<!-- 							</form> -->
 						</div>
 					</div>
 				</div>
@@ -93,7 +86,10 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$("#curPage").html("Notice Content");
+			//네비바 메뉴 누르면 밑줄 그어줌
+			$(".topmenu").removeClass("active");
+			$(".noticemenu").addClass("active");
+				
 			var formObj = $("form[role='form']");
 			console.log(formObj);
 			

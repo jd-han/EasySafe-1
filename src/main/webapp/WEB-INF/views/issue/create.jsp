@@ -53,6 +53,7 @@
 					</div>
 					
 					<input type="hidden" name="writer" value="${uvo.uname}">
+					<input type="hidden" name="writerid" value="${uvo.uid}">
 
 
 					</form>
@@ -62,4 +63,12 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		//네비바 메뉴 누르면 밑줄 그어줌
+		$(".topmenu").removeClass("active");
+		$(".issuemenu").addClass("active");
+	});
+	</script>
+</body>
 </html>

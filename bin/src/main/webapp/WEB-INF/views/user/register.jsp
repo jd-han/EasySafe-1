@@ -129,7 +129,6 @@ span.buttonText {
      </div>
      <script type="text/javascript">
           $(document).ready(function() {
-              $("#curPage").html("회원가입");
               $("#isDuplicateId").css("visibility", "hidden");
               $("#isCheckPass").css("visibility", "hidden");
               $("#isDuplicateEmail").css("visibility", "hidden");

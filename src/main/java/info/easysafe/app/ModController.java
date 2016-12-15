@@ -63,34 +63,6 @@ public class ModController {
 		
 	}
 	
-//	ver 2.
-//	@RequestMapping(value="/listPage.do", method=RequestMethod.GET)
-//	public void listPage(@ModelAttribute("cri")Criteria cri, Model model) throws Exception{
-//		
-//		System.out.println("회원 페이징하기. ");
-//		logger.info(cri.toString());
-//		
-//		model.addAttribute("list", service.listCriteria(cri));
-//		PageMaker pageMaker = new PageMaker();
-//		pageMaker.setCri(cri);
-////		pageMaker.setTotalCount(131);
-//		pageMaker.setTotalCount(service.listCountCriteria(cri));
-//		
-//		model.addAttribute("pageMaker", pageMaker);
-//	}
-	
-	
-//	ver 1.
-//	@RequestMapping(value="/listAccount.do", method=RequestMethod.GET)
-//	@ResponseBody
-//	public ModelAndView listAccount (ModelAndView mav, Model model) throws Exception{
-//		System.out.println("회원 전체 리스트 보기");
-//		List<UserVO> uList = service.listAll();
-//		mav.addObject("userList", uList);
-//		model.addAttribute("list", uList);
-//		
-//		return mav;
-//	}
 	
 	@RequestMapping(value="/updateLevel.do", method = RequestMethod.GET)
 	@ResponseBody

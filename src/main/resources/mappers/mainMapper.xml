@@ -31,10 +31,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by name
 	</select>
 	
-	<select id="selectOneProductKorName" resultType="ProductVO">
+	<select id="selectOneProductKorName" resultType="ProductVO" parameterType="ProductVO">
 		select *
-		from tbl_store_foodproduct
-		where name = #{korName}
+		from tbl_store_foodproduct		
+		where code = #{code}
+		and seqcode = #{seqcode}
 		order by name
 	</select>
 	

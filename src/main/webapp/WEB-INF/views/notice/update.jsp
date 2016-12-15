@@ -41,22 +41,46 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<a href="/notice/list.do" class="pull-right">목록으로</a>
-							<h3>공지 수정</h3>
-				
+							<label style="font-size: 30px;">공지 수정</label>
 					</div>
+					
+					<div class="panel-body">
+				
 						<form action="/notice/updatePost.do" method="post" class="form-horizontal" role="form">
 							<div class="form-group" style="padding: 14px;">
-								<input type="text" name="title" class="form-control" value="${notice.title}"/> 
-								<textarea name="content" class="form-control">${notice.content}</textarea>
-						<hr/>
-								<div>
-									<button type="submit" class="btn btn-success pull-right" type="button">Update</button>
-								</div>
+								
+								
+								
+								
+											<div class="input-group text-center"
+										style="width: 850px; float: left;">
+										<span class="input-group-btn">
+										<button class="btn"disabled="disabled" style="background: transparent; border: none; cursor: text; color: black !important; font-weight: bold;">
+										제목 :</button>
+										</span> 	
+										<input type="text" class="form-control input-mysize"
+										value="${notice.title}" name="title">
+										<span class="input-group-btn">
+										<button class="btn" disabled="disabled"style="background: transparent; border: none; cursor: text; color: black !important; font-weight: bold;">
+										&nbsp; &nbsp; &nbsp; &nbsp;
+										글쓴이 :</button></span> 
+										<input class="form-control" name='writer' value="관리자" disabled="disabled">
+									</div>
+
+
+									<input type="hidden" value="${{notice.noticeNo}}" name="ino" />
+									
+				<img height="8px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>					
+									<textarea rows="15" name="content" class="form-control">${notice.content}</textarea>
+									<hr />
+									<div>
+										<button type="submit" class="btn btn-success pull-right" id="updateBtn"
+											type="button">&nbsp; &nbsp;Update &nbsp; &nbsp;</button>
+									</div>
+		
 					
 							</div>
 						<input type="hidden" value="${notice.noticeNo}" name="noticeNo"/>
-					
-<%-- 					<input type='hidden' name='no' value="${noticeVO.noticeNo}">  --%>
 						<input type='hidden' name='page' value="${cri.page}"> 
 						<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
 						<input type='hidden' name='searchType' value="${cri.searchType}">
@@ -64,10 +88,20 @@
 
 
 					</form>
-
-					<div class="panel-body"></div>
+	</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		//네비바 메뉴 누르면 밑줄 그어줌
+		$(".topmenu").removeClass("active");
+		$(".noticemenu").addClass("active");
+	});
+	</script>
+</body>
 </html>
+
+
+

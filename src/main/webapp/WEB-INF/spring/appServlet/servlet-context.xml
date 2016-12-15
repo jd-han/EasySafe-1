@@ -44,6 +44,7 @@
 <!-- 			//로그인하지 않은 상태에서 index에 접근하면 로그인하라고 뜸.  -->
 		<interceptor>
 			<mapping path="/user/mypage.do"/>
+			<mapping path="/issue/create.do"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 		
@@ -64,10 +65,18 @@
 	
 <!-- <beans:bean id="uploadPath" class="java.lang.String">
 	<beans:constructor-arg value="C:/easysafe/resources/"></beans:constructor-arg>
+<<<<<<< HEAD
 	</beans:bean>  -->
  	<beans:bean id="uploadPath" class="java.lang.String">
 	<beans:constructor-arg value="/usr/tomcat8/webapps/EasySafe/resources/"></beans:constructor-arg>
 	</beans:bean>
+=======
+	</beans:bean> 
+	<!--<beans:bean id="uploadPath" class="java.lang.String">
+	<beans:constructor-arg value="/usr/tomcat8/webapps/EasySafe/resources/"></beans:constructor-arg>
+	</beans:bean>-->
+		
+>>>>>>> 7ebe806572de3d5c3e68a34c220c2246c89a1baa
 	<beans:bean id="issueUploadPath" class="java.lang.String">
 	<beans:constructor-arg value="D:/Spring/workspace4Spring/EasySafe/src/main/webapp/resources/profiles"></beans:constructor-arg>
 	</beans:bean>

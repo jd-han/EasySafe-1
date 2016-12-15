@@ -43,6 +43,10 @@
 	hr{
 		border-top: 2px solid gray !important;
 	}
+	a:HOVER{
+		background-color: skyblue !important;
+		transition: 0.5s;
+	}
 </style>
 </head>
 <body>
@@ -193,11 +197,23 @@
 			<div class="well" style="font-size: 40px; clear: left;">
 				해당 성분이 포함된 제품 목록			
 			</div>
-			<div class="well" style="font-size: 20px;">
+			<div class="well" style="font-size: 20px;">			
 			<c:choose>		
 				<c:when test="${!empty productResult}">
+					<aa class="list-group-item result">				
+						<span style="display:inline-block; width: 10%;"><label>이미지</label></span>
+						<span style="display:inline-block; width: 50%; text-align: center;"><label>제품명</label></span>
+						<span style="display:inline-block; width: 25%; text-align: center;"><label>제조사</label></span>
+						<span style="display:inline-block; width: 10%; text-align: center;"><label>제품분류</label></span>				
+					</aa>
 					<c:forEach items="${productResult}" var="prodVO">
-						<a class="list-group-item" href="productDetail.do?name=${prodVO.name}">${prodVO.name}</a>					
+						<a class="list-group-item" href="productDetail.do?name=${prodVO.name}&code=${prodVO.code}&seqcode=${prodVO.seqcode}">
+							<span style="display:inline-block; width: 10%;"><img style="width: 40px; height: 40px;" src="${prodVO.thumimg}" /></span>
+							<span style="display:inline-block; width: 50%; text-align: center;">${prodVO.name}</span>
+							<span style="display:inline-block; width: 25%; text-align: center;">${prodVO.producer}</span>
+							<span style="display:inline-block; width: 10%; text-align: center;">${prodVO.type}</span>
+						</a>
+						
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
@@ -208,15 +224,28 @@
 		</c:when>
 		<c:otherwise>
 			<div class="well">
-				<h1>해당 성분에 대한 정보가 없습니다.</h1>
+				<h1>${keyword}에 대한 정보가 없습니다.</h1>
 			</div>
+			<a class="well" style="display: block;" target="_blank" href="https://search.naver.com/search.naver?query=${keyword}">
+				<span>
+					<img width="50px;" src="${pageContext.request.contextPath}/resources/media/img/naverlogo.png" />
+				</span>
+				<span>네이버에서 ${keyword}를 검색</span>
+			</a>
+			<a class="well" style="display: block;" target="_blank" href="https://www.google.co.kr/search?q=${keyword}">
+				<span>
+					<img width="50px;" src="${pageContext.request.contextPath}/resources/media/img/googlelogo.png" />
+				</span>
+				<span>구글에서 ${keyword}를 검색</span>
+			</a>
+			<a class="well" style="display: block;" target="_blank" href="https://ko.wikipedia.org/wiki/${keyword}">
+				<span>
+					<img width="50px;" src="${pageContext.request.contextPath}/resources/media/img/wikilogo.png" />
+				</span>
+				<span>위키백과에서 ${keyword}를 검색</span>
+			</a>
 		</c:otherwise>
 	</c:choose>		
-	</div>	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#curPage").html("성분상세");
-		});
-	</script>
+	</div>
 </body>
 </html>

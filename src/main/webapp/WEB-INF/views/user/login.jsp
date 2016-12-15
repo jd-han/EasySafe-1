@@ -102,11 +102,10 @@
 			<div class="row">
 				<div class="col-md-4 col-sm-6"></div>
 				<div class="col-md-4 col-sm-6]">
-				<img style="width: 60px; height: 200px" alt="z" src="${pageContext.request.contextPath}/resources/media/img/clear.png">
-					<a href="${pageContext.request.contextPath}/index.do"><img
-					 alt="너구리"
-						src="${pageContext.request.contextPath}/resources/media/img/hi_nobg.png"
-						style="width: 80%; height: 80%;" /></a>
+				<%-- <img style="width: 60px; height: 200px" alt="z" src="${pageContext.request.contextPath}/resources/media/img/clear.png"> --%>
+					<a href="${pageContext.request.contextPath}/index.do">
+					<img alt="너구리"	src="${pageContext.request.contextPath}/resources/media/img/hi_nobg.png"
+						style="width: 80%; height: 80%; margin-left: 50px;" /></a>
 				</div>
 			</div>
 			<div class="row">
@@ -167,19 +166,14 @@
 			</div>
 		</div>
 	</div>
-
 	<script>
-	
-		
 		$(document).ready(function(){
-			$("#curPage").html("로그인");
+			//네비바 메뉴 누르면 밑줄 그어줌
+			$(".topmenu").removeClass("active");
+			$(".loginmenu").addClass("active");
+			
 			startApp();
 		});
-
-		
-		
-		
-		
 		// 페이스북 로그인 부분
 		function statusChangeCallback(response) {
 			console.log('statusChangeCallback');

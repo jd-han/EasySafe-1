@@ -10,3 +10,4 @@ target/*
 .jpeg
 src/main/webapp/resources/profiles/2016/12/08/5f699f9d-2ced-443e-ab3d-e23ab3214001_rsz_clearcluster.png
 src/main/webapp/resources/profiles/2016/12/08/s_5f699f9d-2ced-443e-ab3d-e23ab3214001_rsz_clearcluster.png
+src/main/webapp/WEB-INF/views/temp/listPage1.jsp

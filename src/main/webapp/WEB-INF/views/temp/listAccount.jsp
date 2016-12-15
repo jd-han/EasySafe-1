@@ -177,16 +177,6 @@
 </body>
 
 <script type="text/javascript">
-	//수정 버튼 누를 때.
-/* 	alert("스크립트 시작");
-	
-	var selectStatus = $('selectBox').on('change', function(){
-		$(this).find(":selected").val()
-	}); */
-		
-	$(document).ready(function() {
-		$("#curPage").html("Users Modify");
-	});
 	function update(no) {
 			var userNo = no
 			var userLevel = $("#"+ no +" option:selected").val();

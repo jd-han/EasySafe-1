@@ -37,13 +37,13 @@
 						<div>
 						<c:choose>
 							<c:when test="${!empty msgReceiveList}">
-							<table class="table" style="border: 1px solid black; text-align: center;">
+							<table class="table" style="border: 1px solid #cccccc; text-align: center;">
 								<tr style="height: 50px;">
-									<td class="col-md-1"><span class="fa fa-user fa-2x"></span><b>보낸 사람</b></td>
-									<td class="col-md-3"><span class="fa fa-header fa-2x"></span><b>제목</b></td>
-									<td class="col-md-2"><span class="fa fa-clock-o fa-2x"></span><b>보낸 날짜</b></td>
-									<td colspan="2" style="width: 10%;"><span class="fa fa-eye fa-2x"></span><b>열람여부</b></td>
-									<td class="col-md-2"><span class="fa fa-trash fa-2x"></span><b>메시지 삭제</b></td>
+									<td class="col-md-1"><span class="fa fa-user fa-2x"></span><b>&nbsp;보낸 사람</b></td>
+									<td class="col-md-3"><i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i><b>&nbsp;제목</b></td>
+									<td class="col-md-2"><span class="fa fa-clock-o fa-2x"></span><b>&nbsp;보낸 날짜</b></td>
+									<td colspan="2" style="width: 10%;"><span class="fa fa-eye fa-2x"></span><b>&nbsp;열람여부</b></td>
+									<td class="col-md-2"><span class="fa fa-trash fa-2x"></span><b>&nbsp;메시지 삭제</b></td>
 								</tr>
 								<c:forEach items="${msgReceiveList}" var="msgReceive">
 									<tr style="height: 50px;">
@@ -97,7 +97,7 @@
 						<div>
 						<c:choose>
 						<c:when test="${!empty msgSendList}">
-						<table class="table" style="border: 1px solid black; text-align: center;">
+						<table class="table" style="text-align: center;">
 							<tr style="height: 50px;">
 								<td class="col-md-2"><span class="fa fa-user fa-2x"></span><b>받는 사람</b></td>
 								<td class="col-md-2"><span class="fa fa-header fa-2x"></span><b>제목</b></td>
@@ -107,19 +107,19 @@
 							<c:forEach items="${msgSendList}" var="msgSend">
 								<tr style="height: 50px;">
 									<!-- <td style="line-height: 200%;" class="col-md-2"> -->
-										<c:choose>
-											<c:when test="${msgSend.readable eq 'A' || msgSend.readable eq 'E'}">
-											<td style="font-weight: bold; line-height: 200%;" class="col-md-2">
+										<%-- <c:choose>
+											<c:when test="${msgSend.readable eq 'A' || msgSend.readable eq 'E'}"> --%>
+											<%-- <td style="font-weight: bold; line-height: 200%;" class="col-md-2">
 											<span class="fa fa-user-secret" data-toggle="tooltip" data-placement="bottom" title="관리자 입니다"></span>											
 											${msgSend.receiveUser}
-											</td>
-											</c:when>
-											<c:otherwise>
+											</td> --%>
+											<%-- </c:when>
+											<c:otherwise> --%>
 											<td style="line-height: 200%;" class="col-md-2">
 											${msgSend.receiveUser}
 											</td>
-											</c:otherwise>
-										</c:choose>
+											<%-- </c:otherwise>
+										</c:choose> --%>
 									<!-- </td> -->
 									<td style="line-height: 200%;" class="col-md-2">
 										<a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgSend.msgNo}&isSend=Y">${msgSend.msgTitle}</a>
@@ -145,15 +145,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-xs-2">
-				<a href="#msgModal" data-toggle="modal" class="btn btn-primary center-block" onclick="resetModal()">메시지 작성</a>
+			<div class="col-xs-12" style="padding-right: 0px !important;">
+				<a href="#msgModal" data-toggle="modal" class="btn btn-primary pull-right" onclick="resetModal()">메시지 작성</a>
 			</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#curPage").html("Message");
 		$("#isMsg").css("display", "none");
 	});
 	

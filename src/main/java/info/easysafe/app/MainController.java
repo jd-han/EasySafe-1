@@ -1,8 +1,11 @@
 package info.easysafe.app;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import info.easysafe.domain.ChemVO;
 import info.easysafe.domain.KeywordVO;
@@ -106,16 +111,17 @@ public class MainController {
 		}
 		mv.addObject("chemList", cList);
 		mv.addObject("proList", pList);
+		mv.addObject("keyword", key);
 		return mv;
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/chemDetail.do", method = RequestMethod.GET)
-	public ModelAndView chemDetail(String name, ModelAndView mv) throws Exception {
-		System.out.println("성분상세 들어옴 : " + name);
+	public ModelAndView chemDetail(String compo, ModelAndView mv) throws Exception {
+		System.out.println("성분상세 들어옴 : " + compo);
 		boolean iskor = false;
-		for (int i = 0; i < name.length(); i++) {
-			if (Character.getType(name.charAt(i)) == 5) {
+		for (int i = 0; i < compo.length(); i++) {
+			if (Character.getType(compo.charAt(i)) == 5) {
 				iskor = true;
 			}
 		}
@@ -124,15 +130,17 @@ public class MainController {
 		List<ProductVO> prod = null;
 		if (iskor == true) {
 			// 성분의 이름으로 상세정보 조회.
+			String name = compo;
 			chem = service.readChemKorName(name);
 			// 성분의 이름으로 포함 제품 조회.
-			prod = service.listProductKorName(name);
+			prod = service.listProductWCompo(compo);
 		} else {
 			// chem = service.readChemEngName(key);
 			System.out.println("영어 성분 읽기"); 
 		}
 		mv.addObject("chemResult", chem);
 		mv.addObject("productResult", prod);
+		mv.addObject("keyword", compo);
 		return mv;
 	}
 
@@ -161,35 +169,45 @@ public class MainController {
 
 	@ResponseBody
 	@RequestMapping(value = "/productDetail.do", method = RequestMethod.GET)
-	public ModelAndView productDetail(String name, ModelAndView mv) throws Exception {
-
-		boolean iskor = false;
+	public ModelAndView productDetail(String name, String code, String seqcode, ModelAndView mv) throws Exception {
+		//System.out.println("pvo" + name);
+		/*boolean iskor = false;
 		for (int i = 0; i < name.length(); i++) {
 			if (Character.getType(name.charAt(i)) == 5) {
 				iskor = true;
 			}
-		}
-
-		ProductVO product = null;
-		if (iskor == true) {
-			product = service.readProductKorName(name);
-
-		} else {
-
+		}*/
+		//System.out.println("한글이냐?" + iskor);
+		ProductVO tempPro = new ProductVO();
+		tempPro.setCode(code);
+		//tempPro.setName(name);
+		tempPro.setSeqcode(seqcode);
+		ProductVO product = service.readProductKorName(tempPro);
+		//if (iskor == true) {
+			//System.out.println("프로덕트 VO 나옴 : " + product.toString());
+		//} else {
 			// product = service.readProductEngName(key);
-			System.out.println("占쎈쐻占쎈뼩疫뀐옙占쎈툡占쎈솇占쎌굲."); 
-		}
+			//System.out.println("占쎈쐻占쎈뼩疫뀐옙占쎈툡占쎈솇占쎌굲."); 
+		//}
 		//System.out.println(product.getComponents());
 		mv.addObject("productResult", product);
-		String[] compos = product.getComponents().split(",");
+		System.out.println("프로덕트 성분표 : " + product.getComponents());
+		String[] compos = product.getComponents().split(" ");
+		List<ChemVO> list = new ArrayList<>();
+		
 		for(int i = 0 ; i < compos.length ; i++)
 		{
 			compos[i] = compos[i].trim();
-			System.out.println(i + " 번째 " + compos[i]);
+			ChemVO cvo = service.readChemKorName(compos[i]);
+			if(cvo == null){ 
+				cvo = new ChemVO();
+				cvo.setName(compos[i]);
+				cvo.setAvg("NOT");
+			}
+			list.add(cvo);			
 		}
-		mv.addObject("components", (String[])compos);
+		/*mv.addObject("components", (String[])compos);*/
+		mv.addObject("components", list);
 		return mv;
 	}
-
-
 }

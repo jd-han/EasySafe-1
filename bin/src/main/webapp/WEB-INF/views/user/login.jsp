@@ -166,18 +166,7 @@
 		</div>
 	</div>
 
-	<script>
-	
-		
-		$(document).ready(function(){
-			$("#curPage").html("로그인");
-			startApp();
-		});
-
-		
-		
-		
-		
+	<script>		
 		// 페이스북 로그인 부분
 		function statusChangeCallback(response) {
 			console.log('statusChangeCallback');
