@@ -37,6 +37,11 @@
 		font-size: 30px;
 		font-weight: normal;
 		height: 30px;
+		margin:  0 0 0 0;
+	}
+	.logo > img{
+		position: absolute;
+		top: 10px;
 	}
 	.logo:HOVER {
 		background-color: transparent !important;

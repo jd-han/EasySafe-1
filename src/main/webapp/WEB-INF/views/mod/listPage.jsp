@@ -218,7 +218,7 @@
 	<div id="requestModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header" style="text-align: center;">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 						<span class="fa fa-times fa-2x"></span>
 					</button>
@@ -240,7 +240,8 @@
 					<span class="fa fa-list-alt fa-2x"></span>
 					<b>내용</b>
 					<br>					
-						<input class="form-control" id="msgContent" name="msg" type="text" readonly="readonly"/>
+						<!-- <input class="form-control" id="msgContent" name="msg" type="text" readonly="readonly"/> -->
+						<textarea class="form-control" name="msg" rows="10" cols="1" id="msgContent" readonly="readonly"></textarea>
 					<br>
 					<span class="fa fa-floppy-o fa-2x"></span>
 					<b>첨부파일</b>
