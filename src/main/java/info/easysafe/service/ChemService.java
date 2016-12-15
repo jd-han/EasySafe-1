@@ -21,7 +21,7 @@ public interface ChemService {
 //	
 //	public List<ProductVO> listProductEngName(String engKey) throws Exception;
 //	
-	public ProductVO readProductKorName(String korName) throws Exception;
+	public ProductVO readProductKorName(ProductVO tempPro) throws Exception;
 	
 //	public ProductVO readProductEngName(String engName) throws Exception;
 	

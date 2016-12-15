@@ -107,19 +107,19 @@
 							<c:forEach items="${msgSendList}" var="msgSend">
 								<tr style="height: 50px;">
 									<!-- <td style="line-height: 200%;" class="col-md-2"> -->
-										<c:choose>
-											<c:when test="${msgSend.readable eq 'A' || msgSend.readable eq 'E'}">
-											<td style="font-weight: bold; line-height: 200%;" class="col-md-2">
+										<%-- <c:choose>
+											<c:when test="${msgSend.readable eq 'A' || msgSend.readable eq 'E'}"> --%>
+											<%-- <td style="font-weight: bold; line-height: 200%;" class="col-md-2">
 											<span class="fa fa-user-secret" data-toggle="tooltip" data-placement="bottom" title="관리자 입니다"></span>											
 											${msgSend.receiveUser}
-											</td>
-											</c:when>
-											<c:otherwise>
+											</td> --%>
+											<%-- </c:when>
+											<c:otherwise> --%>
 											<td style="line-height: 200%;" class="col-md-2">
 											${msgSend.receiveUser}
 											</td>
-											</c:otherwise>
-										</c:choose>
+											<%-- </c:otherwise>
+										</c:choose> --%>
 									<!-- </td> -->
 									<td style="line-height: 200%;" class="col-md-2">
 										<a href="${pageContext.request.contextPath}/msg/msgDetail.do?msgNo=${msgSend.msgNo}&isSend=Y">${msgSend.msgTitle}</a>
@@ -150,10 +150,9 @@
 			</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#curPage").html("Message");
 		$("#isMsg").css("display", "none");
 	});
 	

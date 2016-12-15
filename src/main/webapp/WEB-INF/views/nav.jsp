@@ -36,14 +36,31 @@
 	#curPage{
 		font-size: 30px;
 		font-weight: normal;
+		height: 30px;
+	}
+	.logo:HOVER {
+		background-color: transparent !important;
+		transition: 0.0s !important;
 	}
 </style>
 <%@ include file="alertModal.jsp" %>
 <div class="navbar navbar-default" id="subnav">
 	<div class="col-md-12">
        <div class="collapse navbar-collapse" id="navbar-collapse2">
-       <span style="float: left; line-height: 300%; padding-top: 5px;">
-			<label id="curPage">INDEX</label>		        
+       <span style="float: left; line-height: 300%; padding-top: 5px;">       		
+			<label id="curPage">
+			<c:choose>
+				<c:when test="${empty uvo}">
+					<a class="logo" href="${pageContext.request.contextPath}/index.do">
+						<img alt="EasySafe"	src="${pageContext.request.contextPath}/resources/media/img/logo_nobg_long.png"
+							style="width: 100px; height: 35px;"/>
+					</a>			
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/index.do">${uvo.uname}</a><b style="font-size: 15px;">&nbsp;님 환영합니다</b>
+				</c:otherwise>
+			</c:choose>
+			</label>
        </span>
        <div class="navbar-header">
 <%--        <c:out value="${uvo.ulevel}"></c:out> --%>
@@ -89,27 +106,35 @@
 	</div>
        <span>
 	   		<ul class="nav navbar-nav navbar-right">
-		        <li class="active"><a href="${pageContext.request.contextPath}/index.do">Main</a></li>		        
+		        <li class="topmenu mainmenu active"><a href="${pageContext.request.contextPath}/index.do">Main</a></li>		        
 		        	<c:choose>
 		        	<c:when test="${empty uvo}">
-		        		<li><a href="${pageContext.request.contextPath}/user/login.do" role="button">Login</a></li>
-		        		<li><a href="${pageContext.request.contextPath}/user/register.do" role="button">
-<!-- 		        		<i class="glyphicon glyphicon-plus"></i> -->
-		        		Join</a></li>
+		        		<li class="topmenu loginmenu">
+		        			<a href="${pageContext.request.contextPath}/user/login.do" role="button">Login</a>
+	        			</li>
+		        		<li class="topmenu joinmenu">
+		        			<a href="${pageContext.request.contextPath}/user/register.do" role="button">Join</a>
+	        			</li>
 		        	</c:when>
 		        	<c:otherwise>
-		        		<li><a href="${pageContext.request.contextPath}/user/logout.do" role="button">Logout</a></li>
+		        		<li class="topmenu">
+		        			<a href="${pageContext.request.contextPath}/user/logout.do" role="button">Logout</a>
+	        			</li>
 		        	</c:otherwise>
 		        	</c:choose>	        	
-		        <li><a href="${pageContext.request.contextPath}/issue/listPage.do" role="button" data-toggle="modal">Issues</a></li>
-		        <li><a href="${pageContext.request.contextPath}/notice/listPage.do" role="button" data-toggle="modal">Notice</a></li>
+		        <li class="topmenu issuemenu">
+		        	<a href="${pageContext.request.contextPath}/issue/listPage.do" role="button" data-toggle="modal">Issues</a>
+	        	</li>
+		        <li class="topmenu noticemenu">
+		        	<a href="${pageContext.request.contextPath}/notice/listPage.do" role="button" data-toggle="modal">Notice</a>
+	        	</li>
 	        </ul>
         </span>
        	</div>	
     </div>	
 </div>
 
-<script>
+<script>	
 	// 전문가 신청자가 있는지 ajax 쏴서 판별
 	$(document).ready(function(){
 		$.ajax({
@@ -118,7 +143,7 @@
 		})
 		.done(function(result) {
              if(result){
-            	 $("#isRequestUser").html("<a href='${pageContext.request.contextPath}/mod/listPage.do'><img class='glowicon' data-toggle='tooltip' data-placement='bottom' title='전문가 신청을 해온 유저가 있습니다' height='30px;'"+ 
+            	 $("#isRequestUser").html("<a href='${pageContext.request.contextPath}/mod/listPage.do?page=1&perPageNum=10&searchType=request&keyword='><img class='glowicon' data-toggle='tooltip' data-placement='bottom' title='전문가 신청을 해온 유저가 있습니다' height='30px;'"+ 
             	 							"src='${pageContext.request.contextPath}/resources/media/img/email.png' /></a>");
              }
         });

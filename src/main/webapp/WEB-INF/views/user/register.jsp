@@ -168,15 +168,18 @@
      </div>
      <script type="text/javascript">
           $(document).ready(function() {
-              $("#curPage").html("회원가입");
-              $("#isDuplicateId").css("visibility", "hidden");
-              $("#isCheckPass").css("visibility", "hidden");
-              $("#isDuplicateEmail").css("visibility", "hidden");
-              $("#isName").css("visibility", "hidden");
-              startApp(); // 구글 로그인 관련 초기화
-              $("#googleLogoutBtn").hide();
-              document.getElementById('status').innerHTML = "외부 API로 로그인하면<br> 따로 아이디와 비밀번호를 입력할 필요가 없습니다";
-          });
+     		//네비바 메뉴 누르면 밑줄 그어줌
+     		$(".topmenu").removeClass("active");
+     		$(".joinmenu").addClass("active");
+     		
+            $("#isDuplicateId").css("visibility", "hidden");
+            $("#isCheckPass").css("visibility", "hidden");
+            $("#isDuplicateEmail").css("visibility", "hidden");
+            $("#isName").css("visibility", "hidden");
+            startApp(); // 구글 로그인 관련 초기화
+            $("#googleLogoutBtn").hide();
+            document.getElementById('status').innerHTML = "외부 API로 로그인하면<br> 따로 아이디와 비밀번호를 입력할 필요가 없습니다";
+        });
           // 페이스북 로그인 부분
           // This is called with the results from from FB.getLoginStatus().
           function statusChangeCallback(response) {

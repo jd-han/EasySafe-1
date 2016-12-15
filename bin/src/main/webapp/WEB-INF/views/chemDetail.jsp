@@ -37,12 +37,6 @@
 			</div>
 		</c:otherwise>
 	</c:choose>		
-	</div>	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#curPage").html("성분상세");
-			//alert(chemResult);
-		});
-	</script>
+	</div>
 </body>
 </html>

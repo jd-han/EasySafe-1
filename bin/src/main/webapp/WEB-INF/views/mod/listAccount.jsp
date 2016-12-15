@@ -96,11 +96,9 @@
 									<td>${userVO.uid}</td>
 									<td>${userVO.uname}</td>
 									<td>${userVO.umail}</td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd"
-											value="${userVO.regdate}" /></td>
-
+									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${userVO.regdate}" /></td>
 									<td><div style="float: left;">
-											<%-- 									<c:if test="${!empty list} }"> --%>
+											<%--<c:if test="${!empty list} }"> --%>
 											<select class="form-control" id="${userVO.no}">
 												<option value="user"
 													<c:if test="${userVO.ulevel=='user'}">
@@ -116,7 +114,6 @@
 												selected="selected"
 											</c:if>>관리자</option>
 											</select>
-
 										</div>
 										<div style="float: left;">
 											<a class="btn btn-small pull-right" name="levelUpdate"
@@ -126,41 +123,18 @@
 										변경
 										</a> -->
 										</div></td>
-
 									<td><a class="btn btn-warning" onclick="javascript:deleteUser(${userVO.no})">삭제</a></td>
 								</tr>
 							</c:forEach>
-
-
-
-
-
 						</table>
 						<!-- </form> -->
 					</div>
 				</div>
-
-
 			</div>
 		</div>
-
-
 	</div>
-
-
 </body>
-
 <script type="text/javascript">
-	//수정 버튼 누를 때.
-/* 	alert("스크립트 시작");
-	
-	var selectStatus = $('selectBox').on('change', function(){
-		$(this).find(":selected").val()
-	}); */
-		
-	$(document).ready(function() {
-		$("#curPage").html("Users Modify");
-	});
 	function update(no) {
 			var userNo = no
 			var userLevel = $("#"+ no +" option:selected").val();

@@ -41,13 +41,16 @@
 	}
 	.resultList{
 		position: fixed;
-		left: 0px;
-		top: 120px;
+		left: 1100px;
+		top: 160px;
+		height: 600px;
 		overflow: auto;
 	}
 	svg{
-		border: 20px solid transparent !important;
-		border-image: url(${pageContext.request.contextPath}/resources/media/img/frameborder.png) 20 round !important;
+		/* border: 20px solid transparent !important;
+		border-image: url(${pageContext.request.contextPath}/resources/media/img/frameborder.png) 20 round !important; */
+		
+		width: 100%;
 	}
 	.search{
 		position: absolute;		
@@ -74,8 +77,13 @@
 		background-color: white;
 		display: inline-block;
 		text-align: center;
-		height: 30px; width: 100%;
-		line-height: 30px;
+		height: 40px; width: 100%;
+		line-height: 100%;
+		cursor: pointer;
+	}
+	.pan:HOVER{
+		background-color: skyblue !important;
+		transition: 0.5s;
 	}
 	.selectedWidth{
 		stroke-width: 20px !important;
@@ -86,15 +94,21 @@
 </head>
 <body>
 	<%@ include file="../nav.jsp" %>
-	<span class="search"></span>
-	<span class="title well">
-		<h3>자주 검색한 검색어일수록 위에 나타나고 <br>많이 검색한 검색어일수록 크기가 큽니다.<br>풍선을 눌러 다시 검색할수 있습니다.</h3>
+	<!-- <span class="search"></span>
+	<span class="title well"> -->
+	<!-- </span> -->
+	<mytag></mytag>
+	<!-- <div style="margin-top: -50px; width: 1000px; text-align: center; position: absolute;"> -->
+	<div class="container" id="main">
+		<div style="top: 70px; width: 1000px; text-align: center; position: absolute;">
+			<span class="fa fa-pie-chart fa-2x"></span>&nbsp;
+			<b style="margin-top: -50px; font-size: 30px;">자주 검색한 검색어일수록 위에 나타나고<br>&nbsp;&nbsp;&nbsp;&nbsp;많이 검색한 검색어일수록 크기가 큽니다</b>
+		</div>
+		<br>
 		<c:if test="${empty datas}">
 			<h1>당신의 검색 내역은 없습니다. <br>지금 EasySafe에 참여해 보세요!</h1>
 		</c:if>
-	</span>
-	<div class="container" id="main">
-		<mytag></mytag>
+		
 		<span class="resultList">
 		</span>
 	</div>
@@ -108,22 +122,23 @@
 		});
 		var data = sortData;
 		console.log(sortData);
-		$(".resultList").append("<div class='list-group-item blueborder'>검색어 목록</div><br>");
+		$(".resultList").append("<div class='well'>검색어 목록</div><br>");
 		for(var i = 0 ; i < sortData.length ; i++)
 		{			
-			$(".resultList").append("<div class='list-group-item keywords' data-index="+i+"><span class='pan'>"+sortData[i].name+"</span></div>");
+			$(".resultList").append("<div class='list-group-item pan' data-index="+i+">"+sortData[i].name+"</div>");
 		}
 		$(".pan").click(function(e){
 			if($(this).hasClass("fadeOn")){
 				return false;
 			}
 			shinkCircle();
-			var t = ".myNode" + $(this).parent().data("index");
+			var t = ".myNode" + $(this).data("index");
 			$(".pan").removeClass("fadeOn");
 			$(".selectedWidth").removeClass("selectedWidth");
 			
 			$(this).addClass("fadeOn");
 			var position = parseInt($(t).data("posy"))-('${maxHeight}' / 3);
+			/* var position = parseInt($(t).data("posy"))-('${maxHeight}' / 3); */
 			
 			$("html, body").animate({scrollTop : position}, 'slow');
 			$(t).parent().append($(t));
@@ -139,9 +154,9 @@
 			var he = $(".title").css("height");
 			$(".title").css({width : "0%", height : "0%"});
 			$(".title").animate({width: wd}, 'slow').animate({height: he}, 'slow');
-			var rehe = $(".resultList").css("height");
+			/* var rehe = $(".resultList").css("height");
 			$(".resultList").css("height", "7%")
-			$(".resultList").animate({"left": "1550px"}, 500).animate({"height": rehe}, 'slow');
+			$(".resultList").animate({"left": "1250px"}, 500).animate({"height": rehe}, 'slow'); */
 			/*$("g").mouseenter(function(e){
 				alert("ddd");
 				shinkCircle();
@@ -181,7 +196,7 @@
 			.removeClass("selectedWidth");
 		}
 	
-		var width = window.innerWidth,
+		var width = window.innerWidth + 700,
 		    height = '${maxHeight}';
 	
 		var fill = d3.scale.category10();

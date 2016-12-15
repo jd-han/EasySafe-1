@@ -34,8 +34,8 @@ public class ChemDAOImpl implements ChemDAO{
 	}
 
 	@Override
-	public ProductVO selectOneProductKorName(String korName) throws Exception {
-		return session.selectOne(namespace+".selectOneProductKorName", korName);
+	public ProductVO selectOneProductKorName(ProductVO pvo) throws Exception {
+		return session.selectOne(namespace+".selectOneProductKorName", pvo);
 	}
 
 	@Override

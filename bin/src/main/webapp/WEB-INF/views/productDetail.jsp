@@ -29,11 +29,5 @@
 			</div>
 		</div>
 	</div>
-	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#curPage").html("제품 검색 결과");
-		});
-	</script>
 </body>
 </html>
