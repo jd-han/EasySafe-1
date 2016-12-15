@@ -14,7 +14,7 @@
 <style type="text/css">
 	#chartdiv {
 		width	: 100%;
-		height: 650px;
+		height: 1550px;
 	}
 	/* .amcharts-chart-div > svg{
 		height: 600px !important;

@@ -47,6 +47,10 @@
 #wrap {
 	display: inline-block;
 }
+#fileIname{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 </style>
 
 </head>
@@ -86,6 +90,10 @@
 						<option value="user"
 							<c:out value="${cri.searchType eq 'user'?'selected':''}"/>>
 							일반유저</option>
+							
+						<option value="request"
+						<c:out value="${cri.searchType eq 'R'?'selected':''}"/>>
+						등업신청자</option>
 							
 					</select> <input type="text" class="form-control" placeholder="검색어 입력" name='keyword' id="keywordInput"
 						value='${cri.keyword }'/>
@@ -211,33 +219,44 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-					<h3 class="text-center" id="requUserName">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						<span class="fa fa-times fa-2x"></span>
+					</button>
+					<br>
+					<span class="fa fa-arrow-up fa-2x"></span>
+					<b style="font-size: 30px;" id="requUserName">신청자 아이디 적히는 부분</b>
+					<!-- <h3 class="text-center" id="requUserName">
 						등업신청자 아이디 적히는 부분
-					</h3>
+					</h3> -->
 				</div>
 				<div class="modal-body">
 					<input id="msgNo" name="msgNo" type="hidden"/>				
 					<input id="msgReceiver" name="msgReceiver" type="hidden"/>
-					제목<br>
-					<div class="form-control">
-						<input id="msgTitle" name="msgTitle" type="text" readonly="readonly"/>
-					</div><br>
-					내용<br>
-					<div class="form-control">
-						<input id="msgContent" name="msg" type="text" readonly="readonly"/>
-					</div>
-					첨부파일<br>
+					<span class="fa fa-header fa-2x"></span>
+					<b>제목</b>
+					<br>
+						<input class="form-control" id="msgTitle" name="msgTitle" type="text" readonly="readonly"/>
+					<br>
+					<span class="fa fa-list-alt fa-2x"></span>
+					<b>내용</b>
+					<br>					
+						<input class="form-control" id="msgContent" name="msg" type="text" readonly="readonly"/>
+					<br>
+					<span class="fa fa-floppy-o fa-2x"></span>
+					<b>첨부파일</b>
+					<br>
 					<div id="filePlace">
 					</div>
-					신청일<br>
-					<div class="form-control">
-						<input id="msgRegDate" name="date" type="text" readonly="readonly" />
-					</div>
-				</div>
-				수락/거부 사유를 적어주세요<br>
-				<div class="form-control">
-					<input id="cause" name="cause" type="text"/>
+					<br>
+					<span class="fa fa-clock-o fa-2x"></span>
+					<b>신청일</b>
+					<br>
+					<input class="form-control" id="msgRegDate" name="date" type="text" readonly="readonly" />
+					<hr>
+					<span class="fa fa-gavel fa-2x"></span>
+					<b>수락/거부 사유를 적어주세요</b>
+					<br>
+					<input class="form-control" id="cause" name="cause" type="text"/>
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="submitUp('OK');">&nbsp;&nbsp;&nbsp;&nbsp;수락&nbsp;&nbsp;&nbsp;&nbsp;</button>
@@ -282,7 +301,7 @@
 		})
 		.done(function(result) {
             // MsgVO 내용이 올라옴
-			$("#requUserName").html(result.sendUser + " 회원에 대한 승급 처리");
+			$("#requUserName").html(result.sendUser + " 회원에 대한<br> 승급 처리");
             $("#msgTitle").val(result.msgTitle);
             $("#msgContent").val(result.msg);
             $("#msgNo").val(result.msgNo);
@@ -292,10 +311,13 @@
             // 첨부파일이 있고 없고 따라 다운로드 링크 생성
             if(result.lvUpFile != null){
             	var oriFileName = result.lvUpFile.substring(result.lvUpFile.indexOf("_")+1, result.lvUpFile.length);
-            	$("#filePlace").html("<div class='alert alert-success'>"+ oriFileName
-            			+"<a href='${pageContext.request.contextPath}/user/displayFile.do?filename="+result.lvUpFile+"&cate=expert' class='btn btn-primary'>첨부파일 다운로드</a></div>");
+            	$("#filePlace").html("<div class='alert alert-success'>"+ 
+            			"<div class='input-group text-center'>" + 
+            			"<input id='fileIname' class='form-control' type='text' value='" + oriFileName + "' readonly='readonly'/>" +
+            			"<span class='input-group-btn'>" +
+            			"<a href='${pageContext.request.contextPath}/user/displayFile.do?filename="+result.lvUpFile+"&cate=expert' class='btn btn-primary'>첨부파일 다운로드</a></span></div></div>");
             }else{
-            	$("#filePlace").html("<a class='btn btn-danger'>첨부파일 없음</a>");
+            	$("#filePlace").html("<a class='btn btn-danger' disabled='disabled'>첨부파일 없음</a>");
             }
         });
 	}

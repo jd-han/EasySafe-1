@@ -143,7 +143,7 @@
 		})
 		.done(function(result) {
              if(result){
-            	 $("#isRequestUser").html("<a href='${pageContext.request.contextPath}/mod/listPage.do'><img class='glowicon' data-toggle='tooltip' data-placement='bottom' title='전문가 신청을 해온 유저가 있습니다' height='30px;'"+ 
+            	 $("#isRequestUser").html("<a href='${pageContext.request.contextPath}/mod/listPage.do?page=1&perPageNum=10&searchType=request&keyword='><img class='glowicon' data-toggle='tooltip' data-placement='bottom' title='전문가 신청을 해온 유저가 있습니다' height='30px;'"+ 
             	 							"src='${pageContext.request.contextPath}/resources/media/img/email.png' /></a>");
              }
         });

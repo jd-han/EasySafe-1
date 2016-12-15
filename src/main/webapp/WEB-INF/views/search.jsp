@@ -38,7 +38,17 @@
 <body>
 <%@ include file="nav.jsp" %>
 	<div class="container" id="main">
-		<c:choose>		
+		<form action="search.do" method="get" onsubmit="chkSearch()">
+			<div class="input-group text-center">
+				<input type="text" id="keyword" name="key" class="form-control input-lg" placeholder="검색어를 입력하세요" />
+				<input type="hidden" name="user" value="${login.uid}" />
+				<span class="input-group-btn">
+					<button id="search" class="btn btn-lg btn-success" type="submit">검색</button>
+				</span>
+			</div>
+			<br>
+		</form>
+		<c:choose>			
 			<c:when test="${!empty chemList}">
 			<div class="well tifont">
 				성분 검색 결과
