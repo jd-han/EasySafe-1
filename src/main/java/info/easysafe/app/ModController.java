@@ -142,8 +142,8 @@ public class ModController {
 			// 업로드 패스를 위에서 변경했기 때문에 원래 값으로 강제복원 해줘야 함.
 // 리눅스 경로 조심 uploadPath = "C:/easysafe/resources/"; uploadPath = "/usr/tomcat8/webapps/EasySafe/resources/";
 //			리눅스 경로
-//			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
-			uploadPath = "C:/easysafe/resources/";
+			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
+//			uploadPath = "C:/easysafe/resources/";
 			logger.info("파일 이름  : " + savedName);
 			mvo.setLvUpFile(savedName);
 		}		

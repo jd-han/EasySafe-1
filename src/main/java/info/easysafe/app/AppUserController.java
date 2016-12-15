@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import info.easysafe.domain.KeywordVO;
 import info.easysafe.domain.UserVO;
+import info.easysafe.service.ChemService;
 import info.easysafe.service.KeywordService;
 import info.easysafe.service.appService;
 import info.easysafe.util.Sha512Encrypt;
@@ -28,6 +29,9 @@ public class AppUserController {
 
 	@Inject
 	private appService service;
+
+	@Inject
+	private ChemService chemService;
 
 	@Inject
 	private KeywordService kService;
@@ -158,10 +162,18 @@ public class AppUserController {
 			kVO.setUser("anon");
 		}
 		kVO.setRegDate(new Date());
-
-		logger.info("mod KeywordVO : " + kVO);
+		
+		 
 
 		try {
+			//키워드가 숫자이면 이름으로 바꾸어주기
+			if (!kVO.getKeyword().matches("[^0-9]+$")){
+				 logger.info("getKeyword is number");
+				 kVO.setKeyword(chemService.readUpc(kVO.getKeyword()).getName());
+			 }
+
+			logger.info("mod KeywordVO : " + kVO);
+			
 			// 검색 결과를 받을 임시 VO 선언.
 			KeywordVO resultVO;
 			resultVO = kService.readKeywordKorName(kVO);

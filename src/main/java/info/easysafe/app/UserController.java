@@ -339,16 +339,16 @@ public class UserController {
 			logger.info("size : " + file.getSize());
 
 			//			리눅스 경로
-//			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
-			uploadPath = "C:/easysafe/resources/";
+			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
+//			uploadPath = "C:/easysafe/resources/";
 			// 프사 업로드용 경로를 추가 해줌.
 			uploadPath = uploadPath + "/profiles";
 			String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
 			// 업로드 패스를 위에서 변경했기 때문에 원래 값으로 강제복원 해줘야 함.
 //리눅스 경로			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources/"; 일반경로 uploadPath = "C:/easysafe/resources/";
 //			리눅스 경로
-//			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
-			uploadPath = "C:/easysafe/resources/";
+			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
+//			uploadPath = "C:/easysafe/resources/";
 			// savedName = "/profiles" + savedName;
 			logger.info("정보수정용프사 경로 : " + savedName);
 			userVO.setFile(savedName);
@@ -385,8 +385,8 @@ public class UserController {
 		// 업로드 패스를 위에서 변경했기 때문에 원래 값으로 강제복원 해줘야 함.
 		//경로 리셋
 //리눅스 경로 uploadPath = "/usr/tomcat8/webapps/EasySafe/resources/";
-//		uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
-		uploadPath = "C:/easysafe/resources/";
+		uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
+//		uploadPath = "C:/easysafe/resources/";
 		
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
@@ -527,19 +527,17 @@ public class UserController {
 		String esubject = "[EasySafe] " + toUser + " 님의 임시 비밀번호가 발급되었습니다.";
 		String econtent = "";/*= toUser + " 님의 임시 비밀번호는 [ " + tempPass + " ] 입니다. 바로 로그인 하시고 다른 암호로 변경하시기 바랍니다.";*/
 				econtent += "<body style='background-color: rgb(230,230,230); width: 100%; height: 100%'>";
-				econtent += "<link href='https://fonts.googleapis.com/css?family=Roboto|Pacifico' rel='stylesheet' type='text/css'>";
 				econtent += "<div style='background-color: rgb(230,230,230); width: 100%; height: 100%; min-height:300px; padding-top:20px;'>";
-				econtent += "<div style='width:400px; background-color:rgb(255,255,255); font-family: 'Roboto', sans-serif; margin:auto; margin-top: 20px; text-align: left; padding: 10px;'>";
-				econtent += "<div style='font-family: 'Pacifico-Regular', 'Pacifico',  sans-serif; font-size: 24px; margin: 10px; color: rgb(80,80,80);'>";
-				econtent += "EasySafe";
-				econtent += "</div>";
+				econtent += "<div style='width:400px; background:rgb(255,255,255); margin:auto; margin-top: 20px; text-align: left; padding: 10px;'>";
+				econtent += "<img src='http://easysafe.info/resources/media/img/logo_nobg3.png' width='50px'>";
 				econtent += "<div style='font-size: 12px; color: rgb(100,100,100); margin: 10px;'>";
-				econtent += toUser + " 님의 임시 비밀번호는 아래와 같습니다<br>바로 로그인하여 비밀번호를 변경해 주시기 바랍니다.";
+				econtent += toUser +" 님의 임시 비밀번호는 아래와 같습니다<br>로그인하여 비밀번호를 변경해 주시기 바랍니다.<br><br>";
 				econtent += "<div style='background-color: rgb(180,220,250); padding: 5px; border-radius: 5px; font-size: 14px; width: auto; margin: auto; width: 200px; text-align: center;'>";
-				econtent += "<a href='http://easysafe.info/user/login.do'>"+ tempPass + "</a>";
+				econtent += "<a href='http://easysafe.info/user/login.do'>" + tempPass + "</a>";
 				econtent += "</div><br>";
 				econtent += "</div>";
 				econtent += "<div style='font-size: 9px; color: rgb(200,200,200);'>";
+				econtent += "copyright ⓒ EasySafe<br>If you didn't ask to reset your password, please <a href='#'>contact us</a>";
 				econtent += "</div>";
 				econtent += "</div>";
 				econtent += "</div>";
