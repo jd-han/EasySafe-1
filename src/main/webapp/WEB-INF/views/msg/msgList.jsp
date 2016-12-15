@@ -37,13 +37,13 @@
 						<div>
 						<c:choose>
 							<c:when test="${!empty msgReceiveList}">
-							<table class="table" style="border: 1px solid black; text-align: center;">
+							<table class="table" style="border: 1px solid #cccccc; text-align: center;">
 								<tr style="height: 50px;">
-									<td class="col-md-1"><span class="fa fa-user fa-2x"></span><b>보낸 사람</b></td>
-									<td class="col-md-3"><span class="fa fa-header fa-2x"></span><b>제목</b></td>
-									<td class="col-md-2"><span class="fa fa-clock-o fa-2x"></span><b>보낸 날짜</b></td>
-									<td colspan="2" style="width: 10%;"><span class="fa fa-eye fa-2x"></span><b>열람여부</b></td>
-									<td class="col-md-2"><span class="fa fa-trash fa-2x"></span><b>메시지 삭제</b></td>
+									<td class="col-md-1"><span class="fa fa-user fa-2x"></span><b>&nbsp;보낸 사람</b></td>
+									<td class="col-md-3"><i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i><b>&nbsp;제목</b></td>
+									<td class="col-md-2"><span class="fa fa-clock-o fa-2x"></span><b>&nbsp;보낸 날짜</b></td>
+									<td colspan="2" style="width: 10%;"><span class="fa fa-eye fa-2x"></span><b>&nbsp;열람여부</b></td>
+									<td class="col-md-2"><span class="fa fa-trash fa-2x"></span><b>&nbsp;메시지 삭제</b></td>
 								</tr>
 								<c:forEach items="${msgReceiveList}" var="msgReceive">
 									<tr style="height: 50px;">
@@ -97,7 +97,7 @@
 						<div>
 						<c:choose>
 						<c:when test="${!empty msgSendList}">
-						<table class="table" style="border: 1px solid black; text-align: center;">
+						<table class="table" style="text-align: center;">
 							<tr style="height: 50px;">
 								<td class="col-md-2"><span class="fa fa-user fa-2x"></span><b>받는 사람</b></td>
 								<td class="col-md-2"><span class="fa fa-header fa-2x"></span><b>제목</b></td>
@@ -145,8 +145,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-xs-2">
-				<a href="#msgModal" data-toggle="modal" class="btn btn-primary center-block" onclick="resetModal()">메시지 작성</a>
+			<div class="col-xs-12" style="padding-right: 0px !important;">
+				<a href="#msgModal" data-toggle="modal" class="btn btn-primary pull-right" onclick="resetModal()">메시지 작성</a>
 			</div>
 			</div>
 		</div>

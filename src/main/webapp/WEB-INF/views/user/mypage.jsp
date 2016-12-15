@@ -276,7 +276,7 @@ $(document).ready(function() {
 function chkUpdate() {	
     var result = true;
           if ($("#oripw").val() == "") {
-             alert("현재 비밀번호를 입력하세요. ");
+//              alert("현재 비밀번호를 입력하세요. ");
              $("#pwd2").focus();
 					result = false;
           }else if ($("#upw").val() == "") {

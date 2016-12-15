@@ -41,7 +41,7 @@
 	}
 	.logo > img{
 		position: absolute;
-		top: 10px;
+		top: 8px;
 	}
 	.logo:HOVER {
 		background-color: transparent !important;

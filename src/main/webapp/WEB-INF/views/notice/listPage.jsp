@@ -40,8 +40,8 @@ background-color: 	#eef2f7 !important;
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<br>
-						<span>&nbsp;&nbsp;</span><span class="fa fa-newspaper-o fa-2x"></span>
-						<b style="font-size: 30px;">공지사항</b>
+						
+						<b style="font-size: 30px;"><i class="fa fa-bullhorn" aria-hidden="true"></i> &nbsp;공지사항</b>
 					<hr>
 					</div>
 					
@@ -82,9 +82,9 @@ background-color: 	#eef2f7 !important;
 						<div class="col-xs-10"></div>
 						
 						<c:if test="${uvo.ulevel eq 'admin'}">
-							<div class="col-xs-2" >
-								<a class="btn btn-primary pull-left"
-									href="/notice/create.do" type="button">공지 작성</a>
+							<div class="col-xs-2" style="padding-right: 0px !important;">
+								<a class="btn btn-primary pull-right"
+									href="/notice/create.do" type="button"> &nbsp;공지 작성 &nbsp;</a>
 							</div>						
 						</c:if>
 <!-- 페이지네이션 -->						
@@ -111,7 +111,7 @@ background-color: 	#eef2f7 !important;
 						</div>
 						
 <!-- 검색부분 -->						
-						<form class="form-inline">
+						<form class="form-inline" style="margin-left: 40px;">
 							<select name="searchType" class="form-control" style="margin-left: 140px">
 								<option value="no" <c:out value="${cri.searchType == null?'selected':''}"/>>
 									검색유형을 선택하세요
@@ -126,9 +126,9 @@ background-color: 	#eef2f7 !important;
 									제목이나 내용으로 검색
 								</option>
 							</select>
-							<div class="input-group text-center">
+							<div class="input-group text-center" >
 								<input type="text" class="form-control" placeholder="검색어 입력" name='keyword' id="keywordInput" value='${cri.keyword }'/>
-								<span class="input-group-btn">
+								<span class="input-group-btn" >
 									<button id="searchBtn" class="btn btn-default" type="button">검색</button>
 								</span>
 							</div>

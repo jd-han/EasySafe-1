@@ -59,53 +59,15 @@
 	<%@ include file="../nav.jsp" %>
 
 	<!--main-->
-	<div class="container" id="main">
+	<div class="container-fluid" style="padding-top: 85px !important;" id="main">
 		<div class="row">
-			<div class="col-md-12 col-sm-12">
-			<div class="well">
-			<form class="form-inline">
-			 <select name="searchType" class="form-control">
-						<option value="n"
-							<c:out value="${cri.searchType == null?'selected':''}"/>>
-							검색유형을 선택하세요</option>
-						<option value="no"
-							<c:out value="${cri.searchType eq 'no'?'selected':''}"/>>
-							유저번호</option>
-						<option value="ID"
-							<c:out value="${cri.searchType eq 'ID'?'selected':''}"/>>
-							ID</option>
-						<option value="username"
-							<c:out value="${cri.searchType eq 'username'?'selected':''}"/>>
-							유저네임</option>
-						<option value="email"
-							<c:out value="${cri.searchType eq 'email'?'selected':''}"/>>
-							이메일</option>
-						<option disabled="disabled">-유저 타입별 검색-</option>
-						<option value="admin"
-							<c:out value="${cri.searchType eq 'admin'?'selected':''}"/>>
-							관리자</option>
-						<option value="pro"
-							<c:out value="${cri.searchType eq 'pro'?'selected':''}"/>>
-							전문가</option>
-						<option value="user"
-							<c:out value="${cri.searchType eq 'user'?'selected':''}"/>>
-							일반유저</option>
-							
-						<option value="request"
-						<c:out value="${cri.searchType eq 'R'?'selected':''}"/>>
-						등업신청자</option>
-							
-					</select> <input type="text" class="form-control" placeholder="검색어 입력" name='keyword' id="keywordInput"
-						value='${cri.keyword }'/>
-					<a id='searchBtn' class="btn btn-default" href="#">검색</a>
-					
-			</form>
-			</div>
+		<div class="col-md-1 col-sm-1"></div>
+			<div class="col-md-10 col-sm-10" style="padding-left: 0px;">
 			
-				<div class="panel panel-default">
-					<div class="panel-heading">
+				<div class="panel panel-default" style="margin-bottom: 50px !important">
+					<div class="panel-heading" style="padding-bottom: 0px !important;">
 						<!-- 						<a href="#" class="pull-right">View all</a> -->
-						<h2>전체 회원 목록</h2>
+						<label style="font-size: 30px;"><i class="fa fa-list-ul" aria-hidden="true"></i> &nbsp;전체 회원 목록</label>
 						<!-- 						<form action="/notice/noticePost.do" method="post"
 							class="form-horizontal" role="form"> -->
 <!-- 						<div> -->
@@ -116,9 +78,9 @@
 <!-- 							</button> -->
 <!-- 						</div> -->
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" style="padding-top: 0px !important; margin-top: 0px !important;" >
 						<!-- Table -->
-						<table class="table table-hover">
+						<table class="table table-hover" style="padding-top: 0px !important; margin-top: 10px !important;">
 							<tr>
 								<th><span>User no</span></th>
 								<th><span>ID</span></th>
@@ -205,15 +167,59 @@
 								</c:if>
 							</ul>
 						</div>
-					</div>
-				</div>
-
-
+						
+<!-- 검색Div -->					
+		<div class="text-center" style="margin:10px !important">
+						<form class="form-inline">
+			 <select name="searchType" class="form-control">
+						<option value="n"
+							<c:out value="${cri.searchType == null?'selected':''}"/>>
+							검색유형을 선택하세요</option>
+						<option value="no"
+							<c:out value="${cri.searchType eq 'no'?'selected':''}"/>>
+							유저번호</option>
+						<option value="ID"
+							<c:out value="${cri.searchType eq 'ID'?'selected':''}"/>>
+							ID</option>
+						<option value="username"
+							<c:out value="${cri.searchType eq 'username'?'selected':''}"/>>
+							유저네임</option>
+						<option value="email"
+							<c:out value="${cri.searchType eq 'email'?'selected':''}"/>>
+							이메일</option>
+						<option disabled="disabled">-유저 타입별 검색-</option>
+						<option value="admin"
+							<c:out value="${cri.searchType eq 'admin'?'selected':''}"/>>
+							관리자</option>
+						<option value="pro"
+							<c:out value="${cri.searchType eq 'pro'?'selected':''}"/>>
+							전문가</option>
+						<option value="user"
+							<c:out value="${cri.searchType eq 'user'?'selected':''}"/>>
+							일반유저</option>
+							
+						<option value="request"
+						<c:out value="${cri.searchType eq 'R'?'selected':''}"/>>
+						등업신청자</option>
+							
+					</select> <input type="text" class="form-control" placeholder="검색어 입력" name='keyword' id="keywordInput"
+						value='${cri.keyword }'/>
+					<a id='searchBtn' class="btn btn-default" href="#">검색</a>
+					
+			</form>
 			</div>
+<!-- 검색 Div 끝 -->		
+
+	
+		</div>
 		</div>
 
 
+		</div>
 	</div>
+<%-- <%@ include file="../footer.jsp" %> --%>
+
+</div>
 <!-- 등업신청 모달 -->
 	<div id="requestModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">

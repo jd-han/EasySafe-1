@@ -71,11 +71,10 @@
 								</c:if>
 								<form role="form" action="update.do" method="post">
 									<input type='hidden' name='no' value="${issueVO.ino}">
-									<input type='hidden' name='page' value="${cri.page}"> <input
-										type='hidden' name='perPageNum' value="${cri.perPageNum}">
-									<input type='hidden' name='searchType'
-										value="${cri.searchType}"> <input type='hidden'
-										name='keyword' value="${cri.keyword}">
+									<input type='hidden' name='page' value="${cri.page}"> 
+									<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+									<input type='hidden' name='searchType' value="${cri.searchType}"> 
+									<input type='hidden' name='keyword' value="${cri.keyword}">
 								</form>
 								<div class="col-xs-2">
 

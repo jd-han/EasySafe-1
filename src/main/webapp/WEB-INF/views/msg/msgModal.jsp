@@ -37,12 +37,12 @@
 				<br>
 				<div class="alert alert-warning" id="isExistId">메시지를 받을 유저의 ID를 먼저 검색해 주세요</div>
 				<br>
-				<span class="fa fa-header fa-2x"></span>
-				<b>메시지 제목</b>
+<!-- 				<span class="fa fa-header fa-2x"></span> -->
+				<b> &nbsp;<i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;메시지 제목</b>
 				<br>
 				<input class="form-control" id="msgTitle" name="msgTitle"/><br>
-				<span class="fa fa-list-alt fa-2x"></span>
-				<b>메시지 내용</b>
+<!-- 				<span class="fa fa-list-alt fa-2x"></span> -->
+				<b> &nbsp;<i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;메시지 내용</b>
 				<br>
 				<textarea class="form-control" name="msg" rows="10" cols="1" id="msgContent"></textarea>
 			</div>			

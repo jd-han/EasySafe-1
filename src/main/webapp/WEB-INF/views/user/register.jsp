@@ -95,7 +95,7 @@
           <div class="col-md-5">
               <div class="panel panel-default">
                    <div class="panel-heading">
-                        <b style="font-size: 30px;">가입 정보 입력</b>
+                        <b style="font-size: 30px;"> <i class="fa fa-address-card-o" aria-hidden="true"></i>&nbsp;가입 정보 입력</b>
                    </div>
                    <hr>
                    <div class="panel-body" style="width: 100%;">
@@ -135,6 +135,7 @@
                                       <b>패스워드</b>&nbsp;
                                       <span class="label label-danger" style="margin-bottom: 10px; font-size: 13px;">필수</span>
                                       	<input type="password" id="joinPass" name="upw" class="form-control input" placeholder="패스워드를 입력하세요" />
+                                      <br>
                                       <span class="fa fa-unlock-alt fa-2x"></span>
                                       <b>패스워드확인</b>
                                       	<input type="password" id="checkPass" class="form-control input" placeholder="패스워드를 확인하세요" />
