@@ -123,7 +123,7 @@
                                   <div class="apihidden">
                                   	  <span class="fa fa-user fa-2x"></span>
                                       <b>ID</b>&nbsp;
-                                      <span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
+                                      <span class="label label-danger" style="margin-bottom: 10px; font-size: 13px;">필수</span>
                                       <div class="input-group">
                                       	<input type="text" id="joinId" name="uid" class="form-control" placeholder="ID를 입력하세요" /> 
                                         <span class="input-group-btn">
@@ -133,7 +133,7 @@
                                       <div class="alert alert-success" id="isDuplicateId"></div>
                                       <span class="fa fa-lock fa-2x"></span>
                                       <b>패스워드</b>&nbsp;
-                                      <span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
+                                      <span class="label label-danger" style="margin-bottom: 10px; font-size: 13px;">필수</span>
                                       	<input type="password" id="joinPass" name="upw" class="form-control input" placeholder="패스워드를 입력하세요" />
                                       <span class="fa fa-unlock-alt fa-2x"></span>
                                       <b>패스워드확인</b>
@@ -142,12 +142,12 @@
                                   <div class="alert alert-danger" id="isCheckPass"></div>
                                   <span class="fa fa-pencil fa-2x"></span>
                                   	<b>이름&nbsp;</b>
-                                  	<span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
+                                  	<span class="label label-danger" style="margin-bottom: 10px; font-size: 13px;">필수</span>
 										<input type="text" id="joinName" name="uname" class="form-control" placeholder="이름을 입력하세요" />
 								  <br>
 								  <span class="fa fa-envelope fa-2x"></span>
                                   	<b>이메일</b>&nbsp;
-                                  	<span class="label label-danger" style="margin-bottom: 10px; font-size: 15px;">필수</span>
+                                  	<span class="label label-danger" style="margin-bottom: 10px; font-size: 13px;">필수</span>
                                   <div class="input-group text-center">
                                       <input type="text" id="joinEmail" name="umail" class="form-control input" placeholder="Email을 입력하세요" />
                                       <span class="input-group-btn">

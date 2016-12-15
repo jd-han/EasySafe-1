@@ -39,7 +39,7 @@ width: 100px;
 <body>
 		<%@ include file="../nav.jsp" %>
 	<!--main-->
-	<div class="container-fluid" id="main">
+	<div class="container-fluid" style="padding-top: 85px !important;" id="main">
 		<div class="row">
 			<div class="col-md-12">
 	
@@ -156,7 +156,7 @@ width: 100px;
 		</div>
 			<div class="col-md-3">
 			
-			<img height="480px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>
+			<img height="520px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>
                    <a href="${pageContext.request.contextPath}/index.do">
                    <img alt="너구리" 
                              src="${pageContext.request.contextPath}/resources/media/img/glassholding.png"

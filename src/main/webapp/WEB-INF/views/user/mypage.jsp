@@ -56,7 +56,7 @@
 <body>
 <%@ include file="../nav.jsp"%>
 <%@ include file="upModal.jsp" %>
-<div class="container-fluid" id="main">
+<div class="container-fluid"  id="main">
 	<div class="row">
 	<div class="col-xs-8" style="padding-left: 35px !important; padding-right: 0px !important; ">
 	<div class="well col-xs-8" style="margin-bottom: 10px !important">  

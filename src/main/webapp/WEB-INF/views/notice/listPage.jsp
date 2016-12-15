@@ -27,7 +27,7 @@ background-color: 	#eef2f7 !important;
 </head>
 <body>
 <%@ include file="../nav.jsp" %>
-	<div class="container-fluid" id="main">
+	<div class="container-fluid" style="padding-top: 85px !important;" id="main">
 	<div class="row">
 			<div class="col-md-12">
 	
@@ -141,7 +141,7 @@ background-color: 	#eef2f7 !important;
 					
 					<div class="col-md-3" style="padding: 0px !important;">
 					<div>
-						<img height="480px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>
+						<img height="520px" width="100px" alt="easysafe" src="${pageContext.request.contextPath}/resources/media/img/clear.png"/>
 					<a href="${pageContext.request.contextPath}/index.do">
 	                <img alt="너구리" src="${pageContext.request.contextPath}/resources/media/img/panda01_nobg.png" 
 	                	style="width: 100%; height: 100%;" />
