@@ -12,23 +12,30 @@
 		background-color: skyblue !important;
 		transition: 0.5s;
 	}
+h1 {
+	padding-bottom: 5px;
+}
+h3 {
+	padding-left: 5px;
+	padding-top: -20px;
+}
 </style>
 </head>
 <body>
 <%@ include file="nav.jsp" %>
-	<div class="container" id="main">
-		<div class="well">
-			<h1>${productResult.name}</h1>
+	<div class="container" style="padding-top: 75px !important;" id="main">
+		<div class="well title">
+			<h1 style=" font-weight: bold;">${productResult.name}</h1>
 		</div>
 		<div style="float: left; width: 100%;" class="well">
-			<img class="well" style="width: 50%;" src="${productResult.thumimg}" />
+			<img class="well" style="width: 49%;" src="${productResult.thumimg}" />
 			<div style="float: right; width: 50%;">
-				<div class="well">
-					<h4>제조사</h4>
+				<div class="well" style="margin-bottom: 12px !important">
+					<h3 style=" font-weight: bold;">제조사</h3>
 					${productResult.producer}
 				</div>
 				<div style="width: 100%;" class="well">
-					<h4>제품에 포함된 성분들</h4>			
+					<h3 style=" font-weight: bold;" >제품에 포함된 성분들</h3>			
 					<c:if test="${!empty productResult}">
 						<aa style="font-size: 20px;" class="list-group-item">
 							<span style="width: 75%; display: inline-block;"><label>성분명</label></span>

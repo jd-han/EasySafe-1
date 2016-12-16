@@ -340,7 +340,7 @@ public class UserController {
 
 			//			리눅스 경로
 //			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
-			uploadPath = "C:/easysafe/resources/";
+			uploadPath = "D:/Spring/workspace4Spring/EasySafe/src/main/webapp/resources/";
 			// 프사 업로드용 경로를 추가 해줌.
 			uploadPath = uploadPath + "/profiles";
 			String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
@@ -348,7 +348,7 @@ public class UserController {
 //리눅스 경로			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources/"; 일반경로 uploadPath = "C:/easysafe/resources/";
 //			리눅스 경로
 //			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
-			uploadPath = "C:/easysafe/resources/";
+			uploadPath = "D:/Spring/workspace4Spring/EasySafe/src/main/webapp/resources/";
 			// savedName = "/profiles" + savedName;
 			logger.info("정보수정용프사 경로 : " + savedName);
 			userVO.setFile(savedName);
@@ -386,7 +386,7 @@ public class UserController {
 		//경로 리셋
 //리눅스 경로 uploadPath = "/usr/tomcat8/webapps/EasySafe/resources/";
 //		uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
-		uploadPath = "C:/easysafe/resources/";
+		uploadPath = "D:/Spring/workspace4Spring/EasySafe/src/main/webapp/resources/";
 		
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;

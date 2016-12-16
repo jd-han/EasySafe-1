@@ -37,7 +37,7 @@
 </head>
 <body>
 <%@ include file="nav.jsp" %>
-	<div class="container" id="main">
+	<div class="container" style="padding-top: 70px !important;"  id="main">
 		<form action="search.do" method="get" onsubmit="chkSearch()">
 			<div class="input-group text-center">
 				<input type="text" id="keyword" name="key" class="form-control input-lg" placeholder="검색어를 입력하세요" />
@@ -105,8 +105,9 @@
 			</c:forEach>
 		</c:when>
 		<c:otherwise>
-			<div class="well">
-				<h1>${keyword}에 대한 검색 결과가 없습니다.</h1>
+			<div class="well" style="text-align: center;">
+				<h1>'${keyword}'에 대한 검색 결과가 없습니다.</h1>
+					<img height="35%" width="35%" src="${pageContext.request.contextPath}/resources/media/img/dafuck.png" />
 			</div>
 			<a class="well" style="display: block;" target="_blank" href="https://search.naver.com/search.naver?query=${keyword}">
 				<span>

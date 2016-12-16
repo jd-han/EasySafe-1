@@ -108,7 +108,8 @@ public class ModController {
 			logger.info("original name : " + file.getOriginalFilename());
 			logger.info("size : " + file.getSize());
 			// 증빙서류 업로드용 경로를 추가 해줌.
-			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
+//			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
+			uploadPath = "D:/Spring/workspace4Spring/EasySafe/src/main/webapp/resources";
 			uploadPath = uploadPath + "/experts";
 			String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
 			// 업로드 패스를 위에서 변경했기 때문에 원래 값으로 강제복원 해줘야 함.

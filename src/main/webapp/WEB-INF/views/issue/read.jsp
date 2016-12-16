@@ -33,6 +33,10 @@
 .mini {
 font-size: 7px; font-style: italic; 
 }
+
+xmp{
+font-family: inherit;
+}
 </style>
 
 
@@ -61,7 +65,7 @@ font-size: 7px; font-style: italic;
 							value="${issueVO.regdate}" />
 						</span>
 <!-- 게시물의 내용 -->
-						<p>${issueVO.content}</p>
+						 <div><xmp>${issueVO.content} </xmp></div>
 
 						<div class="col-md-12">
 							<img style="width: 150px; height: 150px;"
@@ -330,7 +334,7 @@ function getAllList(ino) {
 
 		function replyDel(rno){
 // 			alert(rno"번 댓글 삭제 누름. ");
-			confirm(rno+"번 댓글을 삭제할까요?");
+			confirm("댓글을 삭제할까요?");
 			$.ajax({
 				type : 'post',
 				url : '/replies/delete'+rno+'.do',

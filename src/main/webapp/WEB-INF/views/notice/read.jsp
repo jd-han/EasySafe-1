@@ -20,6 +20,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/bootstrap/css/styles.css"
 	type="text/css" />
+<style type="text/css">
+xmp{		
+font-family: inherit;
+}
+</style>
 </head>
 <body>
 	<%@ include file="../nav.jsp"%>
@@ -36,8 +41,8 @@
 						<b>${noticeVO.title}</b>
 						<hr>
 					</div>
-					<div class="panel-body">
-						<p>${noticeVO.content}</p>
+					<div class="panel-body" style="padding-left: 70px;">
+						 <div><xmp>${noticeVO.content}</xmp></div>
 						<a href="#">사이트 바로가기</a>						
 						<div class="col-md-12">
 						<img style="width: 150px; height: 150px;"

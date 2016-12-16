@@ -41,7 +41,7 @@
 	}
 	.logo > img{
 		position: absolute;
-		top: 8px;
+		top: 10px;
 	}
 	.logo:HOVER {
 		background-color: transparent !important;
@@ -62,7 +62,7 @@
 					</a>			
 				</c:when>
 				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/index.do">${uvo.uname}</a><b style="font-size: 15px;">&nbsp;님 환영합니다</b>
+					<a style="font-size: 25px" href="${pageContext.request.contextPath}/index.do">${uvo.uname}</a><b style="font-size: 15px; font-weight: normal;">&nbsp;님 환영합니다</b>
 				</c:otherwise>
 			</c:choose>
 			</label>

@@ -64,11 +64,12 @@
 	</beans:bean>
 	
 <beans:bean id="uploadPath" class="java.lang.String">
-	<beans:constructor-arg value="C:/easysafe/resources/"></beans:constructor-arg>
+	<beans:constructor-arg value="D:/Spring/workspace4Spring/EasySafe/src/main/webapp/resources/profiles"></beans:constructor-arg>
 	</beans:bean> 
-	<!--<beans:bean id="uploadPath" class="java.lang.String">
-	<beans:constructor-arg value="/usr/tomcat8/webapps/EasySafe/resources/"></beans:constructor-arg>
-	</beans:bean>-->
+<!-- 	<beans:bean id="uploadPath" class="java.lang.String"> -->
+<!-- 	<beans:constructor-arg value="/usr/tomcat8/webapps/EasySafe/resources/"></beans:constructor-arg> -->
+<!-- 	</beans:bean> -->
+
 		
 	<beans:bean id="issueUploadPath" class="java.lang.String">
 	<beans:constructor-arg value="D:/Spring/workspace4Spring/EasySafe/src/main/webapp/resources/profiles"></beans:constructor-arg>
