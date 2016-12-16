@@ -30,7 +30,7 @@
 <%@ include file="../nav.jsp" %>
 	<div class="container" id="main" style="text-align: center;">
 		<span class="fa fa-area-chart fa-3x"></span>
-		<b style="font-size: 30px;">사용자의 검색 내역을 그래프화 합니다.</b>
+		<b style="font-size: 30px;">사용자들의 검색 내역을 그래프화 합니다.</b>
 		<br><br><br><br>
 		<div id="chartdiv"></div>
 	</div>

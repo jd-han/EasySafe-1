@@ -339,8 +339,10 @@ public class UserController {
 			logger.info("size : " + file.getSize());
 
 			//			리눅스 경로
+
 			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
 //			uploadPath = "C:/easysafe/resources/";
+
 			// 프사 업로드용 경로를 추가 해줌.
 			uploadPath = uploadPath + "/profiles";
 			String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
@@ -349,6 +351,7 @@ public class UserController {
 //			리눅스 경로
 			uploadPath = "/usr/tomcat8/webapps/EasySafe/resources";
 //			uploadPath = "C:/easysafe/resources/";
+
 			// savedName = "/profiles" + savedName;
 			logger.info("정보수정용프사 경로 : " + savedName);
 			userVO.setFile(savedName);

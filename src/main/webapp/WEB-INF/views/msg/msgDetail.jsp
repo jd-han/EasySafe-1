@@ -64,8 +64,8 @@
 		$("#msgUser").val("${msgDetail.sendUser}");
 		$("#msgUser").attr("readonly", true);
 		$("#findBtn").css("display", "none");
-		$("#msgTitle").val("${msgDetail.msgTitle}");
-		$("#msgContent").val("RE : ${msgDetail.msg}");
+		$("#msgTitle").val("RE :${msgDetail.msgTitle}");
+		$("#msgContent").val("원본 내용 : ${msgDetail.msg}");
 		$("#isExistId").css("display", "none");
 	}
 </script>

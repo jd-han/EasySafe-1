@@ -51,7 +51,7 @@
 </head>
 <body>
 <%@ include file="nav.jsp" %>
-	<div class="container" id="main">
+	<div class="container" style="padding-top: 90px !important;"  id="main">
 	<c:choose>
 		<c:when test="${!empty chemResult}">
 		<div style="width: 100%;">

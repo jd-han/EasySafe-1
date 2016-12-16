@@ -67,7 +67,7 @@
 				<div class="panel panel-default" style="margin-bottom: 50px !important">
 					<div class="panel-heading" style="padding-bottom: 0px !important;">
 						<!-- 						<a href="#" class="pull-right">View all</a> -->
-						<label style="font-size: 30px;"><i class="fa fa-list-ul" aria-hidden="true"></i> &nbsp;전체 회원 목록</label>
+						<label style="font-size: 30px;"><i class="fa fa-list-ul" aria-hidden="true"></i> &nbsp;회원 리스트</label>
 						<!-- 						<form action="/notice/noticePost.do" method="post"
 							class="form-horizontal" role="form"> -->
 <!-- 						<div> -->

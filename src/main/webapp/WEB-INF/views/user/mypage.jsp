@@ -269,9 +269,9 @@
 
 <script type="text/javascript">
 
-$(document).ready(function() {
-		$("#curPage").html("나의 정보");
-	});
+// $(document).ready(function() {
+// 		$("#curPage").html("마이페이지");
+// 	});
     
 function chkUpdate() {	
     var result = true;
