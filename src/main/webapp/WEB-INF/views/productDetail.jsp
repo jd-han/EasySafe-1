@@ -21,7 +21,7 @@
 			<h1>${productResult.name}</h1>
 		</div>
 		<div style="float: left; width: 100%;" class="well">
-			<img class="well" style="width: 50%;" src="${productResult.thumimg}" />
+			<img class="well" style="width: 50%; max-height: 700px;" src="${productResult.thumimg}" />
 			<div style="float: right; width: 50%;">
 				<div class="well">
 					<h4>제조사</h4>

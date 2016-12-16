@@ -172,12 +172,16 @@ public class HistoryController {
 			else{*/
 				for(int i = 0 ; i < ids.size() ; i++)
 				{
-					pos += "{x : 100, y: " + (i+1) * (modYPos(list, ids.get(i))+50) / 2 + "},";
+					if(i == 0){
+						pos += "{x : 100, y: " + (i+1) * (modYPos(list, ids.get(i))+850) / 2 + "},";
+					}else{
+						pos += "{x : 100, y: " + (i+1) * (modYPos(list, ids.get(i))+50) / 2 + "},";						
+					}
 					height += (i+1) * (modYPos(list, ids.get(i))+50) / 2;
 					logger.info(height+"");
 				}
 			//}
-			if(height <= 750) { height = 750; } 
+			if(height <= 600) { height = 600; } 
 			mv.addObject("maxHeight", height);
 			gs.toJson(pos);
 		}			

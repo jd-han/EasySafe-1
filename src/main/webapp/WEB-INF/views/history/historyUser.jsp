@@ -45,11 +45,12 @@
 		top: 160px;
 		height: 600px;
 		overflow: auto;
+		text-align: center;
 	}
 	svg{
 		/* border: 20px solid transparent !important;
 		border-image: url(${pageContext.request.contextPath}/resources/media/img/frameborder.png) 20 round !important; */
-		
+		margin-top: 50px;
 		width: 100%;
 	}
 	.search{
@@ -99,19 +100,18 @@
 	<!-- </span> -->
 	<mytag></mytag>
 	<!-- <div style="margin-top: -50px; width: 1000px; text-align: center; position: absolute;"> -->
-	<div class="container" id="main">
-		<div style="top: 70px; width: 1000px; text-align: center; position: absolute;">
-			<span class="fa fa-pie-chart fa-2x"></span>&nbsp;
-			<b style="margin-top: -50px; font-size: 30px;">자주 검색한 검색어일수록 위에 나타나고<br>&nbsp;&nbsp;&nbsp;&nbsp;많이 검색한 검색어일수록 크기가 큽니다</b>
-		</div>
-		<br>
+	<div style="top: 70px; width: 1000px; text-align: center; position: absolute;">
+		<span class="fa fa-pie-chart fa-2x"></span>&nbsp;
+		<b style="margin-top: -50px; font-size: 30px;">자주 검색한 검색어일수록 위에 나타나고<br>&nbsp;&nbsp;&nbsp;&nbsp;많이 검색한 검색어일수록 크기가 큽니다</b>
 		<c:if test="${empty datas}">
-			<h1>당신의 검색 내역은 없습니다. <br>지금 EasySafe에 참여해 보세요!</h1>
+			<b style="margin-top: -50px; font-size: 30px;">당신의 검색 내역은 없습니다. <br>지금 EasySafe에 참여해 보세요!</b>
 		</c:if>
-		
-		<span class="resultList">
-		</span>
 	</div>
+	
+	<span class="resultList">
+	</span>
+	<!-- <div class="container" id="main">
+	</div> -->
 	
 	<script type="text/javascript">
 		// GROUPS:  0 Web | 1: Adobe | 2: hybrid

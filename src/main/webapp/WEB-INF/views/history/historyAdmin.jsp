@@ -14,13 +14,13 @@
 <style type="text/css">
 	#chartdiv {
 		width	: 100%;
-		height: 1550px;
+		height: 600px;
 	}
 	/* .amcharts-chart-div > svg{
 		height: 600px !important;
 	}*/
 	.amChartsLegend > svg{
-		margin-left: 100px;
+		margin-left: 70px;
 	/*	height: 200px !important;
 		overflow: visible !important;*/
 	} 
